@@ -13,14 +13,15 @@ const SnippetSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'users',
-    required: true
+    required: true,
+    index: true
   },
   public: {
     type: Boolean,
     default: true
   },
   notes: {
-    rtpe: Array,
+    type: Array,
     required: true
   },
   date: {
