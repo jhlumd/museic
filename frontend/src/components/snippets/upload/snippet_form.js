@@ -32,20 +32,17 @@ export default class SnippetForm extends Component {
         piano.addEventListener("mousedown", e => {
             synth.triggerAttack(e.target.dataset.note);
 
-            console.log(e.timeStamp);
-            console.log(e.target.dataset);
-            console.log(e.target.dataset.note);
-
-            // this.state.notes.push({
-            //     pitch: e.target.dataset.note,
-            //     startTime: 0,
-            //     duration: 0.2
-            // });
+            this.state.notes.push({
+                pitch: e.target.dataset.note,
+                startTime: e.timeStamp
+            });
         });
 
         piano.addEventListener("mouseup", e => {
             synth.triggerRelease();
-            // console.log(e);
+
+            let lastNote = this.state.notes[this.state.notes.length - 1];
+            lastNote.duration = e.timeStamp - lastNote.startTime;
         });
     }
 
