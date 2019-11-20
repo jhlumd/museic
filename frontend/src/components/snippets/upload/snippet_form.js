@@ -19,33 +19,12 @@ export default class SnippetForm extends Component {
         this.timeLimit = 32;
 
         this.handlePrivacy = this.handlePrivacy.bind(this);
-        
-        this.handleNotesSubmit = this.handleNotesSubmit.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        // NEED TO WRITE
-
-    }
-
-    handleNotesSubmit() {
-        clearTimeout(this.timeoutId);
-
-        const lastNote = this.state.notes.slice(this.state.notes.length - 1)[0];
-        if (!lastNote.duration) {
-            const beginning = this.state.notes.slice(0, this.state.notes.length - 1);
-            lastNote.duration = lastNote.start
-
-            beginning.push(lastNote);
-            
-            this.setState({
-                notes: beginning
-            });
-        }
-
-
+        this.props.saveSnippet(this.state);
     }
 
     handleChange(field) {
@@ -113,10 +92,6 @@ export default class SnippetForm extends Component {
                 });
             }
         });
-    }
-
-    componentDidUpdate(prevProps) {
-
     }
     
     render() {
