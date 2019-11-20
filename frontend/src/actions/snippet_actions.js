@@ -1,6 +1,6 @@
-import * as ApiUtil from '../util/snippet_api_util';
+import * as ApiUtil from "../util/snippet_api_util";
 
-export const RECEIVE_NEW_SNIPPET = 'RECEIVE_NEW_SNIPPET';
+export const RECEIVE_NEW_SNIPPET = "RECEIVE_NEW_SNIPPET";
 
 export const receiveNewSnippet = snippet => {
     return {
