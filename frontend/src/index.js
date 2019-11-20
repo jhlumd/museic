@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
 
 
-  window.getState = store.getState //debugging 
+  window.getState = store.getState //debugging ==== remove
 
   ReactDOM.render(<Root store={store} />, root);
 });

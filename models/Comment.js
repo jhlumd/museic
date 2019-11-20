@@ -11,7 +11,7 @@ const CommentSchema = new Schema({
   snippet: {
     type: Schema.Types.ObjectId,
     ref: 'snippets',
-    // required: true,
+    // required: true, //change back after snippets are created
     index: true
   },
   parent: {
