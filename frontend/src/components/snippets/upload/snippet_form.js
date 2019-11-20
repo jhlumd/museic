@@ -18,8 +18,8 @@ export default class SnippetForm extends Component {
         this.notesArray = [];
 
         this.handlePrivacy = this.handlePrivacy.bind(this);
+        
         this.handleNotesSubmit = this.handleNotesSubmit.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
