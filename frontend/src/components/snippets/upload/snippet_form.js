@@ -11,15 +11,40 @@ export default class SnippetForm extends Component {
             title: "",
             description: "",
             public: true,
-            notes: []
+            notes: [],
+            errors: []
         };
 
+        this.handlePrivacy = this.handlePrivacy.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(e) {
         e.preventDefault();
+        // NEED TO WRITE
+    }
 
+    handleChange(field) {
+        return e => {
+            if (field === "title" && e.currentTarget.value === "") {
+                this.setState({
+                    [field]: e.currentTarget.value,
+                    errors: ["Enter a title."]
+                });
+            } else {
+                this.setState({
+                    [field]: e.currentTarget.value
+                });
+            }
+        };
+
+    }
+
+    handlePrivacy(e) {
+        let flag = Boolean(this.state.public);
+        if (flag.toString() !== e.currentTarget.value) {
+            this.setState({ public: !this.state.public });
+        }
     }
 
     componentDidMount() {
@@ -54,33 +79,78 @@ export default class SnippetForm extends Component {
         return (
             <div className="snippet-form-container">
                 
+                <form onSubmit= {this.handleSubmit}>
+                    <input
+                        type="text"
+                        value={this.state.title}
+                        onChange={this.handleChange("title")}
+                        placeholder="Name your snippet"
+                    />
+                    
+                    <input
+                        type="textarea"
+                        value={this.state.description}
+                        onChange={this.handleChange("description")}
+                        placeholder="Describe your snippet"
+                    />
+
+                    <input
+                        type="radio"
+                        name="public"
+                        value="true"
+                        checked={this.state.public}
+                        onChange={this.handlePrivacy}
+                    />
+                    
+                    <input
+                        type="radio"
+                        name="public"
+                        value="false"
+                        checked={this.state.public}
+                        onChange={this.handlePrivacy}
+                    />
+
+                    <input type="submit" value="Submit" />
+                </form>
 
                 <ul id="piano">
-                    <li data-note="C4" className="key">
-                        <div data-note="C#4" className="black-key">R</div>
-                        D
+                    <li data-note="C4" class="key">
+                        <div data-note="C#4" class="black-key"></div>
                     </li>
-                    <li data-note="D4" className="key">
-                        <div data-note="D#4" className="black-key">T</div>
-                        F
+                    <li data-note="D4" class="key">
+                        <div data-note="D#4" class="black-key"></div>
                     </li>
-                    <li data-note="E4" className="key">
-                        G
+                    <li data-note="E4" class="key">
                     </li>
-                    <li data-note="F4" className="key">
-                        <div data-note="F#4" className="black-key">U</div>
-                        H
+                    <li data-note="F4" class="key">
+                        <div data-note="F#4" class="black-key"></div>
                     </li>
-                    <li data-note="G4" className="key">
-                        <div data-note="G#4" className="black-key">I</div>
-                        J
+                    <li data-note="G4" class="key">
+                        <div data-note="G#4" class="black-key"></div>
                     </li>
-                    <li data-note="A4" className="key">
-                        <div data-note="A#4" className="black-key">O</div>
-                        K
+                    <li data-note="A4" class="key">
+                        <div data-note="A#4" class="black-key"></div>
                     </li>
-                    <li data-note="B4" className="key">
-                        L
+                    <li data-note="B4" class="key">
+                    </li>
+                    <li data-note="C5" class="key">
+                        <div data-note="C#5" class="black-key"></div>
+                    </li>
+                    <li data-note="D5" class="key">
+                        <div data-note="D#5" class="black-key"></div>
+                    </li>
+                    <li data-note="E5" class="key">
+                    </li>
+                    <li data-note="F5" class="key">
+                        <div data-note="F#5" class="black-key"></div>
+                    </li>
+                    <li data-note="G5" class="key">
+                        <div data-note="G#5" class="black-key"></div>
+                    </li>
+                    <li data-note="A5" class="key">
+                        <div data-note="A#5" class="black-key"></div>
+                    </li>
+                    <li data-note="B5" class="key">
                     </li>
                 </ul>
                 
