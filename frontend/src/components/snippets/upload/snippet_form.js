@@ -18,6 +18,8 @@ export default class SnippetForm extends Component {
         this.notesArray = [];
 
         this.handlePrivacy = this.handlePrivacy.bind(this);
+        this.handleNotesSubmit = this.handleNotesSubmit.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -25,10 +27,24 @@ export default class SnippetForm extends Component {
         e.preventDefault();
         // NEED TO WRITE
 
-        const adjNotesArr = this.notesArray.map();
-        this.setState({
-            notes: adjNotesArr
-        });
+    }
+
+    handleNotesSubmit() {
+        clearTimeout(this.timeoutId);
+
+        const lastNote = this.state.notes.slice(this.state.notes.length - 1)[0];
+        if (!lastNote.duration) {
+            const beginning = this.state.notes.slice(0, this.state.notes.length - 1);
+            lastNote.duration = lastNote.start
+
+            beginning.push(lastNote);
+            
+            this.setState({
+                notes: beginning
+            });
+        }
+
+
     }
 
     handleChange(field) {
@@ -121,25 +137,6 @@ export default class SnippetForm extends Component {
                 </form>
 
                 <ul id="piano">
-                    <li data-note="C4" class="key">
-                        <div data-note="C#4" class="black-key"></div>
-                    </li>
-                    <li data-note="D4" class="key">
-                        <div data-note="D#4" class="black-key"></div>
-                    </li>
-                    <li data-note="E4" class="key">
-                    </li>
-                    <li data-note="F4" class="key">
-                        <div data-note="F#4" class="black-key"></div>
-                    </li>
-                    <li data-note="G4" class="key">
-                        <div data-note="G#4" class="black-key"></div>
-                    </li>
-                    <li data-note="A4" class="key">
-                        <div data-note="A#4" class="black-key"></div>
-                    </li>
-                    <li data-note="B4" class="key">
-                    </li>
                     <li data-note="C5" class="key">
                         <div data-note="C#5" class="black-key"></div>
                     </li>
@@ -158,6 +155,8 @@ export default class SnippetForm extends Component {
                         <div data-note="A#5" class="black-key"></div>
                     </li>
                     <li data-note="B5" class="key">
+                    </li>
+                    <li data-note="C6" class="key">
                     </li>
                 </ul>
                 

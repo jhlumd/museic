@@ -24,7 +24,16 @@
 
 /*----------------------------------------------------------------------------*/
 
+window.state = {
+    title: "",
+    description: "",
+    public: true,
+    notes: null,
+    errors: []
+};
+
 const notesArray = [];
+
 
 const synth = new Tone.Synth();
 synth.oscillator.type = "sine";
@@ -35,22 +44,27 @@ const piano = document.getElementById("piano");
 piano.addEventListener("mousedown", e => {
     synth.triggerAttack(e.target.dataset.note);
 
-    // console.log(e.timeStamp);
-    // console.log(e.target.dataset.note);
-
-    notesArray.push({
+    // notesArray => this.notesArray
+    notesArray.push({ 
         pitch: e.target.dataset.note,
-        unadjStartTime: Math.round(e.timeStamp / 100)
+        unadjStartTime: Math.ceil(e.timeStamp / 250) 
     });
-    let lastNote = notesArray[notesArray.length - 1];
-    lastNote.startTime = lastNote.unadjStartTime - notesArray[0].unadjStartTime;
+    const lastNoteDown = notesArray[notesArray.length - 1];
+    lastNoteDown.startTime = lastNoteDown.unadjStartTime - notesArray[0].unadjStartTime;
+
+    window.state = {
+        notes: notesArray
+    };
 });
 
 piano.addEventListener("mouseup", e => {
     synth.triggerRelease();
 
-    // console.log(e.timeStamp);
+    const lastNoteUp = notesArray[notesArray.length - 1];
+    const dur = Math.ceil(e.timeStamp / 250 - lastNoteUp.unadjStartTime);
+    lastNoteUp.duration = (dur === -0 ? 1 : dur);
 
-    let lastNote = notesArray[notesArray.length - 1];
-    lastNote.duration = Math.round(e.timeStamp / 100 - lastNote.unadjStartTime);
+    window.state = {
+        notes: notesArray
+    };
 });
