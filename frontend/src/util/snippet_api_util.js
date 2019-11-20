@@ -1,5 +1,5 @@
 import axios from "axios";
 
-export const uploadSnippet = snippet => {
+export const saveSnippet = snippet => {
     return axios.post("/api/snippets/", snippet);
 };

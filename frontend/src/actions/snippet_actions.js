@@ -9,8 +9,8 @@ export const receiveNewSnippet = snippet => {
     };
 };
 
-export const uploadSnippet = formData => dispatch => (
-    ApiUtil.uploadSnippet(formData)
+export const saveSnippet = formData => dispatch => (
+    ApiUtil.saveSnippet(formData)
         .then(snippet => dispatch(receiveNewSnippet(snippet)))
         .catch(err => console.log(err))
 );

@@ -33,7 +33,7 @@ window.state = {
 };
 
 const notesArray = [];
-const limit = 32;
+const timeLimit = 32;
 
 
 const synth = new Tone.Synth();
@@ -46,7 +46,7 @@ piano.addEventListener("mousedown", e => {
     synth.triggerAttack(e.target.dataset.note);
 
     // notesArray => this.notesArray
-    // limit => this.limit
+    // timeLimit => this.timeLimit
     notesArray.push({ 
         pitch: e.target.dataset.note,
         unadjStartTime: Math.ceil(e.timeStamp / 250) 
@@ -54,7 +54,7 @@ piano.addEventListener("mousedown", e => {
     const lastNoteDown = notesArray[notesArray.length - 1];
     lastNoteDown.startTime = lastNoteDown.unadjStartTime - notesArray[0].unadjStartTime;
 
-    if (lastNoteDown.startTime < limit) {
+    if (lastNoteDown.startTime < timeLimit) {
         window.state = {
             notes: notesArray.slice()
         };
@@ -68,12 +68,12 @@ piano.addEventListener("mouseup", e => {
     const dur = Math.ceil(e.timeStamp / 250 - lastNoteUp.unadjStartTime);
     lastNoteUp.duration = (dur === -0 ? 1 : dur);
 
-    if (lastNoteUp.startTime + lastNoteUp.duration <= limit) { 
+    if (lastNoteUp.startTime + lastNoteUp.duration <= timeLimit) { 
         window.state = {
             notes: notesArray.slice()
         };
-    } else if (lastNoteUp.startTime < limit) {
-        lastNoteUp.duration = limit - lastNoteUp.startTime;
+    } else if (lastNoteUp.startTime < timeLimit) {
+        lastNoteUp.duration = timeLimit - lastNoteUp.startTime;
         window.state = {
             notes: notesArray.slice()
         };

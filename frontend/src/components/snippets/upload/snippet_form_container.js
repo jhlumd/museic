@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { uploadSnippet } from "../../../actions/snippet_actions";
+import { saveSnippet } from "../../../actions/snippet_actions";
 import SnippetForm from "./tweet_compose";
 
 const mstp = state => {
@@ -10,7 +10,7 @@ const mstp = state => {
 
 const mdtp = dispatch => {
   return {
-    uploadSnippet: data => dispatch(uploadSnippet(data))
+    saveSnippet: data => dispatch(saveSnippet(data))
   };
 };
 

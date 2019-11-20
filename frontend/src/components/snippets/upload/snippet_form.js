@@ -16,6 +16,7 @@ export default class SnippetForm extends Component {
         };
 
         this.notesArray = [];
+        this.timeLimit = 32;
 
         this.handlePrivacy = this.handlePrivacy.bind(this);
         
@@ -82,15 +83,35 @@ export default class SnippetForm extends Component {
 
             this.notesArray.push({
                 pitch: e.target.dataset.note,
-                unadjStartTime: e.timeStamp
+                unadjStartTime: Math.ceil(e.timeStamp / 250)
             });
+            const lastNoteDown = this.notesArray[this.notesArray.length - 1];
+            lastNoteDown.startTime = lastNoteDown.unadjStartTime - this.notesArray[0].unadjStartTime;
+
+            if (lastNoteDown.startTime < this.timeLimit) {
+                this.setState({
+                    notes: this.notesArray.slice()
+                });
+            }
         });
 
         piano.addEventListener("mouseup", e => {
             synth.triggerRelease();
 
-            let lastNote = this.notesArray[this.notesArray.length - 1];
-            lastNote.duration = e.timeStamp - lastNote.unadjStartTime;
+            const lastNoteUp = this.notesArray[this.notesArray.length - 1];
+            const dur = Math.ceil(e.timeStamp / 250 - lastNoteUp.unadjStartTime);
+            lastNoteUp.duration = (dur === -0 ? 1 : dur);
+
+            if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
+                this.setState({
+                    notes: this.notesArray.slice()
+                });
+            } else if (lastNoteUp.startTime < this.timeLimit) {
+                lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
+                this.setState({
+                    notes: this.notesArray.slice()
+                });
+            }
         });
     }
 
