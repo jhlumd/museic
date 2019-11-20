@@ -11,7 +11,7 @@ export default class SnippetForm extends Component {
             title: "",
             description: "",
             public: true,
-            notes: [],
+            notes: null,
             errors: []
         };
 
@@ -24,6 +24,11 @@ export default class SnippetForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
         // NEED TO WRITE
+
+        const adjNotesArr = this.notesArray.map();
+        this.setState({
+            notes: adjNotesArr
+        });
     }
 
     handleChange(field) {
@@ -59,7 +64,6 @@ export default class SnippetForm extends Component {
         piano.addEventListener("mousedown", e => {
             synth.triggerAttack(e.target.dataset.note);
 
-            //this.setState()
             this.notesArray.push({
                 pitch: e.target.dataset.note,
                 unadjStartTime: e.timeStamp
@@ -82,7 +86,7 @@ export default class SnippetForm extends Component {
         return (
             <div className="snippet-form-container">
                 
-                <form onSubmit= {this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"
                         value={this.state.title}
