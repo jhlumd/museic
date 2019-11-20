@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tone from "tone";
+import './piano.css';
 
 export default class SnippetForm extends Component {
     constructor(props) {
@@ -123,7 +124,7 @@ export default class SnippetForm extends Component {
                         type="radio"
                         name="public"
                         value="false"
-                        checked={this.state.public}
+                        checked={!this.state.public}
                         onChange={this.handlePrivacy}
                     />
 
@@ -131,26 +132,26 @@ export default class SnippetForm extends Component {
                 </form>
 
                 <ul id="piano">
-                    <li data-note="C5" class="key">
-                        <div data-note="C#5" class="black-key"></div>
+                    <li data-note="C5" className="key">
+                        <div data-note="C#5" className="black-key"></div>
                     </li>
-                    <li data-note="D5" class="key">
-                        <div data-note="D#5" class="black-key"></div>
+                    <li data-note="D5" className="key">
+                        <div data-note="D#5" className="black-key"></div>
                     </li>
-                    <li data-note="E5" class="key">
+                    <li data-note="E5" className="key">
                     </li>
-                    <li data-note="F5" class="key">
-                        <div data-note="F#5" class="black-key"></div>
+                    <li data-note="F5" className="key">
+                        <div data-note="F#5" className="black-key"></div>
                     </li>
-                    <li data-note="G5" class="key">
-                        <div data-note="G#5" class="black-key"></div>
+                    <li data-note="G5" className="key">
+                        <div data-note="G#5" className="black-key"></div>
                     </li>
-                    <li data-note="A5" class="key">
-                        <div data-note="A#5" class="black-key"></div>
+                    <li data-note="A5" className="key">
+                        <div data-note="A#5" className="black-key"></div>
                     </li>
-                    <li data-note="B5" class="key">
+                    <li data-note="B5" className="key">
                     </li>
-                    <li data-note="C6" class="key">
+                    <li data-note="C6" className="key">
                     </li>
                 </ul>
                 

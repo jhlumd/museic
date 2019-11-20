@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { saveSnippet } from "../../../actions/snippet_actions";
-import SnippetForm from "./tweet_compose";
+import SnippetForm from "./snippet_form";
 
 const mstp = state => {
   return {
