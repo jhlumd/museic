@@ -20,7 +20,6 @@ piano.addEventListener("mouseup", e => {
     // stops the trigger
     synth.triggerRelease();
     // console.log(e);
-    
 });
 
 // handles keyboard events
