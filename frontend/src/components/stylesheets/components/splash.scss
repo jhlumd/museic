@@ -1,0 +1,55 @@
+#splash-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 1000px;
+  margin: auto;
+
+  & > div {
+    position: relative;
+    height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .next {
+      position: absolute;
+      bottom: 6vh;
+
+      p {
+        margin-bottom: 2em;
+      }
+
+    }
+  }
+
+  #splash-intro-container {
+    h1 {
+      transform: translateY(-100px);
+      margin-bottom: 0em;
+      font-size: 3em;
+
+      div {
+        display: inline-block;
+      }
+    }
+    
+    .museic-logo-bar {
+      width: 11em;
+      height: 0.3em;
+
+      background: linear-gradient(90deg, $red, $purple, $blue);
+      background-size: 800% 800%;
+      
+    }
+    
+    p {
+      max-width: 400px;
+      text-align: left;
+    }
+  }
+
+}

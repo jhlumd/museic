@@ -6,6 +6,7 @@
 @import "./colors.scss";
 @import "./fonts.scss";
 @import "./basics.scss";
+@import "./animations.scss";
 @import "./mixins.scss";
 
 // Components
@@ -14,7 +15,3 @@
 @import "./components/footer.scss";
 @import "./components/splash.scss";
 @import "./components/session.scss";
-
-body {
-  background-color: rgb(185, 185, 231);
-}

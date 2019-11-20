@@ -7,7 +7,7 @@ import NavBarContainer from './nav/navbar_container';
 import SplashContainer from './splash/splash_container';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
-import 'config/frontend/public/stylesheets/main.scss';
+import './stylesheets/main.scss'
 
 const App = () => (
   <div>

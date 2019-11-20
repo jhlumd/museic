@@ -21,7 +21,6 @@ export default class Splash extends Component {
   snapTo(location) {
     var element = document.getElementById(location);
     element.scrollIntoView({ behavior: "smooth" });
-    // $(document).scrollTop($(location).offset().top);
   }
   render() {
     return (
