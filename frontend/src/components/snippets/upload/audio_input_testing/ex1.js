@@ -9,7 +9,6 @@ piano.addEventListener("mousedown", e => {
     synth.triggerAttack(e.target.dataset.note);
 
     console.log(e.timeStamp);
-    console.log(e.target.dataset);
     console.log(e.target.dataset.note);
 });
 
