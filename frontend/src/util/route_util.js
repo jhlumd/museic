@@ -8,8 +8,8 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
     !loggedIn ? (
       <Component {...props} />
     ) : (
-        // Redirect to the melodies page if the user is authenticated
-        <Redirect to="/melodies" />
+        // Redirect to the profile page if the user is authenticated
+        <Redirect to="/profile" />
       )
   )} />
 );
