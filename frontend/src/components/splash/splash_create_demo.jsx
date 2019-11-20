@@ -8,14 +8,11 @@ export default class SplashCreateDemo extends Component {
     super(props);
     this.state = {
       currentSnippet: [],
-      message: ''
+      message: 'Try clicking the tiles, or pressing some keys to make some music.'
     }
     this.updateSnippet = this.updateSnippet.bind(this);
   }
-  componentDidMount() {
-    const message0 = 'Try clicking the tiles, or pressing some keys to make some music.'
-    this.setState({ message: message0 })
-  }
+  
   componentDidUpdate() {
     const message0 = 'Try clicking the tiles, or pressing some keys to make some music.'
     const message1 = 'There you go! Keep going.';

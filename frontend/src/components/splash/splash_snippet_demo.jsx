@@ -23,7 +23,7 @@ export default class SplashSnippetDemo extends Component {
         <ul className='tabs-container'>
           {
             this.props.snippets.map((snippet, i) => (
-              <li key={i} onClick={this.changeTab(i)}>
+              <li key={i} onClick={() => this.changeTab(i)}>
                 {/* { snippet.name.toLowerCase() } */}
                 { snippet }
               </li>
