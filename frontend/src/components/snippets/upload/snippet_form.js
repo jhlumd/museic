@@ -17,7 +17,7 @@ export default class SnippetForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        
+
     }
 
     componentDidMount() {
@@ -27,7 +27,6 @@ export default class SnippetForm extends Component {
     componentDidUpdate(prevProps) {
 
     }
-    
     
     render() {
         return (
