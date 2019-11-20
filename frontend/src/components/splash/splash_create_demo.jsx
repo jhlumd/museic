@@ -12,7 +12,7 @@ export default class SplashCreateDemo extends Component {
     }
     this.updateSnippet = this.updateSnippet.bind(this);
   }
-  
+
   componentDidUpdate() {
     const message0 = 'Try clicking the tiles, or pressing some keys to make some music.'
     const message1 = 'There you go! Keep going.';
@@ -49,12 +49,12 @@ export default class SplashCreateDemo extends Component {
         <KeyboardContainer updateSnippet={this.updateSnippet} />
         
         <div className='next'>
-          <p>
-            Save it!
-          </p>
           <div className='down-chevron' onClick={() => this.props.snapTo('splash-signup-container')}>
             <DownChevronIcon />
           </div>
+          <p>
+            Save it!
+          </p>
         </div>
         
       </div>

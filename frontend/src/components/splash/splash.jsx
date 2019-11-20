@@ -25,11 +25,21 @@ export default class Splash extends Component {
   render() {
     return (
       <div id='splash-container'>
-        <SplashIntro snapTo={this.snapTo} />
-        <SplashSnippetDemo snippets={this.props.snippets} snapTo={this.snapTo} />
-        <SplashCreateDemo snapTo={this.snapTo} />
-        <SplashSignup snapTo={this.snapTo} />
-        <SplashTeamIntro snapTo={this.snapTo} />
+        <section>
+          <SplashIntro snapTo={this.snapTo} />
+        </section>
+        <section>
+          <SplashSnippetDemo snippets={this.props.snippets} snapTo={this.snapTo} />
+        </section>
+        <section>
+          <SplashCreateDemo snapTo={this.snapTo} />
+        </section>
+        <section>
+          <SplashSignup snapTo={this.snapTo} />
+        </section>
+        <section>
+          <SplashTeamIntro snapTo={this.snapTo} />
+        </section>
       </div>
     )
   }

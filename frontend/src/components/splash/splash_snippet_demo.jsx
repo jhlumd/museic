@@ -6,12 +6,32 @@ export default class SplashSnippetDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSnippet: this.props.snippets[0]
+      activeSnippet: this.props.snippets[0],
+      activeTab: 2
     }
     this.changeTab = this.changeTab.bind(this);
   }
+
   changeTab(tabNum) {
     this.setState({ activeSnippet: this.props.snippets[tabNum] })
+    this.setState({ activeTab: tabNum + 1 })
+  }
+
+  componentDidMount() {
+    this.setState({ activeTab: 1 })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevTabNum = prevState.activeTab;
+    const nextTabNum = this.state.activeTab;
+
+    if (prevTabNum !== nextTabNum) {
+      const prevTab = document.querySelector(`.tabs-container li:nth-child(${prevTabNum})`);
+      const nextTab = document.querySelector(`.tabs-container li:nth-child(${nextTabNum})`);
+
+      prevTab.classList.remove('active');
+      nextTab.classList.add('active');
+    }
   }
   render() {
     return (
@@ -36,12 +56,12 @@ export default class SplashSnippetDemo extends Component {
         </div>
 
         <div className='next'>
-          <p>
-            Make your own.
-          </p>
           <div className='down-chevron' onClick={() => this.props.snapTo('splash-create-demo-container')}>
             <DownChevronIcon />
           </div>
+          <p>
+            Make your own.
+          </p>
         </div>
 
       </div>

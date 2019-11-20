@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';
 
 export default class SplashIntro extends React.Component {
@@ -18,42 +18,46 @@ export default class SplashIntro extends React.Component {
       window.setTimeout(() => (
         element.classList.add("slide-bottom")
       ),
-        100 * i)
+        115 * i)
     }
+   
   }
     
   render() {
     return (
       <div id='splash-intro-container'>
+        <div className='splash-intro-main'>
 
-        <div className='museic-logo'>
-          <h1>
-            <div>M</div>
-            <div>U</div>
-            <div>S</div>
-            <div>E</div>
-            <div>I</div>
-            <div>C</div>
-          </h1>
-          <div className='museic-logo-bar scale-up-hor-left'></div>
-        </div>
+          <div className='museic-logo'>
+            <h1>
+              <div>M</div>
+              <div>U</div>
+              <div>S</div>
+              <div>E</div>
+              <div>I</div>
+              <div>C</div>
+            </h1>
+            <div className='museic-logo-bar scale-up-hor-left'></div>
+          </div>
 
-        <div className='splash-description'>
-          <h3>
-            Welcome to Museic!
-        </h3>
-          <p>
-            Make and share melodic snippets on our platform. Jot down your inspirations easily with our easy-to-use interface.
-        </p>
+          <div className='splash-description'>
+            <h3>
+              Welcome to MUSEIC!
+            </h3>
+            <p>
+              Make and share melodic snippets on our platform. Jot down your inspirations easily with our easy-to-use interface.
+          </p>
+          </div>
+
         </div>
 
         <div className='next'>
-          <p>
-            Look what you could make!
-        </p>
           <div className='down-chevron' onClick={() => this.props.snapTo('splash-snippet-demo-container')}>
             <DownChevronIcon />
           </div>
+          <p>
+            Take a look.
+          </p>
         </div>
 
       </div>

@@ -1,13 +1,25 @@
 #splash-container {
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: stretch;
-  width: 1000px;
-  margin: auto;
+  width: 100vw;
+  scroll-snap-type: y mandatory;
+  scroll-padding: 45px;
 
-  & > div {
-    position: relative;
+  & > section {
+    scroll-snap-align: start;
     height: 90vh;
+    width: inherit;
+
+    box-shadow: 0px 14px 16px -12px $shadow;
+  }
+
+  & > section > div {
+    position: relative;
+    height: inherit;
+    max-width: 1000px;
+    min-width: 400px;
+    margin: auto;
 
     display: flex;
     flex-direction: column;
@@ -17,39 +29,103 @@
 
     .next {
       position: absolute;
-      bottom: 6vh;
+      display: flex;
+      flex-direction: column-reverse;
+      bottom: 5vh;
 
       p {
+        font-weight: 400;
         margin-bottom: 2em;
+        text-transform: uppercase;
+      }
+
+      .down-chevron {
+        &:hover {
+          fill: $blue;
+        }
       }
 
     }
   }
 
   #splash-intro-container {
-    h1 {
-      transform: translateY(-100px);
-      margin-bottom: 0em;
-      font-size: 3em;
+    .splash-intro-main {
+      border: 5.5px solid transparent;
+      @include rainbow-border;
+      padding: 5em;
 
-      div {
-        display: inline-block;
+      .museic-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h1 {
+          transform: translateY(-100px);
+          margin-bottom: 0em;
+          font-size: 3em;
+    
+          div {
+            display: inline-block;
+          }
+        }
+        
+        .museic-logo-bar {
+          width: 11em;
+          height: 0.3em;
+    
+          background: linear-gradient(90deg, $red, $purple, $blue);
+          background-size: 800% 800%;
+        }
       }
-    }
-    
-    .museic-logo-bar {
-      width: 11em;
-      height: 0.3em;
 
-      background: linear-gradient(90deg, $red, $purple, $blue);
-      background-size: 800% 800%;
-      
-    }
-    
-    p {
-      max-width: 400px;
-      text-align: left;
+      .splash-description {
+        h3 {
+          font-size: 1.17em;
+        }
+  
+        p {
+          max-width: 350px;
+          text-align: center;
+          margin-top: 3em;
+        }
+      }
     }
   }
 
+  #splash-snippet-demo-container {
+    $display-width: 600px;
+
+    h2 {
+      margin: 3em 0;
+    }
+    
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      li {
+        box-sizing: border-box;
+        width: $display-width / 3;
+        height: 2em;
+        border-bottom: 1px solid $shadow;
+
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out; 
+
+        &.active {
+          border-bottom: 3px solid transparent;
+          @include rainbow-border;
+        }
+      }
+    }
+
+    .snippet-display-container {
+      height: 300px;
+      width: $display-width;
+      background-color: $light-blue;
+    }
+  }
 }
