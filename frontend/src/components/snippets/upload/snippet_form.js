@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Tone from "tone";
 
-
-const synth = new Tone.Synth();
 export default class SnippetForm extends Component {
     constructor(props) {
         super(props);
