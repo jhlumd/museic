@@ -15,6 +15,8 @@ export default class SnippetForm extends Component {
             errors: []
         };
 
+        this.notesArray = [];
+
         this.handlePrivacy = this.handlePrivacy.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -41,8 +43,8 @@ export default class SnippetForm extends Component {
     }
 
     handlePrivacy(e) {
-        let flag = Boolean(this.state.public);
-        if (flag.toString() !== e.currentTarget.value) {
+        let pubBool = Boolean(this.state.public);
+        if (pubBool.toString() !== e.currentTarget.value) {
             this.setState({ public: !this.state.public });
         }
     }
@@ -57,17 +59,18 @@ export default class SnippetForm extends Component {
         piano.addEventListener("mousedown", e => {
             synth.triggerAttack(e.target.dataset.note);
 
-            this.state.notes.push({
+            //this.setState()
+            this.notesArray.push({
                 pitch: e.target.dataset.note,
-                startTime: e.timeStamp
+                unadjStartTime: e.timeStamp
             });
         });
 
         piano.addEventListener("mouseup", e => {
             synth.triggerRelease();
 
-            let lastNote = this.state.notes[this.state.notes.length - 1];
-            lastNote.duration = e.timeStamp - lastNote.startTime;
+            let lastNote = this.notesArray[this.notesArray.length - 1];
+            lastNote.duration = e.timeStamp - lastNote.unadjStartTime;
         });
     }
 
