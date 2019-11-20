@@ -16,6 +16,13 @@ router.get('/', (req, res) => {
   }
 );
 
+//get all comments for snippet THIS NEEDS TO BE RE-TESTED BECAUSE NO SNIPPET ID YET
+router.get('/:snippit_id', (req, res) => {
+  Comment.find({ snippet: req.params.snippit_id})
+    .then(comments => res.json(comments))
+    .catch(err => res.status(404).json({ error: "no comments found" }))
+})
+
 //create new
 router.post('/new', 
   passport.authenticate('jwt', { session: false }),
