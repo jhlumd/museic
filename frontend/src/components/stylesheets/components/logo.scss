@@ -1,0 +1,27 @@
+.logo {
+  a {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    
+    height: 2.5rem;
+    width: 2.5rem;
+    
+    &:hover {
+      text-decoration: none;
+    }
+  
+    .logo-bar {
+      width: 1.562rem;
+      height: 4.8px;
+    }
+  
+    .logo-letter {
+      margin: 0;
+      color: $black;
+      
+    }
+  }
+}

@@ -8,6 +8,11 @@
   overflow-y: scroll;
   scroll-padding: 45px;
 
+  & > section:last-child {
+    background-color: $ivory;
+    box-shadow: inset 0px 14px 16px -12px $shadow;
+  }
+
   & > section {
     scroll-snap-align: start;
     height: 90vh;
@@ -65,6 +70,10 @@
           transform: translateY(-100px);
           margin-bottom: 0em;
           font-size: 3em;
+
+          &.revert {
+            transform: translateY(0px);
+          }
     
           div {
             display: inline-block;
@@ -144,22 +153,22 @@
       }
     }
 
-    p {
-      font-weight: 400;
-      margin: 0 0 4em 0;
+    .subtitle {
+      font-size: 1.16em;
+      margin: 4em 0 1em 0;
+    }
 
-      &.signin-link {
-        font-weight: 300;
-        font-size: 0.8em;
-        margin-top: 1em;
+    .signin-link {
+      font-weight: 300;
+      font-size: 0.8em;
+      margin-top: 1em;
 
-        span {
-          color: $blue;
+      span {
+        color: $link;
 
-          &:hover {
-            cursor: pointer;
-            text-decoration: underline;
-          }
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
         }
       }
     }
@@ -174,7 +183,7 @@
         font-weight: 300;
         text-transform: capitalize;
         
-        background-color: $black;
+        background-color: $blue;
         color: $white;
         overflow: hidden;
   
@@ -185,6 +194,7 @@
       }
 
       &:hover div{
+        color: $milk;
         cursor: pointer;
         @include rainbow-bg-ani;
       }      

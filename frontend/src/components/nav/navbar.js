@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NavbarUserDropdown from './navbar_user_dropdown';
+import Logo from '../resources/logo';
+import UserIcon from '../resources/user_icon';
 
-class NavBar extends React.Component {
+class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
-    this.getLinks = this.getLinks.bind(this);
   }
 
   logoutUser(e) {
@@ -13,35 +14,21 @@ class NavBar extends React.Component {
     this.props.logout();
   }
 
-  // Selectively render links dependent on whether the user is logged in
-  getLinks() {
-    if (this.props.loggedIn) {
-      return (
-        <div>
-          <Link to={'/snippets/new'}>Create snippets</Link>
-          <Link to={'/profile'}>Profile</Link>
- 
-          <button onClick={this.logoutUser}>Logout</button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
-        </div>
-      );
-    }
-  }
+
 
   render() {
     return (
       <div>
-        <h1>Museic</h1>
-        {this.getLinks()}
+        <div className='nav-left'>
+          <Logo />
+        </div>
+        <div className='nav-right'>
+          <UserIcon />
+          <NavbarUserDropdown loggedIn={this.props.loggedIn} />
+        </div>
       </div>
     );
   }
 }
 
-export default NavBar;
+export default Navbar;
