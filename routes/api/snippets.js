@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const mongoose = require("mongoose"); // required?
 
 const Snippet = require("../../models/Snippet");
 const validateSnippetInput = require("../../validation/snippet");
@@ -11,10 +12,29 @@ router.get("/", (req, res) => {
         .sort({ date: -1 })
         .then(snippets => res.json(snippets))
         .catch(err => res.status(404).json({
-            noSnippetsFound: "No snippets found"
+            nosnippetsfound: "No snippets found"
         }));
 });
 
+// index for user show page
+router.get("/user/:user_id", (req, res) => {
+    Snippet.find({ user: req.params.user_id })
+        .then(snippets => res.json(snippets))
+        .catch(err => res.status(404).json({
+            nosnippetsfound: "No snippets found from that user"
+        }));
+});
+
+// single snippet show page
+router.get("/:id", (req, res) => {
+    Snippet.findById(req.params.id)
+        .then(snippet => res.json(snippet))
+        .catch(err => res.status(404).json({
+            nosnippetfound: "No snippet found with that ID"
+        }));
+});
+
+// create snippet form
 router.post(
     "/",
     passport.authenticate("jwt", { session: false }),
