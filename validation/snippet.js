@@ -10,11 +10,9 @@ module.exports = function validateSnippetInput(data) {
     errors.title = 'Title is required';
   }
 
-  if (Validator.isEmpty(data.notes)) {
-    errors.notes = 'You must record a snippet';
-  }
-
-  // add validators for other fields (google validator github)
+  // if (Validator.isEmpty(data.notes)) {
+  //   errors.notes = 'You must record a snippet';
+  // }
 
   return {
     errors,
