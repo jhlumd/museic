@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Heebo:300,400,500,700|Josefin+Slab:400,400i&display=swap');
+
+$sans-serif: 'Heebo', sans-serif;
+$serif: 'Josefin Slab', serif;
+
+body {
+  font-family: $sans-serif;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 500;
+  margin: 1em 0em;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin: 1em 0em;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 1em 0em;
+}
+
+p {
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.25em;
+}
+
+em {
+  font-weight: bold;
+}
+
+i {
+  font-family: $serif;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,237 @@
+#splash-container {
+  display: block;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-padding: 45px;
+
+  & > section {
+    scroll-snap-align: start;
+    height: 90vh;
+    width: inherit;
+
+    box-shadow: 0px 14px 16px -12px $shadow;
+  }
+
+  & > section > div {
+    position: relative;
+    height: inherit;
+    max-width: 1000px;
+    min-width: 400px;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .next {
+      position: absolute;
+      display: flex;
+      flex-direction: column-reverse;
+      bottom: 5vh;
+
+      p {
+        font-weight: 400;
+        margin-bottom: 2em;
+        text-transform: uppercase;
+      }
+
+      .down-chevron {
+        &:hover {
+          fill: $blue;
+        }
+      }
+
+    }
+  }
+
+  #splash-intro-container {
+    .splash-intro-main {
+      border: 5.5px solid transparent;
+      @include rainbow-border;
+      padding: 5em;
+
+      .museic-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h1 {
+          transform: translateY(-100px);
+          margin-bottom: 0em;
+          font-size: 3em;
+    
+          div {
+            display: inline-block;
+          }
+        }
+        
+        .museic-logo-bar {
+          width: 11em;
+          height: 0.3em;
+    
+          background: linear-gradient(90deg, $red, $purple, $blue);
+          background-size: 800% 800%;
+        }
+      }
+
+      .splash-description {
+        h3 {
+          font-size: 1.17em;
+        }
+  
+        p {
+          max-width: 350px;
+          text-align: center;
+          margin-top: 3em;
+        }
+      }
+    }
+  }
+
+  #splash-snippet-demo-container {
+    $display-width: 600px;
+
+    h2 {
+      margin: 3em 0;
+    }
+    
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      li {
+        box-sizing: border-box;
+        width: $display-width / 3;
+        height: 2em;
+        color: $shadow;
+
+        -webkit-transition: all 0.1s ease-in;
+        -moz-transition: all 0.1s ease-in;
+        -o-transition: all 0.1s ease-in;
+        transition: all 0.1s ease-in; 
+
+        &.active {
+          color: $black;
+          border-bottom: 3px solid transparent;
+          @include rainbow-border;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .snippet-display-container {
+      margin-bottom: 15vh;
+    }
+  }
+
+  #splash-signup-container {
+    h2 {
+      font-size: 1.75em;
+      margin-bottom: 0.5em;
+      
+      span {
+        @include rainbow-text;
+      }
+    }
+
+    p {
+      font-weight: 400;
+      margin: 0 0 4em 0;
+
+      &.signin-link {
+        font-weight: 300;
+        font-size: 0.8em;
+        margin-top: 1em;
+
+        span {
+          color: $blue;
+
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    button {
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        font-size: 1.25em;
+        font-weight: 300;
+        text-transform: capitalize;
+        
+        background-color: $black;
+        color: $white;
+        overflow: hidden;
+  
+        height: 3em;
+        min-width: 100px;
+        border-radius: 3px;
+        padding: 0 2em;
+      }
+
+      &:hover div{
+        cursor: pointer;
+        @include rainbow-bg-ani;
+      }      
+    }
+  }
+
+  #splash-team-info-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+ 
+    .team-member-container:nth-child(1) h3{
+      background: linear-gradient(to right, $red 0%, $purple 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .team-member-container:nth-child(2) h3{
+      background: linear-gradient(to right, $purple 50%,  $blue 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .team-member-container:nth-child(3) h3{
+      background: linear-gradient(to right, $blue 0%, $purple 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .team-member-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      .team-member-photo {
+        width: 15vw;
+        height: 15vw;
+        border-radius: 100%;
+        overflow: hidden;
+
+        background-color: $shadow;
+      }
+
+      p {
+        width: 20vh;
+        padding-bottom: 1em;
+        text-align: left;
+      }
+    }
+  }
+}
