@@ -25,6 +25,7 @@ export default class Splash extends Component {
   render() {
     return (
       <div id='splash-container'>
+
         <section>
           <SplashIntro snapTo={this.snapTo} />
         </section>
@@ -40,6 +41,7 @@ export default class Splash extends Component {
         <section>
           <SplashTeamIntro snapTo={this.snapTo} />
         </section>
+        
       </div>
     )
   }

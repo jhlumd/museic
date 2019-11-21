@@ -3,7 +3,9 @@
   flex-direction: column;
   align-items: stretch;
   width: 100vw;
+  height: 100vh;
   scroll-snap-type: y mandatory;
+  overflow-y: scroll;
   scroll-padding: 45px;
 
   & > section {
