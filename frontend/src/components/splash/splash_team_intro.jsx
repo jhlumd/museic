@@ -10,7 +10,7 @@ export default function SplashTeamInfo() {
         </div>  
 
         <div className='team-member-description'>
-          <h3>Name</h3>
+          <h3>Phil Zheng</h3>
           <p>
             Mist enveloped the ship three hours out from port.
           </p>
@@ -21,7 +21,7 @@ export default function SplashTeamInfo() {
       <div className='team-member-container'>
 
         <div className='team-member-description'>
-          <h3>Name</h3>
+          <h3>Jiani Fan</h3>
           <p>
             Mist enveloped the ship three hours out from port.
           </p>
@@ -40,7 +40,7 @@ export default function SplashTeamInfo() {
         </div>  
 
         <div className='team-member-description'>
-          <h3>Name</h3>
+          <h3>Jaehyuk Lee</h3>
           <p>
             Mist enveloped the ship three hours out from port.
           </p>

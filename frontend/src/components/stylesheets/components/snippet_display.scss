@@ -1,0 +1,38 @@
+.snippet-display-container {
+  box-sizing: border-box;
+  height: 300px;
+  width: 600px;
+
+  display: flex;
+  flex-direction: column;
+
+  .bar-display-container {
+    height: inherit;
+    width: inherit;
+  }
+
+  .interaction-bar-container {
+    box-sizing: border-box;
+    height: 46px;
+    width: inherit;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 1em;
+    border-bottom: 1px solid $shadow;
+
+    .interaction-bar-left {
+
+    }
+
+    .interaction-bar-right {
+
+      svg {
+        margin-left: 1em;
+      }
+    }
+  }
+}

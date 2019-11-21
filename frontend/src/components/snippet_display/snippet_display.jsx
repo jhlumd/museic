@@ -16,9 +16,11 @@ export default class SnippetDisplay extends Component {
   render() {
     return (
       <div className='snippet-display-container'>
+        
         <div className='bar-display-container'>
 
         </div>
+
         <div className='interaction-bar-container'>
 
           <div className='interaction-bar-left'>
