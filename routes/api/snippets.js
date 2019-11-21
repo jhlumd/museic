@@ -5,7 +5,15 @@ const passport = require("passport");
 const Snippet = require("../../models/Snippet");
 const validateSnippetInput = require("../../validation/snippet");
 
-router.get("/test", (req, res) => res.json({ msg: "This is the snippets route" }));
+// need to make index only show public snippets or own snippets
+router.get("/", (req, res) => {
+    Snippet.find()
+        .sort({ date: -1 })
+        .then(snippets => res.json(snippets))
+        .catch(err => res.status(404).json({
+            noSnippetsFound: "No snippets found"
+        }));
+});
 
 router.post(
     "/",
