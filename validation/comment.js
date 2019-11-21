@@ -5,11 +5,17 @@ module.exports = function validateCommentInput(data) {
   let errors = {};
 
   data.body = validText(data.body) ? data.body : '';
+  data.user = validText(data.user) ? data.user : '';
 
   if (Validator.isEmpty(data.body)) {
     errors.body = 'Comment cannot be empty';
   }
-  
+
+  //dev validator, catch model errors
+  // if (Validator.isEmpty(data.user)) {
+  //   errors.body = 'Author ID missing';
+  // }
+
   return {
     errors,
     isValid: Object.keys(errors).length === 0
