@@ -4,6 +4,12 @@ const passport = require('passport');
 
 const Like = require('../../models/Like')
 
+router.get('/:snippet_id', (req, res) => {
+  Like.find({ snippet: req.params.snippet_id})
+    .then(likes => res.json(likes))
+    .catch(err => res.status(404).json({ error: err }))
+});
+
 router.post('/', 
   passport.authenticate('jwt', { session: false }),
   (req, res) => {

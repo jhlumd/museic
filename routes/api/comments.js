@@ -27,7 +27,7 @@ router.get('/:user_id', (req, res) => {
 router.get('/:snippet_id', (req, res) => {
   Comment.find({ snippet: req.params.snippet_id})
     .then(comments => res.json(comments))
-    .catch(err => res.status(404).json({ error: "no comments found" }))
+    .catch(err => res.status(404).json({ error: err }))
 })
 
 //create new
