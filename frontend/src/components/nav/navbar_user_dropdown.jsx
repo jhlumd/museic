@@ -9,7 +9,7 @@ export default function NavbarUserDropdown(props) {
           <div>Profile</div>
         </button>
 
-        <button onClick={this.logoutUser}>
+        <button onClick={this.props.logoutUser}>
           <div>Logout</div>
         </button>
 
@@ -18,6 +18,10 @@ export default function NavbarUserDropdown(props) {
   } else {
     return (
       <div className='nav-dropdown-container'>
+
+        <div className='nav-dropdown-top-pad'>
+          
+        </div>
 
         <button onClick={() => this.history.push('/signup')}>
           <div>Signup</div>

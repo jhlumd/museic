@@ -1,0 +1,100 @@
+#nav-container {
+  position: relative;
+  width: 100vw;
+  height: 95vh;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: $milk;
+  border-bottom: 1px solid $shadow;
+
+  .nav-content {
+    width: inherit;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .nav-create-snippet-form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-base-bar-container {
+      box-sizing: border-box;
+      position: absolute;
+      bottom: -42px;
+      
+      width: inherit;
+      display: flex;
+      flex-direction: column;
+      
+      .nav-base-bar-content {
+        width: 90%;
+        margin: auto;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        // .nav-base-bar-left {
+          
+        // }
+
+        .nav-base-bar-right {
+
+          .nav-dropdown-container {
+            position: absolute;
+            top: 25px;
+            right: 54px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            background-color: $white;
+            border-bottom: 1px solid $shadow;
+            border-left: 1px solid $shadow;
+            border-right: 1px solid $shadow;
+
+            .nav-dropdown-top-pad {
+              
+            }
+
+            button {
+              text-transform: uppercase;
+              padding: 1em 5em;
+
+              &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+                @include rainbow-text;
+              }
+            }
+          }
+        }
+      }
+
+      .nav-base-tab-container {
+        box-sizing: border-box;
+        width: 200px;
+        margin: auto;
+        padding: 0.5em 4em;
+        
+        display: flex;
+        justify-content: center;
+
+        background-color: $milk;
+        border: 1px solid black;
+      }
+    }
+  }
+  
+}
