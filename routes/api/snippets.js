@@ -57,4 +57,15 @@ router.post(
     }
 );
 
+// delete a snippet
+router.delete('/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const snippetId = req.params.id;
+        Snippet.deleteOne({ _id: snippetId })
+            .then(() => res.json({ msg: `Snippet id: ${snippetId} deleted` }))
+            .catch(err => console.log(err));
+    }
+);
+
 module.exports = router;

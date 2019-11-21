@@ -77,13 +77,10 @@ router.patch('/update',
 router.delete('/:comment_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const commentId = req.params.comment_id
-    debugger
-    Comment.deleteOne({_id: commentId}).then( () => res.json(
-        {msg: `comment id: ${commentId} deleted`}
-      )
-    ).catch(err => console.log(err))
-
+    const commentId = req.params.comment_id;
+    Comment.deleteOne({_id: commentId})
+      .then( () => res.json({ msg: `comment id: ${commentId} deleted`}))
+      .catch(err => console.log(err));
   }
 );
 
