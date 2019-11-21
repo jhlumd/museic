@@ -1,16 +1,54 @@
 import * as ApiUtil from "../util/snippet_api_util";
 
-export const RECEIVE_NEW_SNIPPET = "RECEIVE_NEW_SNIPPET";
+export const RECEIVE_SNIPPETS = "RECEIVE_SNIPPETS";
+export const RECEIVE_USER_SNIPPETS = "RECEIVE_USER_SNIPPETS";
+export const RECEIVE_ONE_SNIPPET = "RECEIVE_ONE_SNIPPET";
+export const REMOVE_SNIPPET = 'REMOVE_SNIPPET';
 
-export const receiveNewSnippet = snippet => {
-    return {
-        type: RECEIVE_NEW_SNIPPET,
-        snippet
-    };
-};
+export const receiveSnippets = snippets => ({
+    type: RECEIVE_SNIPPETS,
+    snippets
+});
+
+export const receiveUserSnippets = snippets => ({
+    type: RECEIVE_USER_SNIPPETS,
+    snippets
+});
+
+export const receiveSnippet = snippet => ({
+    type: RECEIVE_ONE_SNIPPET,
+    snippet
+});
+
+export const removeSnippet = snippet => ({
+    type: REMOVE_SNIPPET,
+    snippet
+});
+
+export const fetchSnippets = () => dispatch => (
+    ApiUtil.getSnippets()
+        .then(snippets => dispatch(receiveSnippets(snippets)))
+        .catch(err => console.log(err))
+);
+
+export const fetchUserSnippets = userId => dispatch => (
+    ApiUtil.getUserSnippets(userId)
+        .then(snippets => dispatch(receiveUserSnippets(snippets)))
+        .catch(err => console.log(err))
+);
+
+export const fetchSnippet = snippetId => dispatch => (
+    ApiUtil.getSnippet(snippetId)
+        .then(snippet => dispatch(receiveSnippet(snippet)))
+);
 
 export const saveSnippet = formData => dispatch => (
     ApiUtil.saveSnippet(formData)
-        .then(snippet => dispatch(receiveNewSnippet(snippet)))
+        .then(snippet => dispatch(receiveSnippet(snippet)))
         .catch(err => console.log(err))
+);
+
+export const deleteSnippet = snippetId => dispatch => (
+    ApiUtil.deleteSnippet(snippetId)
+        .then(() => dispatch(removeSnippet(snippetId)))
 );
