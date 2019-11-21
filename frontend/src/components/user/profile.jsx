@@ -10,7 +10,6 @@ class Profile extends React.Component {
       body: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
-    // this.handleDelete = this.handleDelete.bindt(this)
   }
   componentDidMount(){
     // debugger
@@ -21,20 +20,13 @@ class Profile extends React.Component {
     e.preventDefault();
     // debugger
     this.props.composeComment(this.state)
-      .then((comment) => console.log(comment))
-      //this.props.fetchSnippetComments(this.props.userId) )
-
+      .then(() => this.props.fetchSnippetComments(this.props.userId) )
     this.setState({body: ''})
   }
 
   handleChange(field) {
     return e => this.setState({[field]: e.currentTarget.value});
   }
-
-  // handleDelete(commentId) {
-  //   this.props.removeComment()
-
-  // }
 
   render() {
     if(!this.props.comments) return null
@@ -50,17 +42,18 @@ class Profile extends React.Component {
               id={comment._id} 
               deleteComment={this.props.removeComment}
               body={comment.body}
-              // fetchSnippetComments={this.props.fetchSnippetComments}
+              editComment={this.props.editComment}
+              // userId={this.props.userId}
             />
           ))
         }
           <h3>Comment form</h3>
           <form onSubmit={this.handleSubmit}>
-            <label>Comment Body
+            <label>Comment Body:
               <input type="text"
                 value={this.state.body}
                 onChange={this.handleChange('body')}
-                placeholder="Body text"
+                placeholder="----Body text"
               />
             </label>
             <input type="submit" value="create new comment"/>

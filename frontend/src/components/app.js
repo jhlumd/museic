@@ -13,7 +13,7 @@ import './stylesheets/main.scss'
 
 const App = () => (
   <div>
-    {/* <NavBarContainer /> */}
+    <NavBarContainer />
     <Switch>
       <Route path="/test" component={ProfileContainer} />
       <AuthRoute exact path="/" component={SplashContainer} />

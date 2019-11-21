@@ -3,10 +3,13 @@ import React from 'react';
 class CommentListItem extends React.Component {
   constructor(props){
     super(props)
-    // this.state = {
-    //   triggerRender: ''
-    // }
+    this.state = {
+      body: '',
+      commentId: this.props.id
+    }
     this.deleteComment = this.deleteComment.bind(this)
+    this.editComment = this.editComment.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
   
 
@@ -17,6 +20,15 @@ class CommentListItem extends React.Component {
     // this.setState({ triggerRender: ''});
   }
 
+  editComment(){
+    this.props.editComment(this.state)
+    this.setState({body: ''})
+  }
+
+  handleChange(field){
+    return e => this.setState({[field]: e.currentTarget.value});
+  }
+
   render(){
     return (
       <div>
@@ -24,6 +36,16 @@ class CommentListItem extends React.Component {
         <p>{this.props.body}</p>
         <br />
         <button onClick={this.deleteComment}>Delete</button>
+        <form onSubmit={this.editComment}>
+          <label>Edit comment:
+            <input 
+              type="text" 
+              placeholder="---changes here"
+              onChange={this.handleChange('body')}
+            />
+          </label>
+          <input type="submit" value="Save changes"/>
+        </form>
       </div>
     )
   }

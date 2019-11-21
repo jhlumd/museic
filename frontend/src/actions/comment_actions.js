@@ -21,12 +21,15 @@ export const clearComment = commentId => ({
   commentId
 })
 
-export const composeComment = data => dispatch => (
+export const composeComment = data => dispatch => {
+  debugger
+  return (
   APIUtil.newComment(data)
-    .then(comment => dispatch(receiveComment(comment)) && comment //'&& comment' unsure what it does
+    .then(res => dispatch(receiveComment(res.data)) //'&& comment' unsure what it does
     )
     .catch(err => console.log(err))
-)
+  )
+}
 
 export const fetchSnippetComments = snippet_id => dispatch => {
   APIUtil.snippetComments(snippet_id)
@@ -37,4 +40,9 @@ export const fetchSnippetComments = snippet_id => dispatch => {
 export const removeComment = commentId => dispatch => {
   APIUtil.deleteComment(commentId)
     .then(() => dispatch(clearComment(commentId)))
+}
+
+export const editComment = comment => dispatch => {
+  APIUtil.updateComment(comment)
+    .then((res)=> dispatch(receiveComment(res.data)))
 }

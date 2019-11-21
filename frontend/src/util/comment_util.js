@@ -11,3 +11,7 @@ export const snippetComments = user_id => {
 export const deleteComment = comment_id => {
   return axios.delete(`/api/comments/${comment_id}`)
 }
+
+export const updateComment = commentData => {
+  return axios.patch(`/api/comments/update`, commentData)
+}

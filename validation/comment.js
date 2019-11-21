@@ -12,9 +12,9 @@ module.exports = function validateCommentInput(data) {
   }
 
   //dev validator, catch model errors
-  if (Validator.isEmpty(data.user)) {
-    errors.body = 'Author ID missing';
-  }
+  // if (Validator.isEmpty(data.user)) {
+  //   errors.body = 'Author ID missing';
+  // }
 
   return {
     errors,

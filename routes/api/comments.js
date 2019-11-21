@@ -39,7 +39,8 @@ router.post('/new',
     if(!isValid) {
       return res.status(400).json(errors);
     }
-
+    
+    debugger
     const newComment = new Comment({
       user: req.body.userId,
       snippet: req.body.snippet,
@@ -62,7 +63,7 @@ router.patch('/update',
       return res.status(400).json(errors);
     }
     
-    const commentId = req.body.id
+    const commentId = req.body.commentId
 
    Comment.findOne({_id: commentId})
     .then( comment => {
