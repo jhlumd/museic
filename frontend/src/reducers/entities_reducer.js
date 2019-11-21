@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-import commentsReducer from './comments_reducer';
+import snippets from "./snippets_reducer";
+import comments from './comments_reducer';
 
 export default combineReducers({
-  comments: commentsReducer
-})
+  snippets,
+  comments
+});
