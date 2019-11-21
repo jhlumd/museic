@@ -12,7 +12,7 @@ import './stylesheets/main.scss'
 
 const App = () => (
   <div>
-    {/* <NavBarContainer /> */}
+    <NavBarContainer />
     <Switch>
       <AuthRoute exact path="/" component={SplashContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
