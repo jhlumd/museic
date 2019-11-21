@@ -40,7 +40,6 @@ router.post('/new',
       return res.status(400).json(errors);
     }
     
-    debugger
     const newComment = new Comment({
       user: req.body.userId,
       snippet: req.body.snippet,
@@ -78,7 +77,7 @@ router.delete('/:comment_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const commentId = req.params.comment_id
-    debugger
+
     Comment.deleteOne({_id: commentId}).then( () => res.json(
         {msg: `comment id: ${commentId} deleted`}
       )

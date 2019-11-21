@@ -11,11 +11,6 @@ module.exports = function validateCommentInput(data) {
     errors.body = 'Comment cannot be empty';
   }
 
-  //dev validator, catch model errors
-  // if (Validator.isEmpty(data.user)) {
-  //   errors.body = 'Author ID missing';
-  // }
-
   return {
     errors,
     isValid: Object.keys(errors).length === 0
