@@ -15,10 +15,10 @@ class LoginForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  // Once the user has been authenticated, redirect to the Melodies page
+  // Once the user has been authenticated, redirect to the Profiles page
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
-      this.props.history.push('/melodies');
+      this.props.history.push('/profile');
     }
 
     // Set or clear errors
