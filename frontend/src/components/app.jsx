@@ -9,7 +9,7 @@ import SignupFormContainer from './session/signup_form_container';
 import NavBarContainer from './nav/navbar_container';
 import SplashContainer from './splash/splash_container';
 import ProfileContainer from './user/profile.container';
-import Footer from './footer';
+import Footer from './footer/footer';
 
 import SnippetFormContainer from './snippets/upload/snippet_form_container';
 import SnippetIndexContainer from './snippets/index/index_container';
