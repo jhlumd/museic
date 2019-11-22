@@ -5,7 +5,7 @@ import { fetchSnippet } from '../../actions/snippet_actions';
 
 const mstp = (state, ownProps) => ({
   currentUser: state.session.user,
-  snippet: state.ui.demoSnippet
+  tempNotes: state.ui.tempNotes
 });
 
 const mdtp = dispatch => ({

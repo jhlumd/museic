@@ -10,7 +10,7 @@ export default class SplashSnippetDemo extends Component {
     this.state = {
       activeSnippet: demoSnippets[0],
       activeTab: 2
-    }
+    };
     this.changeTab = this.changeTab.bind(this);
   }
 
@@ -36,7 +36,7 @@ export default class SplashSnippetDemo extends Component {
     }
   }
   render() {
-    const demoSnippetsArr = [0,1,2]; // debugging
+    const demoSnippetsArr = [0,1,2]; // = demoSnippets debugging
     // debugger;
     return (
       <div id='splash-snippet-demo-container'>

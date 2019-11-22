@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Tone from "tone";
-import './keyboard.css';
 
 export default class Keyboard extends Component {
   constructor(props) {
@@ -31,8 +30,9 @@ export default class Keyboard extends Component {
       lastNoteDown.startTime = lastNoteDown.unadjStartTime - this.notesArray[0].unadjStartTime;
 
       if (lastNoteDown.startTime < this.timeLimit) {
+        const newSnippet = this.notesArray.slice();
         this.setState({
-          notes: this.notesArray.slice()
+          notes: newSnippet
         });
       }
       // There may be a case where 'saveTempNotes(this.state.notes)' isn't

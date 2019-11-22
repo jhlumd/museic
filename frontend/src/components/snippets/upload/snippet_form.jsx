@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import KeyboardContainer from '../../keyboard/keyboard_container'; // testing
+// import KeyboardContainer from '../../keyboard/keyboard_container'; // testing
 
 export default class SnippetForm extends Component {
     constructor(props) {
@@ -8,6 +8,7 @@ export default class SnippetForm extends Component {
         this.state = {
             title: "",
             description: "",
+            notes: this.props.tempNotes,
             public: true,
             errors: []
         };
@@ -26,6 +27,7 @@ export default class SnippetForm extends Component {
             // debugger; // WTF??
             // this.props.saveSnippet(this.state);
 
+            // above wasn't updating local state immediately, so for now to save:
             this.props.saveSnippet(Object.assign(
                 this.state,
                 { notes: this.props.tempNotes }
@@ -98,7 +100,7 @@ export default class SnippetForm extends Component {
                     <input type="submit" value="Submit" />
                 </form>
 
-                <KeyboardContainer />
+                {/* <KeyboardContainer /> */}
             </div>
         );
     }
