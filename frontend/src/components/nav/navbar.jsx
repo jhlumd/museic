@@ -6,6 +6,7 @@ import KeyboardContainer from '../keyboard/keyboard_container';
 import Logo from '../resources/logo';
 import DownChevronIcon from '../resources/down_chevron_icon';
 import UserIcon from '../resources/user_icon';
+import XIcon from '../resources/x_icon';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -19,9 +20,17 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
+    const x = document.querySelector('.x-icon-container');
     const tab = document.querySelector('.nav-base-tab-container');
     const panel = document.getElementById('nav-container')
-    tab.addEventListener('click', () => panel.classList.toggle('down')); 
+    tab.addEventListener('click', () => {
+      panel.classList.toggle('down');
+      panel.classList.toggle('up');
+    }); 
+    x.addEventListener('click', () => {
+      panel.classList.toggle('down');
+      panel.classList.toggle('up');
+    }); 
   }
   
   componentDidUpdate() {
@@ -57,11 +66,15 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <div id='nav-container'>
+      <div id='nav-container' className='up'>
 
         <div className='nav-content'>
           
           <div className='nav-create-snippet-form-container'>
+
+            <div className='x-icon-container'>
+              <XIcon />
+            </div>
 
             <h2>
               Create a new snippet.
@@ -82,6 +95,11 @@ class Navbar extends React.Component {
               <div className='nav-base-bar-right'>
                 <div className='icon-wrap'>
                   <UserIcon />
+                  <NavbarUserDropdown 
+                    history={this.props.history}
+                    loggedIn={this.props.loggedIn} 
+                    logoutUser={this.logoutUser}
+                  />
                 </div>
                 <NavbarUserDropdown 
                   history={this.props.history}
