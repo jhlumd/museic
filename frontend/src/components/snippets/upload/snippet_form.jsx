@@ -39,7 +39,6 @@ export default class SnippetForm extends Component {
                 });
             }
         };
-
     }
 
     handlePrivacy(e) {

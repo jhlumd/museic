@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create a preconfigured state we can immediately add to our store
     const preloadedState = {
-      session: { isAuthenticated: true, user: decodedUser },
-      ui: { demoSnippet: null }
+      session: { isAuthenticated: true, user: decodedUser }
     };
 
     store = configureStore(preloadedState);
