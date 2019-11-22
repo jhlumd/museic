@@ -8,8 +8,8 @@ import Modal from './session/modal';
 import SplashContainer from './splash/splash_container';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
-import ProfileContainer from './user/profile.container'
-import SnippetFormContainer from './snippets/upload/snippet_form_container';
+import ProfileContainer from './user/profile.container';
+import SnippetFormContainer from './snippets/upload/snippet_form_container'; //for testing
 // import SnippetShowContainer from './snippets/snippet_show_container';
 import './stylesheets/main.scss'
 
@@ -19,7 +19,7 @@ const App = () => (
   <div>
     <header>
     <Modal />
-    {/* <NavBarContainer /> */}
+    <NavBarContainer />
     </header>
 
     <Switch>

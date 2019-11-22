@@ -9,7 +9,6 @@ export default class SnippetForm extends Component {
             title: "",
             description: "",
             public: true,
-            notes: null,
             errors: []
         };
 
