@@ -15,10 +15,19 @@ export default class SplashIntro extends React.Component {
       const element = document.querySelector(`.museic-logo div:nth-child(${i})`);
       window.setTimeout(() => (
         element.classList.add("slide-bottom")
+        ),
+        115 * i);
+
+      //  remove slide-bottom after it's done
+      window.setTimeout(() => (
+        element.classList.remove("slide-bottom"),
+        document.querySelector('.museic-logo h1').classList.add("revert")
       ),
-        115 * i)
+        1000);
+      
+      element.classList.add("hvr-float");
     }
-   
+    
   }
     
   render() {

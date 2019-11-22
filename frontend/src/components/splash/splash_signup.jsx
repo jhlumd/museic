@@ -5,7 +5,7 @@ export default function SplashSignup(props) {
   return (
     <div id='splash-signup-container'>
       <h2>Join the <span>MUSEIC</span> community.</h2>
-      <p>Make an account to save your snippet.</p>
+      <p className='subtitle'>Create an account to save your new snippet.</p>
       <button className='signup-btn hvr-grow' onClick={() => props.history.push('/signup')}>
         <div>SIGN UP</div> 
       </button>
