@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';  
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 
-import demoSnippets from "./demo_snips";
+import { demoSnippets } from "./demo_snips";
 
 export default class SplashSnippetDemo extends Component {
   constructor(props) {
@@ -36,6 +36,8 @@ export default class SplashSnippetDemo extends Component {
     }
   }
   render() {
+    const demoSnippetsArr = [0,1,2]; // debugging
+    // debugger;
     return (
       <div id='splash-snippet-demo-container'>
         <h2>
@@ -44,7 +46,7 @@ export default class SplashSnippetDemo extends Component {
 
         <ul className='tabs-container'>
           {
-            demoSnippets.map((snippet, i) => (
+            demoSnippetsArr.map((snippet, i) => (
               <li key={i} onClick={() => this.changeTab(i)}>
                 {/* { snippet.name.toLowerCase() } */}
                 { snippet }

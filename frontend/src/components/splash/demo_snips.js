@@ -295,6 +295,4 @@ const demoSnip3 = {
   ]
 };
 
-const demoSnippets = [ demoSnip1, demoSnip2, demoSnip3 ];
-
-export default demoSnippets;
+export const demoSnippets = [ demoSnip1, demoSnip2, demoSnip3 ];
