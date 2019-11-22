@@ -27,7 +27,7 @@ router.get('/:user_id', (req, res) => {
 router.get('/:snippet_id', (req, res) => {
   Comment.find({ snippet: req.params.snippet_id})
     .then(comments => res.json(comments))
-    .catch(err => res.status(404).json({ error: "no comments found" }))
+    .catch(err => res.status(404).json({ error: err }))
 })
 
 //create new
@@ -40,7 +40,6 @@ router.post('/new',
       return res.status(400).json(errors);
     }
     
-    debugger
     const newComment = new Comment({
       user: req.body.userId,
       snippet: req.body.snippet,
@@ -77,10 +76,12 @@ router.patch('/update',
 router.delete('/:comment_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
+
     const commentId = req.params.comment_id;
     Comment.deleteOne({_id: commentId})
       .then( () => res.json({ msg: `comment id: ${commentId} deleted`}))
       .catch(err => console.log(err));
+
   }
 );
 

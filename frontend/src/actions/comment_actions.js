@@ -21,12 +21,14 @@ export const clearComment = commentId => ({
   commentId
 });
 
-export const composeComment = data => dispatch => (
-  // debugger; //'&& comment' unsure what it does
+export const composeComment = data => dispatch => {
+  return (
   APIUtil.newComment(data)
-    .then(res => dispatch(receiveComment(res.data)))
+    .then(res => dispatch(receiveComment(res.data)) //'&& comment' unsure what it does
+    )
     .catch(err => console.log(err))
-);
+  )
+};
 
 export const fetchSnippetComments = snippet_id => dispatch => (
   APIUtil.snippetComments(snippet_id)
