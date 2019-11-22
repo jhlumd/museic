@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';  
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 
+import { demoSnip1, demoSnip2, demoSnip3 } from "./demo_snips";
+
 export default class SplashSnippetDemo extends Component {
   constructor(props) {
     super(props);

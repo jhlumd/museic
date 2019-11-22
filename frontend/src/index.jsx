@@ -7,8 +7,6 @@ import configureStore from './store/store';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 
-import { demoSnip1, demoSnip2, demoSnip3 } from './demo_snips';
-
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
@@ -23,8 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create a preconfigured state we can immediately add to our store
     const preloadedState = {
-      session: { isAuthenticated: true, user: decodedUser },
-      ui: { demoSnip1, demoSnip2, demoSnip3 }
+      session: { isAuthenticated: true, user: decodedUser }
     };
 
     store = configureStore(preloadedState);
@@ -44,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Render our root component and pass in the store as a prop
   const root = document.getElementById('root');
 
-  // window.getState = store.getState //debugging ==== remove
+  window.getState = store.getState //debugging ==== remove
 
   ReactDOM.render(<Root store={store} />, root);
 });
