@@ -13,13 +13,13 @@ export default class SplashCreateDemo extends Component {
     this.updateSnippet = this.updateSnippet.bind(this);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate() { //should probably be activated by some click or something.
     const message0 = 'Try clicking the tiles, or pressing some keys to make some music.'
     const message1 = 'There you go! Keep going.';
     const message2 = 'Hey that sounds pretty nice.';
     const message3 = 'Nice! Let\'s save that masterpiece.';
     const snipLen = this.state.currentSnippet.length;
-
+    // debugger
     let message;
 
     if (snipLen === 0) {
@@ -32,7 +32,9 @@ export default class SplashCreateDemo extends Component {
       message = message3;
     }
 
-    this.setState({ message })
+    // this.setState({ message }) 
+    // can't update state in componentDidUpdate, 
+    // will cause infinite loop!
   }
   updateSnippet(newSnippet) {
     this.setState({ currentSnippet: newSnippet })
