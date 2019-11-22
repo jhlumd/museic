@@ -5,10 +5,12 @@ export const ALL_SNIPPET_COMMENTS = 'ALL_SNIPPET_COMMENTS';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 
 //not sure if we will ever use this
-export const receiveComment = comment => ({
-  type: NEW_COMMENT,
-  comment
-})
+export const receiveComment = comment => {
+  return ({
+    type: NEW_COMMENT,
+    comment
+  })
+}
 
 //probably only use this one, but it's untested because no snippets created yet
 export const receiveSnippetComments = comments => ({
@@ -22,7 +24,6 @@ export const clearComment = commentId => ({
 })
 
 export const composeComment = data => dispatch => {
-  debugger
   return (
   APIUtil.newComment(data)
     .then(res => dispatch(receiveComment(res.data)) //'&& comment' unsure what it does
