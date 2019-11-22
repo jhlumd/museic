@@ -18,6 +18,12 @@ class Navbar extends React.Component {
     this.updateSnippet = this.updateSnippet.bind(this);
   }
 
+  componentDidMount() {
+    const tab = document.querySelector('.nav-base-tab-container');
+    const panel = document.getElementById('nav-container')
+    tab.addEventListener('click', () => panel.classList.toggle('down')); 
+  }
+  
   componentDidUpdate() {
     const message0 = 'Try clicking the tiles, or pressing some keys to make some music.'
     const message1 = 'There you go! Keep going.';
@@ -74,7 +80,9 @@ class Navbar extends React.Component {
               </div>
 
               <div className='nav-base-bar-right'>
-                <UserIcon />
+                <div className='icon-wrap'>
+                  <UserIcon />
+                </div>
                 <NavbarUserDropdown 
                   history={this.props.history}
                   loggedIn={this.props.loggedIn} 

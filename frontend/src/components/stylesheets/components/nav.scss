@@ -1,16 +1,23 @@
 #nav-container {
-  position: relative;
+  position: absolute;
   width: 100vw;
   height: 95vh;
   margin: auto;
+  z-index: 500;
 
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 
-  background-color: $milk;
-  border-bottom: 1px solid $shadow;
+  background-color: $white;
+  filter: drop-shadow(0 3px 10px  $shadow);
+
+  transform: translateY(-95%);
+
+    &.down {
+      transform: translateY(0);
+    }
 
   .nav-content {
     width: inherit;
@@ -35,6 +42,30 @@
       width: inherit;
       display: flex;
       flex-direction: column;
+
+      &:hover .nav-base-tab-container{
+        animation: slide-in-top 0.5s both;
+        @keyframes slide-in-top {
+          0% {
+            transform: translateY(-100px);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+
+        .down-chevron-icon {
+          animation: fade-in 0.3s both;
+          @keyframes fade-in {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+        }
+      }
       
       .nav-base-bar-content {
         width: 90%;
@@ -45,39 +76,51 @@
         justify-content: space-between;
 
         // .nav-base-bar-left {
-          
+        //   .logo {
+        //   }
         // }
 
         .nav-base-bar-right {
+          display: flex;
+          align-items: center;
 
-          .nav-dropdown-container {
+          .icon-wrap:hover + .nav-dropdown-container {
             position: absolute;
             top: 25px;
-            right: 54px;
+            right: 5%;
+            z-index: 600;
 
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
 
-            background-color: $white;
-            border-bottom: 1px solid $shadow;
-            border-left: 1px solid $shadow;
-            border-right: 1px solid $shadow;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            overflow: hidden;
 
             .nav-dropdown-top-pad {
-              
+              height: 16px;
+              opacity: 0;
             }
 
             button {
               text-transform: uppercase;
               padding: 1em 5em;
 
+              background-color: $white;
+
               &:hover {
                 cursor: pointer;
                 text-decoration: underline;
-                @include rainbow-text;
+                // @include rainbow-text;
+                background-color: $white;
+                color: $link;
               }
-            }
+            } 
+          }
+
+          .nav-dropdown-container {
+            display: none;
           }
         }
       }
@@ -86,13 +129,38 @@
         box-sizing: border-box;
         width: 200px;
         margin: auto;
-        padding: 0.5em 4em;
+        padding: 0.6em 4em 0.6em 4em;
         
         display: flex;
         justify-content: center;
 
-        background-color: $milk;
-        border: 1px solid black;
+        background-color: $white;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+        // make sure tab is at correct y index
+        transform: translateY(-100px);
+        // sucks up tab when not hovered
+        animation: slide-out-top 0.5s both;
+        @keyframes slide-out-top {
+          0% {
+            transform: translateY(0px);
+          }
+          100% {
+            transform: translateY(-100);
+          }
+        }
+        // fades out chevron
+        .down-chevron-icon {
+          animation: fade-out 0.1s both;
+          @keyframes fade-out {
+            0% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+        }
       }
     }
   }

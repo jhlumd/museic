@@ -19,9 +19,7 @@ export default function NavbarUserDropdown(props) {
     return (
       <div className='nav-dropdown-container'>
 
-        <div className='nav-dropdown-top-pad'>
-          
-        </div>
+        <div className='nav-dropdown-top-pad'></div>
 
         <button onClick={() => this.history.push('/signup')}>
           <div>Signup</div>
