@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';  
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 
-import { demoSnip1, demoSnip2, demoSnip3 } from "./demo_snips";
+import demoSnippets from "./demo_snips";
 
 export default class SplashSnippetDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSnippet: this.props.snippets[0],
+      activeSnippet: demoSnippets[0],
       activeTab: 2
     }
     this.changeTab = this.changeTab.bind(this);
   }
 
   changeTab(tabNum) {
-    this.setState({ activeSnippet: this.props.snippets[tabNum] })
-    this.setState({ activeTab: tabNum + 1 })
+    this.setState({ activeSnippet: demoSnippets[tabNum] });
+    this.setState({ activeTab: tabNum + 1 });
   }
 
   componentDidMount() {
-    this.setState({ activeTab: 1 })
+    this.setState({ activeTab: 1 });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -44,7 +44,7 @@ export default class SplashSnippetDemo extends Component {
 
         <ul className='tabs-container'>
           {
-            this.props.snippets.map((snippet, i) => (
+            demoSnippets.map((snippet, i) => (
               <li key={i} onClick={() => this.changeTab(i)}>
                 {/* { snippet.name.toLowerCase() } */}
                 { snippet }

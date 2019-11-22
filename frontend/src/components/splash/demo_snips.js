@@ -1,4 +1,4 @@
-export const demoSnip1 = {
+const demoSnip1 = {
     notes: [
     {
         pitch: "C5",
@@ -87,7 +87,7 @@ export const demoSnip1 = {
     ]
 };
 
-export const demoSnip2 = {
+const demoSnip2 = {
   notes: [
     {
         pitch: "B5",
@@ -170,7 +170,7 @@ export const demoSnip2 = {
     ]
 };
 
-export const demoSnip3 = {
+const demoSnip3 = {
     notes: [
     {
         pitch: "B5",
@@ -294,3 +294,7 @@ export const demoSnip3 = {
     }
   ]
 };
+
+const demoSnippets = [ demoSnip1, demoSnip2, demoSnip3 ];
+
+export default demoSnippets;
