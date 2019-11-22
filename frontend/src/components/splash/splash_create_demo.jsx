@@ -37,7 +37,7 @@ export default class SplashCreateDemo extends Component {
     // will cause infinite loop!
   }
   updateSnippet(newSnippet) {
-    this.setState({ currentSnippet: newSnippet })
+    this.setState({ currentSnippet: newSnippet });
   }
   render() {
     return (

@@ -1,14 +1,16 @@
 import { connect } from 'react-redux';
 import Splash from './splash';
 
+import { fetchSnippet } from '../../actions/snippet_actions';
+import { saveTempNotes } from '../../actions/temp_notes_actions';
+
 const mapStateToProps = state => ({
-  snippets: [[0], [1], [2]] //replace with real demos later
+  //demos imported straight to splash snippet demo component -Jae
 });
 
 const mapDispatchToProps = dispatch => ({
-  // fetchSnippet: snippetId => dispatch(fetchSnippet), 
-  // method to keep snippet in cookies or something while user registers
+  fetchSnippet: snippetId => dispatch(fetchSnippet(snippetId)), 
+  saveTempNotes: tempNotes => dispatch(saveTempNotes(tempNotes))
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Splash);
