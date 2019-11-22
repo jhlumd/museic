@@ -1,14 +1,13 @@
 import { connect } from 'react-redux';
+import { saveTempNotes } from "../../actions/temp_notes_actions";
 import Keyboard from './keyboard';
 
 const mapStateToProps = state => ({
-  // FIXME replace with real current user
-  user: {id: 1, username: 'demo'}
+  currentUser: state.session.user
 });
 
 const mapDispatchToProps = dispatch => ({
-  // FIXME saveSnippet: (userId, snippet) => dispatch(saveSnippet(userId, snippet))
+  saveTempNotes: tempNotes => dispatch(saveTempNotes(tempNotes))
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Keyboard);

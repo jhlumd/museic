@@ -7,6 +7,8 @@ import configureStore from './store/store';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 
+import { demoSnip1, demoSnip2, demoSnip3 } from './demo_snips';
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
@@ -21,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create a preconfigured state we can immediately add to our store
     const preloadedState = {
-      session: { isAuthenticated: true, user: decodedUser }
+      session: { isAuthenticated: true, user: decodedUser },
+      ui: { demoSnip1, demoSnip2, demoSnip3 }
     };
 
     store = configureStore(preloadedState);
