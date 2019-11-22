@@ -7,8 +7,7 @@ const SnippetSchema = new Schema({
     required: true
   },
   description: {
-    type: String,
-    default: 'Awesome snippet!'
+    type: String
   },
   user: {
     type: Schema.Types.ObjectId,
