@@ -1,7 +1,8 @@
 #nav-container {
   position: absolute;
+  top: -90vh;
   width: 100vw;
-  height: 95vh;
+  height: 110vh;
   margin: auto;
   z-index: 500;
 
@@ -13,11 +14,36 @@
   background-color: $white;
   filter: drop-shadow(0 3px 10px  $shadow);
 
-  transform: translateY(-95%);
+  .x-icon-container {
+    position: absolute;
+    top: 40px;
+    right: 5%;
+  }
 
-    &.down {
-      transform: translateY(0);
+  &.up {
+    transition: all 1s ease 0s;
+    top: -105vh;
+
+    .logo {
+      transition: all 1s ease 0s;
+      transform: translateY(0vh);
     }
+  }
+
+  &.down {
+    transition: all 1s ease 0s;
+    top: 0vh;
+
+    .down-chevron-icon {
+      transition: all 1s ease 0s;
+      transform: rotate(180deg);
+    }
+
+    .logo {
+      transition: all 1s ease 0s;
+      transform: translateY(-103vh);
+    }
+  }
 
   .nav-content {
     width: inherit;
@@ -43,6 +69,7 @@
       display: flex;
       flex-direction: column;
 
+      // on hover, tab slides down
       &:hover .nav-base-tab-container{
         animation: slide-in-top 0.5s both;
         @keyframes slide-in-top {
@@ -54,6 +81,7 @@
           }
         }
 
+        // chevron fades in
         .down-chevron-icon {
           animation: fade-in 0.3s both;
           @keyframes fade-in {
@@ -84,7 +112,7 @@
           display: flex;
           align-items: center;
 
-          .icon-wrap:hover + .nav-dropdown-container {
+          .icon-wrap:hover > .nav-dropdown-container {
             position: absolute;
             top: 25px;
             right: 5%;
@@ -100,7 +128,6 @@
 
             .nav-dropdown-top-pad {
               height: 16px;
-              opacity: 0;
             }
 
             button {
@@ -112,7 +139,6 @@
               &:hover {
                 cursor: pointer;
                 text-decoration: underline;
-                // @include rainbow-text;
                 background-color: $white;
                 color: $link;
               }
@@ -134,11 +160,14 @@
         display: flex;
         justify-content: center;
 
+        opacity: 100;
         background-color: $white;
         border-bottom-left-radius: 3px;
         border-bottom-right-radius: 3px;
+
         // make sure tab is at correct y index
         transform: translateY(-100px);
+
         // sucks up tab when not hovered
         animation: slide-out-top 0.5s both;
         @keyframes slide-out-top {
@@ -147,19 +176,13 @@
           }
           100% {
             transform: translateY(-100);
+            opacity: 0;
           }
         }
+        
         // fades out chevron
         .down-chevron-icon {
-          animation: fade-out 0.1s both;
-          @keyframes fade-out {
-            0% {
-              opacity: 1;
-            }
-            100% {
-              opacity: 0;
-            }
-          }
+          opacity: 0;
         }
       }
     }
