@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 import NavbarUserDropdown from './navbar_user_dropdown';
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 import KeyboardContainer from '../keyboard/keyboard_container';
@@ -52,7 +53,7 @@ class Navbar extends React.Component {
       message = message3;
     }
 
-    this.setState({ message })
+    // this.setState({ message })
   }
 
   updateSnippet(newSnippet) {
@@ -126,4 +127,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
