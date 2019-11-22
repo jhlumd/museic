@@ -1,14 +1,17 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import SnippetDisplay from './snippet_display';
+import { fetchSnippet } from '../../actions/snippet_actions';
 
-const mapStateToProps = state => ({
-//  user: state.entities.users[0]
-user: { id: 1, username: 'demo'}
+const mstp = (state, ownProps) => ({
+  currentUser: state.session.user,
+  snippet: state.ui.demoSnippet
 });
 
-const mapDispatchToProps = dispatch => ({
-  // addLike: (userId, snippetId) => dispatch(addLike(userId, snippetId))
+const mdtp = dispatch => ({
+  // addLike: (userId, snippetId) => dispatch(addLike(userId, snippetId)),
+  fetchSnippet: (snippetId) => dispatch(fetchSnippet(snippetId))
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SnippetDisplay);
+export default withRouter(connect(mstp, mdtp)(SnippetDisplay));

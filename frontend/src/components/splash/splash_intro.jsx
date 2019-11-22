@@ -2,9 +2,7 @@ import React from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';
 
 export default class SplashIntro extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  
   componentDidMount() {
     // add animation to bar under logo
     const bar = document.getElementsByClassName('museic-logo-bar')[0];
