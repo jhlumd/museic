@@ -1,4 +1,8 @@
-import { ALL_SNIPPET_COMMENTS, REMOVE_COMMENT, NEW_COMMENT } from '../actions/comment_actions';
+import {
+  ALL_SNIPPET_COMMENTS,
+  REMOVE_COMMENT,
+  NEW_COMMENT
+} from '../actions/comment_actions';
 
 const initialState = {};
 
@@ -9,10 +13,10 @@ export default function (state = initialState, action) {
 
   switch (action.type) {
     case ALL_SNIPPET_COMMENTS:
-      const snippets = {}
+      const snippets = {};
       // debugger
       action.comments.forEach( comment => 
-        snippets[comment._id] = comment)
+        snippets[comment._id] = comment);
       return snippets;
     case NEW_COMMENT:
       newState[action.comment._id] = action.comment;
