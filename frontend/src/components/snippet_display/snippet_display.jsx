@@ -9,19 +9,6 @@ export default class SnippetDisplay extends Component {
     };
   }
 
-  // below for parent component (snippet show component) later
-  // componentDidMount() {
-  //   if (this.props.match.params.id) {
-  //     this.props.fetchSnippet(this.props.match.params.id);
-  //   } else {
-  //     this.props.history.push("/snippets")
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   this.setState({ notes: this.props.snippet });
-  // }
-
   componentWillReceiveProps() {
     this.setState({ notes: this.props.snippet });
   }
@@ -35,7 +22,7 @@ export default class SnippetDisplay extends Component {
       result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
     }
     return result;
-  };
+  }
 
   interpolateColors(color1, color2, color3, steps) {
     var stepFactor = 1 / (steps - 1),
@@ -60,23 +47,21 @@ export default class SnippetDisplay extends Component {
 
   render() {
     const color_arr = this.interpolateColors('rgb(253, 47, 47)', 'rgb(238, 98, 180)', 'rgb(56, 194, 216)', 32);
-    let testNotes;
-    if (this.state.notes) {
-      testNotes = this.state.notes.map((note, i) => (
-        <SnippetBar
-          key={i}
-          pitch={note.pitch}
-          startTime={note.startTime}
-          duration={note.duration}
-          backgroundColor={color_arr[i]}
-        />
-      ));
-    }
+    
+    const  noteBars = this.state.notes.map((note, i) => (
+      <SnippetBar
+        key={i}
+        pitch={note.pitch}
+        startTime={note.startTime}
+        duration={note.duration}
+        backgroundColor={color_arr[i]}
+      />
+    ));
 
     return (
       <div className="snippet-display-container">
         <div className="bar-display-container">
-          {testNotes}
+          {noteBars}
         </div>
       </div>
     );
