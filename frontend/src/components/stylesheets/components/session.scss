@@ -1,4 +1,4 @@
-#login-form-container {
+#login-form-container, #signup-form-container {
   height: 100vh;
   width: 100vw;
 
@@ -6,7 +6,24 @@
   justify-content: center;
   align-items: center;
 
-  form {
+  button {
+    @include button-black;
+  }
 
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    width: 300px;
+    padding: 2em;
+
+    input {
+      width: 100%;
+      @include form-text-input;
+      margin-bottom: 1em;
+    }
   }
 }
+
