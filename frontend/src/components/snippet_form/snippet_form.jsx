@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import KeyboardContainer from '../../keyboard/keyboard_container'; // testing
 
 export default class SnippetForm extends Component {
     constructor(props) {
@@ -65,11 +64,9 @@ export default class SnippetForm extends Component {
 
     handlePrivacy(e) {
         let publicBool = Boolean(this.state.public);
-        // debugger;
         if (publicBool.toString() !== e.currentTarget.checked) {
             this.setState({ public: !this.state.public });
         }
-        // debugger;
     }
     
     render() {
@@ -101,9 +98,6 @@ export default class SnippetForm extends Component {
 
                     <button className='hvr-grow' type="submit">Save Snippet</button>
                 </form>
-
-                {/* <KeyboardContainer /> */}
-                
             </div>
         );
     }
