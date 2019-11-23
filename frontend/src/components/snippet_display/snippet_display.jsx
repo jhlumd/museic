@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import Tone from "tone";
-import PlayBtnIcon from '../resources/play_btn_icon';
-import HeartIcon from '../resources/heart_icon';
-import ShareIcon from '../resources/share_icon';
 import SnippetBar from './_snippet_bar';
 
 export default class SnippetDisplay extends Component {
@@ -11,8 +7,6 @@ export default class SnippetDisplay extends Component {
     this.state = {
       notes: null
     };
-
-    this.handlePlay = this.handlePlay.bind(this);
   }
 
   // below for parent component (snippet show component) later
@@ -34,28 +28,40 @@ export default class SnippetDisplay extends Component {
     this.setState({ notes: this.props.snippet });
   }
 
-  handlePlay() {
-    const synth = new Tone.Synth();
-    synth.oscillator.type = "sine";
-    synth.toMaster();
-    debugger; // WTF
+  interpolateColor(color1, color2, factor) {
+    if (arguments.length < 3) {
+      factor = 0.5;
+    }
+    var result = color1.slice();
+    for (var i = 0; i < 3; i++) {
+      result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
+    }
+    return result;
+  };
 
-    this.state.notes.forEach(note => {
-      synth.triggerAttackRelease(
-        note.pitch,
-        note.duration * 0.25,
-        note.startTime * 0.25
-      );
-    });
+  interpolateColors(color1, color2, color3, steps) {
+    var stepFactor = 1 / (steps - 1),
+      interpolatedColorArray = [];
 
-    // synth.triggerAttackRelease('C4', 0.5, 0);
-    // synth.triggerAttackRelease('E4', 0.5, 1);
-    // synth.triggerAttackRelease('G4', 0.5, 2);
-    // synth.triggerAttackRelease('B4', 0.5, 3);
+    color1 = color1.match(/\d+/g).map(Number);
+    color2 = color2.match(/\d+/g).map(Number);
+    color3 = color3.match(/\d+/g).map(Number);
+
+    for (var i = 0; i < steps; i++) {
+      if (i < steps / 2) {
+        interpolatedColorArray.push(this.interpolateColor(color1, color2, stepFactor * i));
+        
+      } else {
+        interpolatedColorArray.push(this.interpolateColor(color2, color3, stepFactor * i));
+
+      }
+    }
+
+    return interpolatedColorArray;
   }
 
   render() {
-    // debugger;
+    const color_arr = this.interpolateColors('rgb(253, 47, 47)', 'rgb(238, 98, 180)', 'rgb(56, 194, 216)', 32);
     let testNotes;
     if (this.state.notes) {
       testNotes = this.state.notes.map((note, i) => (
@@ -64,6 +70,7 @@ export default class SnippetDisplay extends Component {
           pitch={note.pitch}
           startTime={note.startTime}
           duration={note.duration}
+          backgroundColor={color_arr[i]}
         />
       ));
     }
@@ -72,19 +79,6 @@ export default class SnippetDisplay extends Component {
       <div className="snippet-display-container">
         <div className="bar-display-container">
           {testNotes}
-        </div>
-
-        <div className="interaction-bar-container">
-          <div className="interaction-bar-left">
-            <PlayBtnIcon onClick={this.handlePlay} />
-          </div>
-
-          <div className="interaction-bar-right">
-            {/* FIXME <HeartIcon onClick={this.props.addLike(this.props.user.id), this.props.snippet.id} /> */}
-            <HeartIcon />
-            {/* FIXME add sharing function */}
-            <ShareIcon />
-          </div>
         </div>
       </div>
     );

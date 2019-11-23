@@ -51,12 +51,12 @@ export default function SnippetBar(props) {
   const noteStyle = {
     top: (barTop / 13) * 100 + "%",
     left: (startTime / 32) * 100 + "%",
-    width: (duration / 32) * 100 + "%"
+    width: (duration / 32) * 100 + "%",
+    backgroundColor: `rbg(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]})`
   };
-  
   return (
     <div
-      className="single-note"
+      className="single-note hvr-float"
       style={noteStyle}
     ></div>
   );

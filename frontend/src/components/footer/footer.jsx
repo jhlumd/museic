@@ -4,14 +4,16 @@ import GithubIcon from '../resources/github_icon';
 
 export default function Footer() {
   return (
-    <div id='footer'>
-      <div className='footer-right-container'>
+    <div id='footer-container'>
+      <div className='footer-left-container'>
         <Logo />
-        <p>2019</p>
-        <p>Made in SF</p>
+        <div className='footer-left-info'>
+          <p>2019</p>
+          <p>Made in SF</p>
+        </div>
       </div>
 
-      <div className='footer-left-container'>
+      <div className='footer-right-container'>
         <GithubIcon />
       </div>
     </div>
