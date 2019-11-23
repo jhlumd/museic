@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SnippetBar(props) {
   const { pitch, startTime, duration } = props;
-  let barTop
+  let barTop;
   switch (pitch) {
     case "C6":
       barTop = 0;

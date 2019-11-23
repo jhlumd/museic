@@ -9,7 +9,7 @@ export default class SnippetForm extends Component {
             title: "",
             description: "",
             notes: this.props.tempNotes,
-            private: false,
+            public: true,
             errors: []
         };
 
@@ -34,6 +34,13 @@ export default class SnippetForm extends Component {
             ));
 
             this.props.clearTempNotes();
+            this.setState({
+                title: "",
+                description: "",
+                notes: null,
+                public: true,
+                errors: []
+            });
         } else {
             this.setState({
                 errors: ["No snippet to save."]
@@ -58,9 +65,11 @@ export default class SnippetForm extends Component {
 
     handlePrivacy(e) {
         let publicBool = Boolean(this.state.public);
-        if (publicBool.toString() !== e.currentTarget.value) {
+        // debugger;
+        if (publicBool.toString() !== e.currentTarget.checked) {
             this.setState({ public: !this.state.public });
         }
+        // debugger;
     }
     
     render() {
@@ -83,10 +92,9 @@ export default class SnippetForm extends Component {
 
                     <label> 
                         <input
-                            type="checkbox"
                             name="private"
-                            value="true"
-                            // checked={this.state.private}
+                            type="checkbox"
+                            checked={!this.state.public}
                             onChange={this.handlePrivacy}
                         /> Private
                     </label>

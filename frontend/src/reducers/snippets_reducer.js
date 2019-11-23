@@ -15,7 +15,7 @@ const snippetsReducer = (oldState = {}, action) => {
             const snippets = {};
             action.snippets.forEach( snippet => 
                 snippets[snippet._id] = snippet);
-            return snippets
+            return snippets;
         case RECEIVE_USER_SNIPPETS:
             newState = {  };
             return Object.assign({}, oldState, newState);
