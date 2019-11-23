@@ -39,11 +39,12 @@ class IndexShowCard extends React.Component {
             key={comment._id}
             commentId={comment._id}
             snippetId={comment.snippet}
+            ownerId={comment.user}
             deleteComment={this.props.removeComment}
             body={comment.body}
             editComment={this.props.editComment}
             composeComment={this.props.composeComment}
-            // userId={this.props.userId}
+            userId={this.props.userId}
             />
             ))
           }
