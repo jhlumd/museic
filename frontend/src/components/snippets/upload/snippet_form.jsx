@@ -95,6 +95,7 @@ export default class SnippetForm extends Component {
                 </form>
 
                 {/* <KeyboardContainer /> */}
+                
             </div>
         );
     }
