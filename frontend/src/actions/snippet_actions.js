@@ -5,12 +5,12 @@ export const RECEIVE_USER_SNIPPETS = "RECEIVE_USER_SNIPPETS";
 export const RECEIVE_ONE_SNIPPET = "RECEIVE_ONE_SNIPPET";
 export const REMOVE_SNIPPET = 'REMOVE_SNIPPET';
 
-export const receiveSnippets = snippets => ({
+export const receiveSnippets = snippets => ({ //return array
     type: RECEIVE_SNIPPETS,
     snippets
 });
 
-export const receiveUserSnippets = snippets => ({
+export const receiveUserSnippets = snippets => ({ 
     type: RECEIVE_USER_SNIPPETS,
     snippets
 });
@@ -27,7 +27,7 @@ export const removeSnippet = snippet => ({
 
 export const fetchSnippets = () => dispatch => (
     ApiUtil.getSnippets()
-        .then(snippets => dispatch(receiveSnippets(snippets)))
+        .then(res => dispatch(receiveSnippets(res.data)))
         .catch(err => console.log(err))
 );
 
