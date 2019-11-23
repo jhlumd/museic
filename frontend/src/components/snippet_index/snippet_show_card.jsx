@@ -1,15 +1,24 @@
 import React from 'react';
+import CommentListItem from './comment_list_item';
+import SnippetDisplay from './snippet_display';
+import CommentForm from './comment_form';
 
 class IndexShowCard extends React.Component {
   constructor(props){
     super(props)
-    this.state={
-      userId: this.props.userId,
-    }
+    // this.state={
+    //   userId: this.props.userId,
+    //   snippetId: this.props.snippetId,
+    //   body: ''
+    // }
   }
-  
-  // componentDidMount(){
-  //   this.props.fetchSnippetComments()
+
+  // handleSubmit(e) {
+  //   e.preventDefault();
+
+  //   this.props.composeComment(this.state)
+  //     .then(() => this.props.fetchSnippetComments(this.props.userId))
+  //   this.setState({ body: '' })
   // }
 
   componentDidMount(){
@@ -17,20 +26,37 @@ class IndexShowCard extends React.Component {
   }
 
   render(){
-    const { snippet: { title, description, user, notes, date } } = this.props
+    const { snippet } = this.props
 
     return (
-      <div>
-        <p>************************</p>
-        <p>{title}</p>
-        <p>{description}</p>
-        <p>{user}</p>
-        <p>1 comment</p>
+      <div id="snippet-show-card">
+        <SnippetDisplay snippet={snippet}/>
+
+        <div id="comment-display">
         {
-          this.props.comments.map( comment => {
-            return <p key={comment._id}>{comment.body}</p>
-          })
-        }
+          this.props.comments.map(comment => (
+            <CommentListItem
+            key={comment._id}
+            commentId={comment._id}
+            snippetId={comment.snippet}
+            deleteComment={this.props.removeComment}
+            body={comment.body}
+            editComment={this.props.editComment}
+            composeComment={this.props.composeComment}
+            // userId={this.props.userId}
+            />
+            ))
+          }
+        </div>
+
+        <div>
+          <CommentForm
+            composeComment={this.props.composeComment}
+            userId={this.props.userId}
+            snippetId={this.props.snippet._id}
+          />
+        </div>
+
       </div>
     )
   }
