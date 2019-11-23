@@ -19,7 +19,7 @@ const App = () => (
   <div>
     <header>
     <Modal />
-    <NavBarContainer />
+    {/* <NavBarContainer /> */}
     </header>
 
     <Switch>

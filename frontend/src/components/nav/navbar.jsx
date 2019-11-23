@@ -57,7 +57,7 @@ class Navbar extends React.Component {
   }
 
   updateSnippet(newSnippet) {
-    this.setState({ currentSnippet: newSnippet })
+    this.setState({ currentSnippet: newSnippet });
   }
 
   logoutUser(e) {

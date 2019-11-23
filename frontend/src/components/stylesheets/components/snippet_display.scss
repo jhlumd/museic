@@ -9,6 +9,11 @@
   .bar-display-container {
     height: inherit;
     width: inherit;
+
+    .single-note {
+      background-color: $red;
+      height: 5px;
+    }
   }
 
   .interaction-bar-container {

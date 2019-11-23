@@ -7,9 +7,9 @@ export default class SplashCreateDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSnippet: [],
+      currentNotes: [],
       message: 'Try clicking the tiles, or pressing some keys to make some music.'
-    }
+    };
     this.updateSnippet = this.updateSnippet.bind(this);
   }
 
@@ -18,7 +18,7 @@ export default class SplashCreateDemo extends Component {
     const message1 = 'There you go! Keep going.';
     const message2 = 'Hey that sounds pretty nice.';
     const message3 = 'Nice! Let\'s save that masterpiece.';
-    const snipLen = this.state.currentSnippet.length;
+    const snipLen = this.state.currentNotes.length;
     // debugger
     let message;
 
@@ -36,8 +36,9 @@ export default class SplashCreateDemo extends Component {
     // can't update state in componentDidUpdate, 
     // will cause infinite loop!
   }
-  updateSnippet(newSnippet) {
-    this.setState({ currentSnippet: newSnippet });
+  updateSnippet(newNotes) {
+    // debugger;
+    this.setState({ currentNotes: newNotes });
   }
   render() {
     return (
@@ -47,7 +48,7 @@ export default class SplashCreateDemo extends Component {
           <p>{ this.state.message }</p>
         </div>
 
-        <SnippetDisplayContainer snippet={this.state.currentSnippet} />
+        <SnippetDisplayContainer snippet={this.state.currentNotes} />
         <KeyboardContainer updateSnippet={this.updateSnippet} />
         
         <div className='next'>
