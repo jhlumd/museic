@@ -84,32 +84,6 @@ export default class Keyboard extends Component {
   
   render() {
     return (
-      // <div className='keyboard-container'>
-      //   <ul id="piano">
-      //     <li data-note="C5" className="key">
-      //       <div data-note="C#5" className="black-key 1"></div>
-      //     </li>
-      //     <li data-note="D5" className="key">
-      //       <div data-note="D#5" className="black-key 2"></div>
-      //     </li>
-      //     <li data-note="E5" className="key">
-      //     </li>
-      //     <li data-note="F5" className="key">
-      //       <div data-note="F#5" className="black-key 4"></div>
-      //     </li>
-      //     <li data-note="G5" className="key">
-      //       <div data-note="G#5" className="black-key 5"></div>
-      //     </li>
-      //     <li data-note="A5" className="key">
-      //       <div data-note="A#5" className="black-key 6"></div>
-      //     </li>
-      //     <li data-note="B5" className="key">
-      //     </li>
-      //     <li data-note="C6" className="key">
-      //     </li>
-      //   </ul>
-      // </div>
-
       <div className='keyboard-container'>
         <ul id="piano">
           <li data-note="C5" className="key"></li>

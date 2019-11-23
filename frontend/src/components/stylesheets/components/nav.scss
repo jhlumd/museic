@@ -12,7 +12,7 @@
   align-items: center;
 
   background-color: $white;
-  filter: drop-shadow(0 3px 10px  $shadow);
+  box-shadow: 0px 3px 5px $shadow;
 
   .x-icon-container {
     position: absolute;
@@ -21,7 +21,7 @@
   }
 
   &.up {
-    transition: all 1s ease 0s;
+    transition: top 1s ease 0s;
     top: -105vh;
 
     .logo {
@@ -31,8 +31,10 @@
   }
 
   &.down {
-    transition: all 1s ease 0s;
+    transition: top 1s ease 0s;
     top: 0vh;
+    overflow-x: hidden; 
+    overflow-y: auto;
 
     .down-chevron-icon {
       transition: all 1s ease 0s;
@@ -131,17 +133,7 @@
             }
 
             button {
-              text-transform: uppercase;
-              padding: 1em 5em;
-
-              background-color: $white;
-
-              &:hover {
-                cursor: pointer;
-                text-decoration: underline;
-                background-color: $white;
-                color: $link;
-              }
+              @include button-basic;
             } 
           }
 

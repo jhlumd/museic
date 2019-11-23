@@ -37,3 +37,18 @@
       100%{background-position:0% 50%}
   }
 }
+
+@mixin button-basic {
+  text-transform: uppercase;
+  padding: 1em 5em;
+
+  background-color: $white;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    background-color: $white;
+    color: $link;
+  }
+ 
+}
