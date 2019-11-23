@@ -32,8 +32,9 @@ const App = () => (
       <ProtectedRoute exact path="/snippets/new" component={SnippetFormContainer} />
       {/* <Route exact path="/snippets/:id" component={ SnippetShowContainer} /> */}
       <AuthRoute exact path="/" component={SplashContainer} />
-      <Footer />
     </Switch>
+    
+    <Footer />
   </div>
 );
 

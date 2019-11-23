@@ -1,0 +1,41 @@
+#footer-container {
+  position: relative;
+  box-sizing: border-box;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2em 4em;
+
+  background-color: $black;
+  color: $white;
+
+  .footer-left-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    .logo h1 {
+      color: $white;
+    }
+
+    .footer-left-info {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .footer-right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    .icon {
+      height: 30px;
+    }
+  }
+}

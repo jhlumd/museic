@@ -10,11 +10,13 @@
     position: relative;
     height: inherit;
     width: inherit;
+    // background-color: $black;
 
     .single-note {
       position: absolute;
-      background-color: $red;
+      background-color: $black;
       height: 5px;
+      
     }
   }
 

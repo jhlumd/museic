@@ -10,33 +10,7 @@
     
     
     input {
-      box-sizing: border-box;
-      padding: 1em 0 0.3em 0;
-      
-      font-family: $sans-serif;
-      font-weight: 300;
-      border-bottom: 1px solid transparent;
-
-      &[type^='text'] {
-        transition: all 0.5s ease 0s;
-
-        &:hover {
-          border-bottom: 1px solid $shadow;
-        }
-
-        &::placeholder {
-          color: $black;
-        }
-        
-        &:focus::placeholder {
-          color: $shadow;
-        }
-
-        &:focus::placeholder:not(:hover) {
-          color: $shadow;
-          border-bottom: 1px solid $shadow;
-        }
-      }
+      @include form-text-input
       
       // &[type='checkbox'] {
         
@@ -49,21 +23,7 @@
     }
 
     button {
-      align-self: center;
-      transition: all 0.2s ease 0s;
-      
-      @include button-basic;
-      color: $white;
-      background-color: $black;
-      border-radius: 5px;
-      width: 20em;
-
-      &:hover {
-        color: $white;
-        background-color: $black;
-        text-decoration: none;
-        filter: drop-shadow(0 3px 5px  $shadow);
-      }
+      @include button-black;
     }
   }
 }
