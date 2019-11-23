@@ -1,6 +1,6 @@
 import React from 'react';
 import CommentListItem from './comment_list_item';
-import SnippetDisplay from './snippet_display';
+import SnippetInfo from './snippet_info';
 import CommentForm from './comment_form';
 
 class IndexShowCard extends React.Component {
@@ -23,6 +23,7 @@ class IndexShowCard extends React.Component {
 
   componentDidMount(){
     this.props.fetchSnippetComments(this.props.snippet._id)
+    this.props.fetchSnippetOwner(this.props.snippet.user, this.props.snippet._id)
   }
 
   render(){
@@ -30,7 +31,7 @@ class IndexShowCard extends React.Component {
 
     return (
       <div id="snippet-show-card">
-        <SnippetDisplay snippet={snippet}/>
+        <SnippetInfo snippet={snippet}/>
 
         <div id="comment-display">
         {

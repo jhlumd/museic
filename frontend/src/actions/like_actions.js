@@ -36,7 +36,7 @@ export const unlike = likeId => dispatch => (
     .then(() => dispatch(removeLike(likeId)))
 )
 
-export const getLikes = snippetId => dispatch => (
+export const getSnippetLikes = snippetId => dispatch => (
   snippetLikes(snippetId)
     .then(likes => dispatch(receiveLikes(likes)))
     .catch(err => console.log(err))

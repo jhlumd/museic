@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchSnippets } from '../../actions/snippet_actions'
+import { fetchSnippets, fetchSnippetOwner } from '../../actions/snippet_actions'
 import { fetchSnippetComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
 
 import SnippetIndex from './snippet_index';
@@ -16,6 +16,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return{
     fetchSnippets: () => dispatch(fetchSnippets()),
+    fetchSnippetOwner: (ownerId, snippetId) => dispatch(fetchSnippetOwner(ownerId, snippetId)),
     fetchSnippetComments: userId => dispatch(fetchSnippetComments(userId)),
     composeComment: comment => dispatch(composeComment(comment)),
     removeComment: commentId => dispatch(removeComment(commentId)),

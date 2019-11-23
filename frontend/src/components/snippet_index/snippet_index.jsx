@@ -28,7 +28,8 @@ class SnippetIndex extends React.Component {
       composeComment, 
       removeComment, 
       editComment,
-      fetchSnippetComments
+      fetchSnippetComments,
+      fetchSnippetOwner
     } = this.props
 
     return(
@@ -46,6 +47,7 @@ class SnippetIndex extends React.Component {
               editComment={editComment}
               userId={userId}
               fetchSnippetComments={fetchSnippetComments}
+              fetchSnippetOwner={fetchSnippetOwner}
               />
             } else {
               return <IndexCard
