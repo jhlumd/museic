@@ -32,7 +32,6 @@ class CommentListItem extends React.Component {
   render(){
     return (
       <div>
-        <h1>this is the comment</h1>
         <p>{this.props.body}</p>
         <br />
         <button onClick={this.deleteComment}>Delete</button>
