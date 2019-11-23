@@ -8,7 +8,7 @@ const validateSnippetInput = require("../../validation/snippet");
 
 // need to make index only show public snippets or own snippets
 router.get("/", (req, res) => {
-    Snippet.find()
+    Snippet.find({ public: true })
         .sort({ date: -1 })
         .then(snippets => res.json(snippets))
         .catch(err => res.status(404).json({
