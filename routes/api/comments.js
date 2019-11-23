@@ -5,33 +5,30 @@ const passport = require('passport');
 
 const Comment = require('../../models/Comment')
 
-router.get("/test", (req, res) => res.json({ msg: "This is the comments route" }));
+// //get all, remove route 
+// router.get('/', (req, res) => {
+//   Comment.find()
+//     .sort({ date: -1 })
+//     .then(comments => res.json(comments))
+//     .catch(err => res.status(400).json({ error: err }));
+//   }
+// );
 
-//get all
-router.get('/', (req, res) => {
-  Comment.find()
-    .sort({ date: -1 })
-    .then(comments => res.json(comments))
-    .catch(err => res.status(400).json({ error: err }));
-  }
-);
+// //this is for testing purposes, using users instead of snippets to check comments
+// router.get('user/:user_id', (req, res) => {
+//   Comment.find({ user : req.params.user_id }) //returns array?
+//     .then(comments => res.json(comments))
+//     .catch(err => res.status(404).json({ error: "no comments found for user" }))
+// })
 
-//this is for testing purposes, using users instead of snippets to check comments
-router.get('/:user_id', (req, res) => {
-  Comment.find({ user : req.params.user_id }) //returns array?
-    .then(comments => res.json(comments))
-    .catch(err => res.status(404).json({ error: "no comments found for user" }))
-})
-
-//get all comments for snippet THIS NEEDS TO BE RE-TESTED BECAUSE NO SNIPPET ID YET
-router.get('/:snippet_id', (req, res) => {
+router.get('/snippet/:snippet_id', (req, res) => {
   Comment.find({ snippet: req.params.snippet_id})
     .then(comments => res.json(comments))
     .catch(err => res.status(404).json({ error: err }))
 })
 
-//create new
-router.post('/new', 
+//create new, change to '/'
+router.post('/', 
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateCommentInput(req.body)
@@ -42,7 +39,7 @@ router.post('/new',
     
     const newComment = new Comment({
       user: req.body.userId,
-      snippet: req.body.snippet,
+      snippet: req.body.snippetId,
       body: req.body.body
     })
 
