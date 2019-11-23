@@ -1,8 +1,10 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
+
 import NavbarUserDropdown from './navbar_user_dropdown';
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 import KeyboardContainer from '../keyboard/keyboard_container';
+import SnippetFormContainer from '../snippets/upload/snippet_form_container';
 
 import Logo from '../resources/logo';
 import DownChevronIcon from '../resources/down_chevron_icon';
@@ -34,7 +36,7 @@ class Navbar extends React.Component {
     }); 
   }
   
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const message0 = 'Try clicking the tiles, or pressing some keys to make some music.'
     const message1 = 'There you go! Keep going.';
     const message2 = 'Hey that sounds pretty nice.';
@@ -53,7 +55,9 @@ class Navbar extends React.Component {
       message = message3;
     }
 
-    // this.setState({ message })
+    if (prevState.currentSnippet !== this.state.currentSnippet) {
+      this.setState({ message })
+    }
   }
 
   updateSnippet(newSnippet) {
@@ -82,6 +86,7 @@ class Navbar extends React.Component {
             </h2>
             <SnippetDisplayContainer snippet={this.state.currentSnippet} />
             <KeyboardContainer updateSnippet={this.updateSnippet} />
+            <SnippetFormContainer snippet={this.state.currentSnippet} />
             
           </div>
           

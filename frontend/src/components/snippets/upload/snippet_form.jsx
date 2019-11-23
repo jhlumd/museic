@@ -9,7 +9,7 @@ export default class SnippetForm extends Component {
             title: "",
             description: "",
             notes: this.props.tempNotes,
-            public: true,
+            private: false,
             errors: []
         };
 
@@ -71,36 +71,31 @@ export default class SnippetForm extends Component {
                         type="text"
                         value={this.state.title}
                         onChange={this.handleChange("title")}
-                        placeholder="Name your snippet"
+                        placeholder="Name your snippet."
                     />
                     
                     <input
                         type="textarea"
                         value={this.state.description}
                         onChange={this.handleChange("description")}
-                        placeholder="Describe your snippet"
+                        placeholder="Describe your snippet."
                     />
 
-                    <input
-                        type="radio"
-                        name="public"
-                        value="true"
-                        checked={this.state.public}
-                        onChange={this.handlePrivacy}
-                    />
-                    
-                    <input
-                        type="radio"
-                        name="public"
-                        value="false"
-                        checked={!this.state.public}
-                        onChange={this.handlePrivacy}
-                    />
+                    <label> 
+                        <input
+                            type="checkbox"
+                            name="private"
+                            value="true"
+                            // checked={this.state.private}
+                            onChange={this.handlePrivacy}
+                        /> Private
+                    </label>
 
-                    <input type="submit" value="Submit" />
+                    <button className='hvr-grow' type="submit">Save Snippet</button>
                 </form>
 
                 {/* <KeyboardContainer /> */}
+                
             </div>
         );
     }

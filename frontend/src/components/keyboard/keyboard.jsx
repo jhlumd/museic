@@ -20,10 +20,12 @@ export default class Keyboard extends Component {
     const piano = document.getElementById("piano");
 
     piano.addEventListener("mousedown", e => {
-      synth.triggerAttack(e.target.dataset.note);
+      const key = e.target;
+      
+      synth.triggerAttack(key.dataset.note);
 
       this.notesArray.push({
-        pitch: e.target.dataset.note,
+        pitch: key.dataset.note,
         unadjStartTime: Math.ceil(e.timeStamp / 250)
       });
       const lastNoteDown = this.notesArray[this.notesArray.length - 1];
@@ -40,6 +42,7 @@ export default class Keyboard extends Component {
     });
 
     piano.addEventListener("mouseup", e => {
+      
       synth.triggerRelease();
 
       const lastNoteUp = this.notesArray[this.notesArray.length - 1];
@@ -66,31 +69,42 @@ export default class Keyboard extends Component {
 
       }
     });
+
+    // add event listeners to keys for animation
+    const keys = piano.children;
+
+    for (let key of keys) {
+      key.addEventListener("mousedown", () => {
+        key.classList.add('pressed');
+      });
+      key.addEventListener("mouseup", () => {
+        key.classList.remove('pressed');
+      });
+      key.addEventListener("tap", () => {
+        key.classList.toggle('pressed');
+      });
+      key.addEventListener("mouseout", () => {
+        key.classList.remove('pressed');
+      });
+    }
   }
   
   render() {
     return (
       <div className='keyboard-container'>
         <ul id="piano">
-          <li data-note="C5" className="key">
-            <div data-note="C#5" className="black-key"></div>
-          </li>
-          <li data-note="D5" className="key">
-            <div data-note="D#5" className="black-key"></div>
-          </li>
-          <li data-note="E5" className="key">
-          </li>
-          <li data-note="F5" className="key">
-            <div data-note="F#5" className="black-key"></div>
-          </li>
-          <li data-note="G5" className="key">
-            <div data-note="G#5" className="black-key"></div>
-          </li>
-          <li data-note="A5" className="key">
-            <div data-note="A#5" className="black-key"></div>
-          </li>
-          <li data-note="B5" className="key">
-          </li>
+          <li data-note="C5" className="key"></li>
+          <li data-note="C#5" className="black-key b-1"></li>
+          <li data-note="D5" className="key"></li>
+          <li data-note="D#5" className="black-key b-2"></li>
+          <li data-note="E5" className="key"></li>
+          <li data-note="F5" className="key"></li>
+          <li data-note="F#5" className="black-key b-4"></li>
+          <li data-note="G5" className="key"></li>
+          <li data-note="G#5" className="black-key b-5"></li>
+          <li data-note="A5" className="key"></li>
+          <li data-note="A#5" className="black-key b-6"></li>
+          <li data-note="B5" className="key"></li>
           <li data-note="C6" className="key">
           </li>
         </ul>
