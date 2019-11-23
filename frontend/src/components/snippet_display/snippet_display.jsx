@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SnippetBar from './_snippet_bar';
+import InteractionBar from './_interaction_bar';
 
 export default class SnippetDisplay extends Component {
   constructor(props) {
@@ -63,6 +64,8 @@ export default class SnippetDisplay extends Component {
         <div className="bar-display-container">
           {noteBars}
         </div>
+        
+        <InteractionBar notes={this.props.snippet} />
       </div>
     );
   }

@@ -7,7 +7,7 @@ import ShareIcon from '../resources/share_icon';
 export default class InteractionBar extends Component {
   constructor(props) {
     super(props);
-    
+
     this.handlePlay = this.handlePlay.bind(this);
   }
 
@@ -17,7 +17,7 @@ export default class InteractionBar extends Component {
     synth.toMaster();
     debugger; // WTF
 
-    this.state.notes.forEach(note => {
+    this.props.notes.forEach(note => {
       synth.triggerAttackRelease(
         note.pitch,
         note.duration * 0.25,
