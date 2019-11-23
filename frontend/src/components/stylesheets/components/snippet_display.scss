@@ -7,8 +7,15 @@
   flex-direction: column;
 
   .bar-display-container {
+    position: relative;
     height: inherit;
     width: inherit;
+
+    .single-note {
+      position: absolute;
+      background-color: $red;
+      height: 5px;
+    }
   }
 
   .interaction-bar-container {

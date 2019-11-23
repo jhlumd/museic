@@ -3,36 +3,35 @@ import Tone from "tone";
 import PlayBtnIcon from '../resources/play_btn_icon';
 import HeartIcon from '../resources/heart_icon';
 import ShareIcon from '../resources/share_icon';
+import SnippetBar from './_snippet_bar';
 
 export default class SnippetDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: this.props.tempNotes
+      notes: null
     };
 
     this.handlePlay = this.handlePlay.bind(this);
-    this.renderDisplay = this.renderDisplay.bind(this);
   }
+
+  // below for parent component (snippet show component) later
+  // componentDidMount() {
+  //   if (this.props.match.params.id) {
+  //     this.props.fetchSnippet(this.props.match.params.id);
+  //   } else {
+  //     this.props.history.push("/snippets")
+  //   }
+  // }
 
   componentDidMount() {
-    // WTF
-    // tempNotes or fetchSnippet(snippetId);
-
-    if (this.props.match.params.id) {
-      this.props.fetchSnippet(this.props.match.params.id).then(
-        this.renderDisplay,
-        () => this.props.history.push("/snippets")
-      );
-    }
+    // debugger;
+    this.setState({ notes: this.props.snippet });
   }
 
-  renderDisplay() {
-    // parse tempNotes array to make visual display
-    // debugger;
-    // this.state.notes.forEach(note => {
-      
-    // });
+  // ??????
+  componentWillReceiveProps() {
+    this.setState({ notes: this.props.snippet });
   }
 
   handlePlay() {
@@ -56,28 +55,38 @@ export default class SnippetDisplay extends Component {
   }
 
   render() {
+    // debugger;
+    let testNotes;
+    if (this.state.notes) {
+      testNotes = this.state.notes.map((note, i) => (
+        <SnippetBar
+          key={i}
+          pitch={note.pitch}
+          startTime={note.startTime}
+          duration={note.duration}
+        />
+      ));
+    }
+
     return (
-      <div className='snippet-display-container'>
-        
-        <div className='bar-display-container'>
-          {/* visual display grid */}
+      <div className="snippet-display-container">
+        <div className="bar-display-container">
+          {testNotes}
         </div>
 
-        <div className='interaction-bar-container'>
-
-          <div className='interaction-bar-left'>
+        <div className="interaction-bar-container">
+          <div className="interaction-bar-left">
             <PlayBtnIcon onClick={this.handlePlay} />
           </div>
 
-          <div className='interaction-bar-right'>
+          <div className="interaction-bar-right">
             {/* FIXME <HeartIcon onClick={this.props.addLike(this.props.user.id), this.props.snippet.id} /> */}
             <HeartIcon />
             {/* FIXME add sharing function */}
             <ShareIcon />
           </div>
-
         </div>
       </div>
-    )
+    );
   }
 };

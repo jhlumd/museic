@@ -31,9 +31,9 @@ export default class Keyboard extends Component {
 
       if (lastNoteDown.startTime < this.timeLimit) {
         const newSnippet = this.notesArray.slice();
-        this.setState({
-          notes: newSnippet
-        });
+
+        this.setState({ notes: newSnippet });
+        this.props.updateSnippet(newSnippet);
       }
       // There may be a case where 'saveTempNotes(this.state.notes)' isn't
       // called when only one note is played and held for the entire duration.
@@ -47,16 +47,23 @@ export default class Keyboard extends Component {
       lastNoteUp.duration = (dur === -0 ? 1 : dur);
 
       if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
-        this.setState({
-          notes: this.notesArray.slice()
-        });
+        const newSnippet = this.notesArray.slice();
+
+        this.setState({ notes: newSnippet });
+        this.props.updateSnippet(newSnippet);
+
         this.props.saveTempNotes(this.state.notes);
+
       } else if (lastNoteUp.startTime < this.timeLimit) {
         lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
-        this.setState({
-          notes: this.notesArray.slice()
-        });
+        
+        const newSnippet = this.notesArray.slice();
+
+        this.setState({ notes: newSnippet });
+        this.props.updateSnippet(newSnippet);
+
         this.props.saveTempNotes(this.state.notes);
+
       }
     });
   }

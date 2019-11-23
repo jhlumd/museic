@@ -36,7 +36,7 @@ export default class SplashSnippetDemo extends Component {
     }
   }
   render() {
-    const demoSnippetsArr = [0,1,2]; // = demoSnippets debugging
+    const demoSnippetsArr = [0,1,2]; // WTF
     // debugger;
     return (
       <div id='splash-snippet-demo-container'>
@@ -56,7 +56,7 @@ export default class SplashSnippetDemo extends Component {
         </ul>
 
         <div className='snippet-display-container'>
-          <SnippetDisplayContainer snippet={this.state.activeSnippet} />
+          <SnippetDisplayContainer snippet={this.state.activeSnippet.notes} />
         </div>
 
         <div className='next'>
