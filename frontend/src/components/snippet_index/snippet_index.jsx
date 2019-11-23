@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import IndexCard from './index_card';
-import ShowCard from './show_card';
+import IndexCard from './snippet_index_card';
+import ShowCard from './snippet_show_card';
 
 class SnippetIndex extends React.Component {
   constructor(props) {

@@ -1,12 +1,12 @@
 import React from 'react';
 
-class IndexCard extends React.Component {
+class SnippetIndexCard extends React.Component {
 
   render(){
     const {snippetId, snippet: {title, description, user, notes, date }} = this.props
     return (
       <div 
-        className='IndexCard' 
+        className='SnippetIndexCard' 
         onClick={e => {
           // debugger
           this.props.handleClick(e)
@@ -27,4 +27,4 @@ class IndexCard extends React.Component {
 
 }
 
-export default IndexCard;
+export default SnippetIndexCard;

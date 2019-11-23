@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ShowCard extends React.Component {
+class IndexShowCard extends React.Component {
   constructor(props){
     super(props)
     this.state={
@@ -36,4 +36,4 @@ class ShowCard extends React.Component {
   }
 }
 
-export default ShowCard;
+export default IndexShowCard;

@@ -11,8 +11,8 @@ import SplashContainer from './splash/splash_container';
 import ProfileContainer from './user/profile.container';
 import Footer from './footer/footer';
 
-import SnippetFormContainer from './snippets/upload/snippet_form_container';
-import SnippetIndexContainer from './snippets/index/index_container';
+import SnippetFormContainer from './snippet_form/snippet_form_container';
+import SnippetIndexContainer from './snippet_index/snippet_index_container';
 // import SnippetShowContainer from './snippets/snippet_show_container';
 
 import './stylesheets/main.scss'
@@ -22,7 +22,7 @@ const App = () => (
   <div>
     <header>
     <Modal />
-    {/* <NavBarContainer /> */}
+    <NavBarContainer />
     </header>
 
     <Switch>

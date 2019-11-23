@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { saveSnippet } from "../../../actions/snippet_actions";
-import { clearTempNotes } from "../../../actions/temp_notes_actions";
+import { saveSnippet } from "../../actions/snippet_actions";
+import { clearTempNotes } from "../../actions/temp_notes_actions";
 import SnippetForm from "./snippet_form";
 
 const mstp = state => {

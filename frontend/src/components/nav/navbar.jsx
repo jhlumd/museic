@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import NavbarUserDropdown from './navbar_user_dropdown';
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 import KeyboardContainer from '../keyboard/keyboard_container';
-import SnippetFormContainer from '../snippets/upload/snippet_form_container';
+import SnippetFormContainer from '../snippet_form/snippet_form_container';
 
 import Logo from '../resources/logo';
 import DownChevronIcon from '../resources/down_chevron_icon';

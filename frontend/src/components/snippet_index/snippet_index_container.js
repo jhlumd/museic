@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { fetchSnippets } from '../../../actions/snippet_actions'
-import { fetchSnippetComments, composeComment, removeComment, editComment } from '../../../actions/comment_actions';
+import { fetchSnippets } from '../../actions/snippet_actions'
+import { fetchSnippetComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
 
-import SnippetIndex from './index';
+import SnippetIndex from './snippet_index';
 
 const mapStateToProps = (state) => {
   // debugger
