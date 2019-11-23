@@ -1,8 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const db = require("./config/keys_prod").mongoURI; // for heroku
-// const db = require("./config/keys").mongoURI; // for local dev
+const db = require("./config/keys").mongoURI;
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
