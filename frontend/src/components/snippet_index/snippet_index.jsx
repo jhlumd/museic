@@ -14,7 +14,6 @@ class SnippetIndex extends React.Component {
 
   componentDidMount(){
     this.props.fetchSnippets();
-    this.props.fetchSnippetComments(this.state.selectedId);
   }
 
   handleClick(e){

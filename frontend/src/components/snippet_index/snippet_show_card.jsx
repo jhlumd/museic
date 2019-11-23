@@ -1,28 +1,25 @@
 import React from 'react';
 import CommentListItem from './comment_list_item';
 import SnippetDisplay from './snippet_display';
+import CommentForm from './comment_form';
 
 class IndexShowCard extends React.Component {
   constructor(props){
     super(props)
-    this.state={
-      userId: this.props.userId,
-      body: ''
-    }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    // this.state={
+    //   userId: this.props.userId,
+    //   snippetId: this.props.snippetId,
+    //   body: ''
+    // }
   }
 
-  handleChange(field) {
-    return e => this.setState({ [field]: e.currentTarget.value });
-  }
+  // handleSubmit(e) {
+  //   e.preventDefault();
 
-  handleSubmit(e){
-    e.preventDefault();
-    // debugger
-    this.props.composeComment(this.state)
-      .then(() => this.props.fetchSnippetComments(this.props.userId))
-    this.setState({ body: '' })
-  }
+  //   this.props.composeComment(this.state)
+  //     .then(() => this.props.fetchSnippetComments(this.props.userId))
+  //   this.setState({ body: '' })
+  // }
 
   componentDidMount(){
     this.props.fetchSnippetComments(this.props.snippet._id)
@@ -32,29 +29,34 @@ class IndexShowCard extends React.Component {
     const { snippet } = this.props
 
     return (
-      <div>
+      <div id="snippet-show-card">
         <SnippetDisplay snippet={snippet}/>
-        
+
+        <div id="comment-display">
         {
           this.props.comments.map(comment => (
             <CommentListItem
-              key={comment._id}
-              id={comment._id}
-              deleteComment={this.props.removeComment}
-              body={comment.body}
-              editComment={this.props.editComment}
+            key={comment._id}
+            commentId={comment._id}
+            snippetId={comment.snippet}
+            deleteComment={this.props.removeComment}
+            body={comment.body}
+            editComment={this.props.editComment}
+            composeComment={this.props.composeComment}
             // userId={this.props.userId}
             />
-          ))
-        }
-        <form onSubmit={ e => this.handleSubmit(e)}>
-              <input type="text"
-              value={this.state.body}
-              onChange={this.handleChange('body')}
-              placeholder="----Body text"
-            />
-          <input type="submit" value="create new comment" />
-        </form>
+            ))
+          }
+        </div>
+
+        <div>
+          <CommentForm
+            composeComment={this.props.composeComment}
+            userId={this.props.userId}
+            snippetId={this.props.snippet._id}
+          />
+        </div>
+
       </div>
     )
   }

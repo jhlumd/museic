@@ -1,52 +1,57 @@
 import React from 'react';
+import CommentEditForm from './comment_edit_form';
 
 class CommentListItem extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      body: '',
-      commentId: this.props.id
+      commentId: this.props.commentId,
+      snippetId: this.props.snippetId,
+      edit: false
     }
     this.deleteComment = this.deleteComment.bind(this)
     this.editComment = this.editComment.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
-  
 
   deleteComment(){
-    // console.log(this.props.deleteComment)
-    // debugger
-    this.props.deleteComment(this.props.id);
-    // this.setState({ triggerRender: ''});
+    this.props.deleteComment(this.state.commentId);
   }
 
-  editComment(){
-    this.props.editComment(this.state)
-    this.setState({body: ''})
+  editComment(newText){
+    const newEdit = {
+      body: newText,
+      commentId: this.state.commentId,
+      snippetId: this.state.snippetId,
+    }
+    this.props.editComment(newEdit)
+    this.setState({body: '', edit: false})
   }
 
-  handleChange(field){
-    return e => this.setState({[field]: e.currentTarget.value});
+  handleClick(){
+    const toggle = this.state.edit ? false : true;
+    this.setState({edit: toggle})
   }
 
   render(){
-    return (
-      <div>
-        <p>{this.props.body}</p>
-        <br />
-        <button onClick={this.deleteComment}>Delete</button>
-        <form onSubmit={this.editComment}>
-          <label>Edit comment:
-            <input 
-              type="text" 
-              placeholder="---changes here"
-              onChange={this.handleChange('body')}
-            />
-          </label>
-          <input type="submit" value="Save changes"/>
-        </form>
-      </div>
-    )
+    if (this.state.edit) {
+      return <CommentEditForm 
+        handleClick={this.handleClick} 
+        editComment={this.editComment}
+        handleChange={this.handleChange}
+        body={this.props.body}
+      />
+    } else {
+      return(
+        <div className="comment-list-item-container">
+          <div className="comment-list-item" onClick={this.handleClick}>
+            <i>[UserPic]</i>
+            <p>{this.props.body}</p>
+          </div>
+          <button onClick={this.deleteComment}>[X]</button>
+        </div>
+      )
+    }
   }
 }
 

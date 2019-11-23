@@ -26,7 +26,6 @@ const App = () => (
     </header>
 
     <Switch>
-      <Route path="/test" component={ProfileContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/snippets/index" component={SnippetIndexContainer} />
