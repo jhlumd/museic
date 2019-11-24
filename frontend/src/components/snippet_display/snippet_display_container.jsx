@@ -13,5 +13,4 @@ const mdtp = dispatch => ({
   fetchSnippet: (snippetId) => dispatch(fetchSnippet(snippetId))
 });
 
-
 export default withRouter(connect(mstp, mdtp)(SnippetDisplay));

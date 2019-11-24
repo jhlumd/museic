@@ -5,7 +5,7 @@ export default class SnippetDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: null
+      notes: this.props.snippet
     };
   }
 
@@ -18,12 +18,10 @@ export default class SnippetDisplay extends Component {
   //   }
   // }
 
-  componentDidMount() {
-    // debugger;
-    this.setState({ notes: this.props.snippet });
-  }
+  // componentDidMount() {
+  //   this.setState({ notes: this.props.snippet });
+  // }
 
-  // ??????
   componentWillReceiveProps() {
     this.setState({ notes: this.props.snippet });
   }
