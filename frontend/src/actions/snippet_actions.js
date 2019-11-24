@@ -1,9 +1,12 @@
 import * as ApiUtil from "../util/snippet_api_util";
+import { getSnippetOwner } from "../util/session_api_util";
 
 export const RECEIVE_SNIPPETS = "RECEIVE_SNIPPETS";
 export const RECEIVE_USER_SNIPPETS = "RECEIVE_USER_SNIPPETS";
 export const RECEIVE_ONE_SNIPPET = "RECEIVE_ONE_SNIPPET";
 export const REMOVE_SNIPPET = 'REMOVE_SNIPPET';
+
+export const RECEIVE_SNIPPET_OWNER = 'RECEIVE_SNIPPET_OWNER'
 
 export const receiveSnippets = snippets => ({ //return array
     type: RECEIVE_SNIPPETS,
@@ -24,6 +27,12 @@ export const removeSnippet = snippet => ({
     type: REMOVE_SNIPPET,
     snippet
 });
+
+export const receiveOwnerUsername = (owner, snippetId) => ({
+    type: RECEIVE_SNIPPET_OWNER,
+    owner,
+    snippetId
+})
 
 export const fetchSnippets = () => dispatch => (
     ApiUtil.getSnippets()
@@ -52,3 +61,11 @@ export const deleteSnippet = snippetId => dispatch => (
     ApiUtil.deleteSnippet(snippetId)
         .then(() => dispatch(removeSnippet(snippetId)))
 );
+
+export const fetchSnippetOwner = (ownerId, snippetId) => dispatch => {
+    return(
+        getSnippetOwner(ownerId)
+            .then( res => dispatch(receiveOwnerUsername(res.data.username, snippetId)))
+            .catch( () => console.log('----owner was not retrieved----'))
+    )
+}

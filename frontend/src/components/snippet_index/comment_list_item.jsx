@@ -7,11 +7,14 @@ class CommentListItem extends React.Component {
     this.state = {
       commentId: this.props.commentId,
       snippetId: this.props.snippetId,
-      edit: false
+      edit: false,
+      ownerId: this.props.ownerId,
+      userId: this.props.userId
     }
     this.deleteComment = this.deleteComment.bind(this)
     this.editComment = this.editComment.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.renderDelete = this.renderDelete.bind(this)
   }
 
   deleteComment(){
@@ -33,8 +36,17 @@ class CommentListItem extends React.Component {
     this.setState({edit: toggle})
   }
 
+  renderDelete(){
+    if (this.state.ownerId === this.state.userId) {
+      return(
+        <button onClick={this.deleteComment}>[X]</button>
+      )
+    }
+  }
+
   render(){
-    if (this.state.edit) {
+    const { edit, ownerId, userId } = this.state
+    if (edit && ownerId === userId) {
       return <CommentEditForm 
         handleClick={this.handleClick} 
         editComment={this.editComment}
@@ -48,7 +60,7 @@ class CommentListItem extends React.Component {
             <i>[UserPic]</i>
             <p>{this.props.body}</p>
           </div>
-          <button onClick={this.deleteComment}>[X]</button>
+          {this.renderDelete()}
         </div>
       )
     }

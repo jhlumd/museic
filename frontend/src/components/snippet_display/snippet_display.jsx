@@ -1,29 +1,15 @@
 import React, { Component } from 'react';
 import SnippetBar from './_snippet_bar';
+import InteractionBar from './_interaction_bar';
 
 export default class SnippetDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: null
+      notes: this.props.snippet
     };
   }
 
-  // below for parent component (snippet show component) later
-  // componentDidMount() {
-  //   if (this.props.match.params.id) {
-  //     this.props.fetchSnippet(this.props.match.params.id);
-  //   } else {
-  //     this.props.history.push("/snippets")
-  //   }
-  // }
-
-  componentDidMount() {
-    // debugger;
-    this.setState({ notes: this.props.snippet });
-  }
-
-  // ??????
   componentWillReceiveProps() {
     this.setState({ notes: this.props.snippet });
   }
@@ -37,7 +23,7 @@ export default class SnippetDisplay extends Component {
       result[i] = Math.round(result[i] + factor * (color2[i] - color1[i]));
     }
     return result;
-  };
+  }
 
   interpolateColors(color1, color2, steps) {
     var stepFactor = 1 / (steps - 1),
@@ -71,11 +57,14 @@ export default class SnippetDisplay extends Component {
       ));
     }
 
+
     return (
       <div className="snippet-display-container">
         <div className="bar-display-container">
-          {testNotes}
+          {noteBars}
         </div>
+        
+        <InteractionBar notes={this.props.snippet} />
       </div>
     );
   }

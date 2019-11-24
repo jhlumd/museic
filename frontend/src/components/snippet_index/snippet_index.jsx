@@ -24,11 +24,16 @@ class SnippetIndex extends React.Component {
   render(){
     const { 
       comments,
+      likes,
       userId, 
       composeComment, 
       removeComment, 
       editComment,
-      fetchSnippetComments
+      fetchSnippetComments,
+      fetchSnippetOwner,
+      newLike,
+      unlike,
+      getSnippetLikes,
     } = this.props
 
     return(
@@ -39,13 +44,26 @@ class SnippetIndex extends React.Component {
             if (this.state.selectedId === snippet._id) {
               return <ShowCard 
               key={snippet._id}
+              
+              //data needed to display and send to actions
               snippet={snippet}
               comments={comments}
+              likes={likes}
+              userId={userId}
+              
+              //comment actions
               composeComment={composeComment}
               removeComment={removeComment}
               editComment={editComment}
-              userId={userId}
+              
+              //get data on mount
               fetchSnippetComments={fetchSnippetComments}
+              fetchSnippetOwner={fetchSnippetOwner}
+              
+              //like actions
+              newLike={newLike}
+              unlike={unlike}
+              getSnippetLikes={getSnippetLikes}
               />
             } else {
               return <IndexCard
