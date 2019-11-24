@@ -10,10 +10,11 @@ class SnippetIndex extends React.Component {
       selectedId: ''
     }
     this.handleClick = this.handleClick.bind(this)
+    // this.mapLikesToSnippets = this.mapLikesToSnippets.bind(this)
   }
 
   componentDidMount(){
-    this.props.fetchSnippets();
+    this.props.fetchSnippets()
   }
 
   handleClick(e){
@@ -41,6 +42,7 @@ class SnippetIndex extends React.Component {
         <h1>Snippet Index</h1>
         {
           this.props.snippets.map( snippet => {
+            const snippetId = snippet._id
             if (this.state.selectedId === snippet._id) {
               return <ShowCard 
               key={snippet._id}
@@ -66,11 +68,14 @@ class SnippetIndex extends React.Component {
               getSnippetLikes={getSnippetLikes}
               />
             } else {
+              console.log(this.props.likes[snippetId])
               return <IndexCard
               handleClick={ this.handleClick }
               key={snippet._id} 
-              snippetId={snippet._id}
+              snippetId={snippetId}
               snippet={snippet}
+              snippetLikes={this.props.likes[snippetId]}
+              getSnippetLikes={getSnippetLikes}
               />
             }
           
