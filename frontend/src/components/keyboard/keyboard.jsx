@@ -92,6 +92,7 @@ export default class Keyboard extends Component {
 
   resetSnippet() {
     this.props.updateSnippet([]);
+    this.props.clearTempNotes();
     this.notesArray = [];
     this.setState({ notes: null });
     // this.forceUpdate(); // WTF
