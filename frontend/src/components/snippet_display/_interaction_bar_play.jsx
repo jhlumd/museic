@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Tone from "tone";
 import PlayBtnIcon from '../resources/play_btn_icon';
-import HeartIcon from '../resources/heart_icon';
-import ShareIcon from '../resources/share_icon';
 
-export default class InteractionBar extends Component {
+export default class InteractionBarPlay extends Component {
   constructor(props) {
     super(props);
 
@@ -30,18 +28,15 @@ export default class InteractionBar extends Component {
   
   render() {
     return (
-      <div className="interaction-bar-container">
-        <div className="interaction-bar-left">
-          <PlayBtnIcon handlePlay={this.handlePlay} />
-        </div>
-
-        <div className="interaction-bar-right">
-          {/* FIXME <HeartIcon onClick={this.props.addLike(this.props.user.id), this.props.snippet.id} /> */}
-          <HeartIcon />
-          {/* FIXME add sharing function */}
-          <ShareIcon />
-        </div>
+      <div className="interaction-bar-left">
+        <PlayBtnIcon handlePlay={this.handlePlay} />
       </div>
     )
   }
 }
+
+{/* <div className="interaction-bar-container">
+  <InteractionBarPlay />
+  AND/OR
+  <InteractionBarLikeShare />
+</div> */}

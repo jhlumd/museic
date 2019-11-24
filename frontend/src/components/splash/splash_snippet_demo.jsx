@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';  
-import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
+import SnippetDisplayPlayOnlyContainer from '../snippet_display/snippet_display_play_only_container';
 
 import { demoSnippets } from "./demo_snips";
 
@@ -55,7 +55,7 @@ export default class SplashSnippetDemo extends Component {
         </ul>
 
         <div className='snippet-display-container'>
-          <SnippetDisplayContainer snippet={this.state.activeSnippet.notes} />
+          <SnippetDisplayPlayOnlyContainer snippet={this.state.activeSnippet.notes} />
         </div>
 
         <div className='next'>

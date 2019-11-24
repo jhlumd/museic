@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 
 import NavbarUserDropdown from './navbar_user_dropdown';
-import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
+import SnippetDisplayPlayOnlyContainer from '../snippet_display/snippet_display_play_only_container';
 import KeyboardContainer from '../keyboard/keyboard_container';
 import SnippetFormContainer from '../snippet_form/snippet_form_container';
 
@@ -87,7 +87,7 @@ class Navbar extends React.Component {
               <p>{message}</p>
             </div>
 
-            <SnippetDisplayContainer snippet={this.state.currentNotes} />
+            <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />
             <KeyboardContainer updateSnippet={this.updateSnippet} />
             <SnippetFormContainer snippet={this.state.currentNotes} />
             
