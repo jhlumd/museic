@@ -1,0 +1,31 @@
+#snippet-index-container {
+  padding-top: 45px;
+  width: 100vw;
+  min-height: 100vh;
+  margin: auto;
+  background-color: $white;
+
+  .snippet-index-snippets-container {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 1em;
+    row-gap: 1em;
+
+    width: 80%;
+    margin: auto;
+    padding: 3em 0;
+
+    .snippet-index-card-container, .snippet-show-card-container {
+      @include flex-centered;
+      @include box-shadow;
+
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    @import './snippet_index_card.scss';
+    @import './snippet_show_card.scss';
+    
+  }
+}

@@ -107,3 +107,19 @@
     }
   }
 }
+
+//     POSITIONING
+
+@mixin flex-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+//     BASICS
+
+@mixin box-shadow {
+  box-shadow: 0px 3px 5px $shadow;
+}
+
