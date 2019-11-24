@@ -6,6 +6,8 @@ const mongoose = require("mongoose"); // required?
 const Snippet = require("../../models/Snippet");
 const validateSnippetInput = require("../../validation/snippet");
 
+const Like = require('../../models/Like')
+
 // need to make index only show public snippets or own snippets
 router.get("/", (req, res) => {
     Snippet.find({ public: true })
