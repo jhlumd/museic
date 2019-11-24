@@ -1,0 +1,40 @@
+.snippet-index-card-container {
+  box-sizing: border-box;
+  height: 300px;
+  width: 300px;
+  transition: all 0.3s ease-in-out 0s;
+
+  background-color: $white;
+
+  &:hover {
+    width: 310px;
+    height: 310px;
+    box-shadow: 0px 3px 15px $shadow;
+    cursor: pointer;
+  }
+
+  .snippet-display-container {
+    height: 150px;
+    width: 300px;
+  }
+
+  .snippet-index-card-base-container {
+    max-width: 280px;
+    padding: 0.75em 0.5em;
+
+    .snippet-index-card-title {
+      margin-bottom: 0.5em;
+      font-size: 0.9em;
+    }
+    .snippet-index-card-description {
+      max-height: 50px;
+      width: inherit;
+
+      text-overflow: ellipsis;
+      overflow: hidden;
+      // white-space: nowrap;
+
+      font-size: 0.8em;
+    }
+  }
+}

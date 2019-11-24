@@ -1,11 +1,11 @@
 import React from 'react';
+import HeartIcon from '../resources/heart_icon';
 
 class SnippetInfo extends React.Component {
 
-  // constructor(props){
-  //   super(props)
-
-  // }
+  constructor(props){
+    super(props)
+  }
 
   handleLike(){
     const likeData = {
@@ -35,17 +35,30 @@ class SnippetInfo extends React.Component {
         //to render differently
       )
     } else {
+      
       return (
-        <div id="snippet-display">
-          <h3>INFO Section</h3>
-          <p>{title}</p>
-          <p>Created By: {owner}</p>
-          <p>{description}</p>
-          <p>Created: {date}</p>
-          <p>[Number of likes]:{likesArray.length}</p>
+        <div className="snippet-show-info-container">
           
-          <button onClick={this.handleLike.bind(this)}>Like</button>
-          <button onClick={this.handleUnlike.bind(this)}>Unlike</button>
+          <div className='snippet-show-info-top'>
+
+            <div className='snippet-show-info-left'>
+              <h4>{title}</h4>
+              <p>{owner}</p>
+            </div>
+
+            <div className='snippet-show-info-right'>
+              <p>{date}</p>
+              <p>{likesArray.length} Likes</p>
+            </div>
+          </div>
+
+
+          <div className='description'>
+            <p>{description}</p>
+          </div>
+          
+          {/* <button onClick={this.handleLike.bind(this)}>Like</button>
+          <button onClick={this.handleUnlike.bind(this)}>Unlike</button> */}
         </div>
       )
     }

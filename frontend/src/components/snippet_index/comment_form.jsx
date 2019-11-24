@@ -24,14 +24,17 @@ class CommentForm extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className='snippet-show-comment-form-container'>
         <form onSubmit={e => this.handleSubmit(e)}>
+
           <input type="text"
             onChange={this.handleChange('body')}
             value={this.state.body}
             placeholder="comment here"
           />
+
           <input type="submit" value="submit" />
+
         </form>
       </div>
     )

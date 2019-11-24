@@ -2,6 +2,7 @@ import React from 'react';
 import CommentListItem from './comment_list_item';
 import SnippetInfo from './snippet_info';
 import CommentForm from './comment_form';
+import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 
 class IndexShowCard extends React.Component {
   constructor(props){
@@ -29,45 +30,50 @@ class IndexShowCard extends React.Component {
     } = this.props
 
     return (
-      <div id="snippet-show-card">
+      <div className='snippet-show-card-container'>
 
-        <div id="snippet-info">
-          <SnippetInfo 
-            snippet={snippet}
-            likes={likes}
-            userId={userId}
-            newLike={newLike}
-            unlike={unlike}
-          />
-        </div>
+        <div className="snippet-show-card">
 
-        <div id="comment-display">
-        {
-          this.props.comments.map(comment => (
-            <CommentListItem
-              key={comment._id}
-              commentId={comment._id}
-              snippetId={comment.snippet}
-              body={comment.body}
-              ownerId={comment.user}
+          <div className="snippet-info">
+            <SnippetInfo 
+              snippet={snippet}
+              likes={likes}
               userId={userId}
-
-              deleteComment={this.props.removeComment}
-              editComment={this.props.editComment}
-              composeComment={this.props.composeComment}
+              newLike={newLike}
+              unlike={unlike}
             />
-            ))
-          }
-        </div>
+          </div>
 
-        <div id="comment-form">
-          <CommentForm
-            composeComment={this.props.composeComment}
-            userId={this.props.userId}
-            snippetId={this.props.snippet._id}
-          />
-        </div>
+          <SnippetDisplayContainer snippet={this.props.snippet.notes} />
 
+          <div className="comment-display">
+          {
+            this.props.comments.map(comment => (
+              <CommentListItem
+                key={comment._id}
+                commentId={comment._id}
+                snippetId={comment.snippet}
+                body={comment.body}
+                ownerId={comment.user}
+                userId={userId}
+
+                deleteComment={this.props.removeComment}
+                editComment={this.props.editComment}
+                composeComment={this.props.composeComment}
+              />
+              ))
+            }
+          </div>
+
+          <div className="comment-form">
+            <CommentForm
+              composeComment={this.props.composeComment}
+              userId={this.props.userId}
+              snippetId={this.props.snippet._id}
+            />
+          </div>
+
+        </div>
       </div>
     )
   }
