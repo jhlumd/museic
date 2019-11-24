@@ -81,6 +81,7 @@ class SnippetIndex extends React.Component {
           
           })
         }
+
       </div>
     )
   }
