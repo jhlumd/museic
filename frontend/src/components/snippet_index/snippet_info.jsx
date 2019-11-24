@@ -2,24 +2,34 @@ import React from 'react';
 
 class SnippetInfo extends React.Component {
 
-  // componentDidMount(){
-    //fetch the owner's username to display 
-  // }
+  handleLike(){
+    const likeData = {
+      user: this.props.userId,
+      snippet: this.props.snippet._id
+    }
+    this.props.newLike(likeData)
+  }
+
+  handleUnlike(){
+    this.props.unlike(this.props.snippet._id)
+  }
   
   render(){
     const {
-      snippet: { title, description, user, notes, date, owner }
+      snippet: { title, description, date, owner },
+      likes,
     } = this.props
 
-    //need stats => likes, 
-    //need user's name
     return(
       <div id="snippet-display">
         <h3>INFO Section</h3>
         <p>{title}</p>
         <p>Created By: {owner}</p>
         <p>{description}</p>
-        <p>[Number of likes]</p>
+        <p>Created: {date}</p>
+        <p>[Number of likes]:{likes.length}</p>
+        <button onClick={this.handleLike.bind(this)}>Like</button>
+        <button onClick={this.handleUnlike.bind(this)}>Unlike</button>
       </div>
       )
   }

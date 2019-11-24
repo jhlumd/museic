@@ -9,7 +9,7 @@ export default function ( state = {}, action ){
     case GET_LIKES:
       return action.likes;
     case CREATE_LIKE:
-      newState[action.like.id] = action.like;
+      newState[action.like._id] = action.like;
       return newState;
     case DELETE_LIKE:
       delete newState[action.likeId];

@@ -63,7 +63,6 @@ export const deleteSnippet = snippetId => dispatch => (
 );
 
 export const fetchSnippetOwner = (ownerId, snippetId) => dispatch => {
-    debugger
     return(
         getSnippetOwner(ownerId)
             .then( res => dispatch(receiveOwnerUsername(res.data.username, snippetId)))
