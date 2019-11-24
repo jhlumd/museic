@@ -36,7 +36,7 @@ export default class SplashSnippetDemo extends Component {
     }
   }
   render() {
-    const demoSnippetsArr = ['Demo 1', 'Demo 2', 'Demo 3']; // WTF
+    const demoSnippetsArr = ['Demo 1', 'Demo 2', 'Demo 3']; //
     // debugger;
     return (
       <div id='splash-snippet-demo-container'>
@@ -48,8 +48,7 @@ export default class SplashSnippetDemo extends Component {
           {
             demoSnippetsArr.map((snippet, i) => (
               <li key={i} onClick={() => this.changeTab(i)}>
-                {/* { snippet.name.toLowerCase() } */}
-                { snippet }
+                {snippet}
               </li>
             ))
           }
