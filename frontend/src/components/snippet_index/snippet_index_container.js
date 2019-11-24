@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
     snippets: Object.values(state.entities.snippets),
     comments: Object.values(state.entities.comments),
     userId: state.session.user.id,
-    likes: Object.values(state.entities.likes)
+    likes: state.entities.likes
   }
 }
 
