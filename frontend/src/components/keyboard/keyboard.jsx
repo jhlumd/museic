@@ -93,7 +93,6 @@ export default class Keyboard extends Component {
   resetSnippet() {
     this.props.updateSnippet([]);
     this.notesArray = [];
-    this.timeLimit = Tone.now() + 32;
     this.setState({ notes: null });
     // this.forceUpdate(); // WTF
   }
@@ -117,7 +116,7 @@ export default class Keyboard extends Component {
           <li data-note="C6" className="key">
           </li>
         </ul>
-        <button onClick={this.resetSnippet}>Reset</button>
+        <button className="keyboard-reset-button" onClick={this.resetSnippet}>Reset</button>
       </div>
     );
   }

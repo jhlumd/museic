@@ -7,14 +7,14 @@ export default class SplashCreateDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentNotes: [],
-      message: 'Try clicking the tiles, or pressing some keys to make some music.'
+      currentNotes: []
     };
     this.updateSnippet = this.updateSnippet.bind(this);
   }
 
   updateSnippet(newNotes) {
     this.setState({ currentNotes: newNotes });
+    // this.forceUpdate(); // WTF
   }
 
   render() {
