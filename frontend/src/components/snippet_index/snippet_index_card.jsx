@@ -1,5 +1,6 @@
 import React from 'react';
 import { getSnippetLikes } from '../../actions/like_actions';
+import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 
 
 class SnippetIndexCard extends React.Component {
