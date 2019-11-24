@@ -7,9 +7,10 @@ export default class InteractionBarPlay extends Component {
     super(props);
 
     this.handlePlay = this.handlePlay.bind(this);
+    this.handlePause = this.handlePause.bind(this);
   }
 
-  handlePlay(e) {
+  handlePlay() {
     const synth = new Tone.Synth();
     synth.oscillator.type = "sine";
     synth.toMaster();
@@ -24,6 +25,10 @@ export default class InteractionBarPlay extends Component {
         now + note.startTime / 4
       );
     });
+  }
+
+  handlePause() {
+    
   }
   
   render() {

@@ -19,7 +19,7 @@ export default class Splash extends Component {
     // });
   }
   snapTo(location) {
-    var element = document.getElementById(location);
+    let element = document.getElementById(location);
     element.scrollIntoView({ behavior: "smooth" });
   }
   render() {
