@@ -10,6 +10,8 @@ export default class Keyboard extends Component {
 
     this.notesArray = [];
     this.timeLimit = 32;
+
+    this.resetSnippet = this.resetSnippet.bind(this);
   }
 
   componentDidMount() {
@@ -87,6 +89,14 @@ export default class Keyboard extends Component {
       });
     }
   }
+
+  resetSnippet() {
+    this.props.updateSnippet([]);
+    this.notesArray = [];
+    this.timeLimit = Tone.now() + 32;
+    this.setState({ notes: null });
+    // this.forceUpdate(); // WTF
+  }
   
   render() {
     return (
@@ -107,6 +117,7 @@ export default class Keyboard extends Component {
           <li data-note="C6" className="key">
           </li>
         </ul>
+        <button onClick={this.resetSnippet}>Reset</button>
       </div>
     );
   }
