@@ -102,19 +102,12 @@ class Navbar extends React.Component {
                 <div className='icon-wrap'>
                   <UserIcon />
                   <NavbarUserDropdown 
-                    history={this.props.history}
                     loggedIn={this.props.loggedIn} 
                     logoutUser={this.logoutUser}
+                    openModal={this.props.openModal} 
                   />
                 </div>
-                <NavbarUserDropdown 
-                  history={this.props.history}
-                  loggedIn={this.props.loggedIn} 
-                  logoutUser={this.logoutUser}
-                  openModal={this.props.openModal} //note for Jenny
-                  //the open modal method. user openModal('login') and 
-                  //openModal('signup') and it will render the appropriate modal
-                />
+
               </div>
 
             </div>

@@ -6,7 +6,8 @@ import Modal from './session/modal';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 
-import NavBarContainer from './nav/navbar_container';
+import NavbarContainer from './nav/navbar_container';
+import NavbarNoSessionContainer from './nav/navbar_no_session_container';
 import SplashContainer from './splash/splash_container';
 import ProfileContainer from './user/profile.container';
 import Footer from './footer/footer';
@@ -22,7 +23,10 @@ const App = () => (
   <div>
     <header>
     <Modal />
-    <NavBarContainer />
+    <Switch>
+      <AuthRoute exact path='/' component={NavbarNoSessionContainer} />
+      <ProtectedRoute path='/' component={NavbarContainer} />
+    </Switch>
     </header>
 
     <Switch>

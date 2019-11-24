@@ -61,8 +61,11 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div id='login-form-container'>
-        <form onSubmit={this.handleSubmit}>
+      <div id='login-form-container' onClick={(e) => {
+        e.stopPropagation();
+        this.props.closeModal();
+        }}>
+        <form onSubmit={this.handleSubmit} onClick={(e) => e.stopPropagation()}>
           <div>
             <input type="text"
               value={this.state.email}

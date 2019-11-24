@@ -36,7 +36,7 @@ export default class SplashSnippetDemo extends Component {
     }
   }
   render() {
-    const demoSnippetsArr = [0,1,2]; // WTF
+    const demoSnippetsArr = ['Demo 1', 'Demo 2', 'Demo 3']; // WTF
     // debugger;
     return (
       <div id='splash-snippet-demo-container'>

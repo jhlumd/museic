@@ -6,7 +6,7 @@ export default function SplashTeamInfo() {
       <div className='team-member-container'>
         
         <div className='team-member-photo'>
-          {/* FIXME PUT PHOTO HERE */}
+          <img src={require('../resources/Phil_Zheng.jpg')} alt="Photo of Phil Zheng"/>
         </div>  
 
         <div className='team-member-description'>
@@ -28,7 +28,7 @@ export default function SplashTeamInfo() {
         </div>
 
         <div className='team-member-photo'>
-          {/* FIXME PUT PHOTO HERE */}
+          <img src={require('../resources/Jiani_Fan.jpg')} alt="Photo of Jiani Fan" />
         </div>  
 
       </div>
@@ -36,7 +36,7 @@ export default function SplashTeamInfo() {
       <div className='team-member-container'>
         
         <div className='team-member-photo'>
-          {/* FIXME PUT PHOTO HERE */}
+          <img src={require('../resources/Jaehyuk_Lee.jpg')} alt="Photo of Jaehyuk Lee" />
         </div>  
 
         <div className='team-member-description'>

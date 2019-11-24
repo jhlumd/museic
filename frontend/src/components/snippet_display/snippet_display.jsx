@@ -25,39 +25,38 @@ export default class SnippetDisplay extends Component {
     return result;
   }
 
-  interpolateColors(color1, color2, color3, steps) {
+  interpolateColors(color1, color2, steps) {
     var stepFactor = 1 / (steps - 1),
       interpolatedColorArray = [];
 
     color1 = color1.match(/\d+/g).map(Number);
     color2 = color2.match(/\d+/g).map(Number);
-    color3 = color3.match(/\d+/g).map(Number);
 
     for (var i = 0; i < steps; i++) {
-      if (i < steps / 2) {
-        interpolatedColorArray.push(this.interpolateColor(color1, color2, stepFactor * i));
-        
-      } else {
-        interpolatedColorArray.push(this.interpolateColor(color2, color3, stepFactor * i));
-
-      }
+      interpolatedColorArray.push(this.interpolateColor(color1, color2, stepFactor * i));
     }
 
     return interpolatedColorArray;
   }
 
   render() {
-    const color_arr = this.interpolateColors('rgb(253, 47, 47)', 'rgb(238, 98, 180)', 'rgb(56, 194, 216)', 32);
+    let color_arr = this.interpolateColors('rgb(56, 194, 216)', 'rgb(238, 98, 180)', 8)
+      .concat(this.interpolateColors('rgb(238, 98, 180)', 'rgb(253, 47, 47)', 8));
+    color_arr = color_arr.concat(color_arr.slice().reverse());
     
-    const  noteBars = this.state.notes.map((note, i) => (
-      <SnippetBar
-        key={i}
-        pitch={note.pitch}
-        startTime={note.startTime}
-        duration={note.duration}
-        backgroundColor={color_arr[i]}
-      />
-    ));
+    let testNotes;
+    if (this.state.notes) {
+      testNotes = this.state.notes.map((note, i) => (
+        <SnippetBar
+          key={i}
+          pitch={note.pitch}
+          startTime={note.startTime}
+          duration={note.duration}
+          backgroundColor={color_arr[i % 32]}
+        />
+      ));
+    }
+
 
     return (
       <div className="snippet-display-container">
