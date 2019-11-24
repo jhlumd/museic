@@ -15,7 +15,7 @@ class SignupForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
   }
-
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
       this.props.history.push('/login');
@@ -58,8 +58,11 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div id="signup-form-container">
-        <form onSubmit={this.handleSubmit}>
+      <div id="signup-form-container" onClick={(e) => {
+        
+        this.props.closeModal();
+        }}>
+        <form onSubmit={this.handleSubmit} onClick={(e) => e.stopPropagation()}>
           <div className="signup-form">
             <br />
             <input type="text"
@@ -86,7 +89,7 @@ class SignupForm extends React.Component {
               placeholder="Confirm Password"
             />
             <br />
-            <button type="submit">Sign Up</button>
+            <button type="submit" className='hvr-grow'>Sign Up</button>
             {this.renderErrors()}
           </div>
         </form>

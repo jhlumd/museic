@@ -128,8 +128,9 @@
 
         &.active {
           color: $black;
-          border-bottom: 3px solid transparent;
-          @include rainbow-border;
+          border-bottom: 3px solid $blue;
+          // border-bottom: 3px solid transparent;
+          // @include rainbow-border;
         }
 
         &:hover {
@@ -140,6 +141,13 @@
 
     .snippet-display-container {
       margin-bottom: 15vh;
+    }
+  }
+
+  #splash-create-demo-container {
+    .splash-create-demo-message {
+      font-size: 1.2em;
+      font-weight: 400;
     }
   }
 
@@ -229,12 +237,18 @@
       align-items: center;
 
       .team-member-photo {
+        
         width: 15vw;
         height: 15vw;
         border-radius: 100%;
         overflow: hidden;
 
         background-color: $shadow;
+
+        img {
+          width: 100%;
+          
+        }
       }
 
       p {

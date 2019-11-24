@@ -52,9 +52,9 @@ export default function SnippetBar(props) {
     top: (barTop / 13) * 100 + "%",
     left: (startTime / 32) * 100 + "%",
     width: (duration / 32) * 100 + "%",
-    backgroundColor: `rbg(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]})`
+    backgroundColor: `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]})`
   };
-  return (
+   return (
     <div
       className="single-note hvr-float"
       style={noteStyle}

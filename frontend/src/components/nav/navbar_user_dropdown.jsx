@@ -21,11 +21,11 @@ export default function NavbarUserDropdown(props) {
 
         <div className='nav-dropdown-top-pad'></div>
 
-        <button onClick={() => props.history.push('/signup')}>
+        <button onClick={() => props.openModal('signup')}>
           <div>Signup</div>
         </button>
 
-        <button onClick={() => props.history.push('/login')}>
+        <button onClick={() => props.openModal('login')}>
           <div>Login</div>
         </button>
 
