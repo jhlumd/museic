@@ -12,6 +12,7 @@ export default class SnippetDisplay extends Component {
 
   componentWillReceiveProps() {
     this.setState({ notes: this.props.snippet });
+    // this.forceUpdate(); // WTF
   }
 
   interpolateColor(color1, color2, factor) {

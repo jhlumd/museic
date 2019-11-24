@@ -32,6 +32,7 @@ export default class SnippetForm extends Component {
                 { notes: this.props.tempNotes }
             ));
 
+            // this.props.resetSnippet(); // WTF how to call a function from component on same level
             this.props.clearTempNotes();
             this.setState({
                 title: "",

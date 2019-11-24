@@ -15,14 +15,15 @@ export default class InteractionBar extends Component {
     const synth = new Tone.Synth();
     synth.oscillator.type = "sine";
     synth.toMaster();
+    const now = Tone.now();
 
-    const currentTime = e.timeStamp / 1000;
+    // debugger;
 
     this.props.notes.forEach(note => {
       synth.triggerAttackRelease(
         note.pitch,
-        note.duration * 0.25,
-        currentTime + note.startTime * 0.25
+        note.duration / 4,
+        now + note.startTime / 4
       );
     });
   }
