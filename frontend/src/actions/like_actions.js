@@ -27,7 +27,7 @@ export const removeLike = likeId => {
 
 export const addLike = likeData => dispatch => {
   newLike(likeData)
-    .then(like => dispatch(receiveLike(like)))
+    .then(res => dispatch(receiveLike(res.data)))
     .catch(err => console.log(err))
 }
 
@@ -36,8 +36,8 @@ export const unlike = likeId => dispatch => (
     .then(() => dispatch(removeLike(likeId)))
 )
 
-export const getLikes = snippetId => dispatch => (
+export const getSnippetLikes = snippetId => dispatch => (
   snippetLikes(snippetId)
-    .then(likes => dispatch(receiveLikes(likes)))
+    .then(res => dispatch(receiveLikes(res.data)))
     .catch(err => console.log(err))
 )

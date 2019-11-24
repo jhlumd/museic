@@ -24,7 +24,7 @@ class CommentForm extends React.Component {
 
   render(){
     return(
-      <div className="comment-form">
+      <div>
         <form onSubmit={e => this.handleSubmit(e)}>
           <input type="text"
             onChange={this.handleChange('body')}

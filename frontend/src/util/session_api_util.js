@@ -16,3 +16,11 @@ export const signup = (userData) => {
 export const login = (userData) => {
   return axios.post('/api/users/login', userData);
 };
+
+export const currentUser = () => {
+  return axios.get('/api/users/current')
+}
+
+export const getSnippetOwner = ownerId => {
+  return axios.get(`/api/users/owner_name/${ownerId}`)
+}
