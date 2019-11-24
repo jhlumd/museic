@@ -44,18 +44,16 @@ export default class SnippetDisplay extends Component {
       .concat(this.interpolateColors('rgb(238, 98, 180)', 'rgb(253, 47, 47)', 8));
     color_arr = color_arr.concat(color_arr.slice().reverse());
     
-    let testNotes;
-    if (this.state.notes) {
-      testNotes = this.state.notes.map((note, i) => (
-        <SnippetBar
-          key={i}
-          pitch={note.pitch}
-          startTime={note.startTime}
-          duration={note.duration}
-          backgroundColor={color_arr[i % 32]}
-        />
-      ));
-    }
+
+    const noteBars = this.state.notes.map((note, i) => (
+      <SnippetBar
+        key={i}
+        pitch={note.pitch}
+        startTime={note.startTime}
+        duration={note.duration}
+        backgroundColor={color_arr[i % 32]}
+      />
+    ));
 
 
     return (
