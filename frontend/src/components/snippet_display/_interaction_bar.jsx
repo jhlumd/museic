@@ -18,6 +18,8 @@ export default class InteractionBar extends Component {
 
     const currentTime = e.timeStamp / 1000;
 
+    // debugger;
+
     this.props.notes.forEach(note => {
       synth.triggerAttackRelease(
         note.pitch,
