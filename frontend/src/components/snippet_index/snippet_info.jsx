@@ -23,8 +23,8 @@ class SnippetInfo extends React.Component {
     const {
       userId,
       // likes,
-      author,
-      snippet: { title, description, date },
+      users,
+      snippet: { title, description, date, user },
     } = this.props
 
     let likes = []
@@ -45,7 +45,7 @@ class SnippetInfo extends React.Component {
 
           <div className='snippet-show-info-left'>
             <h4>{title}</h4>
-            <p>{author}</p>
+            <p>{users[user]}</p>
           </div>
 
           <div className='snippet-show-info-right'>

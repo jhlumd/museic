@@ -47,7 +47,7 @@ router.post('/',
 router.delete('/:like_id', 
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    console.log(req.params.like_id)
+    // console.log(req.params.like_id)
     Like.deleteOne({_id: req.params.like_id})
       .then( () => {
         Like.find().then(likes => res.json(likes))

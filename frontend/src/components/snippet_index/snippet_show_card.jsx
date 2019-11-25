@@ -55,7 +55,7 @@ class IndexShowCard extends React.Component {
               userId={userId}
               newLike={newLike}
               unlike={unlike}
-              author={users[userId]}
+              users={users}
             />
           </div>
 
