@@ -10,6 +10,8 @@ export default class Keyboard extends Component {
 
     this.notesArray = [];
     this.timeLimit = 32;
+
+    this.resetSnippet = this.resetSnippet.bind(this);
   }
 
   componentDidMount() {
@@ -20,13 +22,13 @@ export default class Keyboard extends Component {
     const piano = document.getElementById("piano");
 
     piano.addEventListener("mousedown", e => {
-      const key = e.target;
-      
+      const key = e.target;      
+
       synth.triggerAttack(key.dataset.note);
 
       this.notesArray.push({
         pitch: key.dataset.note,
-        unadjStartTime: Math.ceil(e.timeStamp / 250)
+        unadjStartTime: Math.ceil(Tone.now() * 4)
       });
       const lastNoteDown = this.notesArray[this.notesArray.length - 1];
       lastNoteDown.startTime = lastNoteDown.unadjStartTime - this.notesArray[0].unadjStartTime;
@@ -35,10 +37,10 @@ export default class Keyboard extends Component {
         const newSnippet = this.notesArray.slice();
 
         this.setState({ notes: newSnippet });
-        this.props.updateSnippet(newSnippet);
+        // this.props.updateSnippet(newSnippet);
+
+        this.props.saveTempNotes(newSnippet);
       }
-      // There may be a case where 'saveTempNotes(this.state.notes)' isn't
-      // called when only one note is played and held for the entire duration.
     });
 
     piano.addEventListener("mouseup", e => {
@@ -46,16 +48,16 @@ export default class Keyboard extends Component {
       synth.triggerRelease();
 
       const lastNoteUp = this.notesArray[this.notesArray.length - 1];
-      const dur = Math.ceil(e.timeStamp / 250 - lastNoteUp.unadjStartTime);
+      const dur = Math.ceil(Tone.now() * 4 - lastNoteUp.unadjStartTime);
       lastNoteUp.duration = (dur === -0 ? 1 : dur);
 
       if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
         const newSnippet = this.notesArray.slice();
 
         this.setState({ notes: newSnippet });
-        this.props.updateSnippet(newSnippet);
+        // this.props.updateSnippet(newSnippet);
 
-        this.props.saveTempNotes(this.state.notes);
+        this.props.saveTempNotes(newSnippet);
 
       } else if (lastNoteUp.startTime < this.timeLimit) {
         lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
@@ -63,10 +65,9 @@ export default class Keyboard extends Component {
         const newSnippet = this.notesArray.slice();
 
         this.setState({ notes: newSnippet });
-        this.props.updateSnippet(newSnippet);
+        // this.props.updateSnippet(newSnippet);
 
         this.props.saveTempNotes(this.state.notes);
-
       }
     });
 
@@ -88,6 +89,14 @@ export default class Keyboard extends Component {
       });
     }
   }
+
+  resetSnippet() {
+    // this.props.updateSnippet([]);
+    this.props.clearTempNotes();
+    this.notesArray = [];
+    this.setState({ notes: null });
+    // this.forceUpdate(); // WTF
+  }
   
   render() {
     return (
@@ -108,6 +117,7 @@ export default class Keyboard extends Component {
           <li data-note="C6" className="key">
           </li>
         </ul>
+        <button className="keyboard-reset-button" onClick={this.resetSnippet}>Reset</button>
       </div>
     );
   }

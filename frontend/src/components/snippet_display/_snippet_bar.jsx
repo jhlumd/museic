@@ -44,7 +44,7 @@ export default function SnippetBar(props) {
       barTop = 12;
       break;
     default:
-      barTop = 13;
+      barTop = 12;
       break;
   }
 

@@ -10,10 +10,11 @@ class SnippetIndex extends React.Component {
       selectedId: ''
     }
     this.handleClick = this.handleClick.bind(this)
+    // this.mapLikesToSnippets = this.mapLikesToSnippets.bind(this)
   }
 
   componentDidMount(){
-    this.props.fetchSnippets();
+    this.props.fetchSnippets()
   }
 //git test
   handleClick(e){
@@ -38,30 +39,24 @@ class SnippetIndex extends React.Component {
     return(
       <div id='snippet-index-container'>
         {/* <h1>Snippet Index</h1> */}
-
-
         <div className='snippet-index-snippets-container'>
           {
             this.props.snippets.map( snippet => {
               if (this.state.selectedId === snippet._id) {
-                return <ShowCard 
+                return <ShowCard
                 key={snippet._id}
-                
                 //data needed to display and send to actions
                 snippet={snippet}
                 comments={comments}
                 likes={likes}
                 userId={userId}
-                
                 //comment actions
                 composeComment={composeComment}
                 removeComment={removeComment}
                 editComment={editComment}
-                
                 //get data on mount
                 fetchSnippetComments={fetchSnippetComments}
                 fetchSnippetOwner={fetchSnippetOwner}
-                
                 //like actions
                 newLike={newLike}
                 unlike={unlike}
@@ -70,19 +65,17 @@ class SnippetIndex extends React.Component {
               } else {
                 return <IndexCard
                 handleClick={ this.handleClick }
-                key={snippet._id} 
+                key={snippet._id}
                 snippetId={snippet._id}
                 snippet={snippet}
                 />
               }
-            
             })
           }
         </div>
       </div>
     )
   }
-  
 }
 
 export default withRouter(SnippetIndex)

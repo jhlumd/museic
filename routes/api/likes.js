@@ -4,6 +4,7 @@ const passport = require('passport');
 
 const Like = require('../../models/Like')
 
+//retreives likes for a given snippet_id
 router.get('/:snippet_id', (req, res) => {
   Like.find({ snippet: req.params.snippet_id})
     .then(likes => res.json(likes))

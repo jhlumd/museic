@@ -11,10 +11,11 @@ export const receiveLike = like => {
   })
 }
 
-export const receiveLikes = likes => {
+export const receiveLikes = (likes, snippetId) => {
   return({
     type: GET_LIKES,
-    likes
+    likes,
+    snippetId
   })
 }
 
@@ -38,6 +39,6 @@ export const unlike = likeId => dispatch => (
 
 export const getSnippetLikes = snippetId => dispatch => (
   snippetLikes(snippetId)
-    .then(res => dispatch(receiveLikes(res.data)))
+    .then(res => dispatch(receiveLikes(res.data, snippetId)))
     .catch(err => console.log(err))
 )
