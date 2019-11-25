@@ -39,6 +39,7 @@ class SnippetIndex extends React.Component {
     return(
       <div id='snippet-index-container'>
         {/* <h1>Snippet Index</h1> */}
+        
 
         <div className='snippet-index-snippets-container'>
           {
