@@ -16,12 +16,11 @@ class SnippetIndex extends React.Component {
   componentDidMount(){
     this.props.fetchSnippets()
   }
-
+//git test
   handleClick(e){
     const snippetId = e.currentTarget.getAttribute("snippetid")
     this.setState({ selectedId: snippetId})
   }
-
   render(){
     const { 
       comments,
@@ -40,8 +39,7 @@ class SnippetIndex extends React.Component {
     return(
       <div id='snippet-index-container'>
         {/* <h1>Snippet Index</h1> */}
-        
-      <div className='snippet-index-snippets-container'>
+        <div className='snippet-index-snippets-container'>
           {
             this.props.snippets.map( snippet => {
               if (this.state.selectedId === snippet._id) {
