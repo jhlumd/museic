@@ -1,6 +1,6 @@
 .snippet-show-card-container {
   $one-em: 16px;
-  $dimension: 600px +( 2 * $one-em );
+  $dimension: 600px +( $one-em );
   
   box-sizing: border-box;
   display: flex;
@@ -59,12 +59,90 @@
     }
   }
 
+  ul.comment-display {
+    box-sizing: border-box;
+    overflow: scroll;
+
+    width: inherit;
+    max-height: 170px;
+    padding: 0.5em 1em;
+
+    display: flex;    
+    flex-direction: column;
+
+    li {
+      width: inherit;
+      padding: 0.3em 0;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      font-family: $sans-serif;
+      border-bottom: 1px solid $light-shadow;
+
+      &.owned:hover {
+        background-color: $ivory;
+      }
+
+      &.comment-list-item-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .comment-list-item {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+  
+          .user-icon {
+            height: 18px;
+            width: 18px;
+            margin-right: 0.5em;
+            background-color: $shadow;
+          }
+        }
+
+        .x-icon {
+          height: 12px;
+        }
+      }
+    }
+
+    form.comment-form {
+      box-sizing: border-box;
+
+      input {
+        font-family: $sans-serif;
+        font-weight: 400;
+
+        &[type='text'] {
+          width: 500px;
+        }
+        
+        &[type='submit'] {
+          font-weight: 300;
+          
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+    }
+  }
+
   .snippet-show-comment-form-container {
     box-sizing: border-box;
     width: 100%;
     padding: 0.5em 1em;
 
-    border: 1px solid black;
+    // border: 1px solid black;
     form {
       display: flex;
       flex-direction: row;
@@ -74,10 +152,16 @@
       input {
         @include form-text-input;
         width: 100%;
+
+        &[type='submit'] {
+          width: 40px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
 
-      button {
-      }
     }
   }
 }

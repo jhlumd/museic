@@ -8,13 +8,25 @@
   .snippet-index-snippets-container {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 1em;
     row-gap: 1em;
+
+    $grid-dimension: 300px;
+
+    @media screen and (min-width: 800px) {
+      grid-template-columns: $grid-dimension $grid-dimension;
+    }
+    @media screen and (min-width: 1000px) {
+      grid-template-columns: $grid-dimension $grid-dimension $grid-dimension;
+    }
+    @media screen and (min-width: 1400px) {
+      grid-template-columns: $grid-dimension $grid-dimension $grid-dimension $grid-dimension;
+    }
 
     width: 80%;
     margin: auto;
     padding: 3em 0;
+    
 
     .snippet-index-card-container, .snippet-show-card-container {
       @include flex-centered;
