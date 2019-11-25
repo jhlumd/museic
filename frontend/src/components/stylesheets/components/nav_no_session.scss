@@ -11,7 +11,7 @@
   align-items: center;
   
   background-color: $white;
-  box-shadow: 0px 3px 5px $shadow;
+  @include box-shadow;
 
   .nav-base-bar-content {
     box-sizing: border-box;
@@ -37,7 +37,7 @@
       align-items: center;
 
       .icon-wrap:hover > .nav-dropdown-container {
-        box-shadow: 0px 5px 5px $shadow;
+        @include box-shadow-bottom;
         position: absolute;
         top: 25px;
         right: 5%;
