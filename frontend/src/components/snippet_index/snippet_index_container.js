@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { fetchSnippets, fetchSnippetOwner } from '../../actions/snippet_actions'
 import { fetchSnippetComments, fetchComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
 import { addLike, unlike, getSnippetLikes, fetchLikes} from '../../actions/like_actions';
+import { fetchUsers } from '../../actions/user_actions';
 
 import SnippetIndex from './snippet_index';
 
@@ -11,6 +12,9 @@ const mapStateToProps = (state) => {
     snippets: Object.values(state.entities.snippets),
     comments: state.entities.comments,
     likes: state.entities.likes,
+    users: state.entities.users,
+    allSnippets: state.entities.snippets,
+
     userId: state.session.user.id,
   }
 }
@@ -21,6 +25,7 @@ const mapDispatchToProps = dispatch => {
     fetchLikes: () => dispatch(fetchLikes()),
     fetchComments: () => dispatch(fetchComments()),
     fetchSnippets: () => dispatch(fetchSnippets()),
+    fetchUsers: () => dispatch(fetchUsers()),
 
     fetchSnippetOwner: (ownerId, snippetId) => dispatch(fetchSnippetOwner(ownerId, snippetId)),
     fetchSnippetComments: userId => dispatch(fetchSnippetComments(userId)),

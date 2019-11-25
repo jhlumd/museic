@@ -17,6 +17,7 @@ class SnippetIndex extends React.Component {
     this.props.fetchSnippets()
     this.props.fetchLikes()
     this.props.fetchComments()
+    this.props.fetchUsers()
   }
 //git test
   handleClick(e){
@@ -27,6 +28,8 @@ class SnippetIndex extends React.Component {
     const { 
       comments,
       likes,
+      users,
+      allSnippets,
       userId, 
       composeComment, 
       removeComment, 
@@ -44,6 +47,7 @@ class SnippetIndex extends React.Component {
           {
             this.props.snippets.map( snippet => {
               const snippetId = snippet._id
+
               // debugger
               if (this.state.selectedId === snippetId) {
                 return <ShowCard
@@ -70,8 +74,10 @@ class SnippetIndex extends React.Component {
                 key={snippetId}
                 snippetId={snippetId}
                 snippet={snippet}
+                snippets={allSnippets}
                 likes={likes[snippetId]}
                 comments={comments[snippetId]}
+                users={users}
                 />
               }
             })

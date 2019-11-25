@@ -8,6 +8,15 @@ const jwt = require('jsonwebtoken');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
+//get all
+
+router.get('/', (req, res) => {
+  User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(404).json({ msg: 'get all users failed'}))
+
+});
+
 router.get('/current', 
   passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({
