@@ -15,18 +15,17 @@ class CommentEditForm extends React.Component {
 
   render() {
     return (
-      <div className="comment-form">
-        <form onSubmit={() => this.props.editComment(this.state.body)}>
-          <label>Edit comment:
-            <input
-              type="text"
-              value={this.state.body}
-              onChange={this.handleChange('body')}
-            />
-          </label>
-          <input type="submit" value="submit" />
-        </form>
-      </div>
+      <form className="comment-form" onSubmit={() => this.props.editComment(this.state.body)}>
+        <label>
+          <input
+            type="text"
+            value={this.state.body}
+            onChange={this.handleChange('body')}
+          />
+        </label>
+        
+        <input type="submit" value="submit" />
+      </form>
     )
   }
 }

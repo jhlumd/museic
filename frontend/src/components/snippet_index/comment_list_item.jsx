@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentEditForm from './comment_edit_form';
+import XIcon from '../resources/x_icon';
 
 class CommentListItem extends React.Component {
   constructor(props){
@@ -39,7 +40,8 @@ class CommentListItem extends React.Component {
   renderDelete(){
     if (this.state.ownerId === this.state.userId) {
       return(
-        <button onClick={this.deleteComment}>[X]</button>
+        // <button onClick={this.deleteComment}>[X]</button>
+        <XIcon onClick={this.deleteComment} />
       )
     }
   }
@@ -47,21 +49,31 @@ class CommentListItem extends React.Component {
   render(){
     const { edit, ownerId, userId } = this.state
     if (edit && ownerId === userId) {
-      return <CommentEditForm 
-        handleClick={this.handleClick} 
-        editComment={this.editComment}
-        handleChange={this.handleChange}
-        body={this.props.body}
-      />
+      return (
+        <li className="comment-list-item-container owned">
+          <div className="comment-list-item" >
+            <div className='user-icon'></div>
+            <CommentEditForm
+              handleClick={this.handleClick}
+              editComment={this.editComment}
+              handleChange={this.handleChange}
+              body={this.props.body}
+            />
+          </div>
+          {/* {this.renderDelete()} */}
+        </li>
+      )
+      
+
     } else {
       return(
-        <div className="comment-list-item-container">
+        <li className="comment-list-item-container unowned">
           <div className="comment-list-item" onClick={this.handleClick}>
-            <i>[UserPic]</i>
+            <div className='user-icon'></div>
             <p>{this.props.body}</p>
           </div>
           {this.renderDelete()}
-        </div>
+        </li>
       )
     }
   }
