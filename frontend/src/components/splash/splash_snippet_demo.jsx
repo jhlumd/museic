@@ -43,7 +43,12 @@ export default class SplashSnippetDemo extends Component {
   //   }
   // }
   render() {
-    const demoSnippetsArr = demoSnippets;
+    // const demoSnippetsArr = demoSnippets;
+    const demoSnippetsArr = [
+      { title: "Demo 1" },
+      { title: "Demo 2" },
+      { title: "Demo 3" }
+    ];
     // debugger;
     return (
       <div id="splash-snippet-demo-container">
