@@ -16,9 +16,9 @@ export default function ( state = {}, action ){
       action.likes.forEach( like => {
         
         if( likes[likes.snippet] ){
-          likes[likes.snippet].push(like.user)
+          likes[likes.snippet].push({user: like.user, id: like._id})
         } else {
-          likes[like.snippet] = [like.user]
+          likes[like.snippet] = [{user: like.user, id: like._id}]
         }
 
       });

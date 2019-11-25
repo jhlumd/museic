@@ -7,7 +7,8 @@ import { unlike, addLike } from '../../actions/like_actions';
 const mstp = (state, ownProps) => ({
   currentUser: state.session.user,
   tempNotes: state.ui.tempNotes,
-  userId: state.session.user.id
+  userId: state.session.user.id,
+  likes: state.entities.likes
 });
 
 const mdtp = dispatch => ({

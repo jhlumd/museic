@@ -46,6 +46,16 @@ export default class SnippetDisplay extends Component {
       .concat(this.interpolateColors('rgb(238, 98, 180)', 'rgb(253, 47, 47)', 8));
     color_arr = color_arr.concat(color_arr.slice().reverse());
     
+    let { snippetId } = this.props
+    let likeId = ''
+    if (this.props.likes[snippetId]) {
+      this.props.likes[snippetId].forEach( like => {
+        if( like.user === this.props.userId){
+          likeId = like.id
+        }
+      })
+      // likeId = this.props.likes[snippetId][this.props.userId].id
+    }
 
     const noteBars = this.state.notes.map((note, i) => (
       <SnippetBar
@@ -66,7 +76,8 @@ export default class SnippetDisplay extends Component {
           <InteractionBarPlay notes={this.props.snippet} />
           <InteractionBarLikeShare 
             liked={this.props.liked}
-            snippetId={this.props.snippetId}
+            likeId={likeId}
+            snippetId={snippetId}
             userId={this.props.userId}
             addLike={this.props.addLike}
             unlike={this.props.unlike}

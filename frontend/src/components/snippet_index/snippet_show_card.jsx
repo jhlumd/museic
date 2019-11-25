@@ -7,11 +7,9 @@ import SnippetDisplayContainer from '../snippet_display/snippet_display_containe
 class IndexShowCard extends React.Component {
   // constructor(props){
   //   super(props)
-    // this.state={
-    //   userId: this.props.userId,
-    //   snippetId: this.props.snippetId,
-    //   body: ''
-    // }
+  //   this.state={
+      
+  //   }
   // }
 
   // componentDidMount(){
@@ -28,6 +26,8 @@ class IndexShowCard extends React.Component {
       userId
     } = this.props
 
+    let hasLiked = false
+
     let comments = []
     if( this.props.comments ){
       comments = this.props.comments
@@ -35,10 +35,13 @@ class IndexShowCard extends React.Component {
     let likes = []
     if (this.props.likes) {
       likes = this.props.likes
+      likes.forEach(like => {
+        if (like.user === userId){
+          hasLiked = true
+        }
+      })
     }
-
-    const hasLiked = Boolean(likes.find(user => user === userId))
-
+    
     return (
       <div className='snippet-show-card-container'>
 

@@ -18,8 +18,8 @@ export default class InteractionBarLikeShare extends Component {
     this.setState({ liked: 'turnip'}) //force state change
   }
 
-  handelUnlike(likeData) {
-    this.props.unlike(likeData)
+  handelUnlike(likeId) {
+    this.props.unlike(likeId)
     this.setState({ liked: 'turnip' }) //force state change
   }
 
@@ -28,11 +28,11 @@ export default class InteractionBarLikeShare extends Component {
       userId: this.props.userId,
       snippetId: this.props.snippetId
     }
-
-    if (this.state.liked) {
+    
+    if (this.props.liked) {
       return (
         <div className="interaction-bar-right">
-          <button onClick={() => this.handelUnlike(likeData)}><ShareIcon/></button>
+          <button onClick={() => this.handelUnlike(this.props.likeId)}><ShareIcon/></button>
           {/* FIXME add sharing function */}
           <ShareIcon />
         </div>

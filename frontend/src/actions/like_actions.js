@@ -32,8 +32,8 @@ export const addLike = likeData => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const unlike = likeData => dispatch => (
-  deleteLike(likeData)
+export const unlike = likeId => dispatch => (
+  deleteLike(likeId)
     .then((res) => dispatch(receiveLikes(res.data)))
     .catch(err => console.log(err))
 )
