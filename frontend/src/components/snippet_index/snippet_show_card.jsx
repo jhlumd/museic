@@ -56,7 +56,11 @@ class IndexShowCard extends React.Component {
             />
           </div>
 
-          <SnippetDisplayContainer snippet={snippet.notes} liked={hasLiked} />
+          <SnippetDisplayContainer 
+            snippet={snippet.notes} 
+            liked={hasLiked} 
+            snippetId={snippet._id}
+          />
 
           <ul className="comment-display">
           {
