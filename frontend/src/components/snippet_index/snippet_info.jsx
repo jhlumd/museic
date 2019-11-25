@@ -22,12 +22,21 @@ class SnippetInfo extends React.Component {
   render(){
     const {
       userId,
-      likes,
-      snippet: { title, description, date, owner },
+      // likes,
+      author,
+      snippet: { title, description, date },
     } = this.props
+
+    let likes = []
+    if (this.props.likes) {
+      likes = this.props.likes
+    }
+    let comments = []
+    if (this.props.comments) {
+      comments = this.props.comments
+    }
     
-    const likesArray = Object.values(likes)
-    const hasLiked = Boolean(likesArray.find( like => like.user === userId))
+    const hasLiked = Boolean(likes.find( user => user === userId))
 
     if (hasLiked){
       return (
@@ -43,13 +52,13 @@ class SnippetInfo extends React.Component {
 
             <div className='snippet-show-info-left'>
               <h4>{title}</h4>
-              <p>{owner}</p>
+              <p>{author}</p>
             </div>
 
             <div className='snippet-show-info-right'>
               <p>{date.slice(0, 10)}</p>
-              <p>{likesArray.length} Likes</p>
-              <p> Comments</p>
+              <p>{likes.length} Likes</p>
+              <p>{comments.length} Comments</p>
             </div>
           </div>
 

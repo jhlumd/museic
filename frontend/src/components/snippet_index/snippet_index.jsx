@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import SnippetIndexCard from './snippet_index_card';
-import ShowCard from './snippet_show_card';
+import SnippetShowCard from './snippet_show_card';
 
 class SnippetIndex extends React.Component {
   constructor(props) {
@@ -34,8 +34,6 @@ class SnippetIndex extends React.Component {
       composeComment, 
       removeComment, 
       editComment,
-      fetchSnippetComments,
-      fetchSnippetOwner,
       newLike,
       unlike,
     } = this.props
@@ -50,20 +48,18 @@ class SnippetIndex extends React.Component {
 
               // debugger
               if (this.state.selectedId === snippetId) {
-                return <ShowCard
+                return <SnippetShowCard
                 key={snippetId}
                 //data needed to display and send to actions
                 snippet={snippet}
-                comments={comments}
+                comments={comments[snippetId]} //array of comment objs for this snippet
                 likes={likes[snippetId]} // array of userIds for this snippet
+                users={users} //array of usernames according to userId
                 userId={userId}
                 //comment actions
                 composeComment={composeComment}
                 removeComment={removeComment}
                 editComment={editComment}
-                //get data on mount
-                fetchSnippetComments={fetchSnippetComments}
-                fetchSnippetOwner={fetchSnippetOwner}
                 //like actions
                 newLike={newLike}
                 unlike={unlike}

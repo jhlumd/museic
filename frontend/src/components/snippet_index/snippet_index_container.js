@@ -27,8 +27,7 @@ const mapDispatchToProps = dispatch => {
     fetchSnippets: () => dispatch(fetchSnippets()),
     fetchUsers: () => dispatch(fetchUsers()),
 
-    fetchSnippetOwner: (ownerId, snippetId) => dispatch(fetchSnippetOwner(ownerId, snippetId)),
-    fetchSnippetComments: userId => dispatch(fetchSnippetComments(userId)),
+    //CRUD operations for Comments and Likes
     composeComment: comment => dispatch(composeComment(comment)),
     removeComment: commentId => dispatch(removeComment(commentId)),
     editComment: commentId => dispatch(editComment(commentId)),
