@@ -5,7 +5,8 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import Navbar from './navbar';
 
 const mapStateToProps = state => ({
-  loggedIn: state.session.isAuthenticated
+  loggedIn: state.session.isAuthenticated,
+  tempNotes: state.ui.tempNotes
 });
 
 //modal can be login or signup

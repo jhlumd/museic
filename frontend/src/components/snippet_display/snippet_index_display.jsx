@@ -11,8 +11,8 @@ export default class SnippetIndexDisplay extends Component {
     };
   }
 
-  componentWillReceiveProps() {
-    this.setState({ notes: this.props.snippet });
+  componentWillReceiveProps(nextProps) {
+    this.setState({ notes: nextProps.snippet });
     // this.forceUpdate(); // WTF
   }
 

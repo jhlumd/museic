@@ -5,7 +5,7 @@ import { fetchSnippet } from '../../actions/snippet_actions';
 import { saveTempNotes } from '../../actions/temp_notes_actions';
 
 const mapStateToProps = state => ({
-  //demos imported straight to splash snippet demo component -Jae
+  tempNotes: state.ui.tempNotes
 });
 
 const mapDispatchToProps = dispatch => ({

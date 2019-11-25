@@ -68,7 +68,7 @@ class SnippetIndex extends React.Component {
               getSnippetLikes={getSnippetLikes}
               />
             } else {
-              console.log(this.props.likes[snippetId])
+              // console.log(this.props.likes[snippetId])
               return <IndexCard
               handleClick={ this.handleClick }
               key={snippet._id} 
