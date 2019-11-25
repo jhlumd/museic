@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';  
-import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
+import SnippetDisplayPlayOnlyContainer from '../snippet_display/snippet_display_play_only_container';
 
 import { demoSnippets } from "./demo_snips";
 
@@ -36,7 +36,7 @@ export default class SplashSnippetDemo extends Component {
     }
   }
   render() {
-    const demoSnippetsArr = ['Demo 1', 'Demo 2', 'Demo 3']; // WTF
+    const demoSnippetsArr = ['Demo 1', 'Demo 2', 'Demo 3']; //
     // debugger;
     return (
       <div id='splash-snippet-demo-container'>
@@ -48,15 +48,14 @@ export default class SplashSnippetDemo extends Component {
           {
             demoSnippetsArr.map((snippet, i) => (
               <li key={i} onClick={() => this.changeTab(i)}>
-                {/* { snippet.name.toLowerCase() } */}
-                { snippet }
+                {snippet}
               </li>
             ))
           }
         </ul>
 
         <div className='snippet-display-container'>
-          <SnippetDisplayContainer snippet={this.state.activeSnippet.notes} />
+          <SnippetDisplayPlayOnlyContainer snippet={this.state.activeSnippet.notes} />
         </div>
 
         <div className='next'>

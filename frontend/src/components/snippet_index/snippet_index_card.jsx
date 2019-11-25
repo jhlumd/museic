@@ -1,8 +1,20 @@
 import React from 'react';
+import { getSnippetLikes } from '../../actions/like_actions';
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 
-class SnippetIndexCard extends React.Component {
 
+class SnippetIndexCard extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      ownerName: ''
+    }
+  }
+
+  componentDidMount() {
+    this.props.getSnippetLikes(this.props.snippetId)
+  }
+  
   render(){
     const {snippetId, snippet: {title, description, user, notes, date }} = this.props
     return (
@@ -24,7 +36,7 @@ class SnippetIndexCard extends React.Component {
             <div className='snippet-index-card-description'>
               <p>{description}</p>
             </div>
-            
+            <p>Likes: {this.props.snippetLikes}</p> 
             {/* <p>{user}</p> */}
             {/* <p>{public}</p> */}
             {/* <p>{notes}</p> */}

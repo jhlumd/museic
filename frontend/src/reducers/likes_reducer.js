@@ -7,11 +7,8 @@ export default function ( state = {}, action ){
 
   switch (action.type) {
     case GET_LIKES:
-      const likes = {};
-      action.likes.forEach( like => 
-        likes[like._id] = like
-      )
-      return likes;
+      newState[action.snippetId] = action.likes.length
+      return newState;
     case CREATE_LIKE:
       newState[action.like._id] = action.like;
       return newState;

@@ -1,54 +1,52 @@
 import React, { Component } from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';  
-import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
+import SnippetDisplayPlayOnlyContainer from '../snippet_display/snippet_display_play_only_container';
 import KeyboardContainer from '../keyboard/keyboard_container';
 
 export default class SplashCreateDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentNotes: [],
-      message: 'Try clicking the tiles, or pressing some keys to make some music.'
+      currentNotes: []
     };
     this.updateSnippet = this.updateSnippet.bind(this);
   }
 
-  componentDidUpdate() { //should probably be activated by some click or something.
-    const message0 = 'Try clicking the tiles, or pressing some keys to make some music.'
-    const message1 = 'There you go! Keep going.';
-    const message2 = 'Hey that sounds pretty nice.';
-    const message3 = 'Nice! Let\'s save that masterpiece.';
-    const snipLen = this.state.currentNotes.length;
-    // debugger
-    let message;
+  updateSnippet(newNotes) {
+    this.setState({ currentNotes: newNotes });
+    // this.forceUpdate(); // WTF
+  }
 
-    if (snipLen === 0) {
+  render() {
+    const message0 =
+      "Try clicking the tiles, or pressing some keys to make some music.";
+    const message1 = "There you go! Keep going.";
+    const message2 = "Hey that sounds pretty nice.";
+    const message3 = "Nice! Let's save that masterpiece.";
+    let snipTime = 0;
+    if (this.state.currentNotes.length > 0) {
+      snipTime = this.state.currentNotes[this.state.currentNotes.length - 1].startTime;
+    }
+
+    let message;
+    if (snipTime === 0) {
       message = message0;
-    } else if (snipLen < 3) {
+    } else if (snipTime < 16) {
       message = message1;
-    } else if (snipLen < 8) {
+    } else if (snipTime < 26) {
       message = message2;
     } else {
       message = message3;
     }
 
-    // this.setState({ message }) 
-    // can't update state in componentDidUpdate, 
-    // will cause infinite loop!
-  }
-  updateSnippet(newNotes) {
-    // debugger;
-    this.setState({ currentNotes: newNotes });
-  }
-  render() {
     return (
       <div id='splash-create-demo-container'>
 
         <div className='splash-create-demo-message'>
-          <p>{ this.state.message }</p>
+          <p>{message}</p>
         </div>
 
-        <SnippetDisplayContainer snippet={this.state.currentNotes} />
+        <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />
         <KeyboardContainer updateSnippet={this.updateSnippet} />
         
         <div className='next'>
@@ -61,6 +59,6 @@ export default class SplashCreateDemo extends Component {
         </div>
         
       </div>
-    )
+    );
   }
 }
