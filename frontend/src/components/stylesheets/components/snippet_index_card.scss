@@ -22,10 +22,29 @@
     max-width: 280px;
     padding: 0.75em 0.5em;
 
-    .snippet-index-card-title {
-      margin-bottom: 0.5em;
-      font-size: 0.9em;
+    .snippet-index-card-top {
+      width: inherit;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  
+      .left-container {
+        margin-bottom: 0.5em;
+        font-size: 0.9em;
+        width: 80%;
+
+        .snippet-index-card-title {
+        }
+      }
+  
+      .right-container {
+        margin-bottom: 0.5em;
+        font-size: 0.75em;
+        text-align-last: right;
+        width: 20%;
+      }
     }
+
     .snippet-index-card-description {
       max-height: 50px;
       width: inherit;

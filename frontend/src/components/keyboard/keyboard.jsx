@@ -117,7 +117,7 @@ export default class Keyboard extends Component {
           <li data-note="C6" className="key">
           </li>
         </ul>
-        <button className="keyboard-reset-button" onClick={this.resetSnippet}>Reset</button>
+        <button className="keyboard-reset-button hvr-grow" onClick={this.resetSnippet}>Reset</button>
       </div>
     );
   }

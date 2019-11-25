@@ -1,4 +1,5 @@
 .keyboard-container {
+  position: relative;
   width: 600px;
   height: 160px;
   margin-top: 1em;
@@ -74,8 +75,22 @@
       left: 75px * 6 - 27px;
     }
   }
+
   .pressed {
     transform: matrix(0.97, 0, 0, 0.97, 0, 0);
+  }
+
+  .keyboard-reset-button {
+    position: absolute;
+    bottom: 190px;
+    right: 1em;
+
+    font-size: 1em;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

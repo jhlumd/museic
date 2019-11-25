@@ -47,8 +47,9 @@ class SnippetInfo extends React.Component {
             </div>
 
             <div className='snippet-show-info-right'>
-              <p>{date}</p>
+              <p>{date.slice(0, 10)}</p>
               <p>{likesArray.length} Likes</p>
+              <p> Comments</p>
             </div>
           </div>
 
