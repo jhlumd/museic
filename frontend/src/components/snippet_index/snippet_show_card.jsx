@@ -46,7 +46,7 @@ class IndexShowCard extends React.Component {
 
           <SnippetDisplayContainer snippet={this.props.snippet.notes} />
 
-          <div className="comment-display">
+          <ul className="comment-display">
           {
             this.props.comments.map(comment => (
               <CommentListItem
@@ -63,7 +63,7 @@ class IndexShowCard extends React.Component {
               />
               ))
             }
-          </div>
+          </ul>
 
           <div className="comment-form">
             <CommentForm
