@@ -5,6 +5,13 @@ const passport = require('passport');
 
 const Comment = require('../../models/Comment')
 
+//get all
+router.get('/', (req,res) => {
+  Comment.find()
+    .then(comments => res.json(comments))
+    .catch(err => res.status(404).json({ msg: 'get all comments failed'}))
+});
+
 // //get all, remove route 
 // router.get('/', (req, res) => {
 //   Comment.find()
@@ -21,11 +28,11 @@ const Comment = require('../../models/Comment')
 //     .catch(err => res.status(404).json({ error: "no comments found for user" }))
 // })
 
-router.get('/snippet/:snippet_id', (req, res) => {
-  Comment.find({ snippet: req.params.snippet_id})
-    .then(comments => res.json(comments))
-    .catch(err => res.status(404).json({ error: err }))
-})
+// router.get('/snippet/:snippet_id', (req, res) => {
+//   Comment.find({ snippet: req.params.snippet_id})
+//     .then(comments => res.json(comments))
+//     .catch(err => res.status(404).json({ error: err }))
+// })
 
 //create new, change to '/'
 router.post('/', 
@@ -44,7 +51,12 @@ router.post('/',
     })
 
     newComment.save()
-      .then( comment => res.json(comment));
+      .then( () => {
+        Comment.find()
+          .then(comments => res.json(comments))
+          .catch(err => res.status(404).json({ msg: 'get all comments failed' }))
+      })
+      .catch( err => res.status(404).json({msg: 'error saving Comment'}))
 
   }
 );
@@ -64,7 +76,12 @@ router.patch('/update',
    Comment.findOne({_id: commentId})
     .then( comment => {
      comment.body = req.body.body;
-     comment.save().then(comment => res.json(comment))
+     comment.save()
+     .then( () => {
+       Comment.find()
+         .then(comments => res.json(comments))
+         .catch(err => res.status(404).json({ msg: 'get all comments failed' }))
+     })
     })
   }
 );
@@ -73,10 +90,14 @@ router.patch('/update',
 router.delete('/:comment_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-
+    // console.log(req.params.comment_id)
     const commentId = req.params.comment_id;
     Comment.deleteOne({_id: commentId})
-      .then( () => res.json({ msg: `comment id: ${commentId} deleted`}))
+      .then( () => {
+        Comment.find()
+          .then(comments => res.json(comments))
+          .catch(err => res.status(404).json({ msg: 'get all comments failed' }))
+      })
       .catch(err => console.log(err));
 
   }

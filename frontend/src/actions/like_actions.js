@@ -1,4 +1,4 @@
-import { newLike, deleteLike, snippetLikes } from '../util/like_util';
+import { newLike, deleteLike, snippetLikes, allLikes } from '../util/like_util';
 
 export const GET_LIKES = 'GET_LIKES';
 export const CREATE_LIKE = 'CREATE_LIKE';
@@ -37,8 +37,14 @@ export const unlike = likeId => dispatch => (
     .then(() => dispatch(removeLike(likeId)))
 )
 
-export const getSnippetLikes = snippetId => dispatch => (
-  snippetLikes(snippetId)
-    .then(res => dispatch(receiveLikes(res.data, snippetId)))
+// export const getSnippetLikes = snippetId => dispatch => (
+//   snippetLikes(snippetId)
+//     .then(res => dispatch(receiveLikes(res.data, snippetId)))
+//     .catch(err => console.log(err))
+// )
+
+export const fetchLikes = () => dispatch => (
+  allLikes()
+    .then(res => dispatch(receiveLikes(res.data)))
     .catch(err => console.log(err))
 )

@@ -1,6 +1,6 @@
 import React from 'react';
 import CommentEditForm from './comment_edit_form';
-import XIcon from '../resources/x_icon';
+// import XIcon from '../resources/x_icon';
 
 class CommentListItem extends React.Component {
   constructor(props){
@@ -15,10 +15,11 @@ class CommentListItem extends React.Component {
     this.deleteComment = this.deleteComment.bind(this)
     this.editComment = this.editComment.bind(this)
     this.handleClick = this.handleClick.bind(this)
-    this.renderDelete = this.renderDelete.bind(this)
+    // this.renderDelete = this.renderDelete.bind(this)
   }
 
   deleteComment(){
+    // debugger
     this.props.deleteComment(this.state.commentId);
   }
 
@@ -37,18 +38,20 @@ class CommentListItem extends React.Component {
     this.setState({edit: toggle})
   }
 
-  renderDelete(){
-    if (this.state.ownerId === this.state.userId) {
-      return(
-        // <button onClick={this.deleteComment}>[X]</button>
-        <XIcon onClick={this.deleteComment} />
-      )
-    }
-  }
+  // renderDelete(){
+  //   if (this.state.ownerId === this.state.userId) {
+  //     return(
+  //       // <button onClick={this.deleteComment}>[X]</button>
+  //       <XIcon onClick={this.deleteComment} />
+  //     )
+  //   }
+  // }
 
   render(){
     const { edit, ownerId, userId } = this.state
+    const { ownername } = this.props
     if (edit && ownerId === userId) {
+      // debugger
       return (
         <li className="comment-list-item-container owned">
           <div className="comment-list-item" >
@@ -58,6 +61,7 @@ class CommentListItem extends React.Component {
               editComment={this.editComment}
               handleChange={this.handleChange}
               body={this.props.body}
+              deleteComment={this.deleteComment}
             />
           </div>
           {/* {this.renderDelete()} */}
@@ -70,9 +74,9 @@ class CommentListItem extends React.Component {
         <li className="comment-list-item-container unowned">
           <div className="comment-list-item" onClick={this.handleClick}>
             <div className='user-icon'></div>
+            <p>{ownername}:</p> 
             <p>{this.props.body}</p>
           </div>
-          {this.renderDelete()}
         </li>
       )
     }

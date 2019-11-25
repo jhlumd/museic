@@ -5,29 +5,39 @@ import CommentForm from './comment_form';
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 
 class IndexShowCard extends React.Component {
-  constructor(props){
-    super(props)
+  // constructor(props){
+  //   super(props)
     // this.state={
     //   userId: this.props.userId,
     //   snippetId: this.props.snippetId,
     //   body: ''
     // }
-  }
+  // }
 
-  componentDidMount(){
-    this.props.fetchSnippetComments(this.props.snippet._id)
-    this.props.fetchSnippetOwner(this.props.snippet.user, this.props.snippet._id)
-    this.props.getSnippetLikes(this.props.snippet._id)
-  }
+  // componentDidMount(){
+  // }
 
   render(){
     const { 
       snippet,
-      likes,
+      // comments,
+      // likes,
+      users,
       newLike,
       unlike,
       userId
     } = this.props
+
+    let comments = []
+    if( this.props.comments ){
+      comments = this.props.comments
+    }
+    let likes = []
+    if (this.props.likes) {
+      likes = this.props.likes
+    }
+
+    const hasLiked = Boolean(likes.find(user => user === userId))
 
     return (
       <div className='snippet-show-card-container'>
@@ -38,31 +48,36 @@ class IndexShowCard extends React.Component {
             <SnippetInfo 
               snippet={snippet}
               likes={likes}
+              comments={comments}
               userId={userId}
               newLike={newLike}
               unlike={unlike}
+              author={users[userId]}
             />
           </div>
 
-          <SnippetDisplayContainer snippet={this.props.snippet.notes} />
+          <SnippetDisplayContainer snippet={snippet.notes} liked={hasLiked} />
 
           <ul className="comment-display">
           {
-            this.props.comments.map(comment => (
+            comments.map(comment => {
+              return (
               <CommentListItem
                 key={comment._id}
                 commentId={comment._id}
                 snippetId={comment.snippet}
                 body={comment.body}
                 ownerId={comment.user}
+                ownername={users[comment.user]}
                 userId={userId}
 
                 deleteComment={this.props.removeComment}
                 editComment={this.props.editComment}
                 composeComment={this.props.composeComment}
               />
-              ))
-            }
+              )
+            })
+          }
           </ul>
 
           <div className="comment-form">

@@ -6,16 +6,15 @@ import SignupFormContainer from './signup_form_container'
 
 
 class Modal extends React.Component {
-  constructor(props){
-    super(props)
-    // this.slowExit = this.slowExit.bind(this)
-  }
+  // constructor(props){
+  //   super(props)
+  //   // this.slowExit = this.slowExit.bind(this)
+  // }
 
   render (){
     if(!this.props.modal) {
-      // debugger
       return null;
-    } else if(this.props.modal=='login'){
+    } else if(this.props.modal === 'login'){
       return (
         <div className="modal-background" onClick={this.props.closeModal}>
           <div className="modal-login" onClick={e => e.stopPropagation()}>

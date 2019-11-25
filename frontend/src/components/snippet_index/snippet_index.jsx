@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import IndexCard from './snippet_index_card';
-import ShowCard from './snippet_show_card';
+import SnippetIndexCard from './snippet_index_card';
+import SnippetShowCard from './snippet_show_card';
 
 class SnippetIndex extends React.Component {
   constructor(props) {
@@ -15,6 +15,9 @@ class SnippetIndex extends React.Component {
 
   componentDidMount(){
     this.props.fetchSnippets()
+    this.props.fetchLikes()
+    this.props.fetchComments()
+    this.props.fetchUsers()
   }
 //git test
   handleClick(e){
@@ -25,15 +28,14 @@ class SnippetIndex extends React.Component {
     const { 
       comments,
       likes,
+      users,
+      allSnippets,
       userId, 
       composeComment, 
       removeComment, 
       editComment,
-      fetchSnippetComments,
-      fetchSnippetOwner,
       newLike,
       unlike,
-      getSnippetLikes,
     } = this.props
 
     return(
@@ -42,32 +44,36 @@ class SnippetIndex extends React.Component {
         <div className='snippet-index-snippets-container'>
           {
             this.props.snippets.map( snippet => {
-              if (this.state.selectedId === snippet._id) {
-                return <ShowCard
-                key={snippet._id}
+              const snippetId = snippet._id
+
+              // debugger
+              if (this.state.selectedId === snippetId) {
+                return <SnippetShowCard
+                key={snippetId}
                 //data needed to display and send to actions
                 snippet={snippet}
-                comments={comments}
-                likes={likes}
+                comments={comments[snippetId]} //array of comment objs for this snippet
+                likes={likes[snippetId]} // array of userIds for this snippet
+                users={users} //array of usernames according to userId
                 userId={userId}
                 //comment actions
                 composeComment={composeComment}
                 removeComment={removeComment}
                 editComment={editComment}
-                //get data on mount
-                fetchSnippetComments={fetchSnippetComments}
-                fetchSnippetOwner={fetchSnippetOwner}
                 //like actions
                 newLike={newLike}
                 unlike={unlike}
-                getSnippetLikes={getSnippetLikes}
                 />
               } else {
-                return <IndexCard
+                return <SnippetIndexCard
                 handleClick={ this.handleClick }
-                key={snippet._id}
-                snippetId={snippet._id}
+                key={snippetId}
+                snippetId={snippetId}
                 snippet={snippet}
+                snippets={allSnippets}
+                likes={likes[snippetId]}
+                comments={comments[snippetId]}
+                users={users}
                 />
               }
             })

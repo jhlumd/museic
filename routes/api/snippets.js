@@ -11,7 +11,7 @@ const Like = require('../../models/Like')
 // need to make index only show public snippets or own snippets
 router.get("/", (req, res) => {
     Snippet.find({ public: true })
-        .sort({ date: -1 })
+        .sort({ date: -1 }) //sorts 
         .then(snippets => res.json(snippets))
         .catch(err => res.status(404).json({
             nosnippetsfound: "No snippets found"
