@@ -5,14 +5,14 @@ import CommentForm from './comment_form';
 import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
 
 class IndexShowCard extends React.Component {
-  constructor(props){
-    super(props)
+  // constructor(props){
+  //   super(props)
     // this.state={
     //   userId: this.props.userId,
     //   snippetId: this.props.snippetId,
     //   body: ''
     // }
-  }
+  // }
 
   // componentDidMount(){
   // }
@@ -21,7 +21,7 @@ class IndexShowCard extends React.Component {
     const { 
       snippet,
       // comments,
-      likes,
+      // likes,
       users,
       newLike,
       unlike,
@@ -32,6 +32,12 @@ class IndexShowCard extends React.Component {
     if( this.props.comments ){
       comments = this.props.comments
     }
+    let likes = []
+    if (this.props.likes) {
+      likes = this.props.likes
+    }
+
+    const hasLiked = Boolean(likes.find(user => user === userId))
 
     return (
       <div className='snippet-show-card-container'>
@@ -50,7 +56,7 @@ class IndexShowCard extends React.Component {
             />
           </div>
 
-          <SnippetDisplayContainer snippet={snippet.notes} />
+          <SnippetDisplayContainer snippet={snippet.notes} liked={hasLiked} />
 
           <ul className="comment-display">
           {

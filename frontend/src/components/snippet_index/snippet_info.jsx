@@ -3,9 +3,9 @@ import HeartIcon from '../resources/heart_icon';
 
 class SnippetInfo extends React.Component {
 
-  constructor(props){
-    super(props)
-  }
+  // constructor(props){
+  //   super(props)
+  // }
 
   handleLike(){
     const likeData = {
@@ -36,42 +36,34 @@ class SnippetInfo extends React.Component {
       comments = this.props.comments
     }
     
-    const hasLiked = Boolean(likes.find( user => user === userId))
-
-    if (hasLiked){
-      return (
-        <h1>User has liked!</h1> // can pass specific vairable to 'like_component' 
-        //to render differently
-      )
-    } else {
+    // const hasLiked = Boolean(likes.find( user => user === userId))
       
-      return (
-        <div className="snippet-show-info-container">
-          
-          <div className='snippet-show-info-top'>
+    return (
+      <div className="snippet-show-info-container">
+        
+        <div className='snippet-show-info-top'>
 
-            <div className='snippet-show-info-left'>
-              <h4>{title}</h4>
-              <p>{author}</p>
-            </div>
-
-            <div className='snippet-show-info-right'>
-              <p>{date.slice(0, 10)}</p>
-              <p>{likes.length} Likes</p>
-              <p>{comments.length} Comments</p>
-            </div>
+          <div className='snippet-show-info-left'>
+            <h4>{title}</h4>
+            <p>{author}</p>
           </div>
 
-
-          <div className='description'>
-            <p>{description}</p>
+          <div className='snippet-show-info-right'>
+            <p>{date.slice(0, 10)}</p>
+            <p>{likes.length} Likes</p>
+            <p>{comments.length} Comments</p>
           </div>
-          
-          {/* <button onClick={this.handleLike.bind(this)}>Like</button>
-          <button onClick={this.handleUnlike.bind(this)}>Unlike</button> */}
         </div>
-      )
-    }
+
+
+        <div className='description'>
+          <p>{description}</p>
+        </div>
+        
+        {/* <button onClick={this.handleLike.bind(this)}>Like</button>
+        <button onClick={this.handleUnlike.bind(this)}>Unlike</button> */}
+      </div>
+    )
   }
 }
 
