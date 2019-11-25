@@ -19,7 +19,7 @@ export default class Splash extends Component {
     // });
   }
   snapTo(location) {
-    var element = document.getElementById(location);
+    let element = document.getElementById(location);
     element.scrollIntoView({ behavior: "smooth" });
   }
   render() {
@@ -35,7 +35,7 @@ export default class Splash extends Component {
           />
         </section>
         <section>
-          <SplashCreateDemo snapTo={this.snapTo} />
+          <SplashCreateDemo snapTo={this.snapTo} tempNotes={this.props.tempNotes}/>
         </section>
         <section>
           <SplashSignup snapTo={this.snapTo} history={this.props.history} />

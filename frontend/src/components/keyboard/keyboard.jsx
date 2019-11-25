@@ -37,10 +37,10 @@ export default class Keyboard extends Component {
         const newSnippet = this.notesArray.slice();
 
         this.setState({ notes: newSnippet });
-        this.props.updateSnippet(newSnippet);
+        // this.props.updateSnippet(newSnippet);
+
+        this.props.saveTempNotes(newSnippet);
       }
-      // There may be a case where 'saveTempNotes(this.state.notes)' isn't
-      // called when only one note is played and held for the entire duration.
     });
 
     piano.addEventListener("mouseup", e => {
@@ -55,9 +55,9 @@ export default class Keyboard extends Component {
         const newSnippet = this.notesArray.slice();
 
         this.setState({ notes: newSnippet });
-        this.props.updateSnippet(newSnippet);
+        // this.props.updateSnippet(newSnippet);
 
-        this.props.saveTempNotes(this.state.notes);
+        this.props.saveTempNotes(newSnippet);
 
       } else if (lastNoteUp.startTime < this.timeLimit) {
         lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
@@ -65,7 +65,7 @@ export default class Keyboard extends Component {
         const newSnippet = this.notesArray.slice();
 
         this.setState({ notes: newSnippet });
-        this.props.updateSnippet(newSnippet);
+        // this.props.updateSnippet(newSnippet);
 
         this.props.saveTempNotes(this.state.notes);
       }
@@ -91,7 +91,8 @@ export default class Keyboard extends Component {
   }
 
   resetSnippet() {
-    this.props.updateSnippet([]);
+    // this.props.updateSnippet([]);
+    this.props.clearTempNotes();
     this.notesArray = [];
     this.setState({ notes: null });
     // this.forceUpdate(); // WTF

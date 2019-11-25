@@ -3,7 +3,7 @@ import SnippetBar from './_snippet_bar';
 import InteractionBarPlay from "./_interaction_bar_play";
 import InteractionBarLikeShare from "./_interaction_bar_like_share";
 
-export default class SnippetDisplay extends Component {
+export default class SnippetIndexDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,11 +61,6 @@ export default class SnippetDisplay extends Component {
     return (
       <div className="snippet-display-container">
         <div className="bar-display-container">{noteBars}</div>
-
-        <div className="interaction-bar-container">
-          <InteractionBarPlay notes={this.props.snippet} />
-          <InteractionBarLikeShare />
-        </div>
       </div>
     );
   }

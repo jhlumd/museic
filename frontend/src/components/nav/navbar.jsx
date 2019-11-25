@@ -15,10 +15,9 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentNotes: []
+      currentNotes: this.props.tempNotes
     };
     this.logoutUser = this.logoutUser.bind(this);
-    this.updateSnippet = this.updateSnippet.bind(this);
   }
 
   componentDidMount() {
@@ -35,9 +34,10 @@ class Navbar extends React.Component {
     }); 
   }
 
-  updateSnippet(newSnippet) {
-    this.setState({ currentNotes: newSnippet });
-    // this.forceUpdate(); // WTF
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentNotes: nextProps.tempNotes
+    });
   }
 
   logoutUser(e) {
@@ -52,7 +52,7 @@ class Navbar extends React.Component {
     const message2 = "Hey that sounds pretty nice.";
     const message3 = "Nice! Let's save that masterpiece.";
     let snipTime = 0;
-    if (this.state.currentNotes.length > 0) {
+    if (this.state.currentNotes && this.state.currentNotes.length > 0) {
       snipTime = this.state.currentNotes[this.state.currentNotes.length - 1]
         .startTime;
     }
@@ -60,11 +60,11 @@ class Navbar extends React.Component {
     let message;
     if (snipTime === 0) {
       message = message0;
-    } else if (snipTime < 16) {
+    } else if (snipTime > 0 && snipTime < 14) {
       message = message1;
-    } else if (snipTime < 26) {
+    } else if (snipTime >= 14 && snipTime < 23) {
       message = message2;
-    } else {
+    } else if (snipTime > 23) {
       message = message3;
     }
 
@@ -88,7 +88,7 @@ class Navbar extends React.Component {
             </div>
 
             <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />
-            <KeyboardContainer updateSnippet={this.updateSnippet} />
+            <KeyboardContainer />
             <SnippetFormContainer snippet={this.state.currentNotes} />
             
           </div>
@@ -120,7 +120,6 @@ class Navbar extends React.Component {
             </div>
           </div>
 
-          
         </div>
 
       </div>
