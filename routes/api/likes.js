@@ -36,10 +36,10 @@ router.post('/',
       })
       
       newLike.save()
-        .then(
+        .then( () => {
           Like.find()
           .then(likes => res.json(likes))
-        )
+        })
     });
   });
 
