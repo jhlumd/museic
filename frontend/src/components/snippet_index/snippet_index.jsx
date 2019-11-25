@@ -53,7 +53,8 @@ class SnippetIndex extends React.Component {
                 //data needed to display and send to actions
                 snippet={snippet}
                 comments={comments[snippetId]} //array of comment objs for this snippet
-                likes={likes[snippetId]} // array of userIds for this snippet
+                snippetId={snippetId}
+                likes={likes[snippetId]} // array of objs containing userId and likeId for this snippet
                 users={users} //array of usernames according to userId
                 userId={userId}
                 //comment actions

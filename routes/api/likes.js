@@ -22,7 +22,6 @@ router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
 
-
     Like.findOne(
       { user: req.body.userId, snippet: req.body.snippetId }
     )
@@ -37,23 +36,23 @@ router.post('/',
       })
       
       newLike.save()
-      .then( like => {
-        // console.log(like) 
-        res.json(like) 
-      })
+        .then( () => {
+          Like.find()
+          .then(likes => res.json(likes))
+        })
     });
   });
 
+//delete like
 router.delete('/:like_id', 
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const likeId = req.params.like_id
-
-    Like.deleteOne({_id: likeId})
-      .then( ()=> res.json(
-        {msg: `like with id: ${likeId} deleted`}
-      ))
-      .catch(err => console.log(err))
+    // console.log(req.params.like_id)
+    Like.deleteOne({_id: req.params.like_id})
+      .then( () => {
+        Like.find().then(likes => res.json(likes))
+      })
+      .catch(err => res.status(404).json({msg: 'error deleting like'}))
   }
 );
 

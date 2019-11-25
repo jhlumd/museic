@@ -1,11 +1,13 @@
 import axios from 'axios';
 
 export const newLike = (likeData) => {
+  console.log(likeData)
   return axios.post('/api/likes/', likeData)
 }
 
-export const deleteLike = like_id => {
-  return axios.delete(`/api/likes/${like_id}`)
+export const deleteLike = (likeId)=> {  
+  console.log(likeId)
+  return axios.delete(`/api/likes/${likeId}`)
 }
 
 export const snippetLikes = snippet_id => {
