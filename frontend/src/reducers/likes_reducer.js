@@ -7,8 +7,18 @@ export default function ( state = {}, action ){
 
   switch (action.type) {
     case GET_LIKES:
-      newState[action.snippetId] = action.likes.length
-      return newState;
+      const likes = {};
+      //sets likes to snippetId keys, pointing to an array of userIds
+      action.likes.forEach( like => {
+        
+        if( likes[likes.snippet] ){
+          likes[likes.snippet].push(like.user)
+        } else {
+          likes[like.snippet] = [like.user]
+        }
+
+      });
+      return likes;
     case CREATE_LIKE:
       newState[action.like._id] = action.like;
       return newState;

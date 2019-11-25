@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import IndexCard from './snippet_index_card';
+import SnippetIndexCard from './snippet_index_card';
 import ShowCard from './snippet_show_card';
 
 class SnippetIndex extends React.Component {
@@ -15,6 +15,8 @@ class SnippetIndex extends React.Component {
 
   componentDidMount(){
     this.props.fetchSnippets()
+    this.props.fetchLikes()
+    this.props.fetchComments()
   }
 //git test
   handleClick(e){
@@ -33,7 +35,6 @@ class SnippetIndex extends React.Component {
       fetchSnippetOwner,
       newLike,
       unlike,
-      getSnippetLikes,
     } = this.props
 
     return(
@@ -42,13 +43,15 @@ class SnippetIndex extends React.Component {
         <div className='snippet-index-snippets-container'>
           {
             this.props.snippets.map( snippet => {
-              if (this.state.selectedId === snippet._id) {
+              const snippetId = snippet._id
+              // debugger
+              if (this.state.selectedId === snippetId) {
                 return <ShowCard
-                key={snippet._id}
+                key={snippetId}
                 //data needed to display and send to actions
                 snippet={snippet}
                 comments={comments}
-                likes={likes}
+                likes={likes[snippetId]} // array of userIds for this snippet
                 userId={userId}
                 //comment actions
                 composeComment={composeComment}
@@ -60,14 +63,15 @@ class SnippetIndex extends React.Component {
                 //like actions
                 newLike={newLike}
                 unlike={unlike}
-                getSnippetLikes={getSnippetLikes}
                 />
               } else {
-                return <IndexCard
+                return <SnippetIndexCard
                 handleClick={ this.handleClick }
-                key={snippet._id}
-                snippetId={snippet._id}
+                key={snippetId}
+                snippetId={snippetId}
                 snippet={snippet}
+                likes={likes[snippetId]}
+                comments={comments[snippetId]}
                 />
               }
             })

@@ -15,3 +15,7 @@ export const deleteComment = comment_id => {
 export const updateComment = commentData => {
   return axios.patch(`/api/comments/update`, commentData);
 };
+
+export const getComments = () => {
+  return axios.get('/api/comments/');
+};

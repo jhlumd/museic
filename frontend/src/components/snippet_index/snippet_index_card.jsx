@@ -14,12 +14,23 @@ class SnippetIndexCard extends React.Component {
   
   render(){
     const {snippetId, snippet: {title, description, notes, date }} = this.props
+    
+    let numLikes = 0
+    let numComments = 0
+    
+    if( this.props.likes ){
+      numLikes = this.props.likes.length
+    }
+    if( this.props.comments ) {
+      debugger
+      numComments = this.props.comments.length
+    }
+
     return (
       <div className="snippet-index-card-container">
         <div
           className="snippet-index-card"
           onClick={e => {
-            // debugger
             this.props.handleClick(e);
           }}
           snippetid={snippetId}
@@ -37,8 +48,8 @@ class SnippetIndexCard extends React.Component {
               </div>
 
               <div className='right-container'>
-                <p>{this.props.snippetLikes} Likes</p>
-                <p>{this.props.snippetLikes} Comments</p>
+                <p>{numLikes} Likes</p>
+                <p>{numComments} Comments</p>
               </div>
             </div>
             <div className="snippet-index-card-description">

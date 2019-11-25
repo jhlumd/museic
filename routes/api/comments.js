@@ -5,6 +5,13 @@ const passport = require('passport');
 
 const Comment = require('../../models/Comment')
 
+//get all
+router.get('/', (req,res) => {
+  Comment.find()
+    .then(comments => res.json(comments))
+    .catch(err => res.status(404).json({ msg: 'get all comments failed'}))
+});
+
 // //get all, remove route 
 // router.get('/', (req, res) => {
 //   Comment.find()

@@ -3,6 +3,7 @@ import * as APIUtil from '../util/comment_util';
 export const NEW_COMMENT = 'NEW_COMMENT';
 export const ALL_SNIPPET_COMMENTS = 'ALL_SNIPPET_COMMENTS';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 
 //not sure if we will ever use this
 export const receiveComment = comment => ({
@@ -10,7 +11,12 @@ export const receiveComment = comment => ({
   comment
 });
 
-//probably only use this one, but it's untested because no snippets created yet
+export const receiveComments = comments => ({
+  type: RECEIVE_COMMENTS,
+  comments
+})
+
+//remove after
 export const receiveSnippetComments = comments => ({
   type: ALL_SNIPPET_COMMENTS,
   comments
@@ -47,3 +53,9 @@ export const editComment = comment => dispatch => {
       .then((res)=> dispatch(receiveComment(res.data)))
   );
 }
+
+export const fetchComments = () => dispatch => (
+  APIUtil.getComments()
+    .then((res) => dispatch(receiveComments(res.data)))
+    .catch(err => console.log(err)) //make receive errors action
+)

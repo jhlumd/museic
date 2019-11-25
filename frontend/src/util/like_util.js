@@ -11,3 +11,7 @@ export const deleteLike = like_id => {
 export const snippetLikes = snippet_id => {
   return axios.get(`/api/likes/${snippet_id}`)
 }
+
+export const allLikes = () => {
+  return axios.get('/api/likes/')
+}

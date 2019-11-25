@@ -17,7 +17,6 @@ class IndexShowCard extends React.Component {
   componentDidMount(){
     this.props.fetchSnippetComments(this.props.snippet._id)
     this.props.fetchSnippetOwner(this.props.snippet.user, this.props.snippet._id)
-    this.props.getSnippetLikes(this.props.snippet._id)
   }
 
   render(){
