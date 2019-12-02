@@ -28,7 +28,8 @@ export default class InteractionBarPlay extends Component {
   }
 
   handlePause() {
-    
+    // Tone.Transport.toggle();
+    // Tone.Transport.cancel();
   }
   
   render() {
