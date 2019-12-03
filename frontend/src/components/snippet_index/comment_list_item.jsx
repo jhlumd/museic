@@ -64,7 +64,6 @@ class CommentListItem extends React.Component {
               deleteComment={this.deleteComment}
             />
           </div>
-          {/* {this.renderDelete()} */}
         </li>
       )
       
