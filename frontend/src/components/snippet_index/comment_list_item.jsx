@@ -74,7 +74,7 @@ class CommentListItem extends React.Component {
         <li className="comment-list-item-container unowned">
           <div className="comment-list-item" onClick={this.handleClick}>
             <div className='user-icon'></div>
-            <p>{ownername}:</p> 
+            <p className='ownername'>{ownername}:</p> 
             <p>{this.props.body}</p>
           </div>
         </li>
