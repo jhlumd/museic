@@ -7,46 +7,34 @@ export default class InteractionBarPlay extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   playing: false
-    // };
-    this.playing = false;
-
-    // debugger;
+    this.now = Tone.now();
 
     this.handlePlay = this.handlePlay.bind(this);
     this.handlePause = this.handlePause.bind(this);
   }
 
   handlePause() {
-    // this.setState = {
-    //   playing: false
-    // };
-    this.playing = false;
-    Tone.Transport.cancel();
-    debugger;
+    this.props.pausePlayback();
+    Tone.Transport.pause(this.now);
+    // debugger;
   }
 
   handlePlay() {
-    // this.setState = {
-    //   playing: true
-    // };
-    this.playing = true;
+    this.props.startPlayback();
     // debugger;
-
 
     const synth = new Tone.Synth();
     synth.oscillator.type = "sine";
     synth.toMaster();
 
-    const now = Tone.now();
+    this.now = Tone.now();
 
     this.props.notes.forEach(note => {
       Tone.Transport.schedule(
         synth.triggerAttackRelease(
           note.pitch,
           note.duration / 4,
-          now + note.startTime / 4
+          this.now + note.startTime / 4
         )
       );
     });
@@ -54,11 +42,11 @@ export default class InteractionBarPlay extends Component {
   
   render() {
     const playButton = <PlayBtnIcon handlePlay={this.handlePlay} />;
-    const pauseButton = <PauseIcon handlePlay={this.handlePause} />;
+    const pauseButton = <PauseIcon handlePause={this.handlePause} />;
 
     return (
       <div className="interaction-bar-left">
-        {this.playing ? pauseButton : playButton}
+        {this.props.isPlaying ? pauseButton : playButton}
       </div>
     );
   }

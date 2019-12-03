@@ -73,8 +73,13 @@ export default class SnippetDisplay extends Component {
         <div className="bar-display-container">{noteBars}</div>
 
         <div className="interaction-bar-container">
-          <InteractionBarPlay notes={this.props.snippet} />
-          <InteractionBarLikeShare 
+          <InteractionBarPlay
+            notes={this.props.snippet}
+            isPlaying={this.props.isPlaying}
+            startPlayback={this.props.startPlayback}
+            pausePlayback={this.props.pausePlayback}
+          />
+          <InteractionBarLikeShare
             liked={this.props.liked}
             likeId={likeId}
             snippetId={snippetId}
