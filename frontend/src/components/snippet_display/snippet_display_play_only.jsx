@@ -12,7 +12,6 @@ export default class SnippetDisplayPlayOnly extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ notes: nextProps.snippet });
-    // this.forceUpdate(); // WTF
   }
 
   interpolateColor(color1, color2, factor) {
