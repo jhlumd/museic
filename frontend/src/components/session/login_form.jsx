@@ -16,14 +16,14 @@ class LoginForm extends React.Component {
   }
 
   // Once the user has been authenticated, redirect to the Profiles page
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push('/snippets/index');
-    }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.currentUser === true) {
+  //     this.props.history.push('/snippets/index');
+  //   }
 
-    // Set or clear errors
-    this.setState({ errors: nextProps.errors });
-  }
+  //   // Set or clear errors
+  //   this.setState({ errors: nextProps.errors });
+  // }
 
   // Handle field updates (called in the render method)
   update(field) {
@@ -42,8 +42,18 @@ class LoginForm extends React.Component {
     };
 
     this.props.login(user)
-      .then(() => this.props.closeModal())
-      .then(() => this.props.history.push('/snippets/index'));
+      .then( res => {
+        if(res === 'failed'){
+          this.setState({ errors: this.props.errors })
+        } else {
+          const placeholder = () => new Promise(
+            res => setTimeout(()=> res(), 10)
+          )
+          placeholder()
+            .then(() => this.props.closeModal())
+            .then(() => this.props.history.push('/snippets/index'));
+        }
+      })
   }
 
   // Render the session errors if there are any
@@ -80,7 +90,9 @@ class LoginForm extends React.Component {
             />
             <br />
             <button type="submit">Sign In</button>
-            {this.renderErrors()}
+            <ul className='session-errors'>
+              {this.renderErrors()}
+            </ul>
           </div>
         </form>
       </div>
