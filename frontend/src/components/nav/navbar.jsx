@@ -45,7 +45,7 @@ class Navbar extends React.Component {
     this.props.logout();
   }
 
-  render() {
+  writeMessage() {
     const message0 =
       "Try clicking the tiles, or pressing some keys to make some music.";
     const message1 = "There you go! Keep going.";
@@ -67,7 +67,13 @@ class Navbar extends React.Component {
     } else if (snipTime > 23) {
       message = message3;
     }
+    return message;
+  }
 
+  
+
+  render() {
+    
     return (
       <div id='nav-container' className='up'>
 
@@ -84,7 +90,7 @@ class Navbar extends React.Component {
             </h2>
 
             <div className='create-message'>
-              <p>{message}</p>
+              <p>{ this.writeMessage() }</p>
             </div>
 
             <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />

@@ -8,11 +8,11 @@ export default function NavbarUserDropdown(props) {
         <button onClick={() => {
           document.querySelector('.nav-base-tab-container').click();
         }}>
-          <div>New</div>
+          <div>New Snip</div>
         </button>
 
         <button onClick={() => props.history.push('/snippets/index')}>
-          <div>Snippets</div>
+          <div>All Snips</div>
         </button>
 
         <button onClick={() => props.history.push('/profile')}>
