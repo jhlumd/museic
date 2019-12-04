@@ -46,14 +46,14 @@ export default class SnippetDisplay extends Component {
       .concat(this.interpolateColors('rgb(238, 98, 180)', 'rgb(253, 47, 47)', 8));
     color_arr = color_arr.concat(color_arr.slice().reverse());
     
-    let { snippetId } = this.props
-    let likeId = ''
+    let { snippetId } = this.props;
+    let likeId = '';
     if (this.props.likes[snippetId]) {
       this.props.likes[snippetId].forEach( like => {
         if( like.user === this.props.userId){
-          likeId = like.id
+          likeId = like.id;
         }
-      })
+      });
       // likeId = this.props.likes[snippetId][this.props.userId].id
     }
 
@@ -73,8 +73,13 @@ export default class SnippetDisplay extends Component {
         <div className="bar-display-container">{noteBars}</div>
 
         <div className="interaction-bar-container">
-          <InteractionBarPlay notes={this.props.snippet} />
-          <InteractionBarLikeShare 
+          <InteractionBarPlay
+            notes={this.props.snippet}
+            isPlaying={this.props.isPlaying}
+            startPlayback={this.props.startPlayback}
+            pausePlayback={this.props.pausePlayback}
+          />
+          <InteractionBarLikeShare
             liked={this.props.liked}
             likeId={likeId}
             snippetId={snippetId}

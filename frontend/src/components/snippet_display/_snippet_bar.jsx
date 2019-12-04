@@ -54,7 +54,8 @@ export default function SnippetBar(props) {
     width: (duration / 32) * 100 + "%",
     backgroundColor: `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]})`
   };
-   return (
+
+  return (
     <div
       className="single-note hvr-float"
       style={noteStyle}
