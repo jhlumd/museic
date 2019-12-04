@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import NavbarUserDropdown from './navbar_user_dropdown';
 import SnippetDisplayPlayOnlyContainer from '../snippet_display/snippet_display_play_only_container';
@@ -105,6 +105,7 @@ class Navbar extends React.Component {
                 <div className='icon-wrap'>
                   <UserIcon />
                   <NavbarUserDropdown 
+                    history={this.props.history}
                     loggedIn={this.props.loggedIn} 
                     logoutUser={this.logoutUser}
                     openModal={this.props.openModal} 
