@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // If the user's token has expired
     if (decodedUser.exp < currentTime) {
-      // Logout the user and redirect to the login page
+      // Logout the user and redirect to the splash page
       store.dispatch(logout());
-      window.location.href = '/login';
+      window.location.href = '/';
     }
   } else {
     // If this is a first time user, start with an empty store

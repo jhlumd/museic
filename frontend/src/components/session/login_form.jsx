@@ -16,14 +16,14 @@ class LoginForm extends React.Component {
   }
 
   // Once the user has been authenticated, redirect to the Profiles page
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push('/snippets/index');
-    }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.currentUser === true) {
+  //     this.props.history.push('/snippets/index');
+  //   }
 
-    // Set or clear errors
-    this.setState({ errors: nextProps.errors });
-  }
+  //   // Set or clear errors
+  //   this.setState({ errors: nextProps.errors });
+  // }
 
   // Handle field updates (called in the render method)
   update(field) {
@@ -42,8 +42,18 @@ class LoginForm extends React.Component {
     };
 
     this.props.login(user)
-      .then(() => this.props.closeModal())
-      .then(() => this.props.history.push('/snippets/index'));
+      .then( res => {
+        if(res === 'failed'){
+          this.setState({ errors: this.props.errors })
+        } else {
+          const placeholder = () => new Promise(
+            res => setTimeout(()=> res(), 10)
+          )
+          placeholder()
+            .then(() => this.props.closeModal())
+            .then(() => this.props.history.push('/snippets/index'));
+        }
+      })
   }
 
   // Render the session errors if there are any
@@ -59,11 +69,21 @@ class LoginForm extends React.Component {
     );
   }
 
+  demoLogin() {
+    const demoUser = {
+      email: 'demo@demo.com',
+      password: 'demo123'
+    }
+    this.props.login(demoUser)
+      .then(() => this.props.closeModal())
+      .then(() => this.props.history.push('/snippets/index'));
+  }
+
   render() {
     return (
       <div id='login-form-container' onClick={(e) => {
         e.stopPropagation();
-        this.props.closeModal();
+        // this.props.closeModal();
         }}>
         <form onSubmit={this.handleSubmit} onClick={(e) => e.stopPropagation()}>
           <div>
@@ -80,9 +100,12 @@ class LoginForm extends React.Component {
             />
             <br />
             <button type="submit">Sign In</button>
+          <ul className='session-errors'>
             {this.renderErrors()}
+          </ul>
           </div>
         </form>
+          <button id='demo-login-button' onClick={this.demoLogin.bind(this)}>Demo Login</button>
       </div>
     );
   }
