@@ -6,8 +6,8 @@ import PauseIcon from '../resources/pause_icon';
 export default class InteractionBarPlay extends Component {
   constructor(props) {
     super(props);
-
-    this.now = Tone.now();
+    
+    this.playNow = null;
 
     this.handlePlay = this.handlePlay.bind(this);
     this.handlePause = this.handlePause.bind(this);
@@ -15,29 +15,38 @@ export default class InteractionBarPlay extends Component {
 
   handlePause() {
     this.props.pausePlayback();
-    Tone.Transport.pause(this.now);
+
+    // debugger;
+
+    Tone.Transport.toggle();
+    Tone.Transport.cancel();
+
     // debugger;
   }
 
   handlePlay() {
     this.props.startPlayback();
     // debugger;
-
     const synth = new Tone.Synth();
     synth.oscillator.type = "sine";
     synth.toMaster();
 
-    this.now = Tone.now();
+    // this.playNow = Tone.now();
+
+    // function triggerSynth(time) {
+    //   synth.triggerAttackRelease("C5", "8n", time);
+    // }
 
     this.props.notes.forEach(note => {
-      Tone.Transport.schedule(
-        synth.triggerAttackRelease(
-          note.pitch,
-          note.duration / 4,
-          this.now + note.startTime / 4
-        )
-      );
+      function triggerSynth(time) {
+        synth.triggerAttackRelease(note.pitch, note.duration, time);
+      }
+
+      Tone.Transport.schedule(triggerSynth, note.startTime / 4);
     });
+
+    Tone.Transport.toggle();
+    // debugger;
   }
   
   render() {
