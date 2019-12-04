@@ -36,6 +36,25 @@ class Navbar extends React.Component {
     }); 
 
     // This section will listen for when the user first clicks on a note
+    const piano = document.getElementById('piano');
+    piano.addEventListener('click', () => {
+
+      let timer = window.setInterval(() => { 
+        this.state.snipTime += 1;
+
+        // stop the timer after 8 seconds
+        if (this.state.snipTime > 8) {
+          clearInterval(timer);
+          this.setState({ snipTime: 8 });
+        }
+      }, 1000)
+    });
+
+    const reset = document.querySelector('.keyboard-reset-button');
+    reset.addEventListener('click', () => {
+      this.state.snipTime = 0;
+    });
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,32 +77,26 @@ class Navbar extends React.Component {
     const message4 = "You ran out of time. Click 'reset' to go again."
 
     let snipTime = this.state.snipTime;
-    if (this.state.currentNotes && this.state.currentNotes.length > 0) {
-      snipTime = this.state.currentNotes[this.state.currentNotes.length - 1]
-        .startTime;
-    }
 
     let message;
     if (snipTime === 0) {
       message = message0;
-    } else if (snipTime > 0 && snipTime < 14) {
+    } else if (snipTime > 0 && snipTime < 3) {
       message = message1;
-    } else if (snipTime >= 14 && snipTime < 23) {
+    } else if (snipTime < 5) {
       message = message2;
-    } else if (snipTime > 23 && ) {
+    } else if (snipTime > 7 && this.state.currentNotes.length > 10) {
       message = message3;
+    } else {
+      message = message4;
     }
     return message;
   }
 
   keyboardOrForm() {
     let snipTime = this.state.snipTime;
-    if (this.state.currentNotes && this.state.currentNotes.length > 0) {
-      snipTime = this.state.currentNotes[this.state.currentNotes.length - 1]
-        .startTime;
-    }
-    if (snipTime > 23) {
-      this.state.snipTime = 0;
+    
+    if (snipTime > 7) {
       return <SnippetFormContainer snippet={this.state.currentNotes} /> 
     } else {
       return <KeyboardContainer />
