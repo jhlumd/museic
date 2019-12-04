@@ -6,8 +6,6 @@ import PauseIcon from '../resources/pause_icon';
 export default class InteractionBarPlay extends Component {
   constructor(props) {
     super(props);
-    
-    this.playNow = null;
 
     this.handlePlay = this.handlePlay.bind(this);
     this.handlePause = this.handlePause.bind(this);
@@ -16,17 +14,13 @@ export default class InteractionBarPlay extends Component {
   handlePause() {
     this.props.pausePlayback();
 
-    // debugger;
-
     Tone.Transport.stop();
     Tone.Transport.cancel();
-
-    // debugger;
   }
 
   handlePlay() {
     this.props.startPlayback();
-    // debugger;
+
     const synth = new Tone.Synth();
     synth.oscillator.type = "sine";
     synth.toMaster();
