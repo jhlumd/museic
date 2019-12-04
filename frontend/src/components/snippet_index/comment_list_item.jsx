@@ -64,7 +64,6 @@ class CommentListItem extends React.Component {
               deleteComment={this.deleteComment}
             />
           </div>
-          {/* {this.renderDelete()} */}
         </li>
       )
       
@@ -74,7 +73,7 @@ class CommentListItem extends React.Component {
         <li className="comment-list-item-container unowned">
           <div className="comment-list-item" onClick={this.handleClick}>
             <div className='user-icon'></div>
-            <p className='ownername'>{ownername}:</p> 
+            <p className='owner-name'>{`${ ownername } `}</p> 
             <p>{this.props.body}</p>
           </div>
         </li>

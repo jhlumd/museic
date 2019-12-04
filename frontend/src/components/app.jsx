@@ -16,6 +16,8 @@ import SnippetFormContainer from './snippet_form/snippet_form_container';
 import SnippetIndexContainer from './snippet_index/snippet_index_container';
 // import SnippetShowContainer from './snippets/snippet_show_container';
 
+import UserShowContainer from './user/user_show_container';
+
 import './stylesheets/main.scss'
 
 
@@ -30,6 +32,7 @@ const App = () => (
     </header>
 
     <Switch>
+      <ProtectedRoute exact path="/profile" component={UserShowContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/snippets/index" component={SnippetIndexContainer} />

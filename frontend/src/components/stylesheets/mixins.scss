@@ -101,10 +101,10 @@
       color: $shadow;
     }
 
-    &:focus::placeholder:not(:hover) {
-      color: $shadow;
-      border-bottom: 1px solid $shadow;
-    }
+    // &:focus::placeholder:not(:hover) {
+    //   color: $shadow;
+    //   border-bottom: 1px solid $shadow;
+    // }
   }
 }
 
