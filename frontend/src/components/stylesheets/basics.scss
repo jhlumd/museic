@@ -16,5 +16,13 @@
 
 body {
   position: relative;
+  min-height: 100vh;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 50px;
+    width: 100vw;
+  }
 }
 
