@@ -18,7 +18,7 @@ export default class InteractionBarPlay extends Component {
 
     // debugger;
 
-    Tone.Transport.toggle();
+    Tone.Transport.stop();
     Tone.Transport.cancel();
 
     // debugger;
@@ -31,12 +31,6 @@ export default class InteractionBarPlay extends Component {
     synth.oscillator.type = "sine";
     synth.toMaster();
 
-    // this.playNow = Tone.now();
-
-    // function triggerSynth(time) {
-    //   synth.triggerAttackRelease("C5", "8n", time);
-    // }
-
     this.props.notes.forEach(note => {
       function triggerSynth(time) {
         synth.triggerAttackRelease(note.pitch, note.duration, time);
@@ -45,8 +39,7 @@ export default class InteractionBarPlay extends Component {
       Tone.Transport.schedule(triggerSynth, note.startTime / 4);
     });
 
-    Tone.Transport.toggle();
-    // debugger;
+    Tone.Transport.start();
   }
   
   render() {
