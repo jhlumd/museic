@@ -37,18 +37,7 @@ class Navbar extends React.Component {
 
     // This section will listen for when the user first clicks on a note
     const piano = document.getElementById('piano');
-    piano.addEventListener('click', () => {
-
-      let timer = window.setInterval(() => {
-        this.setState({ snipTime: this.state.snipTime + 1 });
-
-        // stop the timer after 8 seconds
-        if (this.state.snipTime > 8) {
-          clearInterval(timer);
-          this.setState({ snipTime: 8 });
-        }
-      }, 1000)
-    });
+    piano.addEventListener('click', () => this._setUpdate(), { once: true });
 
     const reset = document.querySelector('.keyboard-reset-button');
     reset.addEventListener('click', () => {
@@ -68,6 +57,18 @@ class Navbar extends React.Component {
     this.props.logout();
   }
 
+  _setUpdate() {
+    let timer = window.setInterval(() => {
+      this.setState({ snipTime: this.state.snipTime + 1 });
+
+      // stop the timer after 8 seconds
+      if (this.state.snipTime > 8) {
+        clearInterval(timer);
+        this.setState({ snipTime: 8 });
+      }
+    }, 1000)
+  }
+
   writeMessage() {
     const message0 =
       "Try clicking the tiles, or pressing some keys to make some music.";
@@ -81,9 +82,9 @@ class Navbar extends React.Component {
     let message;
     if (snipTime === 0) {
       message = message0;
-    } else if (snipTime > 0 && snipTime < 3) {
+    } else if (snipTime < 3) {
       message = message1;
-    } else if (snipTime < 5) {
+    } else if (snipTime < 7) {
       message = message2;
     } else if (snipTime > 7 && this.state.currentNotes.length > 10) {
       message = message3;
