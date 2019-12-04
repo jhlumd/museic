@@ -33,7 +33,7 @@ export default class InteractionBarLikeShare extends Component {
     if (this.props.liked) {
       return (
         <div className="interaction-bar-right">
-          <button onClick={() => this.handelUnlike(this.props.likeId)}><ShareIcon/></button>
+          <button onClick={() => this.handelUnlike(this.props.likeId)}><FilledHeartIcon/></button>
           {/* FIXME add sharing function */}
           <ShareIcon />
         </div>
