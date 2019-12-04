@@ -1,0 +1,64 @@
+.user-show-container {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 5em;
+  margin: auto;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .left-container {
+    box-sizing: border-box;
+    width: 30%;
+    height: 100%;
+    border-right: 1px solid $shadow;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div.user-info-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      div.user-icon-container {
+        width: 100px;
+        height: 100px;
+        background-color: $light-shadow;
+        margin-bottom: 3em;
+      }
+      
+      div.user-stat {
+        width: 10em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        p.num {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .right-container {
+    box-sizing: border-box;
+    width: 70%;
+    height: 100%;
+    padding: 3em;
+    // background-color: $light-shadow;
+
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
