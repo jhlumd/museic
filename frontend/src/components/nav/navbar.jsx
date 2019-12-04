@@ -39,8 +39,8 @@ class Navbar extends React.Component {
     const piano = document.getElementById('piano');
     piano.addEventListener('click', () => {
 
-      let timer = window.setInterval(() => { 
-        this.state.snipTime += 1;
+      let timer = window.setInterval(() => {
+        this.setState({ snipTime: this.state.snipTime + 1 });
 
         // stop the timer after 8 seconds
         if (this.state.snipTime > 8) {
@@ -117,8 +117,12 @@ class Navbar extends React.Component {
             </div>
 
             <h2>
-              Create a new snippet.
+              Create a new snippet. 
+              <span className='countdown'>
+                { 8 - this.state.snipTime }
+              </span>
             </h2>
+            
 
             <div className='create-message'>
               <p>{ this.writeMessage() }</p>
