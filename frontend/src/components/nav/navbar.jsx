@@ -15,12 +15,14 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentNotes: this.props.tempNotes
+      currentNotes: this.props.tempNotes,
+      snipTime: 0
     };
     this.logoutUser = this.logoutUser.bind(this);
   }
 
   componentDidMount() {
+    // This section will listen for when to move the menu up and down
     const x = document.querySelector('.x-icon-container');
     const tab = document.querySelector('.nav-base-tab-container');
     const panel = document.getElementById('nav-container')
@@ -32,6 +34,8 @@ class Navbar extends React.Component {
       panel.classList.toggle('down');
       panel.classList.toggle('up');
     }); 
+
+    // This section will listen for when the user first clicks on a note
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,7 +55,9 @@ class Navbar extends React.Component {
     const message1 = "There you go! Keep going.";
     const message2 = "Hey that sounds pretty nice.";
     const message3 = "Nice! Let's save that masterpiece.";
-    let snipTime = 0;
+    const message4 = "You ran out of time. Click 'reset' to go again."
+
+    let snipTime = this.state.snipTime;
     if (this.state.currentNotes && this.state.currentNotes.length > 0) {
       snipTime = this.state.currentNotes[this.state.currentNotes.length - 1]
         .startTime;
@@ -64,13 +70,25 @@ class Navbar extends React.Component {
       message = message1;
     } else if (snipTime >= 14 && snipTime < 23) {
       message = message2;
-    } else if (snipTime > 23) {
+    } else if (snipTime > 23 && ) {
       message = message3;
     }
     return message;
   }
 
-  
+  keyboardOrForm() {
+    let snipTime = this.state.snipTime;
+    if (this.state.currentNotes && this.state.currentNotes.length > 0) {
+      snipTime = this.state.currentNotes[this.state.currentNotes.length - 1]
+        .startTime;
+    }
+    if (snipTime > 23) {
+      this.state.snipTime = 0;
+      return <SnippetFormContainer snippet={this.state.currentNotes} /> 
+    } else {
+      return <KeyboardContainer />
+    }
+  }
 
   render() {
     
@@ -94,8 +112,8 @@ class Navbar extends React.Component {
             </div>
 
             <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />
-            <KeyboardContainer />
-            <SnippetFormContainer snippet={this.state.currentNotes} />
+            
+            { this.keyboardOrForm() }
             
           </div>
           
