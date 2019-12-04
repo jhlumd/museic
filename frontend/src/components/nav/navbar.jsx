@@ -86,7 +86,7 @@ class Navbar extends React.Component {
       message = message1;
     } else if (snipTime < 7) {
       message = message2;
-    } else if (snipTime > 7 && this.state.currentNotes.length > 10) {
+    } else if (this.state.currentNotes && snipTime > 7 && this.state.currentNotes.length > 10) {
       message = message3;
     } else {
       message = message4;
