@@ -14,15 +14,18 @@ class SignupForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
+    this.renderErrors = this.renderErrors.bind(this);
   }
   
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push('/login');
-    }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.signedIn === true) {
+  //     this.props.history.push('/snippets/index');
+  //   } else {
+  //   console.log('setonce')
+    
+  //   this.setState({ errors: nextProps.errors })}
+  // }
 
-    this.setState({ errors: nextProps.errors })
-  }
 
   update(field) {
     return e => this.setState({
@@ -40,8 +43,15 @@ class SignupForm extends React.Component {
     };
 
     this.props.signup(user, this.props.history)
-      .then(() => this.props.closeModal())
-      .then(() => this.props.history.push('/snippets/index'));
+      .then( res => {
+        if(res === 'failed'){
+          this.setState({ errors: this.props.errors })
+        } else {
+          this.props.login(user)
+            .then(() => this.props.closeModal())
+            .then(() => this.props.closeModal())
+        }
+      })
   }
 
   renderErrors() {
@@ -66,15 +76,15 @@ class SignupForm extends React.Component {
           <div className="signup-form">
             <br />
             <input type="text"
-              value={this.state.email}
-              onChange={this.update('email')}
-              placeholder="Email"
-            />
-            <br />
-            <input type="text"
               value={this.state.username}
               onChange={this.update('username')}
               placeholder="Username"
+            />
+            <br />
+            <input type="text"
+              value={this.state.email}
+              onChange={this.update('email')}
+              placeholder="Email"
             />
             <br />
             <input type="password"
@@ -90,12 +100,15 @@ class SignupForm extends React.Component {
             />
             <br />
             <button type="submit" className='hvr-grow'>Sign Up</button>
-            {this.renderErrors()}
+            <ul className='session-errors'>
+              {this.renderErrors()}
+            </ul>
           </div>
         </form>
       </div>
     );
   }
+
 }
 
 export default withRouter(SignupForm);
