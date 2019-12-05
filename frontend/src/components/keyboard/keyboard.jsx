@@ -76,6 +76,33 @@ export default class Keyboard extends Component {
       }
     });
 
+    piano.addEventListener("mouseout", e => {
+      if (this.notesArray.length > 0) { 
+        synth.triggerRelease();
+
+        const lastNoteUp = this.notesArray[this.notesArray.length - 1];
+        const dur = Math.ceil(Tone.now() * 4 - lastNoteUp.unadjStartTime);
+        lastNoteUp.duration = (dur === -0 ? 1 : dur);
+
+        if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
+          const newSnippet = this.notesArray.slice();
+
+          this.setState({ notes: newSnippet });
+
+          this.props.saveTempNotes(newSnippet);
+
+        } else if (lastNoteUp.startTime < this.timeLimit) {
+          lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
+          
+          const newSnippet = this.notesArray.slice();
+
+          this.setState({ notes: newSnippet });
+
+          this.props.saveTempNotes(this.state.notes);
+        }
+      }
+    });
+
     // add event listeners to keys for animation
     const keys = piano.children;
 
