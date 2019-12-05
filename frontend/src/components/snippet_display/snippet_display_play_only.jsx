@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SnippetBar from './_snippet_bar';
 import InteractionBarPlay from "./_interaction_bar_play";
+import InteractionBarReset from "./_interaction_bar_reset";
 
 export default class SnippetDisplayPlayOnly extends Component {
   constructor(props) {
@@ -12,7 +13,6 @@ export default class SnippetDisplayPlayOnly extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ notes: nextProps.snippet });
-    // this.forceUpdate(); // WTF
   }
 
   interpolateColor(color1, color2, factor) {
@@ -63,7 +63,15 @@ export default class SnippetDisplayPlayOnly extends Component {
         <div className="bar-display-container">{noteBars}</div>
 
         <div className="interaction-bar-container">
-          <InteractionBarPlay notes={this.props.snippet} />
+          <InteractionBarPlay
+            notes={this.props.snippet}
+            isPlaying={this.props.isPlaying}
+            startPlayback={this.props.startPlayback}
+            pausePlayback={this.props.pausePlayback}
+          />
+          <InteractionBarReset
+            clearTempNotes={this.props.clearTempNotes}
+          />
         </div>
       </div>
     );

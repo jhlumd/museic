@@ -1,5 +1,5 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import NavbarUserDropdown from './navbar_user_dropdown';
 import SnippetDisplayPlayOnlyContainer from '../snippet_display/snippet_display_play_only_container';
@@ -15,12 +15,14 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentNotes: this.props.tempNotes
+      currentNotes: this.props.tempNotes,
+      snipTime: 0
     };
     this.logoutUser = this.logoutUser.bind(this);
   }
 
   componentDidMount() {
+    // This section will listen for when to move the menu up and down
     const x = document.querySelector('.x-icon-container');
     const tab = document.querySelector('.nav-base-tab-container');
     const panel = document.getElementById('nav-container')
@@ -32,6 +34,16 @@ class Navbar extends React.Component {
       panel.classList.toggle('down');
       panel.classList.toggle('up');
     }); 
+
+    // This section will listen for when the user first clicks on a note
+    const piano = document.getElementById('piano');
+    piano.addEventListener('click', () => this._setUpdate(), { once: true });
+
+    const reset = document.querySelector('.keyboard-reset-button');
+    reset.addEventListener('click', () => {
+      this.state.snipTime = 0;
+    });
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,29 +57,60 @@ class Navbar extends React.Component {
     this.props.logout();
   }
 
-  render() {
+  _setUpdate() {
+    let timer = window.setInterval(() => {
+      this.setState({ snipTime: this.state.snipTime + 1 });
+
+      // stop the timer after 8 seconds
+      if (this.state.snipTime > 7) {
+        clearInterval(timer);
+        this.setState({ snipTime: 8 });
+      }
+    }, 1000)
+  }
+
+  writeMessage() {
     const message0 =
       "Try clicking the tiles, or pressing some keys to make some music.";
     const message1 = "There you go! Keep going.";
     const message2 = "Hey that sounds pretty nice.";
     const message3 = "Nice! Let's save that masterpiece.";
-    let snipTime = 0;
-    if (this.state.currentNotes && this.state.currentNotes.length > 0) {
-      snipTime = this.state.currentNotes[this.state.currentNotes.length - 1]
-        .startTime;
-    }
+    const message4 = "You ran out of time. Click 'reset' to go again."
+
+    let snipTime = this.state.snipTime;
 
     let message;
     if (snipTime === 0) {
       message = message0;
-    } else if (snipTime > 0 && snipTime < 14) {
+    } else if (snipTime < 3) {
       message = message1;
-    } else if (snipTime >= 14 && snipTime < 23) {
+    } else if (snipTime < 7) {
       message = message2;
-    } else if (snipTime > 23) {
+    } else if (this.state.currentNotes && snipTime > 7 && this.state.currentNotes.length > 10) {
       message = message3;
+    } else {
+      message = message4;
     }
+    return message;
+  }
 
+  keyboardOrForm() {
+    let snipTime = this.state.snipTime;
+    
+    if (snipTime >= 8) {
+      // if (document.getElementById('piano')) {
+      //   document.getElementById('piano').childNodes.forEach(pianoKey => {
+      //     pianoKey.click();
+      //   });
+      // }
+      return <SnippetFormContainer snippet={this.state.currentNotes} /> 
+    } else {
+      return <KeyboardContainer />
+    }
+  }
+
+  render() {
+    
     return (
       <div id='nav-container' className='up'>
 
@@ -80,16 +123,20 @@ class Navbar extends React.Component {
             </div>
 
             <h2>
-              Create a new snippet.
+              Create a new snippet. 
+              <span className='countdown'>
+                { 8 - this.state.snipTime }
+              </span>
             </h2>
+            
 
             <div className='create-message'>
-              <p>{message}</p>
+              <p>{ this.writeMessage() }</p>
             </div>
 
             <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />
-            <KeyboardContainer />
-            <SnippetFormContainer snippet={this.state.currentNotes} />
+            
+            { this.keyboardOrForm() }
             
           </div>
           
@@ -105,6 +152,7 @@ class Navbar extends React.Component {
                 <div className='icon-wrap'>
                   <UserIcon />
                   <NavbarUserDropdown 
+                    history={this.props.history}
                     loggedIn={this.props.loggedIn} 
                     logoutUser={this.logoutUser}
                     openModal={this.props.openModal} 

@@ -13,7 +13,6 @@ export default class SnippetIndexDisplay extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ notes: nextProps.snippet });
-    // this.forceUpdate(); // WTF
   }
 
   interpolateColor(color1, color2, factor) {
@@ -46,7 +45,6 @@ export default class SnippetIndexDisplay extends Component {
       .concat(this.interpolateColors('rgb(238, 98, 180)', 'rgb(253, 47, 47)', 8));
     color_arr = color_arr.concat(color_arr.slice().reverse());
     
-
     const noteBars = this.state.notes.map((note, i) => (
       <SnippetBar
         key={i}
@@ -56,7 +54,6 @@ export default class SnippetIndexDisplay extends Component {
         backgroundColor={color_arr[i % 32]}
       />
     ));
-
 
     return (
       <div className="snippet-display-container">

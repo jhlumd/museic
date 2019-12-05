@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SnippetIndexContainer from '../snippet_index/snippet_index_container';
+import UserShowIndex from './user_show_index';
 
 export default class UserShow extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ export default class UserShow extends Component {
 
         <div className='right-container'>
           <h2>Your Creations</h2>
-          {/* <SnippetIndexContainer /> */}
+          {/* <UserShowIndex /> */}
         </div>
 
       </div>

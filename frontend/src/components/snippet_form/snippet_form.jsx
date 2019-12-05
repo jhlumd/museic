@@ -20,19 +20,11 @@ export default class SnippetForm extends Component {
         e.preventDefault();
 
         if (this.props.tempNotes) {
-            // this.setState({
-            //     notes: this.props.tempNotes
-            // });
-            // debugger; // WTF??
-            // this.props.saveSnippet(this.state);
-
-            // above wasn't updating local state immediately, so for now to save:
             this.props.saveSnippet(Object.assign(
                 this.state,
                 { notes: this.props.tempNotes }
             ));
 
-            // this.props.resetSnippet(); // WTF how to call a function from component on same level
             this.props.clearTempNotes();
             this.setState({
                 title: "",
@@ -72,7 +64,7 @@ export default class SnippetForm extends Component {
     
     render() {
         return (
-            <div className="snippet-form-container">
+            <div className="snippet-form-container slide-in-bottom">
                 <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"

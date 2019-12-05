@@ -16,7 +16,13 @@
       position: absolute;
       background-color: $black;
       height: 5px;
-      
+    }
+
+    .progress-bar {
+      position: absolute;
+      height: 260px;
+      width: 3px;
+      background-color: red;
     }
   }
 

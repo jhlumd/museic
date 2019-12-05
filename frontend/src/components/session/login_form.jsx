@@ -69,7 +69,9 @@ class LoginForm extends React.Component {
     );
   }
 
-  demoLogin() {
+  demoLogin(e) {
+    e.preventDefault();
+    
     const demoUser = {
       email: 'demo@demo.com',
       password: 'demo123'
@@ -100,12 +102,15 @@ class LoginForm extends React.Component {
             />
             <br />
             <button type="submit">Sign In</button>
+
+            <button id='demo-login-button' onClick={this.demoLogin.bind(this)}>Demo Login</button>
+            
           <ul className='session-errors'>
             {this.renderErrors()}
           </ul>
           </div>
         </form>
-          <button id='demo-login-button' onClick={this.demoLogin.bind(this)}>Demo Login</button>
+          
       </div>
     );
   }
