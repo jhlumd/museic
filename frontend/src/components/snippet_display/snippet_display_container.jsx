@@ -7,7 +7,6 @@ import {
   startPlayback,
   pausePlayback
 } from "../../actions/snippet_is_playing_actions";
-import { clearTempNotes } from "../../actions/temp_notes_actions";
 
 const mstp = (state, ownProps) => ({
   currentUser: state.session.user,
@@ -22,8 +21,7 @@ const mdtp = dispatch => ({
   unlike: (userId, snippetId) => dispatch(unlike(userId, snippetId)),
   fetchSnippet: snippetId => dispatch(fetchSnippet(snippetId)),
   startPlayback: () => dispatch(startPlayback()),
-  pausePlayback: () => dispatch(pausePlayback()),
-  clearTempNotes: () => dispatch(clearTempNotes())
+  pausePlayback: () => dispatch(pausePlayback())
 });
 
 export default withRouter(connect(mstp, mdtp)(SnippetDisplay));

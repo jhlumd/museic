@@ -77,7 +77,6 @@ export default class SnippetDisplay extends Component {
             isPlaying={this.props.isPlaying}
             startPlayback={this.props.startPlayback}
             pausePlayback={this.props.pausePlayback}
-            clearTempNotes={this.props.clearTempNotes}
           />
           <InteractionBarLikeShare
             liked={this.props.liked}

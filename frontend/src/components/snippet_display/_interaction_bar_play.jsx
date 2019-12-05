@@ -9,7 +9,6 @@ export default class InteractionBarPlay extends Component {
 
     this.handlePlay = this.handlePlay.bind(this);
     this.handlePause = this.handlePause.bind(this);
-    this.resetSnippet = this.resetSnippet.bind(this);
   }
 
   handlePause() {
@@ -37,10 +36,6 @@ export default class InteractionBarPlay extends Component {
     Tone.Transport.start();
   }
 
-  resetSnippet() {
-    this.props.clearTempNotes();
-  }
-  
   render() {
     const playButton = <PlayBtnIcon handlePlay={this.handlePlay} />;
     const pauseButton = <PauseIcon handlePause={this.handlePause} />;
@@ -48,12 +43,6 @@ export default class InteractionBarPlay extends Component {
     return (
       <div className="interaction-bar-left">
         {this.props.isPlaying ? pauseButton : playButton}
-        <button
-          className="keyboard-reset-button hvr-grow"
-          onClick={this.resetSnippet}
-        >
-          Reset
-        </button>
       </div>
     );
   }
