@@ -11,16 +11,6 @@ router.get('/', (req,res) => {
     .then(comments => res.json(comments))
     .catch(err => res.status(404).json({ msg: 'get all comments failed'}))
 });
-
-// //get all, remove route 
-// router.get('/', (req, res) => {
-//   Comment.find()
-//     .sort({ date: -1 })
-//     .then(comments => res.json(comments))
-//     .catch(err => res.status(400).json({ error: err }));
-//   }
-// );
-
 // //this is for testing purposes, using users instead of snippets to check comments
 // router.get('user/:user_id', (req, res) => {
 //   Comment.find({ user : req.params.user_id }) //returns array?
@@ -90,7 +80,6 @@ router.patch('/update',
 router.delete('/:comment_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    // console.log(req.params.comment_id)
     const commentId = req.params.comment_id;
     Comment.deleteOne({_id: commentId})
       .then( () => {
