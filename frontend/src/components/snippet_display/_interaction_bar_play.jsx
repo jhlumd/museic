@@ -11,10 +11,16 @@ export default class InteractionBarPlay extends Component {
     this.handleStop = this.handleStop.bind(this);
   }
 
-  handleStop() {
-    this.props.pausePlayback();
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.isPlaying) {
+      this.handleStop();
+    }
+  }
 
-    // set global state currentTimestamp to 0
+  handleStop() {
+    if (this.props.isPlaying) {
+      this.props.pausePlayback();
+    }
 
     Tone.Transport.stop();
     Tone.Transport.cancel();
@@ -36,8 +42,6 @@ export default class InteractionBarPlay extends Component {
     });
 
     Tone.Transport.start();
-
-    // start global state currentTimestamp
 
     setTimeout(this.handleStop, 8000);
   }

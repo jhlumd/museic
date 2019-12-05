@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import SnippetBar from './_snippet_bar';
-import InteractionBarPlay from "./_interaction_bar_play";
-import InteractionBarLikeShare from "./_interaction_bar_like_share";
 
 export default class SnippetIndexDisplay extends Component {
   constructor(props) {
