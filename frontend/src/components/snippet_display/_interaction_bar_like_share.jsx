@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HeartIcon from '../resources/heart_icon';
+import FilledHeartIcon from '../resources/filled_heart_icon';
 import ShareIcon from '../resources/share_icon';
 
 export default class InteractionBarLikeShare extends Component {
@@ -32,7 +33,7 @@ export default class InteractionBarLikeShare extends Component {
     if (this.props.liked) {
       return (
         <div className="interaction-bar-right">
-          <button onClick={() => this.handelUnlike(this.props.likeId)}><ShareIcon/></button>
+          <button onClick={() => this.handelUnlike(this.props.likeId)}><FilledHeartIcon/></button>
           {/* FIXME add sharing function */}
           <ShareIcon />
         </div>

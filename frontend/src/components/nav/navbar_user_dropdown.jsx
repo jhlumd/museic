@@ -5,6 +5,16 @@ export default function NavbarUserDropdown(props) {
     return (
       <div className='nav-dropdown-container'>
 
+        <button onClick={() => {
+          document.querySelector('.nav-base-tab-container').click();
+        }}>
+          <div>New Snip</div>
+        </button>
+
+        <button onClick={() => props.history.push('/snippets/index')}>
+          <div>All Snips</div>
+        </button>
+
         <button onClick={() => props.history.push('/profile')}>
           <div>Profile</div>
         </button>

@@ -10,11 +10,28 @@
   width: 26px;
 }
 
+.filled-heart-icon {
+  width: 26px;
+}
+
 .user-icon {
   height: 26px;
 }
 
 body {
   position: relative;
+  min-height: 100vh;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 50px;
+    width: 100vw;
+  }
+
+  span.countdown {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+  }
 }
 

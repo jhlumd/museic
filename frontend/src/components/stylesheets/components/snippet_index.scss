@@ -11,6 +11,10 @@
     column-gap: 1em;
     row-gap: 1em;
 
+    width: 80%;
+    margin: auto;
+    padding: 3em 0;
+
     $grid-dimension: 300px;
 
     @media screen and (min-width: 800px) {
@@ -22,11 +26,6 @@
     @media screen and (min-width: 1400px) {
       grid-template-columns: $grid-dimension $grid-dimension $grid-dimension $grid-dimension;
     }
-
-    width: 80%;
-    margin: auto;
-    padding: 3em 0;
-    
 
     .snippet-index-card-container, .snippet-show-card-container {
       @include flex-centered;

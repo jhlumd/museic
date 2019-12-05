@@ -1,9 +1,11 @@
 .user-show-container {
+  position: relative;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
-  padding: 5em;
+  padding: (50px + 45px) 50px 50px 50px;
   margin: auto;
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: row;
@@ -11,10 +13,15 @@
   align-items: center;
 
   .left-container {
+    position: fixed;
+    top: 45px;
+    left: 0;
+    
     box-sizing: border-box;
     width: 30%;
     height: 100%;
     border-right: 1px solid $shadow;
+    // @include box-shadow;
 
     display: flex;
     flex-direction: column;
@@ -27,6 +34,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+
 
       div.user-icon-container {
         width: 100px;
@@ -49,9 +58,15 @@
   }
 
   .right-container {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    
     box-sizing: border-box;
     width: 70%;
-    height: 100%;
+    min-width: 600px;
+    // height: 100%;
+    height: 4000px;
     padding: 3em;
     // background-color: $light-shadow;
 
@@ -60,5 +75,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    #user-show-index-container {
+      box-sizing: border-box;
+      display: grid;
+      column-gap: 1em;
+      row-gap: 1em;
+
+      $grid-dimension: 300px;
+      grid-template-columns: $grid-dimension $grid-dimension;
+
+      @import './snippet_index_card.scss';
+      @import './snippet_show_card.scss';
+    }
   }
+}
+#footer-container {
+  position: absolute;
+  bottom: 0%;
 }

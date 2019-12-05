@@ -7,44 +7,77 @@ export default class SplashCreateDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentNotes: this.props.tempNotes
+      currentNotes: this.props.tempNotes,
+      snipTime: 0
     };
   }
 
+  componentDidMount() {
+    // This section will listen for when the user first clicks on a note
+    const piano = document.getElementById('piano');
+    piano.addEventListener('click', () => this._setUpdate(), { once: true });
+
+    const reset = document.querySelector('.keyboard-reset-button');
+    reset.addEventListener('click', () => {
+      this.state.snipTime = 0;
+    });
+  }
+  
   componentWillReceiveProps(nextProps) {
     this.setState({
       currentNotes: nextProps.tempNotes
     });
   }
 
-  render() {
+  _setUpdate() {
+    let timer = window.setInterval(() => {
+      this.setState({ snipTime: this.state.snipTime + 1 });
+
+      // stop the timer after 8 seconds
+      if (this.state.snipTime > 8) {
+        clearInterval(timer);
+        this.setState({ snipTime: 8 });
+      }
+    }, 1000)
+  }
+
+  writeMessage() {
     const message0 =
       "Try clicking the tiles, or pressing some keys to make some music.";
     const message1 = "There you go! Keep going.";
     const message2 = "Hey that sounds pretty nice.";
     const message3 = "Nice! Let's save that masterpiece.";
-    let snipTime = 0;
-    if (this.state.currentNotes && this.state.currentNotes.length > 0) {
-      snipTime = this.state.currentNotes[this.state.currentNotes.length - 1]
-        .startTime;
-    }
+    const message4 = "You ran out of time. Click 'reset' to go again."
+
+    let snipTime = this.state.snipTime;
 
     let message;
     if (snipTime === 0) {
       message = message0;
-    } else if (snipTime > 0 && snipTime < 14) {
+    } else if (snipTime < 3) {
       message = message1;
-    } else if (snipTime >= 14 && snipTime < 23) {
+    } else if (snipTime < 7) {
       message = message2;
-    } else if (snipTime > 23) {
+    } else if (this.state.currentNotes && snipTime > 7 && this.state.currentNotes.length > 10) {
       message = message3;
+    } else {
+      message = message4;
     }
+    return message;
+  }
+
+  render() {
 
     return (
       <div id='splash-create-demo-container'>
 
         <div className='splash-create-demo-message'>
-          <p>{message}</p>
+          <h2>You have 
+            <span className='countdown'>
+              {8 - this.state.snipTime}
+            </span>
+             seconds to record</h2>
+          <p>{ this.writeMessage() }</p>
         </div>
 
         <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />

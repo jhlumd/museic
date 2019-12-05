@@ -72,7 +72,7 @@ export default class SnippetForm extends Component {
     
     render() {
         return (
-            <div className="snippet-form-container">
+            <div className="snippet-form-container slide-in-bottom">
                 <form onSubmit={this.handleSubmit}>
                     <input
                         type="text"
