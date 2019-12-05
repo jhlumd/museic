@@ -7,25 +7,15 @@ export default class SnippetDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: this.props.snippet,
-      timestamp: 0
+      notes: this.props.snippet
     };
+
+    this.startProgBar = this.startProgBar.bind(this);
+    this.resetProgBar = this.resetProgBar.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ notes: nextProps.snippet });
-
-    if (nextProps.isPlaying) {
-      let timer = window.setInterval(() => {
-        this.setState({ timestamp: this.state.timestamp + 1 });
-
-        // stop the timer after 8 seconds
-        if (this.state.timestamp > 499) {
-          clearInterval(timer);
-          this.setState({ timestamp: 500 });
-        }
-      }, 16);
-    }
   }
 
   interpolateColor(color1, color2, factor) {
@@ -51,6 +41,14 @@ export default class SnippetDisplay extends Component {
     }
 
     return interpolatedColorArray;
+  }
+
+  startProgBar() {
+    document.querySelector(".progress-bar-2").classList.add("move");
+  }
+
+  resetProgBar() {
+    document.querySelector(".progress-bar-2").classList.remove("move");
   }
 
   render() {
@@ -79,14 +77,10 @@ export default class SnippetDisplay extends Component {
       />
     ));
 
-    const progressBarStyle = {
-      left: (this.state.timestamp / 500) * 100 + "%"
-    };
-
     return (
       <div className="snippet-display-container">
         <div className="bar-display-container">
-          <div className="progress-bar" style={progressBarStyle}></div>
+          <div className="progress-bar-2"></div>
           {noteBars}
         </div>
 
@@ -96,6 +90,8 @@ export default class SnippetDisplay extends Component {
             isPlaying={this.props.isPlaying}
             startPlayback={this.props.startPlayback}
             pausePlayback={this.props.pausePlayback}
+            startProgBar={this.startProgBar}
+            resetProgBar={this.resetProgBar}
           />
           <InteractionBarLikeShare
             liked={this.props.liked}

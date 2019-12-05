@@ -26,8 +26,12 @@ export default class InteractionBarPlay extends Component {
     if (this.stopTimeoutId) {
       clearTimeout(this.stopTimeoutId);
     }
+    
     Tone.Transport.stop();
     Tone.Transport.cancel();
+
+    // progress bar css animation
+    this.props.resetProgBar();
   }
 
   handlePlay() {
@@ -48,6 +52,9 @@ export default class InteractionBarPlay extends Component {
     Tone.Transport.start();
 
     this.stopTimeoutId = setTimeout(this.handleStop, 8000);
+
+    // progress bar css animation
+    this.props.startProgBar();
   }
 
   render() {

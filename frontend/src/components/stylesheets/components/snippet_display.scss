@@ -18,11 +18,32 @@
       height: 5px;
     }
 
-    .progress-bar {
+    .progress-bar-1 {
       position: absolute;
       height: 260px;
-      width: 3px;
+      width: 0;
+      left: 0;
       background-color: red;
+    }
+
+    .progress-bar-1.move {
+      left: 600px;
+      width: 3px;
+      transition: left 8s linear, width 0.1s linear;
+    }
+
+    .progress-bar-2 {
+      position: absolute;
+      height: 260px;
+      width: 0;
+      left: 0;
+      background-color: red;
+    }
+
+    .progress-bar-2.move {
+      left: 600px;
+      width: 3px;
+      transition: left 8s linear, width 0.1s linear;
     }
   }
 
