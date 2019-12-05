@@ -5,26 +5,28 @@ import SnippetShowCard from './snippet_show_card';
 
 class SnippetIndex extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       selectedId: ''
-    }
-    this.handleClick = this.handleClick.bind(this)
+    };
+    this.handleClick = this.handleClick.bind(this);
     // this.mapLikesToSnippets = this.mapLikesToSnippets.bind(this)
   }
 
   componentDidMount(){
-    this.props.fetchSnippets()
-    this.props.fetchLikes()
-    this.props.fetchComments()
-    this.props.fetchUsers()
+    this.props.fetchSnippets();
+    this.props.fetchLikes();
+    this.props.fetchComments();
+    this.props.fetchUsers();
   }
 //git test
   handleClick(e){
-    const snippetId = e.currentTarget.getAttribute("snippetid")
-    this.setState({ selectedId: snippetId})
+    const snippetId = e.currentTarget.getAttribute("snippetid");
+    this.setState({ selectedId: snippetId});
+    this.props.pausePlayback();
   }
-  render(){
+
+  render() {
     const { 
       comments,
       likes,
@@ -36,7 +38,7 @@ class SnippetIndex extends React.Component {
       editComment,
       newLike,
       unlike,
-    } = this.props
+    } = this.props;
 
     return(
       <div id='snippet-index-container'>
@@ -81,7 +83,7 @@ class SnippetIndex extends React.Component {
           }
         </div>
       </div>
-    )
+    );
   }
 }
 
