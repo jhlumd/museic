@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Tone from "tone";
 import PlayBtnIcon from '../resources/play_btn_icon';
-import PauseIcon from '../resources/pause_icon';
+import StopIcon from '../resources/stop_icon';
 
 export default class InteractionBarPlay extends Component {
   constructor(props) {
@@ -38,11 +38,11 @@ export default class InteractionBarPlay extends Component {
 
   render() {
     const playButton = <PlayBtnIcon handlePlay={this.handlePlay} />;
-    const pauseButton = <PauseIcon handlePause={this.handlePause} />;
+    const stopButton = <StopIcon handlePause={this.handlePause} />;
 
     return (
       <div className="interaction-bar-left">
-        {this.props.isPlaying ? pauseButton : playButton}
+        {this.props.isPlaying ? stopButton : playButton}
       </div>
     );
   }
