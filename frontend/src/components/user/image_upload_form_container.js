@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    upload: (imageFormData) => dispatch(upload(imageFormData)),
+    upload: (imageFormData) => upload(imageFormData),
     save: (imageData) => dispatch(save(imageData)),
   }
 }

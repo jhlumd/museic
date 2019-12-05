@@ -7,10 +7,10 @@ export const receiveImages = images => ({
   images
 })
 
-export const upload = (imageFormData) => dispatch => {
+export const upload = (imageFormData) => (
   uploadImage(imageFormData)
-    .then(res => dispatch(receiveImages(res)))
-}
+    .then(res => {return res.data})
+)
 
 export const save = imageData => dispatch => {
   saveImage(imageData)
