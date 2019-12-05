@@ -15,8 +15,8 @@ export default function ( state = {}, action ){
       //sets likes to snippetId keys, pointing to an array of userIds
       action.likes.forEach( like => {
         
-        if( likes[likes.snippet] ){
-          likes[likes.snippet].push({user: like.user, id: like._id})
+        if( likes[like.snippet] ){
+          likes[like.snippet].push({user: like.user, id: like._id})
         } else {
           likes[like.snippet] = [{user: like.user, id: like._id}]
         }
