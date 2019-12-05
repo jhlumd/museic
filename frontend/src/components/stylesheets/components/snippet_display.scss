@@ -18,7 +18,7 @@
       height: 5px;
     }
 
-    .progress-bar-1 {
+    .progress-bar {
       position: absolute;
       height: 260px;
       width: 0;
@@ -26,22 +26,7 @@
       background-color: #38C2D8;
     }
 
-    .progress-bar-1.move {
-      left: 600px;
-      width: 2px;
-      background-color: #F93E55;
-      transition: left 8s linear, background-color 8s linear, width 200ms linear;
-    }
-
-    .progress-bar-2 {
-      position: absolute;
-      height: 260px;
-      width: 0;
-      left: 0;
-      background-color: #38C2D8;
-    }
-
-    .progress-bar-2.move {
+    .progress-bar.move {
       left: 600px;
       width: 2px;
       background-color: #F93E55;

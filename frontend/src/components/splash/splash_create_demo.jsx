@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DownChevronIcon from '../resources/down_chevron_icon';  
-import SnippetDisplayPlayOnlyContainer from '../snippet_display/snippet_display_play_only_container';
+import SnippetDisplayPlayOnlyDemoContainer from '../snippet_display/snippet_display_play_only_demo_container';
 import KeyboardContainer from '../keyboard/keyboard_container';
 
 export default class SplashCreateDemo extends Component {
@@ -86,7 +86,7 @@ export default class SplashCreateDemo extends Component {
           <p>{ this.writeMessage() }</p>
         </div>
 
-        <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />
+        <SnippetDisplayPlayOnlyDemoContainer snippet={this.state.currentNotes} />
         <KeyboardContainer />
         
         <div className='next'>

@@ -72,7 +72,7 @@ export default class SnippetDisplayPlayOnly extends Component {
     return (
       <div className="snippet-display-container">
         <div className="bar-display-container">
-          <div className="progress-bar-1"></div>
+          <div className="progress-bar progress-bar-1"></div>
           {noteBars}
         </div>
 
