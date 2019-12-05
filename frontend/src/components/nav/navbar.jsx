@@ -25,7 +25,7 @@ class Navbar extends React.Component {
     // This section will listen for when to move the menu up and down
     const x = document.querySelector('.x-icon-container');
     const tab = document.querySelector('.nav-base-tab-container');
-    const panel = document.getElementById('nav-container')
+    const panel = document.getElementById('nav-container');
     tab.addEventListener('click', () => {
       panel.classList.toggle('down');
       panel.classList.toggle('up');
@@ -37,11 +37,13 @@ class Navbar extends React.Component {
 
     // This section will listen for when the user first clicks on a note
     const piano = document.getElementById('piano');
-    piano.addEventListener('click', () => this._setUpdate(), { once: true });
+    piano.addEventListener('click', () => this._setUpdate(), { once: true});
 
     const reset = document.querySelector('.keyboard-reset-button');
     reset.addEventListener('click', () => {
-      this.state.snipTime = 0;
+      this.setState({ snipTime: 0 });
+      const piano = document.getElementById('piano');
+      piano.addEventListener('click', () => this._setUpdate(), { once: true });
     });
 
   }
@@ -50,6 +52,10 @@ class Navbar extends React.Component {
     this.setState({
       currentNotes: nextProps.tempNotes
     });
+    // reset snip time if user reset keyboard
+    if (!this.state.currentNotes) {
+      this.setState({ snipTime: 0 })
+    }
   }
 
   logoutUser(e) {
