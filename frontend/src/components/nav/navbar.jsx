@@ -62,7 +62,7 @@ class Navbar extends React.Component {
       this.setState({ snipTime: this.state.snipTime + 1 });
 
       // stop the timer after 8 seconds
-      if (this.state.snipTime > 8) {
+      if (this.state.snipTime > 7) {
         clearInterval(timer);
         this.setState({ snipTime: 8 });
       }
@@ -97,7 +97,12 @@ class Navbar extends React.Component {
   keyboardOrForm() {
     let snipTime = this.state.snipTime;
     
-    if (snipTime > 7) {
+    if (snipTime >= 8) {
+      // if (document.getElementById('piano')) {
+      //   document.getElementById('piano').childNodes.forEach(pianoKey => {
+      //     pianoKey.click();
+      //   });
+      // }
       return <SnippetFormContainer snippet={this.state.currentNotes} /> 
     } else {
       return <KeyboardContainer />

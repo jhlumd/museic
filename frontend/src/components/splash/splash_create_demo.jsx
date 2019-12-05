@@ -37,9 +37,6 @@ export default class SplashCreateDemo extends Component {
       if (this.state.snipTime > 8) {
         clearInterval(timer);
         this.setState({ snipTime: 8 });
-        document.getElementById('piano').childNodes.forEach(pianoKey => {
-          pianoKey.onmouseup();
-        });
       }
     }, 1000)
   }
