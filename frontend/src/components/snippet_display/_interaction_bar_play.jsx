@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import Tone from "tone";
 import PlayBtnIcon from '../resources/play_btn_icon';
-import PauseIcon from '../resources/pause_icon';
+import StopIcon from '../resources/stop_icon';
 
 export default class InteractionBarPlay extends Component {
   constructor(props) {
     super(props);
 
     this.handlePlay = this.handlePlay.bind(this);
-    this.handlePause = this.handlePause.bind(this);
+    this.handleStop = this.handleStop.bind(this);
   }
 
-  handlePause() {
-    this.props.pausePlayback();
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.isPlaying) {
+      this.handleStop();
+    }
+  }
+
+  handleStop() {
+    if (this.props.isPlaying) {
+      this.props.pausePlayback();
+    }
 
     Tone.Transport.stop();
     Tone.Transport.cancel();
@@ -34,15 +42,17 @@ export default class InteractionBarPlay extends Component {
     });
 
     Tone.Transport.start();
+
+    setTimeout(this.handleStop, 8000);
   }
 
   render() {
     const playButton = <PlayBtnIcon handlePlay={this.handlePlay} />;
-    const pauseButton = <PauseIcon handlePause={this.handlePause} />;
+    const stopButton = <StopIcon handleStop={this.handleStop} />;
 
     return (
       <div className="interaction-bar-left">
-        {this.props.isPlaying ? pauseButton : playButton}
+        {this.props.isPlaying ? stopButton : playButton}
       </div>
     );
   }

@@ -7,12 +7,25 @@ export default class SnippetDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: this.props.snippet
+      notes: this.props.snippet,
+      timestamp: 0
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ notes: nextProps.snippet });
+
+    if (nextProps.isPlaying) {
+      let timer = window.setInterval(() => {
+        this.setState({ timestamp: this.state.timestamp + 1 });
+
+        // stop the timer after 8 seconds
+        if (this.state.timestamp > 499) {
+          clearInterval(timer);
+          this.setState({ timestamp: 500 });
+        }
+      }, 16);
+    }
   }
 
   interpolateColor(color1, color2, factor) {
@@ -66,10 +79,16 @@ export default class SnippetDisplay extends Component {
       />
     ));
 
+    const progressBarStyle = {
+      left: (this.state.timestamp / 500) * 100 + "%"
+    };
 
     return (
       <div className="snippet-display-container">
-        <div className="bar-display-container">{noteBars}</div>
+        <div className="bar-display-container">
+          <div className="progress-bar" style={progressBarStyle}></div>
+          {noteBars}
+        </div>
 
         <div className="interaction-bar-container">
           <InteractionBarPlay

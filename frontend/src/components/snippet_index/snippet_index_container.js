@@ -4,6 +4,8 @@ import { fetchSnippetComments, fetchComments, composeComment, removeComment, edi
 import { addLike, unlike, getSnippetLikes, fetchLikes} from '../../actions/like_actions';
 import { fetchUsers } from '../../actions/user_actions';
 
+import { pausePlayback } from "../../actions/snippet_is_playing_actions";
+
 import SnippetIndex from './snippet_index';
 
 const mapStateToProps = (state) => {
@@ -16,11 +18,11 @@ const mapStateToProps = (state) => {
     allSnippets: state.entities.snippets,
 
     userId: state.session.user.id,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
-  return{
+  return {
     //get all likes
     fetchLikes: () => dispatch(fetchLikes()),
     fetchComments: () => dispatch(fetchComments()),
@@ -33,7 +35,9 @@ const mapDispatchToProps = dispatch => {
     editComment: commentId => dispatch(editComment(commentId)),
     addLike: likeData => dispatch(addLike(likeData)),
     unLike: likeId => dispatch(unlike(likeId)),
-  }
-}
+
+    pausePlayback: () => dispatch(pausePlayback())
+  };
+};
 
 export default connect( mapStateToProps, mapDispatchToProps)(SnippetIndex)

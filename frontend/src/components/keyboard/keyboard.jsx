@@ -12,6 +12,7 @@ export default class Keyboard extends Component {
     this.timeLimit = 32;
 
     // this.resetSnippet = this.resetSnippet.bind(this);
+    this._handleRelease = this._handleRelease.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,6 +28,12 @@ export default class Keyboard extends Component {
     synth.toMaster();
 
     const piano = document.getElementById("piano");
+
+    piano.addEventListener(
+      "mousedown",
+      () => setTimeout(() => this._handleRelease(synth), 8000),
+      { once: true }
+    );
 
     piano.addEventListener("mousedown", e => {
       const key = e.target;
@@ -51,57 +58,14 @@ export default class Keyboard extends Component {
     });
 
     piano.addEventListener("mouseup", e => {
-      
-      synth.triggerRelease();
-
-      const lastNoteUp = this.notesArray[this.notesArray.length - 1];
-      const dur = Math.ceil(Tone.now() * 4 - lastNoteUp.unadjStartTime);
-      lastNoteUp.duration = (dur === -0 ? 1 : dur);
-
-      if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
-        const newSnippet = this.notesArray.slice();
-
-        this.setState({ notes: newSnippet });
-
-        this.props.saveTempNotes(newSnippet);
-
-      } else if (lastNoteUp.startTime < this.timeLimit) {
-        lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
-        
-        const newSnippet = this.notesArray.slice();
-
-        this.setState({ notes: newSnippet });
-
-        this.props.saveTempNotes(this.state.notes);
-      }
+      this._handleRelease(synth);
     });
 
-    piano.addEventListener("mouseout", e => {
-      if (this.notesArray.length > 0) { 
-        synth.triggerRelease();
-
-        const lastNoteUp = this.notesArray[this.notesArray.length - 1];
-        const dur = Math.ceil(Tone.now() * 4 - lastNoteUp.unadjStartTime);
-        lastNoteUp.duration = (dur === -0 ? 1 : dur);
-
-        if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
-          const newSnippet = this.notesArray.slice();
-
-          this.setState({ notes: newSnippet });
-
-          this.props.saveTempNotes(newSnippet);
-
-        } else if (lastNoteUp.startTime < this.timeLimit) {
-          lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
-          
-          const newSnippet = this.notesArray.slice();
-
-          this.setState({ notes: newSnippet });
-
-          this.props.saveTempNotes(this.state.notes);
-        }
-      }
-    });
+    // piano.addEventListener("mouseout", e => {
+    //   if (this.notesArray.length > 0) { 
+    //     this._handleRelease(synth);
+    //   }
+    // });
 
     // add event listeners to keys for animation
     const keys = piano.children;
@@ -119,6 +83,30 @@ export default class Keyboard extends Component {
       key.addEventListener("mouseout", () => {
         key.classList.remove('pressed');
       });
+    }
+  }
+
+  _handleRelease(synth) {
+    synth.triggerRelease();
+
+    const lastNoteUp = this.notesArray[this.notesArray.length - 1];
+    const dur = Math.ceil(Tone.now() * 4 - lastNoteUp.unadjStartTime);
+    lastNoteUp.duration = dur === -0 ? 1 : dur;
+
+    if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
+      const newSnippet = this.notesArray.slice();
+
+      this.setState({ notes: newSnippet });
+
+      this.props.saveTempNotes(newSnippet);
+    } else if (lastNoteUp.startTime < this.timeLimit) {
+      lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
+
+      const newSnippet = this.notesArray.slice();
+
+      this.setState({ notes: newSnippet });
+
+      this.props.saveTempNotes(this.state.notes);
     }
   }
 
