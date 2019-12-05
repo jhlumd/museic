@@ -11,7 +11,14 @@ export default class Keyboard extends Component {
     this.notesArray = [];
     this.timeLimit = 32;
 
-    this.resetSnippet = this.resetSnippet.bind(this);
+    // this.resetSnippet = this.resetSnippet.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.tempNotes === null) {
+      this.notesArray = [];
+      this.setState({ notes: null });
+    }
   }
 
   componentDidMount() {
@@ -22,7 +29,7 @@ export default class Keyboard extends Component {
     const piano = document.getElementById("piano");
 
     piano.addEventListener("mousedown", e => {
-      const key = e.target;      
+      const key = e.target;
 
       synth.triggerAttack(key.dataset.note);
 
@@ -55,7 +62,6 @@ export default class Keyboard extends Component {
         const newSnippet = this.notesArray.slice();
 
         this.setState({ notes: newSnippet });
-        // this.props.updateSnippet(newSnippet);
 
         this.props.saveTempNotes(newSnippet);
 
@@ -65,7 +71,6 @@ export default class Keyboard extends Component {
         const newSnippet = this.notesArray.slice();
 
         this.setState({ notes: newSnippet });
-        // this.props.updateSnippet(newSnippet);
 
         this.props.saveTempNotes(this.state.notes);
       }
@@ -90,15 +95,15 @@ export default class Keyboard extends Component {
     }
   }
 
-  resetSnippet() {
-    this.props.clearTempNotes();
-    this.notesArray = [];
-    this.setState({ notes: null });
-  }
+  // resetSnippet() {
+  //   this.props.clearTempNotes();
+  //   this.notesArray = [];
+  //   this.setState({ notes: null });
+  // }
   
   render() {
     return (
-      <div className='keyboard-container'>
+      <div className="keyboard-container">
         <ul id="piano">
           <li data-note="C5" className="key"></li>
           <li data-note="C#5" className="black-key b-1"></li>
@@ -112,10 +117,14 @@ export default class Keyboard extends Component {
           <li data-note="A5" className="key"></li>
           <li data-note="A#5" className="black-key b-6"></li>
           <li data-note="B5" className="key"></li>
-          <li data-note="C6" className="key">
-          </li>
+          <li data-note="C6" className="key"></li>
         </ul>
-        <button className="keyboard-reset-button hvr-grow" onClick={this.resetSnippet}>Reset</button>
+        {/* <button
+          className="keyboard-reset-button hvr-grow"
+          onClick={this.resetSnippet}
+        >
+          Reset
+        </button> */}
       </div>
     );
   }

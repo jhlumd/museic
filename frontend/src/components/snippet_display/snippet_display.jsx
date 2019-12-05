@@ -13,7 +13,6 @@ export default class SnippetDisplay extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ notes: nextProps.snippet });
-    // this.forceUpdate(); // WTF
   }
 
   interpolateColor(color1, color2, factor) {
@@ -78,6 +77,7 @@ export default class SnippetDisplay extends Component {
             isPlaying={this.props.isPlaying}
             startPlayback={this.props.startPlayback}
             pausePlayback={this.props.pausePlayback}
+            clearTempNotes={this.props.clearTempNotes}
           />
           <InteractionBarLikeShare
             liked={this.props.liked}

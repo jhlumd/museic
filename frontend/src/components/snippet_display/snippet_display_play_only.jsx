@@ -67,6 +67,7 @@ export default class SnippetDisplayPlayOnly extends Component {
             isPlaying={this.props.isPlaying}
             startPlayback={this.props.startPlayback}
             pausePlayback={this.props.pausePlayback}
+            clearTempNotes={this.props.clearTempNotes}
           />
         </div>
       </div>

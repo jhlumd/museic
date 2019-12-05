@@ -1,9 +1,13 @@
 import { connect } from 'react-redux';
-import { saveTempNotes, clearTempNotes } from "../../actions/temp_notes_actions";
+import {
+  saveTempNotes,
+  clearTempNotes
+} from "../../actions/temp_notes_actions";
 import Keyboard from './keyboard';
 
 const mapStateToProps = state => ({
-  currentUser: state.session.user
+  currentUser: state.session.user,
+  tempNotes: state.ui.tempNotes
 });
 
 const mapDispatchToProps = dispatch => ({
