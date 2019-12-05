@@ -45,7 +45,7 @@ class Navbar extends React.Component {
       const piano = document.getElementById('piano');
       piano.addEventListener('click', () => this._setUpdate(), { once: true });
     });
-
+    
   }
 
   componentWillReceiveProps(nextProps) {
@@ -92,7 +92,7 @@ class Navbar extends React.Component {
       message = message1;
     } else if (snipTime < 7) {
       message = message2;
-    } else if (this.state.currentNotes && snipTime > 7 && this.state.currentNotes.length > 10) {
+    } else if (this.state.currentNotes && snipTime > 7 && this.state.currentNotes.length > 5) {
       message = message3;
     } else {
       message = message4;
@@ -104,11 +104,6 @@ class Navbar extends React.Component {
     let snipTime = this.state.snipTime;
     
     if (snipTime >= 8) {
-      // if (document.getElementById('piano')) {
-      //   document.getElementById('piano').childNodes.forEach(pianoKey => {
-      //     pianoKey.click();
-      //   });
-      // }
       return <SnippetFormContainer snippet={this.state.currentNotes} /> 
     } else {
       return <KeyboardContainer />
@@ -116,6 +111,14 @@ class Navbar extends React.Component {
   }
 
   render() {
+    if (document.querySelector('.make-new-snippet-btn')) {
+      const submit = document.querySelector('.make-new-snippet-btn');
+      submit.addEventListener('click', () => {
+        this.setState({ snipTime: 0 });
+        const piano = document.getElementById('piano');
+        piano.addEventListener('click', () => this._setUpdate(), { once: true });
+      });
+    }
     
     return (
       <div id='nav-container' className='up'>

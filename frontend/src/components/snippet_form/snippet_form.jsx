@@ -89,7 +89,7 @@ export default class SnippetForm extends Component {
                         /> Private
                     </label>
 
-                    <button className='hvr-grow' type="submit">Save Snippet</button>
+                    <button className='make-new-snippet-btn hvr-grow' type="submit">Save Snippet</button>
                 </form>
             </div>
         );

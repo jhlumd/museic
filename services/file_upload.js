@@ -5,7 +5,7 @@ const multerS3 = require('multer-s3');
 const accessKeys = require('../config/aws_keys_dev')
 
 aws.config.update({
-  secretAccessKey: accessKeys.AWS_SECRET_ACCESS_KEY, //remember to remove!
+  secretAccessKey: accessKeys.AWS_SECRET_ACCESS_KEY,
   accessKeyId: accessKeys.AWS_ACCESS_KEY_ID,
   region: accessKeys.REGION
 });
