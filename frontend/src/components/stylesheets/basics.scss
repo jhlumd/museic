@@ -38,5 +38,14 @@ body {
     margin-left: 0.25em;
     margin-right: 0.25em;
   }
+
+  button.keyboard-reset-button {
+    font-size: 1em;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
