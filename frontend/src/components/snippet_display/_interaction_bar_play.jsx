@@ -35,7 +35,7 @@ export default class InteractionBarPlay extends Component {
 
     Tone.Transport.start();
   }
-  
+
   render() {
     const playButton = <PlayBtnIcon handlePlay={this.handlePlay} />;
     const pauseButton = <PauseIcon handlePause={this.handlePause} />;

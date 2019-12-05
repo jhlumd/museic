@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SnippetBar from './_snippet_bar';
 import InteractionBarPlay from "./_interaction_bar_play";
+import InteractionBarReset from "./_interaction_bar_reset";
 
 export default class SnippetDisplayPlayOnly extends Component {
   constructor(props) {
@@ -67,6 +68,9 @@ export default class SnippetDisplayPlayOnly extends Component {
             isPlaying={this.props.isPlaying}
             startPlayback={this.props.startPlayback}
             pausePlayback={this.props.pausePlayback}
+          />
+          <InteractionBarReset
+            clearTempNotes={this.props.clearTempNotes}
           />
         </div>
       </div>
