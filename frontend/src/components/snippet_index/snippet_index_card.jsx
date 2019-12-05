@@ -5,25 +5,30 @@ import SnippetIndexDisplayContainer from '../snippet_display/snippet_index_displ
 
 class SnippetIndexCard extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       ownerName: ''
-    }
+    };
   }
 
   
-  render(){
-    const {users, snippets, snippetId, snippet: {title, description, notes, date }} = this.props
+  render() {
+    const {
+      users,
+      snippets,
+      snippetId,
+      snippet: { title, description, notes, date }
+    } = this.props;
     // debugger
-    let numLikes = 0
-    let numComments = 0
-    let username = 'Author'
+    let numLikes = 0;
+    let numComments = 0;
+    let username = 'Author';
 
     if( this.props.likes ){
-      numLikes = this.props.likes.length
+      numLikes = this.props.likes.length;
     }
     if( this.props.comments ) {
-      numComments = this.props.comments.length
+      numComments = this.props.comments.length;
     }
 
     return (

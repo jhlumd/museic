@@ -7,6 +7,8 @@ export default class InteractionBarPlay extends Component {
   constructor(props) {
     super(props);
 
+    this.stopTimeoutId = null;
+
     this.handlePlay = this.handlePlay.bind(this);
     this.handleStop = this.handleStop.bind(this);
   }
@@ -21,9 +23,15 @@ export default class InteractionBarPlay extends Component {
     if (this.props.isPlaying) {
       this.props.pausePlayback();
     }
-
+    if (this.stopTimeoutId) {
+      clearTimeout(this.stopTimeoutId);
+    }
+    
     Tone.Transport.stop();
     Tone.Transport.cancel();
+
+    // progress bar css animation
+    this.props.resetProgBar();
   }
 
   handlePlay() {
@@ -43,7 +51,10 @@ export default class InteractionBarPlay extends Component {
 
     Tone.Transport.start();
 
-    setTimeout(this.handleStop, 8000);
+    this.stopTimeoutId = setTimeout(this.handleStop, 8000);
+
+    // progress bar css animation
+    this.props.startProgBar();
   }
 
   render() {

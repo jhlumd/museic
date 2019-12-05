@@ -15,6 +15,8 @@ export default class SplashSnippetDemo extends Component {
   }
 
   changeTab(tabNum) {
+    this.props.pausePlayback();
+
     this.setState({ activeSnippet: demoSnippets[tabNum] }, () => {
       this.setState({ activeTab: tabNum }, () => {
         document.querySelector("li.active").classList.remove("active");

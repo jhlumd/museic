@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import SnippetBar from './_snippet_bar';
 import InteractionBarPlay from "./_interaction_bar_play";
-import InteractionBarLikeShare from "./_interaction_bar_like_share";
+import InteractionBarReset from "./_interaction_bar_reset";
 
-export default class SnippetDisplay extends Component {
+export default class SnippetDisplayPlayOnlyDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,11 +44,11 @@ export default class SnippetDisplay extends Component {
   }
 
   startProgBar() {
-    document.querySelector(".progress-bar-2").classList.add("move");
+    document.querySelector(".progress-bar-3").classList.add("move");
   }
 
   resetProgBar() {
-    document.querySelector(".progress-bar-2").classList.remove("move");
+    document.querySelector(".progress-bar-3").classList.remove("move");
   }
 
   render() {
@@ -56,31 +56,23 @@ export default class SnippetDisplay extends Component {
       .concat(this.interpolateColors('rgb(238, 98, 180)', 'rgb(253, 47, 47)', 8));
     color_arr = color_arr.concat(color_arr.slice().reverse());
     
-    let { snippetId } = this.props;
-    let likeId = '';
-    if (this.props.likes[snippetId]) {
-      this.props.likes[snippetId].forEach( like => {
-        if( like.user === this.props.userId){
-          likeId = like.id;
-        }
-      });
-      // likeId = this.props.likes[snippetId][this.props.userId].id
+    let noteBars;
+    if (this.state.notes) {
+      noteBars = this.state.notes.map((note, i) => (
+        <SnippetBar
+          key={i}
+          pitch={note.pitch}
+          startTime={note.startTime}
+          duration={note.duration}
+          backgroundColor={color_arr[i % 32]}
+        />
+      ));
     }
-
-    const noteBars = this.state.notes.map((note, i) => (
-      <SnippetBar
-        key={i}
-        pitch={note.pitch}
-        startTime={note.startTime}
-        duration={note.duration}
-        backgroundColor={color_arr[i % 32]}
-      />
-    ));
 
     return (
       <div className="snippet-display-container">
         <div className="bar-display-container">
-          <div className="progress-bar progress-bar-2"></div>
+          <div className="progress-bar progress-bar-3"></div>
           {noteBars}
         </div>
 
@@ -93,14 +85,7 @@ export default class SnippetDisplay extends Component {
             startProgBar={this.startProgBar}
             resetProgBar={this.resetProgBar}
           />
-          <InteractionBarLikeShare
-            liked={this.props.liked}
-            likeId={likeId}
-            snippetId={snippetId}
-            userId={this.props.userId}
-            addLike={this.props.addLike}
-            unlike={this.props.unlike}
-          />
+          <InteractionBarReset clearTempNotes={this.props.clearTempNotes} />
         </div>
       </div>
     );

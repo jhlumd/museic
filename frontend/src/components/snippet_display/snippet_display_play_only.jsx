@@ -9,6 +9,9 @@ export default class SnippetDisplayPlayOnly extends Component {
     this.state = {
       notes: this.props.snippet
     };
+
+    this.startProgBar = this.startProgBar.bind(this);
+    this.resetProgBar = this.resetProgBar.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,6 +43,14 @@ export default class SnippetDisplayPlayOnly extends Component {
     return interpolatedColorArray;
   }
 
+  startProgBar() {
+    document.querySelector(".progress-bar-1").classList.add("move");
+  }
+
+  resetProgBar() {
+    document.querySelector(".progress-bar-1").classList.remove("move");
+  }
+
   render() {
     let color_arr = this.interpolateColors('rgb(56, 194, 216)', 'rgb(238, 98, 180)', 8)
       .concat(this.interpolateColors('rgb(238, 98, 180)', 'rgb(253, 47, 47)', 8));
@@ -60,7 +71,10 @@ export default class SnippetDisplayPlayOnly extends Component {
 
     return (
       <div className="snippet-display-container">
-        <div className="bar-display-container">{noteBars}</div>
+        <div className="bar-display-container">
+          <div className="progress-bar progress-bar-1"></div>
+          {noteBars}
+        </div>
 
         <div className="interaction-bar-container">
           <InteractionBarPlay
@@ -68,10 +82,10 @@ export default class SnippetDisplayPlayOnly extends Component {
             isPlaying={this.props.isPlaying}
             startPlayback={this.props.startPlayback}
             pausePlayback={this.props.pausePlayback}
+            startProgBar={this.startProgBar}
+            resetProgBar={this.resetProgBar}
           />
-          <InteractionBarReset
-            clearTempNotes={this.props.clearTempNotes}
-          />
+          <InteractionBarReset clearTempNotes={this.props.clearTempNotes} />
         </div>
       </div>
     );
