@@ -22,7 +22,7 @@ class SnippetIndex extends React.Component {
 //git test
   handleClick(e){
     const snippetId = e.currentTarget.getAttribute("snippetid");
-    this.setState({ selectedId: snippetId});
+    this.setState({ selectedId: snippetId });
     this.props.pausePlayback();
   }
 
