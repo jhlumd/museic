@@ -16,7 +16,7 @@ class ImageUploadForm extends React.Component {
   handleSubmit() {
     console.log('sent')
     this.props.upload(this.state.imageFormData) //uploads the file to mongoDB
-      // .then(() => ) save to database with userId and imageUrl 
+      .then((res) => console.log(res)) //save to database with userId and imageUrl 
   }
 
   handleFile(e) {
