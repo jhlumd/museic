@@ -9,7 +9,6 @@ import SignupFormContainer from './session/signup_form_container';
 import NavbarContainer from './nav/navbar_container';
 import NavbarNoSessionContainer from './nav/navbar_no_session_container';
 import SplashContainer from './splash/splash_container';
-import ProfileContainer from './user/profile.container';
 import Footer from './footer/footer';
 import testContainer from './user/image_upload_form_container'
 
