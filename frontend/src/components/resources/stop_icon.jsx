@@ -3,7 +3,7 @@ import React from 'react';
 export default function StopIcon(props) {
   return (
     <svg
-      onClick={props.handlePause}
+      onClick={props.handleStop}
       className="icon stop-icon hvr-grow"
       viewBox="0 0 259 258"
       xmlns="http://www.w3.org/2000/svg"
