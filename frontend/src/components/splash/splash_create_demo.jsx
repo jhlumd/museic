@@ -19,7 +19,9 @@ export default class SplashCreateDemo extends Component {
 
     const reset = document.querySelector('.keyboard-reset-button');
     reset.addEventListener('click', () => {
-      this.state.snipTime = 0;
+      this.setState({ snipTime: 0 });
+      const piano = document.getElementById('piano');
+      piano.addEventListener('click', () => this._setUpdate(), { once: true });
     });
   }
   
@@ -27,6 +29,10 @@ export default class SplashCreateDemo extends Component {
     this.setState({
       currentNotes: nextProps.tempNotes
     });
+    // reset snip time if user reset keyboard
+    if (!this.state.currentNotes) {
+      this.setState({ snipTime: 0 })
+    }
   }
 
   _setUpdate() {
@@ -34,7 +40,7 @@ export default class SplashCreateDemo extends Component {
       this.setState({ snipTime: this.state.snipTime + 1 });
 
       // stop the timer after 8 seconds
-      if (this.state.snipTime > 8) {
+      if (this.state.snipTime > 7) {
         clearInterval(timer);
         this.setState({ snipTime: 8 });
       }

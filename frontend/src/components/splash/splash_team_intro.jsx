@@ -1,5 +1,6 @@
 import React from 'react'
 import GithubIcon from '../resources/github_icon';
+import LinkedinIcon from '../resources/linkedin_icon';
 
 export default function SplashTeamInfo() {
   return (
@@ -8,13 +9,28 @@ export default function SplashTeamInfo() {
         
         <div className='team-member-photo'>
           <img src={require('../resources/Phil_Zheng.jpg')} alt="Photo of Phil Zheng"/>
-          <GithubIcon />
+          <div className='icon-links'>
+            <a 
+              href=''
+              className='github'
+              target="_blank"
+            >
+              <GithubIcon />
+            </a>
+            <a 
+              href=''
+              className='linkedin'
+              target="_blank"
+            >
+              <LinkedinIcon />
+            </a>
+          </div>
         </div>  
 
         <div className='team-member-description'>
           <h3>Phil Zheng</h3>
           <p>
-            Hey. I made the entire backend.
+            Hey. I constructed the backend.
           </p>
         </div>
 
@@ -31,7 +47,22 @@ export default function SplashTeamInfo() {
 
         <div className='team-member-photo'>
           <img src={require('../resources/Jiani_Fan.jpg')} alt="Photo of Jiani Fan" />
-          <GithubIcon />
+          <div className='icon-links'>
+            <a
+              href='https://github.com/blueberry-hamster'
+              className='github'
+              target="_blank"
+            >
+              <GithubIcon />
+            </a>
+            <a
+              href='https://www.linkedin.com/in/jiani-fan-38b11096/'
+              className='linkedin'
+              target="_blank"
+            >
+              <LinkedinIcon />
+            </a>
+          </div>
         </div>  
 
       </div>
@@ -40,7 +71,22 @@ export default function SplashTeamInfo() {
         
         <div className='team-member-photo'>
           <img src={require('../resources/Jaehyuk_Lee.jpg')} alt="Photo of Jaehyuk Lee" />
-          <GithubIcon />
+          <div className='icon-links'>
+            <a
+              href=''
+              className='github'
+              target="_blank"
+            >
+              <GithubIcon />
+            </a>
+            <a
+              href=''
+              className='linkedin'
+              target="_blank"
+            >
+              <LinkedinIcon />
+            </a>
+          </div>
         </div>  
 
         <div className='team-member-description'>

@@ -6,11 +6,11 @@ export default function SplashSignup(props) {
     <div id='splash-signup-container'>
       <h2>Join the <span>MUSEIC</span> community.</h2>
       <p className='subtitle'>Create an account to save your new snippet.</p>
-      <button className='signup-btn hvr-grow' onClick={() => props.history.push('/signup')}>
+      <button className='signup-btn hvr-grow' onClick={() => props.openModal('signup')}>
         <div>SIGN UP</div> 
       </button>
       <p className='signin-link'>
-        Already have an account? <span onClick={() => props.history.push('/signin')}>Sign In.</span>  
+        Already have an account? <span onClick={() => props.openModal('login')}>Sign In.</span>  
       </p>
 
       <div className='next'>
