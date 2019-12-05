@@ -38,7 +38,7 @@ export default class Splash extends Component {
           <SplashCreateDemo snapTo={this.snapTo} tempNotes={this.props.tempNotes}/>
         </section>
         <section>
-          <SplashSignup snapTo={this.snapTo} history={this.props.history} />
+          <SplashSignup snapTo={this.snapTo} history={this.props.history} openModal={this.props.openModal} />
         </section>
         <section>
           <SplashTeamIntro snapTo={this.snapTo} />
