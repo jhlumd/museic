@@ -5,12 +5,12 @@ import { fetchUsers } from '../../actions/user_actions';
 
 import UserShow from './user_show';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ entities: { snippets, likes, user } }, { match }) => {
   return {
-    snippets: Object.values(state.entities.snippets),
-    snippetLikes: Object.values(state.entities.likes),
-    user: state.session.user,
-    userId: state.session.user.id,
+    snippets: Object.values(snippets),
+    snippetLikes: Object.values(likes),
+    user,
+    userId: match.id,
   }
 }
 

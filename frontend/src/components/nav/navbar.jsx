@@ -165,6 +165,7 @@ class Navbar extends React.Component {
                     loggedIn={this.props.loggedIn} 
                     logoutUser={this.logoutUser}
                     openModal={this.props.openModal} 
+                    currentUserId={this.props.currentUserId}
                   />
                 </div>
 
