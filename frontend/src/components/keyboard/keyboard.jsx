@@ -88,25 +88,27 @@ export default class Keyboard extends Component {
 
   _handleRelease(synth) {
     synth.triggerRelease();
-
     const lastNoteUp = this.notesArray[this.notesArray.length - 1];
-    const dur = Math.ceil(Tone.now() * 4 - lastNoteUp.unadjStartTime);
-    lastNoteUp.duration = dur === -0 ? 1 : dur;
 
-    if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
-      const newSnippet = this.notesArray.slice();
+    if (lastNoteUp) {
+      const dur = Math.ceil(Tone.now() * 4 - lastNoteUp.unadjStartTime);
+      lastNoteUp.duration = dur === -0 ? 1 : dur;
 
-      this.setState({ notes: newSnippet });
+      if (lastNoteUp.startTime + lastNoteUp.duration <= this.timeLimit) {
+        const newSnippet = this.notesArray.slice();
 
-      this.props.saveTempNotes(newSnippet);
-    } else if (lastNoteUp.startTime < this.timeLimit) {
-      lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
+        this.setState({ notes: newSnippet });
 
-      const newSnippet = this.notesArray.slice();
+        this.props.saveTempNotes(newSnippet);
+      } else if (lastNoteUp.startTime < this.timeLimit) {
+        lastNoteUp.duration = this.timeLimit - lastNoteUp.startTime;
 
-      this.setState({ notes: newSnippet });
+        const newSnippet = this.notesArray.slice();
 
-      this.props.saveTempNotes(this.state.notes);
+        this.setState({ notes: newSnippet });
+
+        this.props.saveTempNotes(this.state.notes);
+      }
     }
   }
 
