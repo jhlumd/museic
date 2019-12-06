@@ -37,13 +37,15 @@ class Navbar extends React.Component {
 
     // This section will listen for when the user first clicks on a note
     const piano = document.getElementById('piano');
-    piano.addEventListener('click', () => this._setUpdate(), { once: true});
+    piano.addEventListener('mousedown', () => this._setUpdate(), { once: true});
 
     const reset = document.querySelector('.keyboard-reset-button');
     reset.addEventListener('click', () => {
       this.setState({ snipTime: 0 });
       const piano = document.getElementById('piano');
-      piano.addEventListener('click', () => this._setUpdate(), { once: true });
+      piano.addEventListener("mousedown", () => this._setUpdate(), {
+        once: true
+      });
     });
     
   }
@@ -104,7 +106,7 @@ class Navbar extends React.Component {
     let snipTime = this.state.snipTime;
     
     if (snipTime >= 8) {
-      return <SnippetFormContainer snippet={this.state.currentNotes} /> 
+      return <SnippetFormContainer /> 
     } else {
       return <KeyboardContainer />
     }
