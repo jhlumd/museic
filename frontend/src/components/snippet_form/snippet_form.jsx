@@ -20,6 +20,7 @@ export default class SnippetForm extends Component {
         e.preventDefault();
 
         if (this.props.tempNotes) {
+            debugger;
             this.props.saveSnippet(Object.assign(
                 this.state,
                 { notes: this.props.tempNotes }
@@ -64,34 +65,37 @@ export default class SnippetForm extends Component {
     
     render() {
         return (
-            <div className="snippet-form-container slide-in-bottom">
-                <form onSubmit={this.handleSubmit}>
-                    <input
-                        type="text"
-                        value={this.state.title}
-                        onChange={this.handleChange("title")}
-                        placeholder="Name your snippet."
-                    />
-                    
-                    <input
-                        type="textarea"
-                        value={this.state.description}
-                        onChange={this.handleChange("description")}
-                        placeholder="Describe your snippet."
-                    />
+          <div className="snippet-form-container slide-in-bottom">
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="text"
+                value={this.state.title}
+                onChange={this.handleChange("title")}
+                placeholder="Name your snippet."
+              />
 
-                    <label> 
-                        <input
-                            name="private"
-                            type="checkbox"
-                            checked={!this.state.public}
-                            onChange={this.handlePrivacy}
-                        /> Private
-                    </label>
+              <input
+                type="textarea"
+                value={this.state.description}
+                onChange={this.handleChange("description")}
+                placeholder="Describe your snippet."
+              />
 
-                    <button className='make-new-snippet-btn hvr-grow' type="submit">Save Snippet</button>
-                </form>
-            </div>
+              <label>
+                <input
+                  name="private"
+                  type="checkbox"
+                  checked={!this.state.public}
+                  onChange={this.handlePrivacy}
+                />{" "}
+                Private
+              </label>
+
+              <button className="make-new-snippet-btn hvr-grow" type="submit">
+                Save Snippet
+              </button>
+            </form>
+          </div>
         );
     }
 }

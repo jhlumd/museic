@@ -56,7 +56,7 @@ class Navbar extends React.Component {
     });
     // reset snip time if user reset keyboard
     if (!this.state.currentNotes) {
-      this.setState({ snipTime: 0 })
+      this.setState({ snipTime: 0 });
     }
   }
 
@@ -74,7 +74,7 @@ class Navbar extends React.Component {
         clearInterval(timer);
         this.setState({ snipTime: 8 });
       }
-    }, 1000)
+    }, 1000);
   }
 
   writeMessage() {
