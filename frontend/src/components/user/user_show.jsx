@@ -16,14 +16,14 @@ export default class UserShow extends Component {
   }
 
   render(){
-    const {snippets, snippetLikes, user, userId} = this.props
+    const {snippets, snippetLikes, currentUser, userId} = this.props
 
     let snippetCount = 0
     const mySnippets = []
     snippets.forEach(snippet => {
       if(snippet.user === userId){
         snippetCount += 1
-        mySnippets.push(snippet) //snippets created by logged-in user
+        mySnippets.push(snippet) //snippets created by the user, that this profile refers to
       }
     })
     console.log(mySnippets)
@@ -52,7 +52,7 @@ export default class UserShow extends Component {
               {/* IMG HERE */}
             </div>
             <div className='user-text-info-container'>
-              <h2>{user.username}</h2>
+              <h2>{currentUser.username}</h2>
               <div className='snippets user-stat'>
                 <p className='num'>{snippetCount}</p>
                 <p className='label'>Snippets</p>
