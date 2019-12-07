@@ -45,7 +45,8 @@ export default class Keyboard extends Component {
         unadjStartTime: Math.ceil(Tone.now() * 4)
       });
       const lastNoteDown = this.notesArray[this.notesArray.length - 1];
-      lastNoteDown.startTime = lastNoteDown.unadjStartTime - this.notesArray[0].unadjStartTime;
+      lastNoteDown.startTime =
+        lastNoteDown.unadjStartTime - this.notesArray[0].unadjStartTime;
 
       if (lastNoteDown.startTime < this.timeLimit) {
         const newSnippet = this.notesArray.slice();
