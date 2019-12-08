@@ -49,13 +49,15 @@ class CommentListItem extends React.Component {
 
   render(){
     const { edit, ownerId, userId } = this.state
-    const { ownername } = this.props
+    const { ownername, imageUrl } = this.props
     if (edit && ownerId === userId) {
       // debugger
       return (
         <li className="comment-list-item-container owned">
           <div className="comment-list-item" >
-            <div className='user-icon'></div>
+            <div className='user-icon'>
+              <img className='comment-profile-image' src={imageUrl} />
+            </div>
             <CommentEditForm
               handleClick={this.handleClick}
               editComment={this.editComment}
@@ -72,7 +74,9 @@ class CommentListItem extends React.Component {
       return(
         <li className="comment-list-item-container unowned">
           <div className="comment-list-item" onClick={this.handleClick}>
-            <div className='user-icon'></div>
+            <div className='user-icon'>
+              <img className='comment-profile-image' src={imageUrl} />
+            </div>
             <p className='owner-name'>{`${ ownername } `}</p> 
             <p>{this.props.body}</p>
           </div>

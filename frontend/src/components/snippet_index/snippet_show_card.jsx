@@ -21,6 +21,7 @@ class IndexShowCard extends React.Component {
       // comments,
       // likes,
       users,
+      images,
       newLike,
       unlike,
       userId
@@ -68,20 +69,29 @@ class IndexShowCard extends React.Component {
           <ul className="comment-display">
           {
             comments.map(comment => {
-              return (
-              <CommentListItem
-                key={comment._id}
-                commentId={comment._id}
-                snippetId={comment.snippet}
-                body={comment.body}
-                ownerId={comment.user}
-                ownername={users[comment.user]}
-                userId={userId}
+              let imageUrl = ''
+              if (!images[comment.user]){ //if user does not have an image
+                //set to default image
+                imageUrl = "https://museic-dev.s3-us-west-1.amazonaws.com/default-profile-picture1.jpg"
+              } else {
+                imageUrl = images[comment.user].aws_url
+              }
 
-                deleteComment={this.props.removeComment}
-                editComment={this.props.editComment}
-                composeComment={this.props.composeComment}
-              />
+              return (
+                <CommentListItem
+                  key={comment._id}
+                  commentId={comment._id}
+                  snippetId={comment.snippet}
+                  body={comment.body}
+                  ownerId={comment.user}
+                  ownername={users[comment.user]}
+                  userId={userId}
+                  imageUrl={imageUrl}
+
+                  deleteComment={this.props.removeComment}
+                  editComment={this.props.editComment}
+                  composeComment={this.props.composeComment}
+                />
               )
             })
           }

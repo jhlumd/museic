@@ -18,6 +18,7 @@ class SnippetIndex extends React.Component {
     this.props.fetchLikes();
     this.props.fetchComments();
     this.props.fetchUsers();
+    this.props.fetchImages();
   }
 //git test
   handleClick(e){
@@ -31,6 +32,7 @@ class SnippetIndex extends React.Component {
       comments,
       likes,
       users,
+      images,
       allSnippets,
       userId, 
       composeComment, 
@@ -59,6 +61,7 @@ class SnippetIndex extends React.Component {
                 likes={likes[snippetId]} // array of objs containing userId and likeId for this snippet
                 users={users} //array of usernames according to userId
                 userId={userId}
+                images={images}
                 //comment actions
                 composeComment={composeComment}
                 removeComment={removeComment}

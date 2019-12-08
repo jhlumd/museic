@@ -10,7 +10,6 @@ import NavbarContainer from './nav/navbar_container';
 import NavbarNoSessionContainer from './nav/navbar_no_session_container';
 import SplashContainer from './splash/splash_container';
 import Footer from './footer/footer';
-import testContainer from './user/image_upload_form_container'
 
 import SnippetFormContainer from './snippet_form/snippet_form_container';
 import SnippetIndexContainer from './snippet_index/snippet_index_container';
@@ -38,7 +37,6 @@ const App = () => (
       <ProtectedRoute exact path="/snippets/index" component={SnippetIndexContainer} />
       <ProtectedRoute exact path="/snippets/new" component={SnippetFormContainer} />
       {/* <Route exact path="/snippets/:id" component={ SnippetShowContainer} /> */}
-      <Route path='/testupload' component={testContainer} />
       {/* test upload */}
       <AuthRoute exact path="/" component={SplashContainer} />
     </Switch>
