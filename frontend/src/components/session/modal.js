@@ -1,15 +1,12 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
-import LoginFormContainer from './login_form_container'
-import SignupFormContainer from './signup_form_container'
+import LoginFormContainer from './login_form_container';
+import SignupFormContainer from './signup_form_container';
+import UploadFormContainer from '../image_upload/upload_form_container';
 
 
 class Modal extends React.Component {
-  // constructor(props){
-  //   super(props)
-  //   // this.slowExit = this.slowExit.bind(this)
-  // }
 
   render (){
     if(!this.props.modal) {
@@ -22,7 +19,7 @@ class Modal extends React.Component {
           </div>
         </div> 
       );
-    } else {
+    } else if (this.props.modal === 'signup') {
       return (
         <div className="modal-background" onClick={this.props.closeModal}>
           <div className="modal-signup" onClick={e => e.stopPropagation()}>
@@ -30,14 +27,17 @@ class Modal extends React.Component {
           </div>
       </div> 
       );
+    } else if (this.props.modal === 'upload') {
+      return (
+        <div className="modal-background" onClick={this.props.closeModal}>
+          <div className="modal-upload" onClick={e => e.stopPropagation()}>
+            <UploadFormContainer />
+          </div>
+        </div> 
+      )
     }
   }
   
-  // slowExit () {
-  //   $('.modal-background').fadeOut(256, 
-  //     () => this.props.closeModal() 
-  //   )
-  // }
 }
 
 const mapStateToProps = state => {

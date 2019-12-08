@@ -13,15 +13,22 @@ export default class UserShow extends Component {
     this.props.fetchSnippets()
     this.props.fetchLikes()
     this.props.fetchUsers()
+    this.props.fetchImages()
+  }
+
+  handleClick(){
+    this.props.openModal('upload')
   }
 
   render(){
-    const {snippets, snippetLikes, currentUser, userId} = this.props
+    const {snippets, snippetLikes, images, currentUser, userId} = this.props
 
     let snippetCount = 0
-    const mySnippets = []
+    const mySnippets = [] //snippets belonging to the profile's user
     snippets.forEach(snippet => {
+      console.log(this.props)
       if(snippet.user === userId){
+        // debugger
         snippetCount += 1
         mySnippets.push(snippet) //snippets created by the user, that this profile refers to
       }
@@ -49,7 +56,10 @@ export default class UserShow extends Component {
 
           <div className='user-info-container'>
             <div className='user-icon-container'>
-              {/* IMG HERE */}
+              <div id="image-upload-hover" onClick={this.handleClick.bind(this)}>
+
+                {/* IMG HERE */}
+              </div>
             </div>
             <div className='user-text-info-container'>
               <h2>{currentUser.username}</h2>
