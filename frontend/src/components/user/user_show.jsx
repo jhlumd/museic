@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import UserShowIndex from './user_show_index';
 
 export default class UserShow extends Component {
-  // constructor(props) {
-  //   super(props);
-    // this.state = {
-    //   empty: '',
-    // }
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      empty: '',
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
 
   componentDidMount(){
     this.props.fetchSnippets()
@@ -26,14 +27,12 @@ export default class UserShow extends Component {
     let snippetCount = 0
     const mySnippets = [] //snippets belonging to the profile's user
     snippets.forEach(snippet => {
-      console.log(this.props)
       if(snippet.user === userId){
         // debugger
         snippetCount += 1
         mySnippets.push(snippet) //snippets created by the user, that this profile refers to
       }
     })
-    console.log(mySnippets)
     let likeCount = 0
     snippetLikes.forEach(snippetId => {
       const likes = Object.values(snippetId)
@@ -43,6 +42,11 @@ export default class UserShow extends Component {
         }
       })
     })
+
+    let profileImageUrlAddress = ''
+    if (this.props.images[userId]) {
+      profileImageUrlAddress = this.props.images[userId].aws_url
+    }
 
     let fanCount = 0
     // add fan count logic
@@ -55,10 +59,9 @@ export default class UserShow extends Component {
         <div className='left-container'>
 
           <div className='user-info-container'>
-            <div className='user-icon-container'>
-              <div id="image-upload-hover" onClick={this.handleClick.bind(this)}>
-
-                {/* IMG HERE */}
+            <div className='user-icon-container' onClick={ () => this.handleClick()}>
+              <div id="image-upload-hover">
+                <img id="profile-picture" src={profileImageUrlAddress}/>
               </div>
             </div>
             <div className='user-text-info-container'>

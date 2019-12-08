@@ -3,7 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
-import UploadFormContainer from '../image_upload/upload_form_container';
+import UploadFormContainer from '../image_upload/image_upload_form_container';
 
 
 class Modal extends React.Component {

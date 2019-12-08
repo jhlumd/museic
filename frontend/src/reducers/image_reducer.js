@@ -6,21 +6,12 @@ export default function (state = {}, action) {
   // const newState = Object.assign( {}, state);
 
   switch (action.type) {
-    case RECEIVE_IMAGES: //saves under userId keys
-       
-      // const images = {}
-      //sets images to ___, pointing to an array of ___
-      // action.comments.forEach(comment => {
-
-      //   if (comments[comment.snippet]) {
-      //     comments[comment.snippet].push(comment)
-      //   } else {
-      //     comments[comment.snippet] = [comment]
-      //   }
-
-      // });
-      return action.images
-
+    case RECEIVE_IMAGES: //saves images under userId keys
+      const images = {}
+      action.images.forEach( image => {
+        images[image.user] = image
+      })
+      return images
     default:
       return state;
   }
