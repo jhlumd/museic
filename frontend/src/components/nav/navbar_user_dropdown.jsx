@@ -15,7 +15,7 @@ export default function NavbarUserDropdown(props) {
           <div>All Snips</div>
         </button>
 
-        <button onClick={() => props.history.push('/profile')}>
+        <button onClick={() => props.history.push(`/profile/${props.currentUserId}`)}>
           <div>Profile</div>
         </button>
 

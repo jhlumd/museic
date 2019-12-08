@@ -39,7 +39,7 @@ router.post('/upload',
 
 //save to database if successfully uploaded
 router.post('/save',
-  // passport.authenticate('jwt', { session: false }),
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const newPhoto = new Photo({
       user: req.body.userId,

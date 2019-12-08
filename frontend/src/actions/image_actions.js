@@ -14,5 +14,10 @@ export const upload = (imageFormData) => (
 
 export const save = imageData => dispatch => {
   saveImage(imageData)
-    .then(res => dispatch(receiveImages(res)))
+    .then(res => dispatch(receiveImages(res.data)))
+}
+
+export const fetchImages = () => dispatch => {
+  getImages()
+    .then(res => dispatch(receiveImages(res.data)))
 }

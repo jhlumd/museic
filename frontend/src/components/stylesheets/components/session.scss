@@ -1,4 +1,4 @@
-#login-form-container, #signup-form-container {
+#login-form-container, #signup-form-container, #upload-form-container {
   height: 100vh;
   width: 100vw;
   background-color:$milk;
@@ -42,8 +42,4 @@
 .session-errors {
   color: red;
   margin-top: 5px;
-}
-
-.demo-login-button {
-  //add styles for demo login button here
 }

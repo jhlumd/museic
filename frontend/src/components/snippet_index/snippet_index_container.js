@@ -3,6 +3,7 @@ import { fetchSnippets, fetchSnippetOwner } from '../../actions/snippet_actions'
 import { fetchSnippetComments, fetchComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
 import { addLike, unlike, getSnippetLikes, fetchLikes} from '../../actions/like_actions';
 import { fetchUsers } from '../../actions/user_actions';
+import { fetchImages } from '../../actions/image_actions';
 
 import { pausePlayback } from "../../actions/snippet_is_playing_actions";
 
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
     comments: state.entities.comments,
     likes: state.entities.likes,
     users: state.entities.users,
+    images: state.entities.images,
     allSnippets: state.entities.snippets,
 
     userId: state.session.user.id,
@@ -28,6 +30,7 @@ const mapDispatchToProps = dispatch => {
     fetchComments: () => dispatch(fetchComments()),
     fetchSnippets: () => dispatch(fetchSnippets()),
     fetchUsers: () => dispatch(fetchUsers()),
+    fetchImages: () => dispatch(fetchImages()),
 
     //CRUD operations for Comments and Likes
     composeComment: comment => dispatch(composeComment(comment)),
