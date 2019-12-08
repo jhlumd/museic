@@ -25,6 +25,7 @@ class ImageUploadForm extends React.Component {
         }
         this.props.save(newProfileImage)
       }) //save to database with userId and imageUrl 
+      .then(() => this.props.closeModal())
   }
 
   handleFile(e) {
@@ -39,7 +40,7 @@ class ImageUploadForm extends React.Component {
   render() {
     return (
       <div id='upload-form-container' onClick = {(e) => {
-      e.stopPropagation();}}>
+        this.props.closeModal();}}>
         
         <form onSubmit={() => this.handleSubmit()} onClick={(e) => e.stopPropagation()}>
           <label className="fileContainer">
