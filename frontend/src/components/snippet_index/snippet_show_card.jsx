@@ -72,7 +72,7 @@ class IndexShowCard extends React.Component {
               let imageUrl = ''
               if (!images[comment.user]){ //if user does not have an image
                 //set to default image
-                imageUrl = "https://museic-dev.s3-us-west-1.amazonaws.com/default-profile-picture1.jpg"
+                imageUrl = "https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg"
               } else {
                 imageUrl = images[comment.user].aws_url
               }
@@ -87,6 +87,7 @@ class IndexShowCard extends React.Component {
                   ownername={users[comment.user]}
                   userId={userId}
                   imageUrl={imageUrl}
+                  history={this.props.history}
 
                   deleteComment={this.props.removeComment}
                   editComment={this.props.editComment}

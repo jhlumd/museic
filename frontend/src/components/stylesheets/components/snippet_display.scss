@@ -23,13 +23,13 @@
       height: 260px;
       width: 0;
       left: 0;
-      background-color: #38C2D8;
+      background-color: $blue;
     }
 
     .progress-bar.move {
       left: 600px;
       width: 2px;
-      background-color: #F93E55;
+      background-color: $red;
       transition: left 8s linear, background-color 8s linear, width 200ms linear;
     }
   }

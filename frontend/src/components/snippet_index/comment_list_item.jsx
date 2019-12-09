@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentEditForm from './comment_edit_form';
+import { withRouter } from 'react-router-dom';
 // import XIcon from '../resources/x_icon';
 
 class CommentListItem extends React.Component {
@@ -51,11 +52,10 @@ class CommentListItem extends React.Component {
     const { edit, ownerId, userId } = this.state
     const { ownername, imageUrl } = this.props
     if (edit && ownerId === userId) {
-      // debugger
       return (
         <li className="comment-list-item-container owned">
           <div className="comment-list-item" >
-            <div className='user-icon'>
+            <div className='user-icon hvr-grow' onClick={() => this.props.history.push(`/profile/${ ownerId }`)}>
               <img className='comment-profile-image' src={imageUrl} />
             </div>
             <CommentEditForm
@@ -74,11 +74,15 @@ class CommentListItem extends React.Component {
       return(
         <li className="comment-list-item-container unowned">
           <div className="comment-list-item" onClick={this.handleClick}>
-            <div className='user-icon'>
-              <img className='comment-profile-image' src={imageUrl} />
+
+            <div className='user-info'>
+              <div className='user-icon hvr-grow' onClick={() => this.props.history.push(`/profile/${ownerId}`)}>
+                <img className='comment-profile-image' src={imageUrl} />
+              </div>
+              <p className='owner-name'>{`${ ownername } `}</p> 
             </div>
-            <p className='owner-name'>{`${ ownername } `}</p> 
-            <p>{this.props.body}</p>
+
+            <p className='comment-body'>{this.props.body}</p>
           </div>
         </li>
       )
@@ -86,4 +90,4 @@ class CommentListItem extends React.Component {
   }
 }
 
-export default CommentListItem
+export default withRouter(CommentListItem)

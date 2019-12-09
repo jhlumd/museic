@@ -1,5 +1,6 @@
 import React from 'react';
 import HeartIcon from '../resources/heart_icon';
+import { withRouter } from 'react-router-dom';
 
 class SnippetInfo extends React.Component {
 
@@ -44,20 +45,23 @@ class SnippetInfo extends React.Component {
         <div className='snippet-show-info-top'>
 
           <div className='snippet-show-info-left'>
-            <h4>{title}</h4>
-            <p>{users[user]}</p>
+            <h4>{ title }</h4>
+            <p 
+              className='username'
+              onClick={() => this.props.history.push(`/profile/${user}`)}
+            >{ users[user] }</p>
           </div>
 
           <div className='snippet-show-info-right'>
-            <p>{date.slice(0, 10)}</p>
-            <p>{likes.length} Likes</p>
-            <p>{comments.length} Comments</p>
+            <p>{ date.slice(0, 10) }</p>
+            <p>{ likes.length } Likes</p>
+            <p>{ comments.length } Comments</p>
           </div>
         </div>
 
 
         <div className='description'>
-          <p>{description}</p>
+          <p>{ description }</p>
         </div>
         
         {/* <button onClick={this.handleLike.bind(this)}>Like</button>
@@ -67,4 +71,4 @@ class SnippetInfo extends React.Component {
   }
 }
 
-export default SnippetInfo
+export default withRouter(SnippetInfo)
