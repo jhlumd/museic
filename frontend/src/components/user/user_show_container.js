@@ -31,8 +31,10 @@ const mapDispatchToProps = dispatch => {
     fetchImages: () => dispatch(fetchImages()),
     fetchFans: () => dispatch(fetchFans()),
     fetchComments: () => dispatch(fetchComments()),
+    //fan actions
     addFan: () => dispatch(addFan()),
     removeFan: () => dispatch(removeFan()),
+    //image actions
     upload: (imageFormData) => upload(imageFormData),
     save: (imageData) => dispatch(save(imageData)),
     openModal: (modal) => dispatch(openModal(modal)),

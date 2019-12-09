@@ -26,7 +26,7 @@ export default class UserShow extends Component {
 
   render(){
     const {snippets, snippetLikes, users, comments, fans, images, likes, currentUser, userId,
-      composeComment, removeComment, editComment, newLike, unlike} = this.props
+      composeComment, removeComment, editComment, newLike, unlike, addFan, removeFan} = this.props
 
     let snippetCount = 0
     const mySnippets = [] //snippets belonging to the profile's user
