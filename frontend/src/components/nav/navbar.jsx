@@ -113,14 +113,17 @@ class Navbar extends React.Component {
   }
 
   render() {
-    if (document.querySelector('.make-new-snippet-btn')) {
-      const submit = document.querySelector('.make-new-snippet-btn');
-      submit.addEventListener('click', () => {
-        this.setState({ snipTime: 0 });
-        const piano = document.getElementById('piano');
-        piano.addEventListener('click', () => this._setUpdate(), { once: true });
-      });
-    }
+    // changing the snippetform to the keyboard with the following code
+    // causes "form submission canceled because the form is not connected" error
+
+    // if (document.querySelector('.make-new-snippet-btn')) {
+    //   const submit = document.querySelector('.make-new-snippet-btn');
+    //   submit.addEventListener('click', () => {
+    //     this.setState({ snipTime: 0 });
+    //     const piano = document.getElementById('piano');
+    //     piano.addEventListener('click', () => this._setUpdate(), { once: true });
+    //   });
+    // }
     
     return (
       <div id='nav-container' className='up'>
