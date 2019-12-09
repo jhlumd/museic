@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserShowIndex from './user_show_index';
+import SnippetShowCard from '../snippet_index/snippet_show_card';
 
 export default class UserShow extends Component {
   constructor(props) {
@@ -16,6 +16,8 @@ export default class UserShow extends Component {
     this.props.fetchUsers()
     this.props.fetchImages()
     this.props.fetchFans()
+    this.props.fetchComments()
+    this.props.fetchUsers()
   }
 
   handleClick(){
@@ -23,7 +25,8 @@ export default class UserShow extends Component {
   }
 
   render(){
-    const {snippets, snippetLikes, fans, images, currentUser, userId} = this.props
+    const {snippets, snippetLikes, users, comments, fans, images, likes, currentUser, userId,
+      composeComment, removeComment, editComment, newLike, unlike} = this.props
 
     let snippetCount = 0
     const mySnippets = [] //snippets belonging to the profile's user
@@ -53,6 +56,7 @@ export default class UserShow extends Component {
     const myFans = []
     fans.forEach( fanObj => {
       if (fanObj.idol === userId){
+        myFans.push(fanObj)
         fansCount += 1
       }
     })
@@ -61,6 +65,7 @@ export default class UserShow extends Component {
     const myFollowers = []
     fans.forEach(fanObj => {
       if (fanObj.fan === userId) {
+        myFollowers.push(fanObj)
         followCount += 1
       }
     })
@@ -100,7 +105,46 @@ export default class UserShow extends Component {
 
         <div className='right-container'>
           <h2>Your Creations</h2>
-          {/* <UserShowIndex /> */}
+          {
+            mySnippets.map( snippet => {
+              const snippetId = snippet._id
+              return <SnippetShowCard 
+                key={snippetId}
+
+                snippet={snippet}
+                comments={comments[snippetId]}
+                snippetId={snippetId}
+                likes={likes[snippetId]}
+                users={users}
+                userId={snippet.user}
+                images={images}
+
+                composeComment={composeComment}
+                removeComment={removeComment}
+                editComment={editComment}
+
+                newLike={newLike}
+                unlike={unlike}
+              />
+            })
+          }
+
+          <h2>My Fans</h2>
+
+          <p>---------------------</p>
+          {
+            myFans.map(fan => {
+              return <p>{users[fan.fan]}</p>
+            })
+          }
+
+          <h2>Followed</h2>
+          {
+            myFollowers.map(follower => {
+              return <p>{users[follower.idol]}</p>
+            })
+          }
+          
         </div>
 
       </div>
