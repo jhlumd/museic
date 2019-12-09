@@ -78,12 +78,11 @@ class Navbar extends React.Component {
   }
 
   writeMessage() {
-    const message0 =
-      "Try clicking the tiles, or pressing some keys to make some music.";
+    const message0 = "Play the piano to make some music.";
     const message1 = "There you go! Keep going.";
     const message2 = "Hey that sounds pretty nice.";
     const message3 = "Nice! Let's save that masterpiece.";
-    const message4 = "You ran out of time. Click 'reset' to go again."
+    const message4 = "You ran out of time. Click 'Reset' to go again.";
 
     let snipTime = this.state.snipTime;
 
@@ -92,11 +91,15 @@ class Navbar extends React.Component {
       message = message0;
     } else if (snipTime < 3) {
       message = message1;
-    } else if (snipTime < 7) {
+    } else if (snipTime < 5) {
       message = message2;
-    } else if (this.state.currentNotes && snipTime > 7 && this.state.currentNotes.length > 5) {
+    } else if (
+      this.state.currentNotes &&
+      snipTime <= 7 &&
+      this.state.currentNotes.length > 3
+    ) {
       message = message3;
-    } else {
+    } else if (snipTime > 7) {
       message = message4;
     }
     return message;
