@@ -15,6 +15,7 @@ export default class UserShow extends Component {
     this.props.fetchLikes()
     this.props.fetchUsers()
     this.props.fetchImages()
+    this.props.fetchFans()
   }
 
   handleClick(){

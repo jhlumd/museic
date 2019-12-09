@@ -4,6 +4,7 @@ import { fetchLikes } from '../../actions/like_actions';
 import { fetchUsers } from '../../actions/user_actions';
 import { upload, save, fetchImages } from '../../actions/image_actions';
 import { openModal } from '../../actions/modal_actions';
+import { fetchFans } from '../../actions/fan_actions';
 
 import UserShow from './user_show';
 
@@ -24,6 +25,7 @@ const mapDispatchToProps = dispatch => {
     fetchLikes: () => dispatch(fetchLikes()),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchImages: () => dispatch(fetchImages()),
+    fetchFans: () => dispatch(fetchFans()),
     upload: (imageFormData) => upload(imageFormData),
     save: (imageData) => dispatch(save(imageData)),
     openModal: (modal) => dispatch(openModal(modal)),

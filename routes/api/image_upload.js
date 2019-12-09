@@ -11,7 +11,7 @@ const singleUpload = upload.single('image');
 
 //get all
 router.get('/',
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Photo.find()
       .then(images => res.json(images))
@@ -21,7 +21,7 @@ router.get('/',
 
 //upload to AWS
 router.post('/upload',
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
 
     singleUpload(req, res, function (err) {
@@ -60,7 +60,7 @@ router.post('/save',
 
 //delete
 router.delete('/:photo_id',
-  // passport.authenticate('jwt', { session: false }),
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const photoId = req.params.photo_id;
     Photo.deleteOne({ _id: photoId })
