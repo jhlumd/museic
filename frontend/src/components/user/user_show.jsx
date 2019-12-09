@@ -21,7 +21,9 @@ export default class UserShow extends Component {
   }
 
   handleClick(){
-    this.props.openModal('upload')
+    if(this.props.userId === this.props.currentUser.id){
+      this.props.openModal('upload')
+    }
   }
 
   render(){
@@ -76,7 +78,7 @@ export default class UserShow extends Component {
 
           <div className='user-info-container'>
             <div className='user-icon-container' onClick={ () => this.handleClick()}>
-              <div id="image-upload-hover">
+              <div id="image-upload-hover" >
                 <img id="profile-picture" src={profileImageUrlAddress}/>
               </div>
             </div>
