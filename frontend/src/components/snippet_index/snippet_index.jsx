@@ -62,7 +62,6 @@ class SnippetIndex extends React.Component {
                 users={users} //array of usernames according to userId
                 userId={userId}
                 images={images}
-                history={this.props.history}
                 //comment actions
                 composeComment={composeComment}
                 removeComment={removeComment}
