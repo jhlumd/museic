@@ -23,7 +23,7 @@ export default class UserShow extends Component {
   }
 
   render(){
-    const {snippets, snippetLikes, images, currentUser, userId} = this.props
+    const {snippets, snippetLikes, fans, images, currentUser, userId} = this.props
 
     let snippetCount = 0
     const mySnippets = [] //snippets belonging to the profile's user
@@ -44,16 +44,26 @@ export default class UserShow extends Component {
       })
     })
 
-    let profileImageUrlAddress = ''
-    if (this.props.images[userId]) {
-      profileImageUrlAddress = this.props.images[userId].aws_url
+    let profileImageUrlAddress = '' //profile image aws address
+    if (images[userId]) {
+      profileImageUrlAddress = images[userId].aws_url
     }
 
-    let fanCount = 0
-    // add fan count logic
+    let fansCount = 0
+    const myFans = []
+    fans.forEach( fanObj => {
+      if (fanObj.idol === userId){
+        fansCount += 1
+      }
+    })
 
     let followCount = 0
-    // add follow count logic
+    const myFollowers = []
+    fans.forEach(fanObj => {
+      if (fanObj.fan === userId) {
+        followCount += 1
+      }
+    })
 
     return (
       <div className='user-show-container'>
@@ -76,11 +86,11 @@ export default class UserShow extends Component {
                 <p className='label'>Likes</p>
               </div>
               <div className='fans user-stat'>
-                <p className='num'>{/* NUMBER HERE */}10</p>
+                <p className='num'>{fansCount}</p>
                 <p className='label'>Fans</p>
               </div>
               <div className='following user-stat'>
-                <p className='num'>{/* NUMBER HERE */}10</p>
+                <p className='num'>{followCount}</p>
                 <p className='label'>Following</p>
               </div>
             </div>
