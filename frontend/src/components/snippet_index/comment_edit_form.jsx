@@ -22,6 +22,7 @@ class CommentEditForm extends React.Component {
             type="text"
             value={this.state.body}
             onChange={this.handleChange('body')}
+            className='comment-body'
           />
         </label>
         <input type="submit" value="submit"/>
