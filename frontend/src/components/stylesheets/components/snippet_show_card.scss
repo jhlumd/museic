@@ -107,29 +107,33 @@
           width: 100%;
           box-sizing: border-box;
 
+          &:hover {
+            cursor: default;
+          }
+
+          div.user-icon {
+            height: 18px;
+            width: 18px;
+            overflow: hidden;
+            margin-right: 0.5em;
+            background-color: $shadow;
+
+            img.comment-profile-image {
+              max-width: 18px;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+          
           div.user-info {
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
             align-items: flex-start;
 
-            .user-icon {
-              height: 18px;
-              width: 18px;
-              overflow: hidden;
-              margin-right: 0.5em;
-              background-color: $shadow;
-  
-              .comment-profile-image{
-                // max-height: 18px;
-                max-width: 18px;
-  
-                &:hover {
-                  cursor: pointer;
-                }
-              }
             }
-          }
         }
 
         .comment-body {
