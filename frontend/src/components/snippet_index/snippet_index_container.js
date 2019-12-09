@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { fetchSnippets, fetchSnippetOwner } from '../../actions/snippet_actions'
-import { fetchSnippetComments, fetchComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
-import { addLike, unlike, getSnippetLikes, fetchLikes} from '../../actions/like_actions';
+import { fetchSnippets } from '../../actions/snippet_actions'
+import { fetchComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
+import { addLike, unlike, fetchLikes} from '../../actions/like_actions';
 import { fetchUsers } from '../../actions/user_actions';
 import { fetchImages } from '../../actions/image_actions';
 

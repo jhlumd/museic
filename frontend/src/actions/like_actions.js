@@ -4,11 +4,10 @@ export const GET_LIKES = 'GET_LIKES';
 // export const CREATE_LIKE = 'CREATE_LIKE';
 // export const DELETE_LIKE = 'DELETE_LIKE';
 
-export const receiveLikes = (likes, snippetId) => {
+export const receiveLikes = (likes) => {
   return({
     type: GET_LIKES,
     likes,
-    snippetId
   })
 }
 

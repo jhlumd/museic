@@ -1,19 +1,24 @@
 import { connect } from 'react-redux';
 import { fetchSnippets } from '../../actions/snippet_actions'
-import { fetchLikes } from '../../actions/like_actions';
+import { fetchComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
+import { addLike, unlike, fetchLikes } from '../../actions/like_actions';
 import { fetchUsers } from '../../actions/user_actions';
 import { upload, save, fetchImages } from '../../actions/image_actions';
 import { openModal } from '../../actions/modal_actions';
+import { fetchFans, addFan, removeFan } from '../../actions/fan_actions';
 
 import UserShow from './user_show';
 
-const mapStateToProps = ({ entities: { snippets, likes, users, images }, session }, { match }) => {
+const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, images }, session }, { match }) => {
   return {
     snippets: Object.values(snippets),
     snippetLikes: Object.values(likes),
     currentUser: session.user,
     images,
     users,
+    comments,
+    likes,
+    fans: Object.values(fans),
     userId: match.params.id,
   }
 }
@@ -24,9 +29,22 @@ const mapDispatchToProps = dispatch => {
     fetchLikes: () => dispatch(fetchLikes()),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchImages: () => dispatch(fetchImages()),
+    fetchFans: () => dispatch(fetchFans()),
+    fetchComments: () => dispatch(fetchComments()),
+    //fan actions
+    addFan: () => dispatch(addFan()),
+    removeFan: () => dispatch(removeFan()),
+    //image actions
     upload: (imageFormData) => upload(imageFormData),
     save: (imageData) => dispatch(save(imageData)),
     openModal: (modal) => dispatch(openModal(modal)),
+
+    //CRUD operations for Comments and Likes
+    composeComment: comment => dispatch(composeComment(comment)),
+    removeComment: commentId => dispatch(removeComment(commentId)),
+    editComment: commentId => dispatch(editComment(commentId)),
+    addLike: likeData => dispatch(addLike(likeData)),
+    unLike: likeId => dispatch(unlike(likeId)),
   }
 }
 
