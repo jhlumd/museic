@@ -51,9 +51,11 @@ class CommentListItem extends React.Component {
   render(){
     const { edit, ownerId, userId } = this.state
     const { ownername, imageUrl } = this.props
+    const editable = ownerId === userId ? 'editable' : '';
+    
     if (edit && ownerId === userId) {
       return (
-        <li className="comment-list-item-container owned">
+        <li className={`comment-list-item-container owned`}>
           <div className="comment-list-item" >
             <div className='user-icon hvr-grow' onClick={() => this.props.history.push(`/profile/${ ownerId }`)}>
               <img className='comment-profile-image' src={imageUrl} />
@@ -70,9 +72,10 @@ class CommentListItem extends React.Component {
       )
       
 
-    } else {
+    } 
+    else {
       return(
-        <li className="comment-list-item-container unowned">
+        <li className={`comment-list-item-container unowned ${ editable }`}>
           <div className="comment-list-item" onClick={this.handleClick}>
 
             <div className='user-info'>
