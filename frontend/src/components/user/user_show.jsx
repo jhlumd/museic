@@ -83,7 +83,7 @@ export default class UserShow extends Component {
               </div>
             </div>
             <div className='user-text-info-container'>
-              <h2>{currentUser.username}</h2>
+              <h2>{users[userId]}</h2>
               <div className='snippets user-stat'>
                 <p className='num'>{snippetCount}</p>
                 <p className='label'>Snippets</p>
