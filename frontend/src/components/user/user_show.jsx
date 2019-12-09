@@ -11,7 +11,7 @@ export default class UserShow extends Component {
   }
 
   componentDidMount(){
-    this.props.fetchSnippets()
+    this.props.fetchAllSnippets()
     this.props.fetchLikes()
     this.props.fetchUsers()
     this.props.fetchImages()

@@ -18,6 +18,16 @@ router.get("/", (req, res) => {
         }));
 });
 
+//profile snippet get, will get all and only display own
+router.get("/all", (req, res) => {
+    Snippet.find()
+        .sort({ date: -1 }) //sorts 
+        .then(snippets => res.json(snippets))
+        .catch(err => res.status(404).json({
+            nosnippetsfound: "No snippets found"
+        }));
+});
+
 // index for user show page
 router.get("/user/:user_id", (req, res) => {
     Snippet.find({ user: req.params.user_id })
