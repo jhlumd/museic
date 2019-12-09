@@ -49,7 +49,7 @@ export default class UserShow extends Component {
       })
     })
 
-    let profileImageUrlAddress = '' //profile image aws address
+    let profileImageUrlAddress = 'https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg' //profile image aws address
     if (images[userId]) {
       profileImageUrlAddress = images[userId].aws_url
     }
