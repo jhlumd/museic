@@ -118,7 +118,7 @@ export default class UserShow extends Component {
                 snippetId={snippetId}
                 likes={likes[snippetId]}
                 users={users}
-                userId={snippet.user}
+                userId={currentUser.id}
                 images={images}
 
                 composeComment={composeComment}
