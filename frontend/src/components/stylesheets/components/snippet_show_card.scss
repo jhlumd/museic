@@ -46,6 +46,11 @@
         }
         p {
           font-weight: 400;
+
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
         }
       }
   
@@ -81,6 +86,16 @@
       font-family: $sans-serif;
       border-bottom: 1px solid $light-shadow;
 
+      &.editable {
+        p.comment-body {
+          color: $link;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
       &.owned:hover {
         background-color: $ivory;
       }
@@ -98,21 +113,43 @@
         .comment-list-item {
           display: flex;
           flex-direction: row;
+          // justify-content: space-between;
           width: 100%;
-  
-          .user-icon {
+          box-sizing: border-box;
+
+          &:hover {
+            cursor: default;
+          }
+
+          div.user-icon {
             height: 18px;
             width: 18px;
+            overflow: hidden;
             margin-right: 0.5em;
             background-color: $shadow;
 
-            .comment-profile-image{
-              height: 18px;
-              width: 18px;
-            }
+            img.comment-profile-image {
+              max-width: 18px;
 
+              &:hover {
+                cursor: pointer;
+              }
+            }
           }
 
+          div.user-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-start;
+
+            }
+        }
+
+        .comment-body {
+          box-sizing: border-box;
+          margin-right: 1em;
+          max-width: 500px;
         }
 
         .x-icon {

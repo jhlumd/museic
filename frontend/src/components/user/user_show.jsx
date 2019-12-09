@@ -83,7 +83,7 @@ export default class UserShow extends Component {
               </div>
             </div>
             <div className='user-text-info-container'>
-              <h2>{currentUser.username}</h2>
+              <h2 className='username'>{currentUser.username}</h2>
               <div className='snippets user-stat'>
                 <p className='num'>{snippetCount}</p>
                 <p className='label'>Snippets</p>
@@ -106,7 +106,7 @@ export default class UserShow extends Component {
         </div>
 
         <div className='right-container'>
-          <h2>Your Creations</h2>
+          <h2>My Snippets</h2>
           {
             mySnippets.map( snippet => {
               const snippetId = snippet._id
@@ -130,6 +130,7 @@ export default class UserShow extends Component {
               />
             })
           }
+
 
           <h2>My Fans</h2>
 
