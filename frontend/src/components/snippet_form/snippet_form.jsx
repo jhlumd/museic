@@ -20,7 +20,7 @@ export default class SnippetForm extends Component {
         e.preventDefault();
 
         if (this.props.tempNotes) {
-            debugger;
+            // debugger;
             this.props.saveSnippet(Object.assign(
                 this.state,
                 { notes: this.props.tempNotes }
