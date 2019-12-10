@@ -84,8 +84,8 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div id='login-form-container' onClick={(e) => {
-        e.stopPropagation();
-        // this.props.closeModal();
+        // e.stopPropagation();
+        this.props.closeModal();
         }}>
         <form onSubmit={this.handleSubmit} onClick={(e) => e.stopPropagation()}>
           <div>
