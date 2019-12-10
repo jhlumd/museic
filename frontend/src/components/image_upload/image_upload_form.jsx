@@ -60,6 +60,7 @@ class ImageUploadForm extends React.Component {
     return (
       <div id='upload-form-container' onClick = {(e) => {
         this.props.closeModal();}}>
+
         <form onSubmit={() => this.handleSubmit()} onClick={(e) => e.stopPropagation()}>
           <p className="error">{this.state.errors}</p>
         {this.loadingIcon()}
@@ -73,6 +74,7 @@ class ImageUploadForm extends React.Component {
           </label>
           <button type="submit">Submit Image</button>
         </form>
+        
       </div>
     )
   }
