@@ -57,9 +57,14 @@ class CommentListItem extends React.Component {
       return (
         <li className={`comment-list-item-container owned`}>
           <div className="comment-list-item" >
+
             <div className='user-icon hvr-grow' onClick={() => this.props.history.push(`/profile/${ ownerId }`)}>
               <img className='comment-profile-image' src={imageUrl} />
+              <p className='owner-name' onClick={() => this.props.history.push(`/profile/${ownerId}`)}>
+                {`${ownername} `}
+              </p> 
             </div>
+
             <CommentEditForm
               handleClick={this.handleClick}
               editComment={this.editComment}
@@ -82,7 +87,9 @@ class CommentListItem extends React.Component {
               <div className='user-icon hvr-grow' onClick={() => this.props.history.push(`/profile/${ownerId}`)}>
                 <img className='comment-profile-image' src={imageUrl} />
               </div>
-              <p className='owner-name'>{`${ ownername } `}</p> 
+              <p className='owner-name' onClick={() => this.props.history.push(`/profile/${ownerId}`)}>
+                {`${ ownername } `}
+              </p> 
             </div>
 
             <p className='comment-body'>{this.props.body}</p>
