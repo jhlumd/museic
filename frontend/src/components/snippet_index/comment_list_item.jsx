@@ -1,7 +1,7 @@
 import React from 'react';
 import CommentEditForm from './comment_edit_form';
 import { withRouter } from 'react-router-dom';
-// import XIcon from '../resources/x_icon';
+import XIcon from '../resources/x_icon';
 
 class CommentListItem extends React.Component {
   constructor(props){
@@ -16,11 +16,9 @@ class CommentListItem extends React.Component {
     this.deleteComment = this.deleteComment.bind(this)
     this.editComment = this.editComment.bind(this)
     this.handleClick = this.handleClick.bind(this)
-    // this.renderDelete = this.renderDelete.bind(this)
   }
 
   deleteComment(){
-    // debugger
     this.props.deleteComment(this.state.commentId);
   }
 
@@ -38,15 +36,6 @@ class CommentListItem extends React.Component {
     const toggle = this.state.edit ? false : true;
     this.setState({edit: toggle})
   }
-
-  // renderDelete(){
-  //   if (this.state.ownerId === this.state.userId) {
-  //     return(
-  //       // <button onClick={this.deleteComment}>[X]</button>
-  //       <XIcon onClick={this.deleteComment} />
-  //     )
-  //   }
-  // }
 
   render(){
     const { edit, ownerId, userId } = this.state
@@ -70,7 +59,7 @@ class CommentListItem extends React.Component {
               editComment={this.editComment}
               handleChange={this.handleChange}
               body={this.props.body}
-              deleteComment={this.deleteComment}
+              // deleteComment={this.deleteComment}
             />
           </div>
         </li>
@@ -93,6 +82,9 @@ class CommentListItem extends React.Component {
             </div>
 
             <p className='comment-body'>{this.props.body}</p>
+            <button onClick={e => {
+              e.stopPropagation()
+              this.deleteComment()}}><XIcon/></button>
           </div>
         </li>
       )

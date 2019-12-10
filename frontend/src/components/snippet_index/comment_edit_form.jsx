@@ -1,5 +1,5 @@
 import React from 'react';
-import XIcon from '../resources/x_icon';
+// import XIcon from '../resources/x_icon';
 
 class CommentEditForm extends React.Component {
   constructor(props){
@@ -26,8 +26,7 @@ class CommentEditForm extends React.Component {
           />
         </label>
         <input type="submit" value="submit"/>
-        <button onClick={this.props.deleteComment}><XIcon/></button>
-        {/* JENNY/jenny/Jenny: moved ur icon here */}
+        {/* <button onClick={this.props.deleteComment}><XIcon/></button> */}
       </form>
     )
   }
