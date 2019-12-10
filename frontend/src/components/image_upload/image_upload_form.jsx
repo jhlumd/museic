@@ -44,14 +44,14 @@ class ImageUploadForm extends React.Component {
         
         <form onSubmit={() => this.handleSubmit()} onClick={(e) => e.stopPropagation()}>
           <label className="fileContainer">
-            Choose a file
+            Choose a file:
               <input
               className="inputfile"
               type="file"
               onChange={e => this.handleFile(e)}
             />
           </label>
-          <input type="submit" value='--Upload Image--' />
+          <button type="submit">Submit Image</button>
         </form>
       </div>
     )
