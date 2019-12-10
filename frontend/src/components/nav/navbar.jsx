@@ -9,6 +9,7 @@ import SnippetFormContainer from '../snippet_form/snippet_form_container';
 import Logo from '../resources/logo';
 import DownChevronIcon from '../resources/down_chevron_icon';
 import UserIcon from '../resources/user_icon';
+import SearchIcon from '../resources/search_icon';
 import XIcon from '../resources/x_icon';
 
 class Navbar extends React.Component {
@@ -166,6 +167,12 @@ class Navbar extends React.Component {
               </div>
 
               <div className='nav-base-bar-right'>
+
+                <div className='search-container'>
+                  <input type="text" placeholder="search" id="search"/>
+                  <button className='search-btn' onClick={() => this.handleSearch()}><SearchIcon /></button>
+                </div>
+                
                 <div className='icon-wrap'>
                   <UserIcon />
                   <NavbarUserDropdown 

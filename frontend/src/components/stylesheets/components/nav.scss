@@ -72,7 +72,8 @@
     .nav-base-bar-container {
       box-sizing: border-box;
       position: absolute;
-      bottom: -2.6em;
+      bottom: 0;
+      height: 50px;
       
       width: inherit;
       display: flex;
@@ -112,6 +113,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
 
         .nav-base-bar-left {
           display: flex;
@@ -119,13 +121,34 @@
           align-items: center;
           
           .logo {
-            height: 45px;
           }
         }
 
         .nav-base-bar-right {
           display: flex;
           align-items: center;
+
+          div.search-container {
+            margin-right: 1em;
+
+            @include flex-centered;
+            flex-direction: row;
+            @include box-shadow-bottom-inset;
+            // border: 1px solid black;
+            
+            #search {
+              box-sizing: border-box;
+              height: 2.5em;
+              width: 10em;
+              padding: 0.5em 1em;
+              
+            }
+
+            button.search-btn {
+              padding: 0.5em 1em;
+              // background-color: $light-shadow;
+            }
+          }
 
           .icon-wrap:hover > .nav-dropdown-container {
             @include box-shadow-bottom;
@@ -158,6 +181,10 @@
       }
 
       .nav-base-tab-container {
+        position: absolute;
+        left: calc(50% - 100px);
+        top: 50px;
+        
         box-sizing: border-box;
         width: 200px;
         margin: auto;
