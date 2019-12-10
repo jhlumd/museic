@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SnippetShowCard from '../snippet_index/snippet_show_card';
+import UserCard from './user_card';
 
 export default class UserShow extends Component {
   constructor(props) {
@@ -78,8 +79,8 @@ export default class UserShow extends Component {
 
           <div className='user-info-container'>
             <div className='user-icon-container' onClick={ () => this.handleClick()}>
-              <div id="image-upload-hover" >
-                <img id="profile-picture" src={profileImageUrlAddress}/>
+              <div className="image-upload-hover" >
+                <img className="profile-picture" src={profileImageUrlAddress}/>
               </div>
             </div>
             <div className='user-text-info-container'>
@@ -136,13 +137,18 @@ export default class UserShow extends Component {
           <h2>My Fans</h2>
 
           <p>---------------------</p>
-          {
-            myFans.map(fan => {
-              return <p>{users[fan.fan]}</p>
-            })
-          }
+          
+            <ul >
+              {
+                myFans.map(fan => {
+                  return <p>{users[fan.fan]}</p>
+                })
+              }
+            </ul>
+            
+          
 
-          <h2>Followed</h2>
+          <h2>My Idols</h2>
           {
             myFollowers.map(follower => {
               return <p>{users[follower.idol]}</p>
