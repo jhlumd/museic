@@ -14,7 +14,7 @@ function UserCard(props) {
       key={id}
     >
       <div className='user-card-content'>
-        <img lassName="profile-picture hvr-grow" src={profileImageUrlAddress}/>
+        <img className="profile-picture hvr-grow" src={profileImageUrlAddress}/>
 
         <h3 className='username'>
           { name }

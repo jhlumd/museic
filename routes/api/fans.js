@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
 //create new follow relationship
 router.post('/',
-  // passport.authenticate('jwt', { session: false }),
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
 
     Fan.findOne(
@@ -53,7 +53,7 @@ router.post('/',
 
 //delete fan
 router.delete('/:fan_id',
-  // passport.authenticate('jwt', { session: false }),
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     // console.log(req.params.fan_id)
     Fan.deleteOne({ _id: req.params.fan_id })

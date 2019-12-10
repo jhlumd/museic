@@ -14,7 +14,7 @@ export const uploadImage = (imageFormData) => {
 };
 
 export const getImages = () => {
-  return axios.get('/api/images/');
+  return axios.get('/api/images');
 };
 
 export const deleteImage = photoId => {

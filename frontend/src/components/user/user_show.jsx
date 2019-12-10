@@ -6,9 +6,10 @@ export default class UserShow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      empty: '',
+      isFan: this.props.isFan,
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleFollow = this.handleFollow.bind(this)
   }
 
   componentDidMount(){
@@ -18,7 +19,6 @@ export default class UserShow extends Component {
     this.props.fetchImages()
     this.props.fetchFans()
     this.props.fetchComments()
-    this.props.fetchUsers()
   }
 
   handleClick(){
@@ -27,13 +27,37 @@ export default class UserShow extends Component {
     }
   }
 
-  // handleFollow() {
-  //   if ( ) {
-  //     this.props.addFan();
-  //   } else {
-  //     this.props.removeFan();
-  //   }
-  // }
+  followDisplay() {
+    if (this.state.isFan) {
+
+      return <button
+        className='follow-btn'
+        onClick={this.handleFollow}>unfollow
+      </button>;
+    } else {
+
+      return <button
+        className='follow-btn'
+        onClick={() => this.handleFollow()}>follow
+      </button>;
+    }
+  }
+
+  handleFollow() {
+    if ( this.state.isFan ) {
+      const toggle = this.state.isFan ? false : true;
+      this.setState({ isFan: toggle })
+      this.props.removeFan(this.props.fanId);
+    } else {
+      const toggle = this.state.isFan ? false : true;
+      this.setState({ isFan: toggle })
+      const newFan = {
+        fanId: this.props.currentUser.id,
+        idolId: this.props.userId
+      }
+      this.props.addFan(newFan);
+    }
+  }
 
   render(){
     const {snippets, snippetLikes, users, comments, fans, images, likes, currentUser, userId,
@@ -94,13 +118,7 @@ export default class UserShow extends Component {
 
             <div className='user-text-info-container'>
               <h2  className='username'>{users[userId]}</h2>
-              <button 
-                className='follow-btn'
-                onClick={this.handleFollow}
-              >
-                follow
-              </button>
-
+                {this.followDisplay()}
               <div className='snippets user-stat'>
                 <p className='num'>{snippetCount}</p>
                 <p className='label'>Snippets</p>
@@ -160,6 +178,7 @@ export default class UserShow extends Component {
               {
                 myFans.map(fan => {
                   return <UserCard 
+                    key={fan._id}
                     id={fan.fan}
                     name={users[fan.fan]}
                     icon={images[fan.fan]}
@@ -177,6 +196,7 @@ export default class UserShow extends Component {
               {
                 myFollowers.map(follower => {
                   return <UserCard
+                    key={follower._id}
                     id={follower.idol}
                     name={users[follower.idol]}
                     icon={images[follower.idol]}

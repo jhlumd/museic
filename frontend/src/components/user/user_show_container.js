@@ -10,6 +10,14 @@ import { fetchFans, addFan, removeFan } from '../../actions/fan_actions';
 import UserShow from './user_show';
 
 const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, images }, session }, { match }) => {
+  let isFan = false
+  let fanId = ''
+  Object.values(fans).forEach( fan => {
+    if( fan.idol === match.params.id && fan.fan === session.user.id){
+      isFan = true
+      fanId = fan._id
+    }
+  })
   return {
     snippets: Object.values(snippets),
     snippetLikes: Object.values(likes),
@@ -18,6 +26,8 @@ const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, i
     users,
     comments,
     likes,
+    isFan,
+    fanId,
     fans: Object.values(fans),
     userId: match.params.id,
   }
@@ -32,8 +42,8 @@ const mapDispatchToProps = dispatch => {
     fetchFans: () => dispatch(fetchFans()),
     fetchComments: () => dispatch(fetchComments()),
     //fan actions
-    addFan: () => dispatch(addFan()),
-    removeFan: () => dispatch(removeFan()),
+    addFan: (fanData) => dispatch(addFan(fanData)),
+    removeFan: (fanId) => dispatch(removeFan(fanId)),
     //image actions
     upload: (imageFormData) => upload(imageFormData),
     save: (imageData) => dispatch(save(imageData)),
