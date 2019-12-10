@@ -34,6 +34,11 @@ export default class UserShow extends Component {
   //   }
   // }
 
+  scrollTo(className) {
+    const section = document.querySelector(`section.${ className }`);
+    section.scrollIntoView({ behavior: "smooth"});
+  }
+
   render(){
     const {snippets, snippetLikes, users, comments, fans, images, likes, currentUser, userId,
       composeComment, removeComment, editComment, newLike, unlike, addFan, removeFan} = this.props
@@ -80,6 +85,62 @@ export default class UserShow extends Component {
       }
     })
 
+    const snippetDisplay = snippetCount < 1 ? 
+      <p className='empty-msg'>No snippets yet</p> : 
+      <ul className='snippet-show-container'>
+        {
+          mySnippets.map(snippet => {
+            const snippetId = snippet._id
+            return <SnippetShowCard
+              key={snippetId}
+
+              snippet={snippet}
+              comments={comments[snippetId]}
+              snippetId={snippetId}
+              likes={likes[snippetId]}
+              users={users}
+              userId={currentUser.id}
+              images={images}
+
+              composeComment={composeComment}
+              removeComment={removeComment}
+              editComment={editComment}
+
+              newLike={newLike}
+              unlike={unlike}
+            />
+          })
+        }
+      </ul>;
+
+      const fanDisplay = fansCount < 1 ? 
+        <p className='empty-msg'>No fans yet</p> :
+        <ul className='fan-container user-cards'>
+          {
+            myFans.map(fan => {
+              return <UserCard
+                id={fan.fan}
+                name={users[fan.fan]}
+                icon={images[fan.fan]}
+              />
+            })
+          }
+        </ul>;
+
+    const idolDisplay = followCount < 1 ? 
+      <p className='empty-msg'>No idols yet</p> :
+      <ul className='idol-container user-cards'>
+        {
+          myFollowers.map(follower => {
+            return <UserCard
+              id={follower.idol}
+              name={users[follower.idol]}
+              icon={images[follower.idol]}
+            />
+          })
+        }
+      </ul>;
+
     return (
       <div className='user-show-container'>
         <div className='left-container'>
@@ -102,19 +163,27 @@ export default class UserShow extends Component {
 
               <div className='snippets user-stat'>
                 <p className='num'>{snippetCount}</p>
-                <p className='label'>Snippets</p>
+                <p className='label' onClick={() => this.scrollTo('snippets')}>
+                  Snippets
+                </p>
               </div>
               <div className='likes user-stat'>
                 <p className='num'>{likeCount}</p>
-                <p className='label'>Likes</p>
+                <p className='label'>
+                  Likes
+                </p>
               </div>
               <div className='fans user-stat'>
                 <p className='num'>{fansCount}</p>
-                <p className='label'>Fans</p>
+                <p className='label' onClick={() => this.scrollTo('fans')}>
+                  Fans
+                </p>
               </div>
               <div className='following user-stat'>
                 <p className='num'>{followCount}</p>
-                <p className='label'>Following</p>
+                <p className='label' onClick={() => this.scrollTo('idols')}>
+                  Idols
+                </p>
               </div>
             </div>
 
@@ -124,65 +193,21 @@ export default class UserShow extends Component {
 
         <div className='right-container'>
           <section className='snippets'>
-            <h2>My Snippets</h2>
-            <ul className='snippet-show-container'>
-              {
-                mySnippets.map( snippet => {
-                  const snippetId = snippet._id
-                  return <SnippetShowCard 
-                    key={snippetId}
-
-                    snippet={snippet}
-                    comments={comments[snippetId]}
-                    snippetId={snippetId}
-                    likes={likes[snippetId]}
-                    users={users}
-                    userId={currentUser.id}
-                    images={images}
-
-                    composeComment={composeComment}
-                    removeComment={removeComment}
-                    editComment={editComment}
-
-                    newLike={newLike}
-                    unlike={unlike}
-                  />
-                })
-              }
-            </ul>
+            <h2>Snippets</h2>
+            { snippetDisplay }
           </section>
 
           <section className='fans'>
 
-            <h2>My Fans</h2>
-            <ul className='fan-container'>
-              {
-                myFans.map(fan => {
-                  return <UserCard 
-                    id={fan.fan}
-                    name={users[fan.fan]}
-                    icon={images[fan.fan]}
-                  />
-                })
-              }
-            </ul>
+            <h2>Fans</h2>
+            { fanDisplay }
 
           </section>
           
           <section className='idols'>
 
-            <h2>My Idols</h2>
-            <ul className='idol-container'>
-              {
-                myFollowers.map(follower => {
-                  return <UserCard
-                    id={follower.idol}
-                    name={users[follower.idol]}
-                    icon={images[follower.idol]}
-                  />
-                })
-              }
-            </ul>
+            <h2>Idols</h2>
+            { idolDisplay }
 
           </section>
           

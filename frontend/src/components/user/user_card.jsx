@@ -3,9 +3,11 @@ import { withRouter } from "react-router-dom";
 
 
 function UserCard(props) {
-  const name = props.name,
-        id = props.id,
-        profileImageUrlAddress = props.icon;
+  let name = props.name,
+      id = props.id,
+      profileImageUrlAddress = props.icon;
+
+  profileImageUrlAddress = profileImageUrlAddress ? profileImageUrlAddress : 'https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg';
   
   return (
     <li 
@@ -14,11 +16,13 @@ function UserCard(props) {
       key={id}
     >
       <div className='user-card-content'>
-        <img lassName="profile-picture hvr-grow" src={profileImageUrlAddress}/>
+        <div className="image-container" >
+          <img lassName="profile-picture hvr-grow" src={profileImageUrlAddress}/>
+        </div>
 
-        <h3 className='username'>
+        <p className='username'>
           { name }
-        </h3>
+        </p>
       </div>
       
     </li>

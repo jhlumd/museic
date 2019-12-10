@@ -1,0 +1,49 @@
+.user-card-content {
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  margin: 0 1em 1em 0;
+
+  @include flex-centered;
+  flex-direction: column;
+
+  background-color: $white;
+  transition: all 0.3s ease-in-out 0s;
+
+  @include box-shadow;
+  border-radius: 5px;
+  overflow: hidden;
+
+  &:hover {
+    width: 205px;
+    height: 205px;
+
+    color: $link;
+    box-shadow: 0px 3px 15px $shadow;
+    cursor: pointer;
+  }
+
+  div.user-card-content {
+    box-sizing: border-box;
+    width: inherit;
+    height: inherit;
+    padding: 1em;
+  }
+  
+  div.image-container {
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid black;
+    
+    img.profile-picture {
+      width: 100px;
+    }
+  }
+
+  p.username {
+    font-weight: 500;
+    margin: 0.5em;
+  }
+}

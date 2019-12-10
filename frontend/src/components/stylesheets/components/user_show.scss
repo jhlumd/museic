@@ -21,6 +21,7 @@
     left: 0;
     
     box-sizing: border-box;
+    min-width: 300px;
     width: 30%;
     height: 100%;
     // border-right: 1px solid $shadow;
@@ -51,8 +52,8 @@
       div.user-icon-container {
         max-width: 100px;
         max-height: 100px;
+        border-radius: 5px;
         overflow: hidden;
-        background-color: $light-shadow;
 
         .profile-picture {
           width: 100px;
@@ -68,6 +69,15 @@
         p.num {
           font-weight: 500;
         }
+
+        p.label {
+
+          &:hover {
+            text-decoration: underline;
+            color: $link;
+            cursor: pointer;
+          }
+        }
       }
     }
   }
@@ -78,19 +88,43 @@
     right: 0%;
     
     box-sizing: border-box;
+    min-width: 640px;
     width: 70%;
     min-width: 600px;
     min-height: 100%;
-    // height: 4000px;
-    padding: 3em;
-    // background-color: $light-shadow;
+    padding: 5em;
     background-color: $wisp;
 
     overflow-y: scroll;
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+
+    section {
+      width: 100%;
+      min-height: 100px;
+      box-sizing: border-box;
+      padding-bottom: 3em;
+
+      &:not(:first-child) {
+        border-top: 1px solid $light-shadow;
+      }
+
+      p.empty-msg {
+        margin-bottom: 3em;
+      }
+
+      ul.user-cards {
+        width: inherit;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      
+    }
 
     div.snippet-show-card-container {
       @include flex-centered;
