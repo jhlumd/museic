@@ -22,7 +22,7 @@
 
   &.up {
     transition: top 1s ease 0s;
-    top: -104vh;
+    top: -105vh;
 
     .logo {
       transition: all 1s ease 0s;
@@ -73,7 +73,7 @@
       box-sizing: border-box;
       position: absolute;
       bottom: 0;
-      height: 50px;
+      height: 45px;
       
       width: inherit;
       display: flex;
@@ -129,23 +129,28 @@
           align-items: center;
 
           div.search-container {
-            margin-right: 1em;
+            margin-right: 3em;
 
             @include flex-centered;
             flex-direction: row;
-            @include box-shadow-bottom-inset;
-            // border: 1px solid black;
+            border: 1px solid $light-shadow;
+            background-color: $wisp;
             
             #search {
               box-sizing: border-box;
-              height: 2.5em;
+              height: 2em;
               width: 10em;
-              padding: 0.5em 1em;
+              margin: 0.25em 1em;
+
+              font-family: $sans-serif;
               
+              &::placeholder {
+                font-weight: 300;
+              }
             }
 
             button.search-btn {
-              padding: 0.5em 1em;
+              margin: 0.25em 1em;
               // background-color: $light-shadow;
             }
           }
@@ -154,7 +159,7 @@
             @include box-shadow-bottom;
             position: absolute;
             top: 40px;
-            right: 3%;
+            right: 1.5%;
             z-index: 600;
 
             display: flex;
@@ -183,7 +188,7 @@
       .nav-base-tab-container {
         position: absolute;
         left: calc(50% - 100px);
-        top: 50px;
+        top: 45px;
         
         box-sizing: border-box;
         width: 200px;
