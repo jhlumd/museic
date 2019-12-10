@@ -21,7 +21,7 @@ class Navbar extends React.Component {
       input: '',
     };
     this.logoutUser = this.logoutUser.bind(this);
-    this.searchDropdown = this.searchDropdown.bind(this);
+    this.searchAutocomplete = this.searchAutocomplete.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -143,7 +143,7 @@ class Navbar extends React.Component {
     this.setState({ [type]: e.currentTarget.value })
   }
 
-  searchDropdown(){
+  searchAutocomplete(){
     if(this.props.users.length === 0 || this.state.input.length === 0) return null
     const { users, snippets } = this.props
     const userResults = []
@@ -151,34 +151,36 @@ class Navbar extends React.Component {
     const terms = this.state.input.split(' ')
     const userIds = Object.keys(users)
     terms.forEach( term => {
+      if(term.length === 0 ) return null
       Object.values(users).forEach((user, i) => {
         if (user.length >= term.length && user.slice(0, term.length).toLowerCase() === term.toLowerCase()){
           userResults.push(userIds[i])
         }
       })
-      
-      if(this.state.input.length > 2){ //only do snippet title search if input at least 3 chars
+
+      if(term.length > 2){ //only do snippet title search if input at least 3 chars
         snippets.forEach(snippet => {
           for( let i = 0; i+term.length < snippet.title.length; i++){
             if (snippet.title.slice(i, i + term.length).toLowerCase() === term.toLowerCase()){
-              snippetResults.push(snippet.title)
+              snippetResults.push(snippet)
             }
           }
         })
       }
       
     })
-    // debugger
+
     return (
     <div>
       {
         userResults.map((userId,i) => {
-        return <li key={i} onClick={()=> this.props.history.push(`/profile/${userId}`)}>{users[userId]}</li>
+          return <li key={i} onClick={()=> this.props.history.push(`/profile/${userId}`)}>{users[userId]}</li>
         })
-        // results.slice(0, 12).map((res, i) => {
-        //   return <li key={i} onClick={() = {
-        //     history.push()}>{res}</li>
-        // })
+      }
+      {
+        snippetResults.map((snippet, i) => {
+          return <li key={i} onClick={()=> this.props.history.push(`/snippets/${snippet._id}`)}>{snippet.title}</li>
+        })
       }
     </div>
     )
@@ -239,7 +241,7 @@ class Navbar extends React.Component {
   {this.searchDropdown('phil tomato')}
 </div> */}
 {
-  this.searchDropdown()
+                this.searchAutocomplete()
 }
 
               <div className='nav-base-bar-right'>
