@@ -7,15 +7,13 @@ import { upload, save, fetchImages } from '../../actions/image_actions';
 import { openModal } from '../../actions/modal_actions';
 import { fetchFans, addFan, removeFan } from '../../actions/fan_actions';
 
-import UserShow from './user_show';
+import Test from './test';
 
 const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, images }, session }, { match }) => {
   let isFan = false
   let fanId = ''
-  // debugger
-  Object.values(fans).forEach( fan => {
-    if( fan.idol === match.params.id && fan.fan === session.user.id){
-      // debugger
+  Object.values(fans).forEach(fan => {
+    if (fan.idol === match.params.id && fan.fan === session.user.id) {
       isFan = true
       fanId = fan._id
     }
@@ -60,4 +58,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps)(UserShow)
+export default connect(mapStateToProps, mapDispatchToProps)(Test)

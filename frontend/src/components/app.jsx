@@ -17,6 +17,8 @@ import SnippetIndexContainer from './snippet_index/snippet_index_container';
 
 import UserShowContainer from './user/user_show_container';
 
+import TestContainer from './test/test_container';
+
 import './stylesheets/main.scss'
 
 
@@ -38,6 +40,7 @@ const App = () => (
       <ProtectedRoute exact path="/snippets/new" component={SnippetFormContainer} />
       {/* <Route exact path="/snippets/:id" component={ SnippetShowContainer} /> */}
       {/* test upload */}
+      <Route exact path ='/test' component={TestContainer} />
       <AuthRoute exact path="/" component={SplashContainer} />
     </Switch>
     

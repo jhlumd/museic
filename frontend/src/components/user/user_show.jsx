@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SnippetShowCard from '../snippet_index/snippet_show_card';
 import UserCard from './user_card';
 
-export default class UserShow extends Component {
+class UserShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isFan: this.props.isFan,
+      // fanId: this.props.fanId,
     }
     this.handleClick = this.handleClick.bind(this)
     this.handleFollow = this.handleFollow.bind(this)
@@ -28,14 +29,14 @@ export default class UserShow extends Component {
   }
 
   followDisplay() {
-    if (this.state.isFan) {
-
+    if (this.props.userId === this.props.currentUser.id) {
+      return null
+    } else if (this.props.isFan) {
       return <button
         className='follow-btn'
-        onClick={this.handleFollow}>unfollow
+        onClick={() => this.handleFollow()}>unfollow
       </button>;
     } else {
-
       return <button
         className='follow-btn'
         onClick={() => this.handleFollow()}>follow
@@ -44,13 +45,11 @@ export default class UserShow extends Component {
   }
 
   handleFollow() {
-    if ( this.state.isFan ) {
-      const toggle = this.state.isFan ? false : true;
-      this.setState({ isFan: toggle })
+    if ( this.props.isFan ) {
+      this.setState({ isFan: this.props.isFan })
       this.props.removeFan(this.props.fanId);
     } else {
-      const toggle = this.state.isFan ? false : true;
-      this.setState({ isFan: toggle })
+      this.setState({ isFan: this.props.isFan })
       const newFan = {
         fanId: this.props.currentUser.id,
         idolId: this.props.userId
@@ -70,7 +69,7 @@ export default class UserShow extends Component {
         // debugger
         snippetCount += 1
         mySnippets.push(snippet) //snippets created by the user, that this profile refers to
-      }
+      } 
     })
     let likeCount = 0
     snippetLikes.forEach(snippetId => {
@@ -214,3 +213,4 @@ export default class UserShow extends Component {
   }
 }
 
+export default UserShow;
