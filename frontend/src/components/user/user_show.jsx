@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SnippetShowCard from '../snippet_index/snippet_show_card';
 import UserCard from './user_card';
 
-export default class UserShow extends Component {
+class UserShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      empty: '',
+      isFan: this.props.isFan,
+      // fanId: this.props.fanId,
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleFollow = this.handleFollow.bind(this)
   }
 
   componentDidMount(){
@@ -26,13 +28,35 @@ export default class UserShow extends Component {
     }
   }
 
-  // handleFollow() {
-  //   if ( ) {
-  //     this.props.addFan();
-  //   } else {
-  //     this.props.removeFan();
-  //   }
-  // }
+  followDisplay() {
+    if (this.props.userId === this.props.currentUser.id) {
+      return null
+    } else if (this.props.isFan) {
+      return <button
+        className='follow-btn'
+        onClick={() => this.handleFollow()}>unfollow
+      </button>;
+    } else {
+      return <button
+        className='follow-btn'
+        onClick={() => this.handleFollow()}>follow
+      </button>;
+    }
+  }
+
+  handleFollow() {
+    if ( this.props.isFan ) {
+      this.setState({ isFan: this.props.isFan })
+      this.props.removeFan(this.props.fanId);
+    } else {
+      this.setState({ isFan: this.props.isFan })
+      const newFan = {
+        fanId: this.props.currentUser.id,
+        idolId: this.props.userId
+      }
+      this.props.addFan(newFan);
+    }
+  }
 
   scrollTo(className) {
     const section = document.querySelector(`section.${ className }`);
@@ -50,7 +74,7 @@ export default class UserShow extends Component {
         // debugger
         snippetCount += 1
         mySnippets.push(snippet) //snippets created by the user, that this profile refers to
-      }
+      } 
     })
     let likeCount = 0
     snippetLikes.forEach(snippetId => {
@@ -154,13 +178,7 @@ export default class UserShow extends Component {
 
             <div className='user-text-info-container'>
               <h2  className='username'>{users[userId]}</h2>
-              <button 
-                className='follow-btn'
-                onClick={this.handleFollow}
-              >
-                follow
-              </button>
-
+                {this.followDisplay()}
               <div className='snippets user-stat'>
                 <p className='num'>{snippetCount}</p>
                 <p className='label' onClick={() => this.scrollTo('snippets')}>
@@ -198,17 +216,13 @@ export default class UserShow extends Component {
           </section>
 
           <section className='fans'>
-
             <h2>Fans</h2>
             { fanDisplay }
-
           </section>
           
           <section className='idols'>
-
             <h2>Idols</h2>
             { idolDisplay }
-
           </section>
           
         </div>
@@ -218,3 +232,4 @@ export default class UserShow extends Component {
   }
 }
 
+export default UserShow;

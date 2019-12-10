@@ -17,6 +17,8 @@ import SnippetShowContainer from './snippets_show/snippet_show_container';
 
 import UserShowContainer from './user/user_show_container';
 
+import TestContainer from './test/test_container';
+
 import './stylesheets/main.scss'
 
 
