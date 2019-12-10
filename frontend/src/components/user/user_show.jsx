@@ -30,7 +30,7 @@ class UserShow extends React.Component {
 
   followDisplay() {
     if (this.props.userId === this.props.currentUser.id) {
-      return null
+      return <p className='padding'></p>
     } else if (this.props.isFan) {
       return <button
         className='follow-btn'

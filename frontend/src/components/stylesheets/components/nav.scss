@@ -1,7 +1,6 @@
 #nav-container {
   box-sizing: border-box;
   position: fixed;
-  top: -90vh;
   width: 100vw;
   height: 110vh;
   margin: auto;
@@ -23,7 +22,7 @@
 
   &.up {
     transition: top 1s ease 0s;
-    top: -105vh;
+    top: -104vh;
 
     .logo {
       transition: all 1s ease 0s;
@@ -73,7 +72,7 @@
     .nav-base-bar-container {
       box-sizing: border-box;
       position: absolute;
-      bottom: -42px;
+      bottom: -2.6em;
       
       width: inherit;
       display: flex;
@@ -120,6 +119,7 @@
           align-items: center;
           
           .logo {
+            height: 45px;
           }
         }
 
@@ -130,8 +130,8 @@
           .icon-wrap:hover > .nav-dropdown-container {
             @include box-shadow-bottom;
             position: absolute;
-            top: 25px;
-            right: 5%;
+            top: 40px;
+            right: 3%;
             z-index: 600;
 
             display: flex;
