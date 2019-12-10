@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchSnippets } from '../../actions/snippet_actions'
+import { fetchAllSnippets } from '../../actions/snippet_actions'
 import { fetchComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
 import { addLike, unlike, fetchLikes } from '../../actions/like_actions';
 import { fetchUsers } from '../../actions/user_actions';
@@ -25,7 +25,7 @@ const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, i
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSnippets: () => dispatch(fetchSnippets()),
+    fetchAllSnippets: () => dispatch(fetchAllSnippets()),
     fetchLikes: () => dispatch(fetchLikes()),
     fetchUsers: () => dispatch(fetchUsers()),
     fetchImages: () => dispatch(fetchImages()),
