@@ -8,7 +8,7 @@ function UserCard(props) {
       profileImageUrlAddress = props.icon;
 
   profileImageUrlAddress = profileImageUrlAddress ? profileImageUrlAddress : 'https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg';
-  
+
   return (
     <li 
       className='user-card-container'
@@ -17,7 +17,7 @@ function UserCard(props) {
     >
       <div className='user-card-content'>
         <div className="image-container" >
-          <img lassName="profile-picture hvr-grow" src={profileImageUrlAddress}/>
+          <img className="profile-picture hvr-grow" src={profileImageUrlAddress}/>
         </div>
 
         <p className='username'>
