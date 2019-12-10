@@ -146,11 +146,15 @@ class UserShow extends React.Component {
         <ul className='fan-container user-cards'>
           {
             myFans.map(fan => {
+              let url = 'https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg'
+              if (images[fan.fan]) {
+                url = images[fan.fan].aws_url
+              }
               return <UserCard
                 key={fan._id}
                 id={fan.fan}
                 name={users[fan.fan]}
-                icon={images[fan.fan].aws_url}
+                icon={url}
               />
             })
           }
@@ -161,11 +165,15 @@ class UserShow extends React.Component {
       <ul className='idol-container user-cards'>
         {
           myFollowers.map(follower => {
+            let url = 'https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg'
+            if(images[follower.idol]){
+              url = images[follower.idol].aws_url
+            }
             return <UserCard
               key={follower._id}
               id={follower.idol}
               name={users[follower.idol]}
-              icon={images[follower.idol].aws_url}
+              icon={url}
             />
           })
         }
