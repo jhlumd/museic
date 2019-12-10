@@ -111,24 +111,46 @@ export default class UserShow extends Component {
           {
             mySnippets.map( snippet => {
               const snippetId = snippet._id
-              return <SnippetShowCard 
-                key={snippetId}
+              debugger
+              if (currentUser.id === snippet.user) {
+                return <SnippetShowCard
+                  key={snippetId}
 
-                snippet={snippet}
-                comments={comments[snippetId]}
-                snippetId={snippetId}
-                likes={likes[snippetId]}
-                users={users}
-                userId={currentUser.id}
-                images={images}
+                  snippet={snippet}
+                  comments={comments[snippetId]}
+                  snippetId={snippetId}
+                  likes={likes[snippetId]}
+                  users={users}
+                  userId={currentUser.id}
+                  images={images}
 
-                composeComment={composeComment}
-                removeComment={removeComment}
-                editComment={editComment}
+                  composeComment={composeComment}
+                  removeComment={removeComment}
+                  editComment={editComment}
 
-                newLike={newLike}
-                unlike={unlike}
-              />
+                  newLike={newLike}
+                  unlike={unlike}
+                />
+              } else if ( snippet.public ){
+                return <SnippetShowCard
+                  key={snippetId}
+
+                  snippet={snippet}
+                  comments={comments[snippetId]}
+                  snippetId={snippetId}
+                  likes={likes[snippetId]}
+                  users={users}
+                  userId={currentUser.id}
+                  images={images}
+
+                  composeComment={composeComment}
+                  removeComment={removeComment}
+                  editComment={editComment}
+
+                  newLike={newLike}
+                  unlike={unlike}
+                />
+              }
             })
           }
 
