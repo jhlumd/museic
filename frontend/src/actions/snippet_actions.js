@@ -69,3 +69,9 @@ export const fetchSnippetOwner = (ownerId, snippetId) => dispatch => {
             .catch( () => console.log('----owner was not retrieved----'))
     )
 }
+
+export const fetchAllSnippets = () => dispatch => {
+    ApiUtil.getAllSnippets()
+        .then((res) => dispatch(receiveSnippets(res.data)))
+        .catch(err => console.log(err))
+}

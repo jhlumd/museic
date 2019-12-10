@@ -4,6 +4,10 @@ export const getSnippets = () => {
     return axios.get("/api/snippets");
 };
 
+export const getAllSnippets = () => {
+    return axios.get("/api/snippets/all")
+};
+
 export const getUserSnippets = userId => {
     return axios.get(`/api/snippets/user/${userId}`);
 };
@@ -19,3 +23,4 @@ export const saveSnippet = snippet => {
 export const deleteSnippet = snippetId => {
     return axios.delete(`/api/snippets/${snippetId}`);
 };
+
