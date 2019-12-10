@@ -20,11 +20,20 @@ export default class SnippetForm extends Component {
         e.preventDefault();
 
         if (this.props.tempNotes) {
-            // debugger;
-            this.props.saveSnippet(Object.assign(
-                this.state,
-                { notes: this.props.tempNotes }
-            ));
+            if (this.state.title) {
+              this.props.saveSnippet(
+                Object.assign(this.state, { notes: this.props.tempNotes })
+              );
+            } else {
+              const timeNow = new Date();
+
+              this.props.saveSnippet(
+                Object.assign(this.state, {
+                  title: `Snippet created at ${timeNow.toLocaleTimeString()} on ${timeNow.toLocaleDateString()}`,
+                  notes: this.props.tempNotes
+                })
+              );
+            }
 
             this.props.clearTempNotes();
             this.setState({

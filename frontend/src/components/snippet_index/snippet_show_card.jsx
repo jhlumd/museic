@@ -26,7 +26,7 @@ class IndexShowCard extends React.Component {
       unlike,
       userId
     } = this.props
-
+    
     let hasLiked = false
 
     let comments = []
