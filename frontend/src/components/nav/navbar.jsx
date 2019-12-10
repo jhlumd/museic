@@ -17,11 +17,13 @@ class Navbar extends React.Component {
     super(props);
     this.state = {
       currentNotes: this.props.tempNotes,
-      snipTime: 0
+      snipTime: 0,
+      input: '',
     };
     this.logoutUser = this.logoutUser.bind(this);
     this.searchDropdown = this.searchDropdown.bind(this);
-    this.search = this.search.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -118,12 +120,12 @@ class Navbar extends React.Component {
     }
   }
 
-  search(string) {
+  handleSearch() {
     const { snippets, comments, users } = this.props
     const results = []
-
+    //take form state
     users.forEach(user => {
-      if( user === string ){
+      if( user === this.state.input ){
         results.push(user)
       }
     })
@@ -137,31 +139,49 @@ class Navbar extends React.Component {
     return results
   }
 
-  searchDropdown(string){
-    if(this.props.users.length === 0) return null
+  handleChange(type, e){
+    this.setState({ [type]: e.currentTarget.value })
+  }
+
+  searchDropdown(){
+    if(this.props.users.length === 0 || this.state.input.length === 0) return null
     const { users, snippets } = this.props
-    const results = []
-    const terms = string.split(' ')
+    const userResults = []
+    const snippetResults = []
+    const terms = this.state.input.split(' ')
+    const userIds = Object.keys(users)
     terms.forEach( term => {
-      Object.values(users).forEach(user => {
+      Object.values(users).forEach((user, i) => {
         if (user.length >= term.length && user.slice(0, term.length).toLowerCase() === term.toLowerCase()){
-          results.push(user)
+          userResults.push(userIds[i])
         }
       })
       
-      if(string.length > 2){ //only do snippet title search if input at least 3 chars
+      if(this.state.input.length > 2){ //only do snippet title search if input at least 3 chars
         snippets.forEach(snippet => {
           for( let i = 0; i+term.length < snippet.title.length; i++){
             if (snippet.title.slice(i, i + term.length).toLowerCase() === term.toLowerCase()){
-              results.push(snippet.title)
+              snippetResults.push(snippet.title)
             }
           }
         })
       }
       
     })
-    debugger
-    return results.slice(0,12)
+    // debugger
+    return (
+    <div>
+      {
+        userResults.map((userId,i) => {
+        return <li key={i} onClick={()=> this.props.history.push(`/profile/${userId}`)}>{users[userId]}</li>
+        })
+        // results.slice(0, 12).map((res, i) => {
+        //   return <li key={i} onClick={() = {
+        //     history.push()}>{res}</li>
+        // })
+      }
+    </div>
+    )
   }
 
   render() {
@@ -218,11 +238,20 @@ class Navbar extends React.Component {
   <br/>
   {this.searchDropdown('phil tomato')}
 </div> */}
+{
+  this.searchDropdown()
+}
 
               <div className='nav-base-bar-right'>
 
                 <div className='search-container'>
-                  <input type="text" placeholder="search" id="search"/>
+                  <input 
+                    type="text" 
+                    placeholder="search" 
+                    id="search" 
+                    value={this.state.input}
+                    onChange={(e) => this.handleChange('input', e)}
+                  />
                   <button className='search-btn' onClick={() => this.handleSearch()}><SearchIcon /></button>
                 </div>
                 
