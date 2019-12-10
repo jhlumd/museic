@@ -146,11 +146,15 @@ class UserShow extends React.Component {
         <ul className='fan-container user-cards'>
           {
             myFans.map(fan => {
+              let url = 'https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg'
+              if (images[fan.fan]) {
+                url = images[fan.fan].aws_url
+              }
               return <UserCard
                 key={fan._id}
                 id={fan.fan}
                 name={users[fan.fan]}
-                icon={images[fan.fan].aws_url}
+                icon={url}
               />
             })
           }
