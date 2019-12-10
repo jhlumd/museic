@@ -19,6 +19,8 @@ class Navbar extends React.Component {
       snipTime: 0
     };
     this.logoutUser = this.logoutUser.bind(this);
+    this.searchDropdown = this.searchDropdown.bind(this);
+    this.search = this.search.bind(this);
   }
 
   componentDidMount() {
@@ -115,6 +117,52 @@ class Navbar extends React.Component {
     }
   }
 
+  search(string) {
+    const { snippets, comments, users } = this.props
+    const results = []
+
+    users.forEach(user => {
+      if( user === string ){
+        results.push(user)
+      }
+    })
+    // comments.forEach(snippetComments => {
+    //   snippetComments.forEach(comment => {
+          // if(users[comment.user] === string){
+            // results.push(comment.snippet) //adds snippet Id to results
+          // }
+    //   })
+    // })
+    return results
+  }
+
+  searchDropdown(string){
+    if(this.props.users.length === 0) return null
+    const { users, snippets } = this.props
+    const results = []
+    const terms = string.split(' ')
+    terms.forEach( term => {
+      Object.values(users).forEach(user => {
+        if (user.length >= term.length && user.slice(0, term.length).toLowerCase() === term.toLowerCase()){
+          results.push(user)
+        }
+      })
+      
+      if(string.length > 2){ //only do snippet title search if input at least 3 chars
+        snippets.forEach(snippet => {
+          for( let i = 0; i+term.length < snippet.title.length; i++){
+            if (snippet.title.slice(i, i + term.length).toLowerCase() === term.toLowerCase()){
+              results.push(snippet.title)
+            }
+          }
+        })
+      }
+      
+    })
+    debugger
+    return results.slice(0,12)
+  }
+
   render() {
     // changing the snippetform to the keyboard with the following code
     // causes "form submission canceled because the form is not connected" error
@@ -164,6 +212,11 @@ class Navbar extends React.Component {
               <div className='nav-base-bar-left'>
                 <Logo />
               </div>
+
+{/* <div>
+  <br/>
+  {this.searchDropdown('phil tomato')}
+</div> */}
 
               <div className='nav-base-bar-right'>
                 <div className='icon-wrap'>
