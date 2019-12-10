@@ -13,7 +13,7 @@ import Footer from './footer/footer';
 
 import SnippetFormContainer from './snippet_form/snippet_form_container';
 import SnippetIndexContainer from './snippet_index/snippet_index_container';
-// import SnippetShowContainer from './snippets/snippet_show_container';
+import SnippetShowContainer from './snippets_show/snippet_show_container';
 
 import UserShowContainer from './user/user_show_container';
 
@@ -36,8 +36,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/snippets/index" component={SnippetIndexContainer} />
       <ProtectedRoute exact path="/snippets/new" component={SnippetFormContainer} />
-      {/* <Route exact path="/snippets/:id" component={ SnippetShowContainer} /> */}
-      {/* test upload */}
+      <ProtectedRoute exact path="/snippets/:id" component={SnippetShowContainer} />
       <AuthRoute exact path="/" component={SplashContainer} />
     </Switch>
     
