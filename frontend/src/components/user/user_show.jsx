@@ -67,6 +67,10 @@ class UserShow extends React.Component {
     const {snippets, snippetLikes, users, comments, fans, images, likes, currentUser, userId,
       composeComment, removeComment, editComment, newLike, unlike, addFan, removeFan} = this.props
 
+    if(!images){
+      return null
+    }
+    
     let snippetCount = 0
     const mySnippets = [] //snippets belonging to the profile's user
     snippets.forEach(snippet => {
@@ -136,16 +140,17 @@ class UserShow extends React.Component {
           })
         }
       </ul>;
-
+    
       const fanDisplay = fansCount < 1 ? 
         <p className='empty-msg'>No fans yet</p> :
         <ul className='fan-container user-cards'>
           {
             myFans.map(fan => {
               return <UserCard
+                key={fan._id}
                 id={fan.fan}
                 name={users[fan.fan]}
-                icon={images[fan.fan]}
+                icon={images[fan.fan].aws_url}
               />
             })
           }
@@ -157,9 +162,10 @@ class UserShow extends React.Component {
         {
           myFollowers.map(follower => {
             return <UserCard
+              key={follower._id}
               id={follower.idol}
               name={users[follower.idol]}
-              icon={images[follower.idol]}
+              icon={images[follower.idol].aws_url}
             />
           })
         }

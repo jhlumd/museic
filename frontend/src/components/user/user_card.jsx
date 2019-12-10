@@ -8,7 +8,7 @@ function UserCard(props) {
       profileImageUrlAddress = props.icon;
 
   profileImageUrlAddress = profileImageUrlAddress ? profileImageUrlAddress : 'https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg';
-  
+
   return (
     <li 
       className='user-card-container'
