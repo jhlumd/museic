@@ -27,6 +27,14 @@ export default class UserShow extends Component {
     }
   }
 
+  // handleFollow() {
+  //   if ( ) {
+  //     this.props.addFan();
+  //   } else {
+  //     this.props.removeFan();
+  //   }
+  // }
+
   render(){
     const {snippets, snippetLikes, users, comments, fans, images, likes, currentUser, userId,
       composeComment, removeComment, editComment, newLike, unlike, addFan, removeFan} = this.props
@@ -83,8 +91,15 @@ export default class UserShow extends Component {
                 <img className="profile-picture" src={profileImageUrlAddress}/>
               </div>
             </div>
+
             <div className='user-text-info-container'>
               <h2  className='username'>{users[userId]}</h2>
+              <button 
+                className='follow-btn'
+                onClick={this.handleFollow}
+              >
+                follow
+              </button>
 
               <div className='snippets user-stat'>
                 <p className='num'>{snippetCount}</p>
@@ -103,57 +118,74 @@ export default class UserShow extends Component {
                 <p className='label'>Following</p>
               </div>
             </div>
+
           </div>
 
         </div>
 
         <div className='right-container'>
-          <h2>My Snippets</h2>
-          {
-            mySnippets.map( snippet => {
-              const snippetId = snippet._id
-              return <SnippetShowCard 
-                key={snippetId}
-
-                snippet={snippet}
-                comments={comments[snippetId]}
-                snippetId={snippetId}
-                likes={likes[snippetId]}
-                users={users}
-                userId={currentUser.id}
-                images={images}
-
-                composeComment={composeComment}
-                removeComment={removeComment}
-                editComment={editComment}
-
-                newLike={newLike}
-                unlike={unlike}
-              />
-            })
-          }
-
-
-          <h2>My Fans</h2>
-
-          <p>---------------------</p>
-          
-            <ul >
+          <section className='snippets'>
+            <h2>My Snippets</h2>
+            <ul className='snippet-show-container'>
               {
-                myFans.map(fan => {
-                  return <p>{users[fan.fan]}</p>
+                mySnippets.map( snippet => {
+                  const snippetId = snippet._id
+                  return <SnippetShowCard 
+                    key={snippetId}
+
+                    snippet={snippet}
+                    comments={comments[snippetId]}
+                    snippetId={snippetId}
+                    likes={likes[snippetId]}
+                    users={users}
+                    userId={currentUser.id}
+                    images={images}
+
+                    composeComment={composeComment}
+                    removeComment={removeComment}
+                    editComment={editComment}
+
+                    newLike={newLike}
+                    unlike={unlike}
+                  />
                 })
               }
             </ul>
-            
-          
+          </section>
 
-          <h2>My Idols</h2>
-          {
-            myFollowers.map(follower => {
-              return <p>{users[follower.idol]}</p>
-            })
-          }
+          <section className='fans'>
+
+            <h2>My Fans</h2>
+            <ul className='fan-container'>
+              {
+                myFans.map(fan => {
+                  return <UserCard 
+                    id={fan.fan}
+                    name={users[fan.fan]}
+                    icon={images[fan.fan]}
+                  />
+                })
+              }
+            </ul>
+
+          </section>
+          
+          <section className='idols'>
+
+            <h2>My Idols</h2>
+            <ul className='idol-container'>
+              {
+                myFollowers.map(follower => {
+                  return <UserCard
+                    id={follower.idol}
+                    name={users[follower.idol]}
+                    icon={images[follower.idol]}
+                  />
+                })
+              }
+            </ul>
+
+          </section>
           
         </div>
 

@@ -40,6 +40,12 @@
 
       h2.username {
         text-align: center;
+        margin-bottom: 0;
+      }
+
+      button.follow-btn {
+        @include button-basic;
+        margin-bottom: 1em;
       }
 
       div.user-icon-container {

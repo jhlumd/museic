@@ -5,13 +5,12 @@ import { withRouter } from "react-router-dom";
 function UserCard(props) {
   const name = props.name,
         id = props.id,
-        profileImageUrlAddress = props.icon,
-        history = props.history;
+        profileImageUrlAddress = props.icon;
   
   return (
     <li 
       className='user-card-container'
-      onClick={() => history.push(`/profile/${id}`)}
+      onClick={() => props.history.push(`/profile/${id}`)}
       key={id}
     >
       <div className='user-card-content'>
@@ -21,6 +20,7 @@ function UserCard(props) {
           { name }
         </h3>
       </div>
+      
     </li>
   )
 }
