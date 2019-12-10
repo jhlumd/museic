@@ -25,7 +25,7 @@ class SnippetInfo extends React.Component {
       userId,
       // likes,
       users,
-      snippet: { title, description, date, user },
+      snippet: { title, description, date, user, _id },
     } = this.props
 
     let likes = []
@@ -45,7 +45,7 @@ class SnippetInfo extends React.Component {
         <div className='snippet-show-info-top'>
 
           <div className='snippet-show-info-left'>
-            <h4>{ title }</h4>
+            <h4 onClick={() => this.props.history.push(`/snippets/${_id}`)}>{ title }</h4>
             <p 
               className='username'
               onClick={() => this.props.history.push(`/profile/${user}`)}

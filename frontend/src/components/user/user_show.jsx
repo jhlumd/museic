@@ -18,7 +18,6 @@ export default class UserShow extends Component {
     this.props.fetchImages()
     this.props.fetchFans()
     this.props.fetchComments()
-    this.props.fetchUsers()
   }
 
   handleClick(){
