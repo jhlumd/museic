@@ -29,8 +29,6 @@ export default function NavbarUserDropdown(props) {
     return (
       <div className='nav-dropdown-container'>
 
-        <div className='nav-dropdown-top-pad'></div>
-
         <button onClick={() => props.openModal('signup')}>
           <div>Signup</div>
         </button>

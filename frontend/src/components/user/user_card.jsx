@@ -18,7 +18,7 @@ function UserCard(props) {
       <div className='user-card-content'>
 
         <div className="image-container" >
-          <img className="profile-picture hvr-grow" src={profileImageUrlAddress}/>
+          <img className="profile-picture" src={profileImageUrlAddress}/>
         </div>
 
 
