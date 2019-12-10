@@ -65,7 +65,7 @@ class UserShow extends React.Component {
 
   render(){
     const {snippets, snippetLikes, users, comments, fans, images, likes, currentUser, userId,
-      composeComment, removeComment, editComment, newLike, unlike, addFan, removeFan} = this.props
+      composeComment, removeComment, editComment, newLike, unlike } = this.props
 
     if(!images){
       return null
