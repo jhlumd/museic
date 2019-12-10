@@ -11,6 +11,7 @@ import Footer from './footer/footer';
 // import SnippetFormContainer from './snippet_form/snippet_form_container';
 import SnippetIndexContainer from './snippet_index/snippet_index_container';
 import SnippetShowContainer from './snippets_show/snippet_show_container';
+import SearchSnippetIndexContainer from './search/search_snippet_index_container';
 
 import UserShowContainer from './user/user_show_container';
 
@@ -31,6 +32,7 @@ const App = () => (
       <ProtectedRoute exact path="/snippets/index" component={SnippetIndexContainer} />
       <ProtectedRoute exact path="/snippets/:id" component={SnippetShowContainer} />
       <ProtectedRoute exact path="/profile/:id" component={UserShowContainer} />
+      <ProtectedRoute exact path="/searchresults" component={SearchSnippetIndexContainer} />
       <AuthRoute exact path="/" component={SplashContainer} />
     </Switch>
     

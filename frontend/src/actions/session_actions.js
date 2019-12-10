@@ -5,6 +5,12 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
+export const RECEIVE_SEARCH_RESULTS = "RECEIVE_SEARCH_RESULTS";
+
+export const receiveSearchResults = searchResults => ({
+  type: RECEIVE_SEARCH_RESULTS,
+  searchResults
+})
 
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = currentUser => ({

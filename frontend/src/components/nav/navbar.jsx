@@ -121,14 +121,28 @@ class Navbar extends React.Component {
   }
 
   handleSearch() {
-    const { snippets, comments, users } = this.props
-    const results = []
-    //take form state
-    users.forEach(user => {
-      if( user === this.state.input ){
-        results.push(user)
-      }
+    const { snippets, users } = this.props
+    const userSearch = []
+    const snippetResults = {} //pojo of snippets by the user, or have the search terms in title
+    const terms = this.state.input.split(' ')
+    const userIds = Object.keys(users)
+    terms.forEach(term => { //search by each term
+      users.forEach((user, i) => {
+        if( user === term ){
+          userSearch.push(userIds[i])
+        }
+      })
     })
+    userSearch.forEach(user => {
+      snippets.forEach(snippet => {
+        if(snippet.user === user){
+          snippetResults[snippet._id] = snippet
+        }
+      })
+    })
+
+
+
     // comments.forEach(snippetComments => {
     //   snippetComments.forEach(comment => {
           // if(users[comment.user] === string){
@@ -136,7 +150,7 @@ class Navbar extends React.Component {
           // }
     //   })
     // })
-    return results
+    this.props.receiveSearchResults(snippetResults)
   }
 
   handleChange(type, e){
@@ -174,12 +188,18 @@ class Navbar extends React.Component {
     <div>
       {
         userResults.map((userId,i) => {
-          return <li key={i} onClick={()=> this.props.history.push(`/profile/${userId}`)}>{users[userId]}</li>
+          return <li key={i} onClick={()=> {
+            this.props.history.push(`/profile/${userId}`)
+            this.setState({input: ''})
+          }}>{users[userId]}</li>
         })
       }
       {
         snippetResults.map((snippet, i) => {
-          return <li key={i} onClick={()=> this.props.history.push(`/snippets/${snippet._id}`)}>{snippet.title}</li>
+          return <li key={i} onClick={()=> {
+            this.props.history.push(`/snippets/${snippet._id}`)
+            this.setState({input: ''})
+          }}>{snippet.title}</li>
         })
       }
     </div>

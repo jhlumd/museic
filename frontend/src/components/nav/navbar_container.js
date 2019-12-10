@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { logout } from '../../actions/session_actions';
+import { logout, receiveSearchResults } from '../../actions/session_actions';
 import { openModal } from '../../actions/modal_actions';
 
 import Navbar from './navbar';
@@ -16,7 +16,8 @@ const mapStateToProps = state => ({
 //login or signup modal
 const mapDispatchToProps = dispatch => ({
   openModal: modal => dispatch(openModal(modal)),
-  logout: () => dispatch(logout()) 
+  logout: () => dispatch(logout()),
+  receiveSearchResults: (results) => dispatch(receiveSearchResults(results)),
 })
 
 export default connect(
