@@ -9,13 +9,18 @@ class ImageUploadForm extends React.Component {
       userId: '',
       imageUrl: '',
       imageFormData: null,
+      errors: '',
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleFile = this.handleFile.bind(this)
   }
 
   handleSubmit() {
-    console.log('sent')
+    // console.log('sent')
+    if(!this.state.imageFormData){
+      this.setState({errors: 'Please select an image'})
+      return null
+    }
     this.setState({uploading: true})
     this.props.upload(this.state.imageFormData) //uploads the file to mongoDB
       .then((res) => {
@@ -34,7 +39,7 @@ class ImageUploadForm extends React.Component {
 
   handleFile(e) {
     const file = e.target.files[0] //gets the file
-    console.log(file)
+    // console.log(file)
     const formData = new FormData() //new form data obj
     formData.append('image', file) //adds the file to FormData obj, and sets it under key of 'image'
 
@@ -45,7 +50,7 @@ class ImageUploadForm extends React.Component {
     if(this.state.uploading){
       return (
         <div>
-          <i>Loading</i>
+          <i>Loading...</i>
         </div>
       )
     }
@@ -56,6 +61,7 @@ class ImageUploadForm extends React.Component {
       <div id='upload-form-container' onClick = {(e) => {
         this.props.closeModal();}}>
         <form onSubmit={() => this.handleSubmit()} onClick={(e) => e.stopPropagation()}>
+          <p className="error">{this.state.errors}</p>
         {this.loadingIcon()}
           <label className="fileContainer">
             Choose a file:
