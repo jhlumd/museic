@@ -94,6 +94,21 @@
     flex-direction: column;
     align-items: center;
 
+    section {
+      width: inherit;
+      min-height: 100px;
+      width: inherit;
+
+      ul.user-cards {
+        width: inherit;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+      }
+    }
+
     div.snippet-show-card-container {
       @include flex-centered;
       @include box-shadow;

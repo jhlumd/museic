@@ -16,11 +16,13 @@ function UserCard(props) {
       key={id}
     >
       <div className='user-card-content'>
-        <img lassName="profile-picture hvr-grow" src={profileImageUrlAddress}/>
+        <div className="image-container" >
+          <img lassName="profile-picture hvr-grow" src={profileImageUrlAddress}/>
+        </div>
 
-        <h3 className='username'>
+        <p className='username'>
           { name }
-        </h3>
+        </p>
       </div>
       
     </li>

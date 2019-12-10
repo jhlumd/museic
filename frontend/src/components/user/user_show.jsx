@@ -156,7 +156,7 @@ export default class UserShow extends Component {
           <section className='fans'>
 
             <h2>My Fans</h2>
-            <ul className='fan-container'>
+            <ul className='fan-container user-cards'>
               {
                 myFans.map(fan => {
                   return <UserCard 
@@ -173,7 +173,7 @@ export default class UserShow extends Component {
           <section className='idols'>
 
             <h2>My Idols</h2>
-            <ul className='idol-container'>
+            <ul className='idol-container user-cards'>
               {
                 myFollowers.map(follower => {
                   return <UserCard
