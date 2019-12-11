@@ -21,7 +21,6 @@ class SearchIndex extends React.Component {
     this.props.fetchComments();
     this.props.fetchUsers();
     this.props.fetchImages();
-    console.log(this.props.location.search)
   }
 
   componentDidUpdate(){
@@ -49,7 +48,7 @@ class SearchIndex extends React.Component {
     terms.forEach(term => { //search by each term
       // debugger
       Object.values(users).forEach((user, i) => {
-        if (user === term) {
+        if (user.toLowerCase() === term.toLowerCase()) {
           userSearch.push(userIds[i])
         }
       })
