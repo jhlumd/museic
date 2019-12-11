@@ -49,17 +49,16 @@ class CommentListItem extends React.Component {
 
             <div className='user-icon hvr-grow' onClick={() => this.props.history.push(`/profile/${ ownerId }`)}>
               <img className='comment-profile-image' src={imageUrl} />
-              <p className='owner-name' onClick={() => this.props.history.push(`/profile/${ownerId}`)}>
-                {`${ownername} `}
-              </p> 
             </div>
+            <p className='owner-name' onClick={() => this.props.history.push(`/profile/${ownerId}`)}>
+              {`${ownername} `}
+            </p> 
 
             <CommentEditForm
               handleClick={this.handleClick}
               editComment={this.editComment}
               handleChange={this.handleChange}
               body={this.props.body}
-              // deleteComment={this.deleteComment}
             />
           </div>
         </li>
@@ -81,10 +80,15 @@ class CommentListItem extends React.Component {
               </p> 
             </div>
 
-            <p className='comment-body'>{this.props.body}</p>
-            <button onClick={e => {
-              e.stopPropagation()
-              this.deleteComment()}}><XIcon/></button>
+            <div className='comment-container'>
+              <p className='comment-body'>{this.props.body}</p>
+
+              <button className='delete-comment-btn' onClick={e => {
+                e.stopPropagation()
+                this.deleteComment()}}><XIcon/>
+              </button>
+            </div>
+
           </div>
         </li>
       )

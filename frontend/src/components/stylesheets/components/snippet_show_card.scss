@@ -104,7 +104,11 @@
       }
 
       &.owned:hover {
-        background-color: $wisp;
+        background-color: $ivory;
+      }
+
+      &:not(.editable) .x-icon{
+        display: none;
       }
 
       &.comment-list-item-container {
@@ -152,14 +156,25 @@
             }
         }
 
-        .comment-body {
-          box-sizing: border-box;
-          margin-right: 1em;
-          max-width: 500px;
-        }
+        div.comment-container {
+          width: inherit;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
 
-        .x-icon {
-          height: 12px;
+          p.comment-body {
+            box-sizing: border-box;
+            margin-right: 1em;
+            max-width: 500px;
+          }
+  
+          button.delete-comment-btn {
+  
+            .x-icon {
+              height: 12px;
+            }
+          }
         }
       }
     }
@@ -172,12 +187,17 @@
       flex-direction: row;
       justify-content: space-between;
 
+      label {
+        width: inherit;
+      }
+
       input {
         font-family: $sans-serif;
-        font-weight: 400;
-
+        font-weight: 300;
+        
         &[type='text'] {
-          width: 430px;
+          width: 100%;
+          margin-right: 1em;
         }
         
         &[type='submit'] {
@@ -219,7 +239,6 @@
           }
         }
       }
-
     }
   }
 }
