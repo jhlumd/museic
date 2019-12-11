@@ -24,9 +24,7 @@ class SearchIndex extends React.Component {
   }
 
   componentDidUpdate(){
-    debugger
     if (queryString.parse(this.props.location.search).st != this.state.searchTerms){
-      debugger
       this.setState({ searchTerms: queryString.parse(this.props.location.search).st })
     }
   }
