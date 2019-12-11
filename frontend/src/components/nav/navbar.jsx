@@ -122,6 +122,7 @@ class Navbar extends React.Component {
 
   handleSearch() {
     this.props.history.push(`/search/?st=${this.state.input}`)
+    this.setState({input: ''})
   }
 
   handleChange(type, e){
