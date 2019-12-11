@@ -1,7 +1,8 @@
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_USER_LOGOUT,
-  RECEIVE_USER_SIGN_IN
+  RECEIVE_USER_SIGN_IN,
+  RECEIVE_SEARCH_RESULTS,
 } from '../actions/session_actions';
 
 const initialState = {
@@ -26,6 +27,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isSignedIn: true
+      }
+    case RECEIVE_SEARCH_RESULTS:
+      return {
+        ...state,
+        search: action.searchResults
       }
     default:
       return state;

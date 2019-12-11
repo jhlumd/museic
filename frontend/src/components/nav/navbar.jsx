@@ -17,11 +17,13 @@ class Navbar extends React.Component {
     super(props);
     this.state = {
       currentNotes: this.props.tempNotes,
-      snipTime: 0
+      snipTime: 0,
+      input: '',
     };
     this.logoutUser = this.logoutUser.bind(this);
-    this.searchDropdown = this.searchDropdown.bind(this);
-    this.search = this.search.bind(this);
+    this.searchAutocomplete = this.searchAutocomplete.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -118,50 +120,72 @@ class Navbar extends React.Component {
     }
   }
 
-  search(string) {
-    const { snippets, comments, users } = this.props
-    const results = []
-
-    users.forEach(user => {
-      if( user === string ){
-        results.push(user)
-      }
-    })
-    // comments.forEach(snippetComments => {
-    //   snippetComments.forEach(comment => {
-          // if(users[comment.user] === string){
-            // results.push(comment.snippet) //adds snippet Id to results
-          // }
-    //   })
-    // })
-    return results
+  handleSearch() {
+    this.props.history.push(`/search/?st=${this.state.input}`)
+    this.setState({input: ''})
   }
 
-  searchDropdown(string){
-    if(this.props.users.length === 0) return null
+  handleChange(type, e){
+    this.setState({ [type]: e.currentTarget.value })
+  }
+
+  searchAutocomplete(){
+    if(this.props.users.length === 0 || this.state.input.length === 0) return null
     const { users, snippets } = this.props
-    const results = []
-    const terms = string.split(' ')
+    const userResults = []
+    const snippetResults = {}
+    const terms = this.state.input.split(' ')
+    const userIds = Object.keys(users)
     terms.forEach( term => {
-      Object.values(users).forEach(user => {
+      if(term.length === 0 ) return null
+      Object.values(users).forEach((user, i) => {
         if (user.length >= term.length && user.slice(0, term.length).toLowerCase() === term.toLowerCase()){
-          results.push(user)
+          userResults.push(userIds[i])
         }
       })
-      
-      if(string.length > 2){ //only do snippet title search if input at least 3 chars
+
+      if(term.length > 2){ //only do snippet title search if sub-term at least 3 chars
         snippets.forEach(snippet => {
-          for( let i = 0; i+term.length < snippet.title.length; i++){
+          for( let i = 0; i+term.length < snippet.title.length+1; i++){
             if (snippet.title.slice(i, i + term.length).toLowerCase() === term.toLowerCase()){
-              results.push(snippet.title)
+              snippetResults[snippet._id] = snippet
             }
           }
         })
       }
-      
     })
-    debugger
-    return results.slice(0,12)
+    
+    if (this.state.input.length > 2) { //only do snippet title search if input at least 3 chars
+      snippets.forEach(snippet => {
+        for (let i = 0; i + this.state.input.length < snippet.title.length; i++) {
+          if (snippet.title.slice(i, i + this.state.input.length).toLowerCase() === this.state.input.toLowerCase()) {
+            snippetResults[snippet._id] = snippet
+          }
+        }
+      })
+    }
+    
+
+    return (
+    <div>
+      {
+        userResults.map((userId,i) => {
+          return <li key={i} onClick={()=> {
+            this.props.history.push(`/profile/${userId}`)
+            this.setState({input: ''})
+          }}>{users[userId]}</li>
+        })
+      }
+      {
+        Object.values(snippetResults).map((snippet, i) => {
+          return <li key={i} onClick={()=> {
+            this.props.history.push(`/snippets/${snippet._id}`)
+            this.setState({input: ''})
+          }}>{snippet.title}</li>
+        })
+      }
+    </div>
+    )
   }
 
   render() {
@@ -218,11 +242,20 @@ class Navbar extends React.Component {
   <br/>
   {this.searchDropdown('phil tomato')}
 </div> */}
+{
+                this.searchAutocomplete()
+}
 
               <div className='nav-base-bar-right'>
 
                 <div className='search-container'>
-                  <input type="text" placeholder="search" id="search"/>
+                  <input 
+                    type="text" 
+                    placeholder="search" 
+                    id="search" 
+                    value={this.state.input}
+                    onChange={(e) => this.handleChange('input', e)}
+                  />
                   <button className='search-btn' onClick={() => this.handleSearch()}><SearchIcon /></button>
                 </div>
                 
