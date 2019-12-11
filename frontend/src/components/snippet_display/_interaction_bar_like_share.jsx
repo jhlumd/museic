@@ -35,7 +35,10 @@ export default class InteractionBarLikeShare extends Component {
         <div className="interaction-bar-right">
           <button onClick={() => this.handelUnlike(this.props.likeId)}><FilledHeartIcon/></button>
           {/* FIXME add sharing function */}
-          <ShareIcon />
+          <div className="share-icon-container" 
+            onClick={() => this.props.openModal(`http://museic-demo.herokuapp.com/#/snippets/${this.props.snippetId}`)}>
+            <ShareIcon />
+          </div>
         </div>
       )
     } else {
@@ -43,7 +46,10 @@ export default class InteractionBarLikeShare extends Component {
         <div className="interaction-bar-right">
           <button onClick={() => this.handelLike(likeData)}><HeartIcon/></button>
           {/* FIXME add sharing function */}
-          <ShareIcon />
+          <div className="share-icon-container" 
+            onClick={() => this.props.openModal(`http://museic-demo.herokuapp.com/#/snippets/${this.props.snippetId}`)}>
+            <ShareIcon />
+          </div>
         </div>
       )
     }

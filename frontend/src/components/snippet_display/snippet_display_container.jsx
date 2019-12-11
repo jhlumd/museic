@@ -7,6 +7,7 @@ import {
   startPlayback,
   pausePlayback
 } from "../../actions/snippet_is_playing_actions";
+import { openModal } from '../../actions/modal_actions';
 
 const mstp = (state, ownProps) => ({
   currentUser: state.session.user,
@@ -21,7 +22,8 @@ const mdtp = dispatch => ({
   unlike: (userId, snippetId) => dispatch(unlike(userId, snippetId)),
   fetchSnippet: snippetId => dispatch(fetchSnippet(snippetId)),
   startPlayback: () => dispatch(startPlayback()),
-  pausePlayback: () => dispatch(pausePlayback())
+  pausePlayback: () => dispatch(pausePlayback()),
+  openModal: (modal) => dispatch(openModal(modal)),
 });
 
 export default withRouter(connect(mstp, mdtp)(SnippetDisplay));
