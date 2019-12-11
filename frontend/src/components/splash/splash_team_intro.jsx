@@ -30,7 +30,7 @@ export default function SplashTeamInfo() {
         <div className='team-member-description'>
           <h3>Phil Zheng</h3>
           <p>
-            Hey. I constructed the backend.
+            Hey. I constructed the backend and added things like search, image uploading and comments.
           </p>
         </div>
 

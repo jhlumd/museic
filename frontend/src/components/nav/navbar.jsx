@@ -53,6 +53,14 @@ class Navbar extends React.Component {
       });
     });
     
+    // This adds listener for pressing enter in search field
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener("keyup", function (event) {
+      if (event.keyCode === 13) {
+        // Trigger the button element with a click
+        document.getElementById("search-btn").click();
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -237,18 +245,13 @@ class Navbar extends React.Component {
               <div className='nav-base-bar-left'>
                 <Logo />
               </div>
-
-{/* <div>
-  <br/>
-  {this.searchDropdown('phil tomato')}
-</div> */}
 {
                 this.searchAutocomplete()
 }
 
               <div className='nav-base-bar-right'>
 
-                <div className='search-container'>
+                <div className='search-container'> 
                   <input 
                     type="text" 
                     placeholder="search" 
@@ -256,7 +259,7 @@ class Navbar extends React.Component {
                     value={this.state.input}
                     onChange={(e) => this.handleChange('input', e)}
                   />
-                  <button className='search-btn' onClick={() => this.handleSearch()}><SearchIcon /></button>
+                  <button id='search-btn' onClick={() => this.handleSearch()}><SearchIcon /></button>
                 </div>
                 
                 <div className='icon-wrap'>

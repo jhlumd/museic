@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
 import UploadFormContainer from '../image_upload/image_upload_form_container';
+import ShareSnippetContainer from '../share_modal/snippet_share_container';
 
 
 class Modal extends React.Component {
@@ -32,6 +33,14 @@ class Modal extends React.Component {
         <div className="modal-background" onClick={this.props.closeModal}>
           <div className="modal-upload" onClick={e => e.stopPropagation()}>
             <UploadFormContainer />
+          </div>
+        </div> 
+      )
+    } else if (this.props.modal != null ) {
+      return(
+        <div className="modal-background" onClick={this.props.closeModal}>
+          <div className="modal-share" onClick={e => e.stopPropagation()}>
+            <ShareSnippetContainer link={this.props.modal}/>
           </div>
         </div> 
       )

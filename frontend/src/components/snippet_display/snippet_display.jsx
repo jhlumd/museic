@@ -100,6 +100,7 @@ export default class SnippetDisplay extends Component {
             userId={this.props.userId}
             addLike={this.props.addLike}
             unlike={this.props.unlike}
+            openModal={this.props.openModal}
           />
         </div>
       </div>
