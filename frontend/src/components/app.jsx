@@ -32,7 +32,7 @@ const App = () => (
       <ProtectedRoute exact path="/snippets/index" component={SnippetIndexContainer} />
       <ProtectedRoute exact path="/snippets/:id" component={SnippetShowContainer} />
       <ProtectedRoute exact path="/profile/:id" component={UserShowContainer} />
-      <ProtectedRoute exact path="/searchresults" component={SearchSnippetIndexContainer} />
+      <ProtectedRoute exact path="/search" component={SearchSnippetIndexContainer} />
       <AuthRoute exact path="/" component={SplashContainer} />
     </Switch>
     

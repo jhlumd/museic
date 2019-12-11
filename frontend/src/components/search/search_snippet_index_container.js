@@ -7,12 +7,12 @@ import { fetchImages } from '../../actions/image_actions';
 
 import { pausePlayback } from "../../actions/snippet_is_playing_actions";
 
-import SnippetIndex from '../snippet_index/snippet_index';
+import SearchIndex from './search_snippet_index';
 
 const mapStateToProps = (state) => {
   // debugger
   return {
-    snippets: Object.values(state.session.search),
+    snippets: Object.values(state.entities.snippets),
     comments: state.entities.comments,
     likes: state.entities.likes,
     users: state.entities.users,
@@ -42,4 +42,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect( mapStateToProps, mapDispatchToProps)(SnippetIndex)
+export default connect( mapStateToProps, mapDispatchToProps)(SearchIndex)

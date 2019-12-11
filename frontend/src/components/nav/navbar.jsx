@@ -121,36 +121,7 @@ class Navbar extends React.Component {
   }
 
   handleSearch() {
-    const { snippets, users } = this.props
-    const userSearch = []
-    const snippetResults = {} //pojo of snippets by the user, or have the search terms in title
-    const terms = this.state.input.split(' ')
-    const userIds = Object.keys(users)
-    terms.forEach(term => { //search by each term
-      users.forEach((user, i) => {
-        if( user === term ){
-          userSearch.push(userIds[i])
-        }
-      })
-    })
-    userSearch.forEach(user => {
-      snippets.forEach(snippet => {
-        if(snippet.user === user){
-          snippetResults[snippet._id] = snippet
-        }
-      })
-    })
-
-
-
-    // comments.forEach(snippetComments => {
-    //   snippetComments.forEach(comment => {
-          // if(users[comment.user] === string){
-            // results.push(comment.snippet) //adds snippet Id to results
-          // }
-    //   })
-    // })
-    this.props.receiveSearchResults(snippetResults)
+    this.props.history.push(`/search/?st=${this.state.input}`)
   }
 
   handleChange(type, e){
@@ -161,7 +132,7 @@ class Navbar extends React.Component {
     if(this.props.users.length === 0 || this.state.input.length === 0) return null
     const { users, snippets } = this.props
     const userResults = []
-    const snippetResults = []
+    const snippetResults = {}
     const terms = this.state.input.split(' ')
     const userIds = Object.keys(users)
     terms.forEach( term => {
@@ -172,17 +143,27 @@ class Navbar extends React.Component {
         }
       })
 
-      if(term.length > 2){ //only do snippet title search if input at least 3 chars
+      if(term.length > 2){ //only do snippet title search if sub-term at least 3 chars
         snippets.forEach(snippet => {
-          for( let i = 0; i+term.length < snippet.title.length; i++){
+          for( let i = 0; i+term.length < snippet.title.length+1; i++){
             if (snippet.title.slice(i, i + term.length).toLowerCase() === term.toLowerCase()){
-              snippetResults.push(snippet)
+              snippetResults[snippet._id] = snippet
             }
           }
         })
       }
-      
     })
+    
+    if (this.state.input.length > 2) { //only do snippet title search if input at least 3 chars
+      snippets.forEach(snippet => {
+        for (let i = 0; i + this.state.input.length < snippet.title.length; i++) {
+          if (snippet.title.slice(i, i + this.state.input.length).toLowerCase() === this.state.input.toLowerCase()) {
+            snippetResults[snippet._id] = snippet
+          }
+        }
+      })
+    }
+    
 
     return (
     <div>
@@ -195,7 +176,7 @@ class Navbar extends React.Component {
         })
       }
       {
-        snippetResults.map((snippet, i) => {
+        Object.values(snippetResults).map((snippet, i) => {
           return <li key={i} onClick={()=> {
             this.props.history.push(`/snippets/${snippet._id}`)
             this.setState({input: ''})
