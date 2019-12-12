@@ -129,9 +129,16 @@
           align-items: center;
 
           div.search-container {
+            position: relative;
             margin-right: 3em;
             border-radius: 5px;
             overflow: hidden;
+
+            &.found {
+              background-color: $white;
+              border-bottom-left-radius: 0%;
+              border-bottom-right-radius: 0%;
+            }
 
             @include flex-centered;
             flex-direction: row;
@@ -154,6 +161,50 @@
             button#search-btn {
               margin: 0.25em 1em;
               // background-color: $light-shadow;
+            }
+          }
+
+          div.search-results-container {
+            box-sizing: border-box;
+            position: absolute;
+            top: 40px;
+            width: 12.62em;
+            background-color: $white;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+            @include box-shadow-bottom;
+            
+            li {
+              padding: 0.75em 1em;
+              list-style-type: none;
+              font-family: $sans-serif;
+              font-weight: 300;
+              font-size: 0.85em;
+              border-bottom: 1px solid $light-shadow;
+
+              &:hover {
+                cursor: pointer;
+                background-color: $wisp;
+                color: $link;
+              }
+
+              &.user {
+                &::after {
+                  content: 'user';
+                  margin-left: 1em;
+                  color: $shadow;
+                  font-size: 0.8em;
+                }
+              }
+
+              &.snippet {
+                &::after {
+                  content: 'snippet';
+                  margin-left: 1em;
+                  color: $shadow;
+                  font-size: 0.8em;
+                }
+              }
             }
           }
 
