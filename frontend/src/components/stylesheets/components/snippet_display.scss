@@ -53,6 +53,8 @@
     }
 
     .interaction-bar-right {
+      display: flex;
+      flex-direction: row;
       
       svg {
         margin-left: 1em;
