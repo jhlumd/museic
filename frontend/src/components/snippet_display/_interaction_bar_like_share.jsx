@@ -8,7 +8,7 @@ export default class InteractionBarLikeShare extends Component {
     super(props);
     this.state = {
       liked: this.props.liked
-    }
+    };
 
     this.handelLike = this.handelLike.bind(this);
     this.handelUnlike = this.handelUnlike.bind(this);
@@ -33,6 +33,11 @@ export default class InteractionBarLikeShare extends Component {
     const likeData = {
       userId: this.props.userId,
       snippetId: this.props.snippetId
+    };
+
+    let deleteButton = null;
+    if (this.props.snippetCreatorId === this.props.userId) {
+      deleteButton = <button onClick={this.handleDelete}>Delete</button>;
     }
     
     if (this.props.liked) {
@@ -52,7 +57,7 @@ export default class InteractionBarLikeShare extends Component {
             <ShareIcon />
           </div>
 
-          <button onClick={this.handleDelete}>Delete</button>
+          {deleteButton}
         </div>
       );
     } else {
@@ -72,7 +77,7 @@ export default class InteractionBarLikeShare extends Component {
             <ShareIcon />
           </div>
 
-          <button onClick={this.handleDelete}>Delete</button>
+          {deleteButton}
         </div>
       );
     }

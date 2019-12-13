@@ -57,6 +57,7 @@ export default class SnippetDisplay extends Component {
     color_arr = color_arr.concat(color_arr.slice().reverse());
     
     let { snippetId } = this.props;
+    // debugger;
     let likeId = '';
     if (this.props.likes[snippetId]) {
       this.props.likes[snippetId].forEach( like => {
@@ -102,6 +103,7 @@ export default class SnippetDisplay extends Component {
             unlike={this.props.unlike}
             openModal={this.props.openModal}
             deleteSnippet={this.props.deleteSnippet}
+            snippetCreatorId={this.props.snippetCreatorId}
           />
         </div>
       </div>
