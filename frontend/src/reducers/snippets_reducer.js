@@ -29,9 +29,9 @@ const snippetsReducer = (oldState = {}, action) => {
             newState = { [action.snippet.data._id]: action.snippet.data };
             return Object.assign({}, oldState, newState);
         case REMOVE_SNIPPET:
-            newState = {  };
-            // delete;
-            return Object.assign({}, oldState, newState);
+            newState = Object.assign({}, oldState);
+            delete newState[action.snippet.data._id];
+            return newState;
         default:
             return oldState;
     }

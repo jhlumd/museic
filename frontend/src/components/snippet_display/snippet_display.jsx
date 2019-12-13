@@ -101,6 +101,8 @@ export default class SnippetDisplay extends Component {
             addLike={this.props.addLike}
             unlike={this.props.unlike}
             openModal={this.props.openModal}
+            currentUser={this.props.currentUser}
+            deleteSnippet={this.props.deleteSnippet}
           />
         </div>
       </div>
