@@ -1,102 +1,102 @@
-import React from 'react'
+import React from 'react';
 import GithubIcon from '../resources/github_icon';
 import LinkedinIcon from '../resources/linkedin_icon';
 
 export default function SplashTeamInfo() {
   return (
-    <div id='splash-team-info-container'>
-      <div className='team-member-container'>
-        
-        <div className='team-member-photo'>
-          <img src={require('../resources/Phil_Zheng.jpg')} alt="Photo of Phil Zheng"/>
-          <div className='icon-links'>
-            <a 
-              href=''
-              className='github'
+    <div id="splash-team-info-container">
+      <div className="team-member-container">
+        <div className="team-member-photo">
+          <img
+            src={require("../resources/Phil_Zheng.jpg")}
+            alt="Photo of Phil Zheng"
+          />
+          <div className="icon-links">
+            <a
+              href="https://github.com/Phil-1041"
+              className="github"
               target="_blank"
             >
               <GithubIcon />
             </a>
-            <a 
-              href=''
-              className='linkedin'
+            <a
+              href="https://www.linkedin.com/in/phil-zheng-82a30751/"
+              className="linkedin"
               target="_blank"
             >
               <LinkedinIcon />
             </a>
           </div>
-        </div>  
+        </div>
 
-        <div className='team-member-description'>
+        <div className="team-member-description">
           <h3>Phil Zheng</h3>
           <p>
-            Hey. I constructed the backend and added things like search, image uploading and comments.
+            Hey. I constructed the backend and added things like search, image
+            uploading and comments.
           </p>
         </div>
-
       </div>
 
-      <div className='team-member-container'>
-
-        <div className='team-member-description'>
+      <div className="team-member-container">
+        <div className="team-member-description">
           <h3>Jiani Fan</h3>
-          <p>
-            Hi. I worked on building, and styling the frontend.
-          </p>
+          <p>Hi. I worked on building, and styling the frontend.</p>
         </div>
 
-        <div className='team-member-photo'>
-          <img src={require('../resources/Jiani_Fan.jpg')} alt="Photo of Jiani Fan" />
-          <div className='icon-links'>
+        <div className="team-member-photo">
+          <img
+            src={require("../resources/Jiani_Fan.jpg")}
+            alt="Photo of Jiani Fan"
+          />
+          <div className="icon-links">
             <a
-              href='https://github.com/blueberry-hamster'
-              className='github'
+              href="https://github.com/blueberry-hamster"
+              className="github"
               target="_blank"
             >
               <GithubIcon />
             </a>
             <a
-              href='https://www.linkedin.com/in/jiani-fan-38b11096/'
-              className='linkedin'
+              href="https://www.linkedin.com/in/jiani-fan-38b11096/"
+              className="linkedin"
               target="_blank"
             >
               <LinkedinIcon />
             </a>
           </div>
-        </div>  
-
+        </div>
       </div>
 
-      <div className='team-member-container'>
-        
-        <div className='team-member-photo'>
-          <img src={require('../resources/Jaehyuk_Lee.jpg')} alt="Photo of Jaehyuk Lee" />
-          <div className='icon-links'>
+      <div className="team-member-container">
+        <div className="team-member-photo">
+          <img
+            src={require("../resources/Jaehyuk_Lee.jpg")}
+            alt="Photo of Jaehyuk Lee"
+          />
+          <div className="icon-links">
             <a
-              href=''
-              className='github'
+              href="https://github.com/jhlumd"
+              className="github"
               target="_blank"
             >
               <GithubIcon />
             </a>
             <a
-              href=''
-              className='linkedin'
+              href="https://www.linkedin.com/in/jaehyuk-lee-a5277425/"
+              className="linkedin"
               target="_blank"
             >
               <LinkedinIcon />
             </a>
           </div>
-        </div>  
-
-        <div className='team-member-description'>
-          <h3>Jaehyuk Lee</h3>
-          <p>
-            Hello. I made the unique musical component.
-          </p>
         </div>
 
+        <div className="team-member-description">
+          <h3>Jaehyuk Lee</h3>
+          <p>Hello. I made the unique musical component.</p>
+        </div>
       </div>
     </div>
-  )
+  );
 }
