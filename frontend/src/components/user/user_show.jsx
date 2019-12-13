@@ -21,6 +21,7 @@ class UserShow extends React.Component {
     this.props.fetchFans()
     this.props.fetchComments()
 
+    // handle the section pointer
     var targets = document.querySelectorAll('div.user-stat');
     targets.forEach((target) => {
       target.addEventListener('click', e => {
@@ -28,6 +29,15 @@ class UserShow extends React.Component {
         target.classList.add('current');
       })
     })
+  }
+
+  componentDidUpdate() {
+    // handle whether or not you see the edit option for the profile pic
+    if (this.props.userId === this.props.currentUser.id) {
+      document.querySelector('.user-icon-container').classList.add('editable')
+    } else {
+      document.querySelector('.user-icon-container').classList.remove('editable')
+    }
   }
 
   handleClick(){

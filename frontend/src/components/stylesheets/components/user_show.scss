@@ -60,6 +60,7 @@
       }
 
       div.user-icon-container {
+        position: relative;
         width: 100px;
         height: 100px;
         border-radius: 5px;
@@ -67,6 +68,24 @@
 
         .profile-picture {
           width: 100px;
+
+        }
+
+        &.editable:hover {
+          cursor: pointer;
+
+          &::after {
+            content: 'Change avatar.';
+            color: $black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: $milk;
+            @include flex-centered;
+            text-align: center;
+          }
         }
       }
       
