@@ -19,8 +19,8 @@ const snippetsReducer = (oldState = {}, action) => {
              );
             return snippets;
         case RECEIVE_SNIPPET_OWNER: //retrieves username of snipper
-            newState = Object.assign({}, oldState)
-            newState[action.snippetId].owner = action.owner
+            newState = Object.assign({}, oldState);
+            newState[action.snippetId].owner = action.owner;
             return newState;
         case RECEIVE_USER_SNIPPETS:
             newState = {  };
@@ -30,7 +30,7 @@ const snippetsReducer = (oldState = {}, action) => {
             return Object.assign({}, oldState, newState);
         case REMOVE_SNIPPET:
             newState = Object.assign({}, oldState);
-            delete newState[action.snippet.data._id];
+            delete newState[action.snippet.data]; // snippet.data is already snippetId
             return newState;
         default:
             return oldState;

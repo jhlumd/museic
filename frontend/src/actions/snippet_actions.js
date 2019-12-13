@@ -23,9 +23,9 @@ export const receiveSnippet = snippet => ({
     snippet
 });
 
-export const removeSnippet = snippet => ({
+export const removeSnippet = snippetId => ({
     type: REMOVE_SNIPPET,
-    snippet
+    snippetId
 });
 
 export const receiveOwnerUsername = (owner, snippetId) => ({
