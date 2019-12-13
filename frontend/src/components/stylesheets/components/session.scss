@@ -4,6 +4,7 @@
   background-color:$milk;
   z-index: 999;
   position: absolute;
+  overflow: hidden;
 
   display: flex;
   justify-content: center;
@@ -13,7 +14,7 @@
     @include button-black;
   }
 
-  form {
+  form, .link-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,6 +37,12 @@
       margin-top: 0.5em;
       width: 100%;
     }
+
+    p.link-text {
+      width: inherit;
+      margin: 1em 0em;
+      overflow-wrap: break-word;
+    }
   }
 }
 
@@ -43,3 +50,4 @@
   color: red;
   margin-top: 5px;
 }
+

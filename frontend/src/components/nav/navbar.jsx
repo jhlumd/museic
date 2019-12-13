@@ -76,7 +76,7 @@ class Navbar extends React.Component {
   componentDidUpdate() {
     // add class on searchbar if there are any matches
     const results = document.querySelector('.search-results-container');
-    if (results) {
+    if (results && results.childElementCount > 0) {
       document.querySelector('.search-container').classList.add('found')
     } else {
       document.querySelector('.search-container').classList.remove('found')
@@ -271,7 +271,7 @@ class Navbar extends React.Component {
                 </div>
                 {this.searchAutocomplete()}
                 
-                <div className='icon-wrap'>
+                <div className='icon-wrap' onClick={() => this.props.history.push(`/profile/${this.props.currentUserId}`)}>
                   <UserIcon />
                   <NavbarUserDropdown 
                     history={this.props.history}

@@ -20,6 +20,14 @@ class UserShow extends React.Component {
     this.props.fetchImages()
     this.props.fetchFans()
     this.props.fetchComments()
+
+    var targets = document.querySelectorAll('div.user-stat');
+    targets.forEach((target) => {
+      target.addEventListener('click', e => {
+        document.querySelector('.current').classList.remove('current');
+        target.classList.add('current');
+      })
+    })
   }
 
   handleClick(){
@@ -193,7 +201,7 @@ class UserShow extends React.Component {
             <div className='user-text-info-container'>
               <h2  className='username'>{users[userId]}</h2>
                 {this.followDisplay()}
-              <div className='snippets user-stat'>
+              <div className='snippets user-stat current'>
                 <p className='num'>{snippetCount}</p>
                 <p className='label' onClick={() => this.scrollTo('snippets')}>
                   Snippets

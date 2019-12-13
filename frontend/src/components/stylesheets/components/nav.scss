@@ -130,7 +130,7 @@
 
           div.search-container {
             position: relative;
-            margin-right: 3em;
+            margin-right: 4em;
             border-radius: 5px;
             overflow: hidden;
 
@@ -138,6 +138,10 @@
               background-color: $white;
               border-bottom-left-radius: 0%;
               border-bottom-right-radius: 0%;
+
+              button#search-btn svg.search-icon {
+                fill: $black;
+              }
             }
 
             @include flex-centered;
@@ -160,7 +164,10 @@
 
             button#search-btn {
               margin: 0.25em 1em;
-              // background-color: $light-shadow;
+              
+              svg {
+                fill: $shadow;
+              }
             }
           }
 
@@ -182,28 +189,30 @@
               font-size: 0.85em;
               border-bottom: 1px solid $light-shadow;
 
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+
               &:hover {
                 cursor: pointer;
                 background-color: $wisp;
                 color: $link;
               }
 
-              &.user {
-                &::after {
-                  content: 'user';
-                  margin-left: 1em;
-                  color: $shadow;
-                  font-size: 0.8em;
-                }
+              &.user::after {
+                content: 'user';
+                color: $red;
               }
 
-              &.snippet {
-                &::after {
-                  content: 'snippet';
-                  margin-left: 1em;
-                  color: $shadow;
-                  font-size: 0.8em;
-                }
+              &.snippet::after {
+                content: 'snippet';
+                color: $blue;
+              }
+
+              &.user::after , &.snippet::after {
+                margin-left: 1em;
+                font-size: 0.8em;
+                opacity: 0.75;
               }
             }
           }
@@ -211,7 +220,7 @@
           .icon-wrap:hover > .nav-dropdown-container {
             @include box-shadow-bottom;
             position: absolute;
-            top: 40px;
+            top: 38px;
             right: 1.5%;
             z-index: 600;
 

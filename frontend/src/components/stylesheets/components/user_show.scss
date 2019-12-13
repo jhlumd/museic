@@ -71,6 +71,7 @@
       }
       
       div.user-stat {
+        position: relative;
         width: 10em;
         display: flex;
         flex-direction: row;
@@ -86,6 +87,24 @@
             text-decoration: underline;
             color: $link;
             cursor: pointer;
+          }
+        }
+
+        &.current {
+          p.label {
+            font-weight: 500;
+          }
+          
+          &::after {
+            position: absolute;
+            content: ' ';
+            top: 0.3em;
+            right: -1em;
+            width: 0; 
+            height: 0; 
+            border-top: 0.3em solid transparent;
+            border-bottom: 0.3em solid transparent; 
+            border-right:0.5em solid $black; 
           }
         }
       }
