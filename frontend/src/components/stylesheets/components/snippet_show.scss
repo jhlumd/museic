@@ -1,0 +1,18 @@
+#standalone {
+  @include flex-centered;
+  height: 100vh;
+  width: 100vw;
+  background-color: $wisp;
+
+  .icon {
+    height: 24px;
+    width: 24px;
+  }
+
+  @import './snippet_show_card.scss';
+  .snippet-show-card-container {
+    @include box-shadow;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+}
