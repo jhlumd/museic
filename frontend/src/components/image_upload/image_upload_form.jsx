@@ -49,6 +49,8 @@ class ImageUploadForm extends React.Component {
       document.querySelector('button').classList.remove('hidden');
 
       // gives img preview
+      var image = document.getElementById('image');
+      image.src = URL.createObjectURL(file);
       
     }) //saves FormData obj in local state
   }
@@ -70,6 +72,7 @@ class ImageUploadForm extends React.Component {
 
         <form onSubmit={() => this.handleSubmit()} onClick={(e) => e.stopPropagation()
         }>
+          <img id='image'></img>
           <p className="error">{this.state.errors}</p>
           {this.loadingIcon()}
           <label className="file-container">
