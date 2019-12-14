@@ -5,7 +5,7 @@ export const getSnippets = () => {
 };
 
 export const getAllSnippets = () => {
-    return axios.get("/api/snippets/all")
+    return axios.get("/api/snippets/all");
 };
 
 export const getUserSnippets = userId => {

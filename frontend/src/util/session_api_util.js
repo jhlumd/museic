@@ -18,9 +18,9 @@ export const login = (userData) => {
 };
 
 export const currentUser = () => {
-  return axios.get('/api/users/current')
-}
+  return axios.get('/api/users/current');
+};
 
 export const getSnippetOwner = ownerId => {
-  return axios.get(`/api/users/owner_name/${ownerId}`)
-}
+  return axios.get(`/api/users/owner_name/${ownerId}`);
+};

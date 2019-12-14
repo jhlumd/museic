@@ -6,7 +6,7 @@ export const RECEIVE_USER_SNIPPETS = "RECEIVE_USER_SNIPPETS";
 export const RECEIVE_ONE_SNIPPET = "RECEIVE_ONE_SNIPPET";
 export const REMOVE_SNIPPET = 'REMOVE_SNIPPET';
 
-export const RECEIVE_SNIPPET_OWNER = 'RECEIVE_SNIPPET_OWNER'
+export const RECEIVE_SNIPPET_OWNER = 'RECEIVE_SNIPPET_OWNER';
 
 export const receiveSnippets = snippets => ({ //return array
     type: RECEIVE_SNIPPETS,
@@ -23,16 +23,16 @@ export const receiveSnippet = snippet => ({
     snippet
 });
 
-export const removeSnippet = snippet => ({
+export const removeSnippet = snippetId => ({
     type: REMOVE_SNIPPET,
-    snippet
+    snippetId
 });
 
 export const receiveOwnerUsername = (owner, snippetId) => ({
     type: RECEIVE_SNIPPET_OWNER,
     owner,
     snippetId
-})
+});
 
 export const fetchSnippets = () => dispatch => (
     ApiUtil.getSnippets()
@@ -67,11 +67,11 @@ export const fetchSnippetOwner = (ownerId, snippetId) => dispatch => {
         getSnippetOwner(ownerId)
             .then( res => dispatch(receiveOwnerUsername(res.data.username, snippetId)))
             .catch( () => console.log('----owner was not retrieved----'))
-    )
-}
+    );
+};
 
 export const fetchAllSnippets = () => dispatch => {
     ApiUtil.getAllSnippets()
         .then((res) => dispatch(receiveSnippets(res.data)))
-        .catch(err => console.log(err))
-}
+        .catch(err => console.log(err));
+};

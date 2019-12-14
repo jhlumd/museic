@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import SnippetDisplay from './snippet_display';
-import { fetchSnippet } from '../../actions/snippet_actions';
+import { fetchSnippet, deleteSnippet } from "../../actions/snippet_actions";
 import { unlike, addLike } from '../../actions/like_actions';
 import {
   startPlayback,
@@ -24,6 +24,7 @@ const mdtp = dispatch => ({
   startPlayback: () => dispatch(startPlayback()),
   pausePlayback: () => dispatch(pausePlayback()),
   openModal: (modal) => dispatch(openModal(modal)),
+  deleteSnippet: snippetId => dispatch(deleteSnippet(snippetId))
 });
 
 export default withRouter(connect(mstp, mdtp)(SnippetDisplay));

@@ -25,22 +25,22 @@ class IndexShowCard extends React.Component {
       newLike,
       unlike,
       userId
-    } = this.props
+    } = this.props;
     
-    let hasLiked = false
+    let hasLiked = false;
 
-    let comments = []
+    let comments = [];
     if( this.props.comments ){
-      comments = this.props.comments
+      comments = this.props.comments;
     }
-    let likes = []
+    let likes = [];
     if (this.props.likes) {
-      likes = this.props.likes
+      likes = this.props.likes;
       likes.forEach(like => {
         if (like.user === userId){
-          hasLiked = true
+          hasLiked = true;
         }
-      })
+      });
     }
     
     return (
@@ -62,6 +62,7 @@ class IndexShowCard extends React.Component {
 
           <SnippetDisplayContainer 
             snippet={snippet.notes} 
+            snippetCreatorId={snippet.user}
             liked={hasLiked} 
             snippetId={snippet._id}
           />
@@ -69,12 +70,12 @@ class IndexShowCard extends React.Component {
           <ul className="comment-display">
           {
             comments.map(comment => {
-              let imageUrl = ''
+              let imageUrl = '';
               if (!images[comment.user]){ //if user does not have an image
                 //set to default image
-                imageUrl = "https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg"
+                imageUrl = "https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg";
               } else {
-                imageUrl = images[comment.user].aws_url
+                imageUrl = images[comment.user].aws_url;
               }
 
               return (
@@ -93,7 +94,7 @@ class IndexShowCard extends React.Component {
                   editComment={this.props.editComment}
                   composeComment={this.props.composeComment}
                 />
-              )
+              );
             })
           }
           </ul>
