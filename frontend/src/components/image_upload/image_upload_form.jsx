@@ -43,7 +43,16 @@ class ImageUploadForm extends React.Component {
     const formData = new FormData() //new form data obj
     formData.append('image', file) //adds the file to FormData obj, and sets it under key of 'image'
 
-    this.setState({ imageFormData: formData }) //saves FormData obj in local state
+    this.setState({ imageFormData: formData }, () => {
+      // switch buttons
+      document.querySelector('.file-container').classList.add('hidden');
+      document.querySelector('button').classList.remove('hidden');
+
+      // gives img preview
+      var image = document.getElementById('image');
+      image.src = URL.createObjectURL(file);
+      
+    }) //saves FormData obj in local state
   }
 
   loadingIcon() {
@@ -61,18 +70,20 @@ class ImageUploadForm extends React.Component {
       <div id='upload-form-container' onClick = {(e) => {
         this.props.closeModal();}}>
 
-        <form onSubmit={() => this.handleSubmit()} onClick={(e) => e.stopPropagation()}>
+        <form onSubmit={() => this.handleSubmit()} onClick={(e) => e.stopPropagation()
+        }>
+          <img id='image'></img>
           <p className="error">{this.state.errors}</p>
-        {this.loadingIcon()}
-          <label className="fileContainer">
-            Choose a file:
+          {this.loadingIcon()}
+          <label className="file-container">
+            Choose a file
               <input
-              className="inputfile"
-              type="file"
-              onChange={e => this.handleFile(e)}
-            />
+                className="inputfile"
+                type="file"
+                onChange={e => this.handleFile(e)}
+              />
           </label>
-          <button type="submit">Submit Image</button>
+          <button className='hidden' type="submit">Submit Image</button>
         </form>
         
       </div>

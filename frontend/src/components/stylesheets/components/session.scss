@@ -4,6 +4,7 @@
   background-color:$milk;
   z-index: 999;
   position: absolute;
+  overflow: hidden;
 
   display: flex;
   justify-content: center;
@@ -13,7 +14,7 @@
     @include button-black;
   }
 
-  form {
+  form, .link-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,10 +37,43 @@
       margin-top: 0.5em;
       width: 100%;
     }
+
+    p.link-text {
+      width: inherit;
+      margin: 1em 0em;
+      overflow-wrap: break-word;
+    }
   }
 }
 
 .session-errors {
   color: red;
   margin-top: 5px;
+}
+
+div#upload-form-container {
+
+  label.file-container {
+    @include button-black;
+    width: 13em;
+    text-align: center;
+  }
+
+  form input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  #image {
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .hidden {
+    display: none;
+  }
 }

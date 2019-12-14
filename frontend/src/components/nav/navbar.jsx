@@ -73,6 +73,16 @@ class Navbar extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    // add class on searchbar if there are any matches
+    const results = document.querySelector('.search-results-container');
+    if (results && results.childElementCount > 0) {
+      document.querySelector('.search-container').classList.add('found')
+    } else {
+      document.querySelector('.search-container').classList.remove('found')
+    }
+  }
+
   logoutUser(e) {
     e.preventDefault();
     this.props.logout();
@@ -172,13 +182,12 @@ class Navbar extends React.Component {
         }
       })
     }
-    
 
     return (
-    <div>
+    <div className='search-results-container'>
       {
         userResults.map((userId,i) => {
-          return <li key={i} onClick={()=> {
+          return <li className='user' key={i} onClick={()=> {
             this.props.history.push(`/profile/${userId}`)
             this.setState({input: ''})
           }}>{users[userId]}</li>
@@ -186,7 +195,7 @@ class Navbar extends React.Component {
       }
       {
         Object.values(snippetResults).map((snippet, i) => {
-          return <li key={i} onClick={()=> {
+          return <li className='snippet' key={i} onClick={()=> {
             this.props.history.push(`/snippets/${snippet._id}`)
             this.setState({input: ''})
           }}>{snippet.title}</li>
@@ -245,13 +254,11 @@ class Navbar extends React.Component {
               <div className='nav-base-bar-left'>
                 <Logo />
               </div>
-{
-                this.searchAutocomplete()
-}
 
               <div className='nav-base-bar-right'>
 
                 <div className='search-container'> 
+
                   <input 
                     type="text" 
                     placeholder="search" 
@@ -260,9 +267,11 @@ class Navbar extends React.Component {
                     onChange={(e) => this.handleChange('input', e)}
                   />
                   <button id='search-btn' onClick={() => this.handleSearch()}><SearchIcon /></button>
+                  
                 </div>
+                {this.searchAutocomplete()}
                 
-                <div className='icon-wrap'>
+                <div className='icon-wrap' onClick={() => this.props.history.push(`/profile/${this.props.currentUserId}`)}>
                   <UserIcon />
                   <NavbarUserDropdown 
                     history={this.props.history}

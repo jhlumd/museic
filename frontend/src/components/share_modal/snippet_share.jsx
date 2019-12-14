@@ -18,9 +18,9 @@ class ImageUploadForm extends React.Component {
 
   renderCopyButton(){
     if(this.state.copied){
-      return <button id="was-copied">Copied!</button>
+      return <button className="was-copied">Copied!</button>
     } else {
-      return <button id="not-yet-copied" onClick={() => this.handleClick()}>Copy</button>
+      return <button className="not-yet-copied" onClick={() => this.handleClick()}>Copy</button>
     }
   }
 
@@ -29,8 +29,8 @@ class ImageUploadForm extends React.Component {
       <div id='share-link-container' onClick={(e) => {
         this.props.closeModal();
       }}>
-        <div id="link-container" onClick={(e)=> e.stopPropagation()}>
-          <p id="link-text">{this.props.link}</p>
+        <div className="link-container" onClick={(e)=> e.stopPropagation()}>
+          <p className="link-text">{this.props.link}</p>
           {this.renderCopyButton()}
         </div>
 

@@ -49,14 +49,23 @@
         padding-bottom: 0.5em;
 
         h4 {
-          font-size: 1em;
-        }
-        p {
-          font-weight: 400;
+          font-size: 1.2em;
 
           &:hover {
             cursor: pointer;
             text-decoration: underline;
+          }
+        }
+        p {
+          font-weight: 300;
+
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+
+          &::before {
+            content: 'By: '
           }
         }
       }
@@ -166,7 +175,7 @@
           p.comment-body {
             box-sizing: border-box;
             margin-right: 1em;
-            max-width: 500px;
+            max-width: 475px;
           }
   
           button.delete-comment-btn {
@@ -242,3 +251,4 @@
     }
   }
 }
+

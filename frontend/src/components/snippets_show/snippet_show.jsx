@@ -26,22 +26,24 @@ export default class UserShow extends Component {
     }
 
     return (
-      <SnippetShowCard
-        snippet={snippets[snippetId]}
-        comments={comments[snippetId]}
-        snippetId={snippetId}
-        likes={likes[snippetId]}
-        users={users}
-        userId={currentUser.id}
-        images={images}
-
-        composeComment={composeComment}
-        removeComment={removeComment}
-        editComment={editComment}
-
-        newLike={newLike}
-        unlike={unlike}
-      />
+      <div id='standalone'>
+        <SnippetShowCard
+          snippet={snippets[snippetId]}
+          comments={comments[snippetId]}
+          snippetId={snippetId}
+          likes={likes[snippetId]}
+          users={users}
+          userId={currentUser.id}
+          images={images}
+  
+          composeComment={composeComment}
+          removeComment={removeComment}
+          editComment={editComment}
+  
+          newLike={newLike}
+          unlike={unlike}
+        />
+      </div>
              
     )
   }

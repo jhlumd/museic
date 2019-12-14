@@ -20,6 +20,24 @@ class UserShow extends React.Component {
     this.props.fetchImages()
     this.props.fetchFans()
     this.props.fetchComments()
+
+    // handle the section pointer
+    var targets = document.querySelectorAll('div.user-stat');
+    targets.forEach((target) => {
+      target.addEventListener('click', e => {
+        document.querySelector('.current').classList.remove('current');
+        target.classList.add('current');
+      })
+    })
+  }
+
+  componentDidUpdate() {
+    // handle whether or not you see the edit option for the profile pic
+    if (this.props.userId === this.props.currentUser.id) {
+      document.querySelector('.user-icon-container').classList.add('editable')
+    } else {
+      document.querySelector('.user-icon-container').classList.remove('editable')
+    }
   }
 
   handleClick(){
@@ -193,7 +211,7 @@ class UserShow extends React.Component {
             <div className='user-text-info-container'>
               <h2  className='username'>{users[userId]}</h2>
                 {this.followDisplay()}
-              <div className='snippets user-stat'>
+              <div className='snippets user-stat current'>
                 <p className='num'>{snippetCount}</p>
                 <p className='label' onClick={() => this.scrollTo('snippets')}>
                   Snippets
