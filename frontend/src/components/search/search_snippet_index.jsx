@@ -99,7 +99,11 @@ class SearchIndex extends React.Component {
 
   render() {
     const searchResults = this.handleSearch()
-    if(!searchResults) return null
+    if(!searchResults || Object.entries(searchResults).length === 0) return (
+      <div id="no-results-search">
+        Your search for '{this.state.searchTerms}' returned no results
+      </div>
+    )
     const { 
       comments,
       likes,
@@ -116,7 +120,9 @@ class SearchIndex extends React.Component {
 
     return(
       <div id='snippet-index-container'>
-        {/* <h1>Snippet Index</h1> */}
+        <div id='search-results-title'>
+          Displaying search results for '{this.state.searchTerms}'
+        </div>
         <div className='snippet-index-snippets-container'>
           {
             Object.values(searchResults).map( snippet => {

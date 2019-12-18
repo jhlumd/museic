@@ -103,8 +103,10 @@
       border-bottom: 1px solid $light-shadow;
 
       &.editable {
+        cursor: pointer;
         p.comment-body {
           color: $link;
+          cursor: pointer;
         }
 
         &:hover {
@@ -128,6 +130,7 @@
         .owner-name {
           font-weight: 400;
           padding-right: 0.5em;
+          cursor: pointer;
         }
 
         .comment-list-item {
@@ -135,6 +138,11 @@
           flex-direction: row;
           width: 100%;
           box-sizing: border-box;
+
+          &.editable {
+            cursor: pointer;
+            
+          }
 
           &:hover {
             cursor: default;
@@ -171,6 +179,10 @@
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
+
+          &.editable{
+            cursor: pointer; //this
+          }
 
           p.comment-body {
             box-sizing: border-box;

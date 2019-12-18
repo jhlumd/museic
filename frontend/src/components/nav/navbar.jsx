@@ -271,8 +271,8 @@ class Navbar extends React.Component {
                 </div>
                 {this.searchAutocomplete()}
                 
-                <div className='icon-wrap' onClick={() => this.props.history.push(`/profile/${this.props.currentUserId}`)}>
-                  <UserIcon />
+                <div className='icon-wrap'>
+                  <UserIcon onClick={() => this.props.history.push(`/profile/${this.props.currentUserId}`)}/>
                   <NavbarUserDropdown 
                     history={this.props.history}
                     loggedIn={this.props.loggedIn} 
