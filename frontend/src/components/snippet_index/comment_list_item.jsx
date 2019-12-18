@@ -69,7 +69,7 @@ class CommentListItem extends React.Component {
     else {
       return(
         <li className={`comment-list-item-container unowned ${ editable }`}>
-          <div className="comment-list-item" onClick={this.handleClick}>
+          <div className={`comment-list-item ${ editable }`} onClick={this.handleClick}>
 
             <div className='user-info'>
               <div className='user-icon hvr-grow' onClick={() => this.props.history.push(`/profile/${ownerId}`)}>
@@ -80,7 +80,7 @@ class CommentListItem extends React.Component {
               </p> 
             </div>
 
-            <div className='comment-container'>
+            <div className={`comment-container ${ editable }`}>
               <p className='comment-body'>{this.props.body}</p>
 
               <button className='delete-comment-btn' onClick={e => {
