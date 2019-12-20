@@ -10,8 +10,8 @@ import { fetchFans, addFan, removeFan } from '../../actions/fan_actions';
 import UserShow from './user_show';
 
 const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, images }, session }, { match }) => {
-  let isFan = false
-  let fanId = ''
+  let isFan = false;
+  let fanId = '';
   // debugger
   Object.values(fans).forEach( fan => {
     if( fan.idol === match.params.id && fan.fan === session.user.id){
@@ -19,7 +19,7 @@ const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, i
       isFan = true
       fanId = fan._id
     }
-  })
+  });
   return {
     snippets: Object.values(snippets),
     snippetLikes: Object.values(likes),
@@ -32,8 +32,8 @@ const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, i
     fanId,
     fans: Object.values(fans),
     userId: match.params.id,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -57,7 +57,7 @@ const mapDispatchToProps = dispatch => {
     editComment: commentId => dispatch(editComment(commentId)),
     addLike: likeData => dispatch(addLike(likeData)),
     unLike: likeId => dispatch(unlike(likeId)),
-  }
-}
+  };
+};
 
-export default connect( mapStateToProps, mapDispatchToProps)(UserShow)
+export default connect( mapStateToProps, mapDispatchToProps)(UserShow);
