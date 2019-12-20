@@ -26,6 +26,8 @@ export default class InteractionBarLikeShare extends Component {
   }
 
   handleDelete() {
+    // delete snippet
+    // this.props.openModal("delete");
     this.props.deleteSnippet(this.props.snippetId);
   }
 

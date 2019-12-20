@@ -15,9 +15,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     upload: (imageFormData) => upload(imageFormData),
     save: imageData => dispatch(save(imageData)),
-    closeModal: () => dispatch(closeModal()),
-  }
-}
+    closeModal: () => dispatch(closeModal())
+  };
+};
 
 export default connect(
   mapStateToProps,

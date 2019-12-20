@@ -35,7 +35,9 @@ class Modal extends React.Component {
             <UploadFormContainer />
           </div>
         </div> 
-      )
+      );
+    } else if (this.props.modal === 'delete') {
+      // delete snippet
     } else if (this.props.modal != null ) {
       return(
         <div className="modal-background" onClick={this.props.closeModal}>
@@ -43,7 +45,7 @@ class Modal extends React.Component {
             <ShareSnippetContainer link={this.props.modal}/>
           </div>
         </div> 
-      )
+      );
     }
   }
   
