@@ -44,11 +44,11 @@ export default class SnippetDisplay extends Component {
   }
 
   startProgBar(snippetId) {
-    document.querySelector(`.${snippetId}`).classList.add("move");
+    document.querySelector(`.bar${snippetId}`).classList.add("move");
   }
 
   resetProgBar(snippetId) {
-    document.querySelector(`.${snippetId}`).classList.remove("move");
+    document.querySelector(`.bar${snippetId}`).classList.remove("move");
   }
 
   render() {
@@ -81,7 +81,7 @@ export default class SnippetDisplay extends Component {
     return (
       <div className="snippet-display-container">
         <div className="bar-display-container">
-          <div className={`progress-bar ${snippetId}`}></div>
+          <div className={`progress-bar bar${snippetId}`}></div>
           {noteBars}
         </div>
 
