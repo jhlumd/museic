@@ -1,19 +1,19 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-class ImageUploadForm extends React.Component {
+class SnippetShare extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       copied: false,
-    }
-    this.handleClick = this.handleClick.bind(this)
+    };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(){
     navigator.clipboard.writeText(this.props.link);
-    this.setState({copied: true})
-    setTimeout(() => this.setState({copied: false}), 2000)
+    this.setState({copied: true});
+    setTimeout(() => this.setState({copied: false}), 2000);
   }
 
   renderCopyButton(){
@@ -40,4 +40,4 @@ class ImageUploadForm extends React.Component {
   }
 }
 
-export default withRouter(ImageUploadForm);
+export default withRouter(SnippetShare);
