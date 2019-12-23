@@ -43,12 +43,12 @@ export default class SnippetDisplay extends Component {
     return interpolatedColorArray;
   }
 
-  startProgBar() {
-    document.querySelector(".progress-bar-2").classList.add("move");
+  startProgBar(snippetId) {
+    document.querySelector(`.bar${snippetId}`).classList.add("move");
   }
 
-  resetProgBar() {
-    document.querySelector(".progress-bar-2").classList.remove("move");
+  resetProgBar(snippetId) {
+    document.querySelector(`.bar${snippetId}`).classList.remove("move");
   }
 
   render() {
@@ -81,7 +81,7 @@ export default class SnippetDisplay extends Component {
     return (
       <div className="snippet-display-container">
         <div className="bar-display-container">
-          <div className="progress-bar progress-bar-2"></div>
+          <div className={`progress-bar bar${snippetId}`}></div>
           {noteBars}
         </div>
 
@@ -93,6 +93,7 @@ export default class SnippetDisplay extends Component {
             pausePlayback={this.props.pausePlayback}
             startProgBar={this.startProgBar}
             resetProgBar={this.resetProgBar}
+            snippetId={snippetId}
           />
           <InteractionBarLikeShare
             liked={this.props.liked}

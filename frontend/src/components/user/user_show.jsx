@@ -8,18 +8,18 @@ class UserShow extends React.Component {
     this.state = {
       isFan: this.props.isFan,
       // fanId: this.props.fanId,
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.handleFollow = this.handleFollow.bind(this)
+    };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleFollow = this.handleFollow.bind(this);
   }
 
   componentDidMount(){
-    this.props.fetchAllSnippets()
-    this.props.fetchLikes()
-    this.props.fetchUsers()
-    this.props.fetchImages()
-    this.props.fetchFans()
-    this.props.fetchComments()
+    this.props.fetchAllSnippets();
+    this.props.fetchLikes();
+    this.props.fetchUsers();
+    this.props.fetchImages();
+    this.props.fetchFans();
+    this.props.fetchComments();
 
     // handle the section pointer
     var targets = document.querySelectorAll('div.user-stat');
@@ -27,51 +27,55 @@ class UserShow extends React.Component {
       target.addEventListener('click', e => {
         document.querySelector('.current').classList.remove('current');
         target.classList.add('current');
-      })
-    })
+      });
+    });
   }
 
   componentDidUpdate() {
     // handle whether or not you see the edit option for the profile pic
     if (this.props.userId === this.props.currentUser.id) {
-      document.querySelector('.user-icon-container').classList.add('editable')
+      document.querySelector('.user-icon-container').classList.add('editable');
     } else {
-      document.querySelector('.user-icon-container').classList.remove('editable')
+      document.querySelector('.user-icon-container').classList.remove('editable');
     }
   }
 
   handleClick(){
     if(this.props.userId === this.props.currentUser.id){
-      this.props.openModal('upload')
+      this.props.openModal('upload');
     }
   }
 
   followDisplay() {
     if (this.props.userId === this.props.currentUser.id) {
-      return <p className='padding'></p>
+      return (<p className='padding'></p>);
     } else if (this.props.isFan) {
-      return <button
-        className='follow-btn'
-        onClick={() => this.handleFollow()}>unfollow
-      </button>;
+      return (
+        <button
+          className='follow-btn'
+          onClick={() => this.handleFollow()}>unfollow
+        </button>
+      );
     } else {
-      return <button
-        className='follow-btn'
-        onClick={() => this.handleFollow()}>follow
-      </button>;
+      return (
+        <button
+          className='follow-btn'
+          onClick={() => this.handleFollow()}>follow
+        </button>
+      );
     }
   }
 
   handleFollow() {
-    if ( this.props.isFan ) {
-      this.setState({ isFan: this.props.isFan })
+    if (this.props.isFan) {
+      this.setState({ isFan: this.props.isFan });
       this.props.removeFan(this.props.fanId);
     } else {
-      this.setState({ isFan: this.props.isFan })
+      this.setState({ isFan: this.props.isFan });
       const newFan = {
         fanId: this.props.currentUser.id,
         idolId: this.props.userId
-      }
+      };
       this.props.addFan(newFan);
     }
   }
@@ -82,52 +86,66 @@ class UserShow extends React.Component {
   }
 
   render(){
-    const {snippets, snippetLikes, users, comments, fans, images, likes, currentUser, userId,
-      composeComment, removeComment, editComment, newLike, unlike } = this.props
+    const {
+      snippets,
+      snippetLikes,
+      users,
+      comments,
+      fans,
+      images,
+      likes,
+      currentUser,
+      userId,
+      composeComment,
+      removeComment,
+      editComment,
+      newLike,
+      unlike
+    } = this.props;
 
     if(!images){
-      return null
+      return null;
     }
     
-    let snippetCount = 0
+    let snippetCount = 0;
     const mySnippets = [] //snippets belonging to the profile's user
     snippets.forEach(snippet => {
       if(snippet.user === userId){
         // debugger
-        snippetCount += 1
-        mySnippets.push(snippet) //snippets created by the user, that this profile refers to
+        snippetCount += 1;
+        mySnippets.push(snippet); //snippets created by the user, that this profile refers to
       } 
     })
     let likeCount = 0
     snippetLikes.forEach(snippetId => {
-      const likes = Object.values(snippetId)
+      const likes = Object.values(snippetId);
       likes.forEach( like => {
         if (like.user === userId){
-          likeCount += 1
+          likeCount += 1;
         }
       })
     })
 
     let profileImageUrlAddress = 'https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg' //profile image aws address
     if (images[userId]) {
-      profileImageUrlAddress = images[userId].aws_url
+      profileImageUrlAddress = images[userId].aws_url;
     }
 
-    let fansCount = 0
-    const myFans = []
+    let fansCount = 0;
+    const myFans = [];
     fans.forEach( fanObj => {
       if (fanObj.idol === userId){
-        myFans.push(fanObj)
-        fansCount += 1
+        myFans.push(fanObj);
+        fansCount += 1;
       }
     })
 
-    let followCount = 0
-    const myFollowers = []
+    let followCount = 0;
+    const myFollowers = [];
     fans.forEach(fanObj => {
       if (fanObj.fan === userId) {
-        myFollowers.push(fanObj)
-        followCount += 1
+        myFollowers.push(fanObj);
+        followCount += 1;
       }
     })
 
@@ -202,7 +220,7 @@ class UserShow extends React.Component {
         <div className='left-container'>
 
           <div className='user-info-container'>
-            <div className='user-icon-container' onClick={ () => this.handleClick()}>
+            <div className='user-icon-container' onClick={() => this.handleClick()}>
               <div className="image-upload-hover" >
                 <img className="profile-picture" src={profileImageUrlAddress}/>
               </div>
@@ -260,7 +278,7 @@ class UserShow extends React.Component {
         </div>
 
       </div>
-    )
+    );
   }
 }
 

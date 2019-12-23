@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 class ImageUploadForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       uploading: false,
       userId: '',
@@ -18,30 +18,30 @@ class ImageUploadForm extends React.Component {
   handleSubmit() {
     // console.log('sent')
     if(!this.state.imageFormData){
-      this.setState({errors: 'Please select an image'})
-      return null
+      this.setState({errors: 'Please select an image'});
+      return null;
     }
-    this.setState({uploading: true})
+    this.setState({uploading: true});
     this.props.upload(this.state.imageFormData) //uploads the file to mongoDB
       .then((res) => {
-        console.log(res)
+        console.log(res);
         const newProfileImage = {
           userId: this.props.userId,
           imageUrl: res.imageUrl,
-        }
-        this.props.save(newProfileImage)
+        };
+        this.props.save(newProfileImage);
       }) //save to database with userId and imageUrl 
       .then(() => {
-        this.setState({ uploading: false })
-        this.props.closeModal()
-      })
+        this.setState({ uploading: false });
+        this.props.closeModal();
+      });
   }
 
   handleFile(e) {
-    const file = e.target.files[0] //gets the file
+    const file = e.target.files[0]; //gets the file
     // console.log(file)
-    const formData = new FormData() //new form data obj
-    formData.append('image', file) //adds the file to FormData obj, and sets it under key of 'image'
+    const formData = new FormData(); //new form data obj
+    formData.append('image', file); //adds the file to FormData obj, and sets it under key of 'image'
 
     this.setState({ imageFormData: formData }, () => {
       // switch buttons
@@ -52,7 +52,7 @@ class ImageUploadForm extends React.Component {
       var image = document.getElementById('image');
       image.src = URL.createObjectURL(file);
       
-    }) //saves FormData obj in local state
+    }); //saves FormData obj in local state
   }
 
   loadingIcon() {
@@ -61,7 +61,7 @@ class ImageUploadForm extends React.Component {
         <div>
           <i>Loading...</i>
         </div>
-      )
+      );
     }
   }
 
@@ -87,7 +87,7 @@ class ImageUploadForm extends React.Component {
         </form>
         
       </div>
-    )
+    );
   }
 }
 

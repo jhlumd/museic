@@ -11,9 +11,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    closeModal: () => dispatch(closeModal()),
-  }
-}
+    closeModal: () => dispatch(closeModal())
+  };
+};
 
 export default connect(
   mapStateToProps,

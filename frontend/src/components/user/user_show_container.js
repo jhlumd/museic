@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 import { fetchAllSnippets } from '../../actions/snippet_actions'
-import { fetchComments, composeComment, removeComment, editComment } from '../../actions/comment_actions';
+import {
+  fetchComments,
+  composeComment,
+  removeComment,
+  editComment
+} from "../../actions/comment_actions";
 import { addLike, unlike, fetchLikes } from '../../actions/like_actions';
 import { fetchUsers } from '../../actions/user_actions';
 import { upload, save, fetchImages } from '../../actions/image_actions';
@@ -9,17 +14,20 @@ import { fetchFans, addFan, removeFan } from '../../actions/fan_actions';
 
 import UserShow from './user_show';
 
-const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, images }, session }, { match }) => {
-  let isFan = false
-  let fanId = ''
+const mapStateToProps = (
+  { entities: { snippets, likes, fans, users, comments, images }, session },
+  { match }
+) => {
+  let isFan = false;
+  let fanId = "";
   // debugger
-  Object.values(fans).forEach( fan => {
-    if( fan.idol === match.params.id && fan.fan === session.user.id){
+  Object.values(fans).forEach(fan => {
+    if (fan.idol === match.params.id && fan.fan === session.user.id) {
       // debugger
-      isFan = true
-      fanId = fan._id
+      isFan = true;
+      fanId = fan._id;
     }
-  })
+  });
   return {
     snippets: Object.values(snippets),
     snippetLikes: Object.values(likes),
@@ -31,9 +39,9 @@ const mapStateToProps = ({ entities: { snippets, likes, fans, users, comments, i
     isFan,
     fanId,
     fans: Object.values(fans),
-    userId: match.params.id,
-  }
-}
+    userId: match.params.id
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -56,8 +64,8 @@ const mapDispatchToProps = dispatch => {
     removeComment: commentId => dispatch(removeComment(commentId)),
     editComment: commentId => dispatch(editComment(commentId)),
     addLike: likeData => dispatch(addLike(likeData)),
-    unLike: likeId => dispatch(unlike(likeId)),
-  }
-}
+    unLike: likeId => dispatch(unlike(likeId))
+  };
+};
 
-export default connect( mapStateToProps, mapDispatchToProps)(UserShow)
+export default connect( mapStateToProps, mapDispatchToProps)(UserShow);
