@@ -34,7 +34,7 @@ export default class InteractionBarPlay extends Component {
     // Tone.Transport.cancel();
 
     // progress bar css animation
-    this.props.resetProgBar();
+    this.props.resetProgBar(this.props.snippetId);
   }
 
   handlePlay() {
@@ -58,7 +58,7 @@ export default class InteractionBarPlay extends Component {
     this.stopTimeoutId = setTimeout(this.handleStop, 8000);
 
     // progress bar css animation
-    this.props.startProgBar();
+    this.props.startProgBar(this.props.snippetId);
   }
 
   render() {
