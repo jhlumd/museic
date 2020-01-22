@@ -15,8 +15,14 @@ import SearchSnippetIndexContainer from './search/search_snippet_index_container
 
 import UserShowContainer from './user/user_show_container';
 
-import './stylesheets/main.scss'
+import './stylesheets/main.scss';
 
+// scroll fix
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
+history.listen((location, action) => {
+  window.scrollTo(0, 0);
+});
 
 const App = () => (
   <div>
