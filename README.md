@@ -1,5 +1,5 @@
 # Museic
-### [Live Demo](http://museic-demo.herokuapp.com/#/ "Live link of Museic")
+### [Live Demo](https://museic-demo.herokuapp.com/ "Live link of Museic")
 
 ## Summary: A MERN-stack single-page web application that allows users to make, and share short, musical snippets.
 
