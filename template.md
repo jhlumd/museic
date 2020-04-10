@@ -1,4 +1,4 @@
-# <a href="https://soricloud.herokuapp.com/"><img src="./demo/logo.png" alt="SoundCloud Logo" title="Go to SoriCloud" height="55" align="center"></a> SoriCloud - A SoundCloud Clone
+# <a href="https://soricloud.herokuapp.com/"><img src="./frontend/public/assets/favicon.png" alt="SoundCloud Logo" title="Go to SoriCloud" height="55" align="center"></a> SoriCloud - A SoundCloud Clone
 [SoriCloud](https://soricloud.herokuapp.com/ "Visit SoriCloud") is a single-page app for streaming music and uploading your own.
 
 ## Table of contents
