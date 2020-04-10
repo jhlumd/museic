@@ -4,29 +4,29 @@ const Schema = mongoose.Schema;
 const SnippetSchema = new Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
-    type: String
+    type: String,
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users',
+    ref: "users",
     required: true,
-    index: true
+    index: true,
   },
   public: {
     type: Boolean,
-    default: true
+    default: true,
   },
   notes: {
     type: Array,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = User = mongoose.model("snippets", SnippetSchema);

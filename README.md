@@ -1,10 +1,11 @@
 # Museic
 ### [Live Demo](https://museic-demo.herokuapp.com/ "Live link of Museic")
 
-## Summary: A MERN-stack single-page web application that allows users to make, and share short, musical snippets.
+## Summary
+A MERN-stack single-page web application that allows users to make, and share short, musical snippets.
 
 **Technologies used:**
-MongoDB, Express, React / Redux, Node JS (MERN stack)
+MongoDB, Express.js, React / Redux, Node.js, Tone.js
 
 **Developers:**
 Jenny / Jiani Fan, Jaehyuk Lee, Phil Zheng

@@ -6,78 +6,87 @@ const mongoose = require("mongoose"); // required?
 const Snippet = require("../../models/Snippet");
 const validateSnippetInput = require("../../validation/snippet");
 
-const Like = require('../../models/Like')
+const Like = require("../../models/Like");
 
 // need to make index only show public snippets or own snippets
 router.get("/", (req, res) => {
-    Snippet.find({ public: true })
-        .sort({ date: -1 }) //sorts 
-        .then(snippets => res.json(snippets))
-        .catch(err => res.status(404).json({
-            nosnippetsfound: "No snippets found"
-        }));
+  Snippet.find({ public: true })
+    .sort({ date: -1 }) //sorts
+    .then((snippets) => res.json(snippets))
+    .catch((err) =>
+      res.status(404).json({
+        nosnippetsfound: "No snippets found",
+      })
+    );
 });
 
 //profile snippet get, will get all and only display own
 router.get("/all", (req, res) => {
-    Snippet.find()
-        .sort({ date: -1 }) //sorts 
-        .then(snippets => res.json(snippets))
-        .catch(err => res.status(404).json({
-            nosnippetsfound: "No snippets found"
-        }));
+  Snippet.find()
+    .sort({ date: -1 }) //sorts
+    .then((snippets) => res.json(snippets))
+    .catch((err) =>
+      res.status(404).json({
+        nosnippetsfound: "No snippets found",
+      })
+    );
 });
 
 // index for user show page
 router.get("/user/:user_id", (req, res) => {
-    Snippet.find({ user: req.params.user_id })
-        .then(snippets => res.json(snippets))
-        .catch(err => res.status(404).json({
-            nosnippetsfound: "No snippets found from that user"
-        }));
+  Snippet.find({ user: req.params.user_id })
+    .then((snippets) => res.json(snippets))
+    .catch((err) =>
+      res.status(404).json({
+        nosnippetsfound: "No snippets found from that user",
+      })
+    );
 });
 
 // single snippet show page
 router.get("/:id", (req, res) => {
-    Snippet.findById(req.params.id)
-        .then(snippet => res.json(snippet))
-        .catch(err => res.status(404).json({
-            nosnippetfound: "No snippet found with that ID"
-        }));
+  Snippet.findById(req.params.id)
+    .then((snippet) => res.json(snippet))
+    .catch((err) =>
+      res.status(404).json({
+        nosnippetfound: "No snippet found with that ID",
+      })
+    );
 });
 
 // create snippet form
 router.post(
-    "/",
-    passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-        const { errors, isValid } = validateSnippetInput(req.body);
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateSnippetInput(req.body);
 
-        if (!isValid) {
-            return res.status(400).json(errors);
-        }
-
-        const newSnippet = new Snippet({
-            title: req.body.title,
-            description: req.body.description,
-            user: req.user.id,
-            public: req.body.public,
-            notes: req.body.notes
-        });
-
-        newSnippet.save().then(snippet => res.json(snippet));
+    if (!isValid) {
+      return res.status(400).json(errors);
     }
+
+    const newSnippet = new Snippet({
+      title: req.body.title,
+      description: req.body.description,
+      user: req.user.id,
+      public: req.body.public,
+      notes: req.body.notes,
+    });
+
+    newSnippet.save().then((snippet) => res.json(snippet));
+  }
 );
 
 // delete a snippet
-router.delete('/:id',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-        const snippetId = req.params.id;
-        Snippet.deleteOne({ _id: snippetId })
-            .then(() => res.json({ msg: `Snippet id: ${snippetId} deleted` }))
-            .catch(err => console.log(err));
-    }
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const snippetId = req.params.id;
+    Snippet.deleteOne({ _id: snippetId })
+      .then(() => res.json({ msg: `Snippet id: ${snippetId} deleted` }))
+      .catch((err) => console.log(err));
+  }
 );
 
 module.exports = router;

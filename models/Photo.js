@@ -4,19 +4,19 @@ const Schema = mongoose.Schema;
 const PhotoSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users',
+    ref: "users",
     required: true,
-    index: true
+    index: true,
   },
   aws_url: {
     type: String,
     required: true,
-    index: true
+    index: true,
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = Likes = mongoose.model("photos", PhotoSchema);

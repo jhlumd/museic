@@ -1,13 +1,13 @@
-const Validator = require('validator');
-const validText = require('./valid-text');
+const Validator = require("validator");
+const validText = require("./valid-text");
 
 module.exports = function validateSnippetInput(data) {
   let errors = {};
 
-  data.title = validText(data.title) ? data.title : '';
+  data.title = validText(data.title) ? data.title : "";
 
   if (Validator.isEmpty(data.title)) {
-    errors.title = 'Title is required';
+    errors.title = "Title is required";
   }
 
   // if (Validator.isEmpty(data.notes)) {
@@ -16,6 +16,6 @@ module.exports = function validateSnippetInput(data) {
 
   return {
     errors,
-    isValid: Object.keys(errors).length === 0
+    isValid: Object.keys(errors).length === 0,
   };
 };

@@ -1,24 +1,24 @@
-import React from 'react';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { Switch, Route } from 'react-router-dom';
-import Modal from './session/modal';
+import React from "react";
+import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import { Switch, Route } from "react-router-dom";
+import Modal from "./session/modal";
 
-import NavbarContainer from './nav/navbar_container';
-import NavbarNoSessionContainer from './nav/navbar_no_session_container';
-import SplashContainer from './splash/splash_container';
-import Footer from './footer/footer';
+import NavbarContainer from "./nav/navbar_container";
+import NavbarNoSessionContainer from "./nav/navbar_no_session_container";
+import SplashContainer from "./splash/splash_container";
+import Footer from "./footer/footer";
 
 // import SnippetFormContainer from './snippet_form/snippet_form_container';
-import SnippetIndexContainer from './snippet_index/snippet_index_container';
-import SnippetShowContainer from './snippets_show/snippet_show_container';
-import SearchSnippetIndexContainer from './search/search_snippet_index_container';
+import SnippetIndexContainer from "./snippet_index/snippet_index_container";
+import SnippetShowContainer from "./snippets_show/snippet_show_container";
+import SearchSnippetIndexContainer from "./search/search_snippet_index_container";
 
-import UserShowContainer from './user/user_show_container';
+import UserShowContainer from "./user/user_show_container";
 
-import './stylesheets/main.scss';
+import "./stylesheets/main.scss";
 
 // scroll fix
-import { createBrowserHistory } from 'history';
+import { createBrowserHistory } from "history";
 const history = createBrowserHistory();
 history.listen((location, action) => {
   window.scrollTo(0, 0);

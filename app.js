@@ -11,12 +11,12 @@ const snippets = require("./routes/api/snippets");
 const comments = require("./routes/api/comments");
 const likes = require("./routes/api/likes");
 const uploadImg = require("./routes/api/image_upload");
-const fans = require('./routes/api/fans');
+const fans = require("./routes/api/fans");
 
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("frontend/build"));

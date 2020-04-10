@@ -4,29 +4,29 @@ const Schema = mongoose.Schema;
 const CommentSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users',
+    ref: "users",
     required: true,
-    index: true
+    index: true,
   },
   snippet: {
     type: Schema.Types.ObjectId,
-    ref: 'snippets',
+    ref: "snippets",
     required: true,
-    index: true
+    index: true,
   },
   parent: {
     type: Schema.Types.ObjectId,
-    ref: 'comments',
-    index: true
+    ref: "comments",
+    index: true,
   },
   body: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = Comment = mongoose.model("comments", CommentSchema);
