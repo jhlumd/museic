@@ -1,4 +1,4 @@
-# <a href="https://museic-demo.herokuapp.com/"><img src="./frontend/public/assets/favicon.png" alt="Museic Logo" title="Go to Museic" height="55" align="center"></a> Museic - a social musical snippet app
+# <a href="https://museic-demo.herokuapp.com/"><img src="./frontend/public/assets/favicon.png" alt="Museic Logo" title="Go to Museic" height="55"></a> Museic - a social musical snippet app
 **[Museic](https://museic-demo.herokuapp.com/ "Go to Museic")** is a social platform with a unique UI to record and share short melodies.
 
 ## Table of contents
