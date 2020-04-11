@@ -15,7 +15,7 @@
 * [Future Directions](#future-directions)
 
 ## General Info
-You can't predict when and where you'll be inspired with the next great tune. When the muse strikes, jot down your melody ideas right away on [Museic](https://museic-demo.herokuapp.com/ "Go to Museic")! Use the intuitive and responsive piano keys UI to record your melody snippet right on the browser. Share your melody with everyone on Museic or save it as private to return to later.
+You can't predict when and where you'll be inspired with ideas for the next great tune. When the muse strikes, jot down your melody ideas right away on [Museic](https://museic-demo.herokuapp.com/ "Go to Museic")! Use the intuitive and responsive piano keys UI to record your melody snippet right on the browser. Share your melody with everyone on Museic or save it as private to return to later.
 
 ## Technologies
 * React/Redux
