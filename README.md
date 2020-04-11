@@ -12,7 +12,7 @@
   * [Elegant snippet index and show pages](#elegant-snippet-index-and-show-pages)
   * [Front-end relational database queries on top of noSQL](#front-end-relational-database-queries-on-top-of-noSQL)
   * [AWS S3 media storage](#AWS-S3-media-storage)
-<!-- * [Future Directions](#future-directions) -->
+  * [Future Directions](#future-directions)
 
 ## General Info
 You can't predict when and where you'll be inspired with the next great tune. When the muse strikes, jot down your melody ideas right away on [Museic](https://museic-demo.herokuapp.com/ "Go to Museic")! Use the intuitive and responsive piano keys UI to record your melody snippet right on the browser. Share your melody with everyone on Museic or save it as private to return to later.
@@ -109,6 +109,6 @@ All images are hosted on Amazon Web Services (AWS). AWS integration was made thr
 
 ---
 
-<!-- ## Future Directions
-*  Feature 1
-*  Feature 2 -->
+## Future Directions
+*  Implement mobile design with media queries, etc.
+
