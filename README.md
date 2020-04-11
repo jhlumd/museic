@@ -26,7 +26,7 @@ You can't predict when and where you'll be inspired with the next great tune. Wh
 * AWS S3
 
 ## Developers
-[Jenny / Jiani Fan](https://github.com/blueberry-hamster), [Jaehyuk Lee](https://github.com/jhlumd), and [Phil Zheng](https://github.com/Phil-1041)
+[Jenny / Jiani Fan](https://github.com/blueberry-hamster "Visit Jenny's GitHub"), [Jaehyuk Lee](https://github.com/jhlumd "Visit Jaehyuk's GitHub"), and [Phil Zheng](https://github.com/Phil-1041 "Visit Phil's GitHub")
 
 ## Features
 
