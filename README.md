@@ -19,7 +19,7 @@ You can't predict when and where you'll be inspired with ideas for the next grea
 
 ## Technologies
 * React/Redux
-* Node
+* Node.js
 * Express
 * MongoDB
 * Tone.js
