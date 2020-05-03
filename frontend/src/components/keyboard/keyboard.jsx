@@ -26,7 +26,6 @@ export default class Keyboard extends Component {
     const synth = new Tone.Synth();
     synth.oscillator.type = "sine";
     synth.toMaster();
-
     const piano = document.getElementById("piano");
 
     piano.addEventListener(
@@ -50,10 +49,7 @@ export default class Keyboard extends Component {
 
       if (lastNoteDown.startTime < this.timeLimit) {
         const newSnippet = this.notesArray.slice();
-
         this.setState({ notes: newSnippet });
-        // this.props.updateSnippet(newSnippet);
-
         this.props.saveTempNotes(newSnippet);
       }
     });
@@ -61,12 +57,6 @@ export default class Keyboard extends Component {
     piano.addEventListener("mouseup", e => {
       this._handleRelease(synth);
     });
-
-    // piano.addEventListener("mouseout", e => {
-    //   if (this.notesArray.length > 0) { 
-    //     this._handleRelease(synth);
-    //   }
-    // });
 
     // add event listeners to keys for animation
     const keys = piano.children;
@@ -113,12 +103,6 @@ export default class Keyboard extends Component {
     }
   }
 
-  // resetSnippet() {
-  //   this.props.clearTempNotes();
-  //   this.notesArray = [];
-  //   this.setState({ notes: null });
-  // }
-  
   render() {
     return (
       <div className="keyboard-container">
@@ -137,12 +121,6 @@ export default class Keyboard extends Component {
           <li data-note="B5" className="key"></li>
           <li data-note="C6" className="key"></li>
         </ul>
-        {/* <button
-          className="keyboard-reset-button hvr-grow"
-          onClick={this.resetSnippet}
-        >
-          Reset
-        </button> */}
       </div>
     );
   }

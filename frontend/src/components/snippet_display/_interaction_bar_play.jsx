@@ -29,9 +29,6 @@ export default class InteractionBarPlay extends Component {
       clearTimeout(this.stopTimeoutId);
     }
     this.stopTimeoutId = null;
-    
-    // Tone.Transport.stop();
-    // Tone.Transport.cancel();
 
     // progress bar css animation
     this.props.resetProgBar(this.props.snippetId);
@@ -46,7 +43,6 @@ export default class InteractionBarPlay extends Component {
 
     this.props.notes.forEach(note => {
       function triggerSynth(time) {
-        // debugger;
         synth.triggerAttackRelease(note.pitch, note.duration / 4, time);
       }
 
