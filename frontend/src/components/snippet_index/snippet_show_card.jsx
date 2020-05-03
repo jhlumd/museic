@@ -1,55 +1,34 @@
-import React from 'react';
-import CommentListItem from './comment_list_item';
-import SnippetInfo from './snippet_info';
-import CommentForm from './comment_form';
-import SnippetDisplayContainer from '../snippet_display/snippet_display_container';
+import React from "react";
+import CommentListItem from "./comment_list_item";
+import SnippetInfo from "./snippet_info";
+import CommentForm from "./comment_form";
+import SnippetDisplayContainer from "../snippet_display/snippet_display_container";
 
 class IndexShowCard extends React.Component {
-  // constructor(props){
-  //   super(props)
-  //   this.state={
-      
-  //   }
-  // }
+  render() {
+    const { snippet, users, images, newLike, unlike, userId } = this.props;
 
-  // componentDidMount(){
-  // }
-
-  render(){
-    const { 
-      snippet,
-      // comments,
-      // likes,
-      users,
-      images,
-      newLike,
-      unlike,
-      userId
-    } = this.props;
-    
     let hasLiked = false;
 
     let comments = [];
-    if( this.props.comments ){
+    if (this.props.comments) {
       comments = this.props.comments;
     }
     let likes = [];
     if (this.props.likes) {
       likes = this.props.likes;
-      likes.forEach(like => {
-        if (like.user === userId){
+      likes.forEach((like) => {
+        if (like.user === userId) {
           hasLiked = true;
         }
       });
     }
-    
+
     return (
-      <div className='snippet-show-card-container'>
-
+      <div className="snippet-show-card-container">
         <div className="snippet-show-card">
-
           <div className="snippet-info">
-            <SnippetInfo 
+            <SnippetInfo
               snippet={snippet}
               likes={likes}
               comments={comments}
@@ -60,20 +39,21 @@ class IndexShowCard extends React.Component {
             />
           </div>
 
-          <SnippetDisplayContainer 
-            snippet={snippet.notes} 
+          <SnippetDisplayContainer
+            displayType="all"
+            snippet={snippet.notes}
             snippetCreatorId={snippet.user}
-            liked={hasLiked} 
+            liked={hasLiked}
             snippetId={snippet._id}
           />
 
           <ul className="comment-display">
-          {
-            comments.map(comment => {
-              let imageUrl = '';
-              if (!images[comment.user]){ //if user does not have an image
-                //set to default image
-                imageUrl = "https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg";
+            {comments.map((comment) => {
+              let imageUrl = "";
+              if (!images[comment.user]) {
+                //if user does not have an image set to default image
+                imageUrl =
+                  "https://museic-dev.s3-us-west-1.amazonaws.com/default-user-icon.svg";
               } else {
                 imageUrl = images[comment.user].aws_url;
               }
@@ -89,14 +69,12 @@ class IndexShowCard extends React.Component {
                   userId={userId}
                   imageUrl={imageUrl}
                   history={this.props.history}
-
                   deleteComment={this.props.removeComment}
                   editComment={this.props.editComment}
                   composeComment={this.props.composeComment}
                 />
               );
-            })
-          }
+            })}
           </ul>
 
           <div className="comment-form">
@@ -106,10 +84,9 @@ class IndexShowCard extends React.Component {
               snippetId={this.props.snippet._id}
             />
           </div>
-
         </div>
       </div>
-    )
+    );
   }
 }
 

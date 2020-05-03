@@ -20,7 +20,7 @@ export default function SnippetBar(props) {
   };
 
   const noteStyle = {
-    top: (pitchToNum[pitch] / 12) * 99 + "%",
+    top: ((pitchToNum[pitch] / 13) * 100 + 3) + "%",
     left: (startTime / 32) * 100 + "%",
     width: (duration / 32) * 100 + "%",
     backgroundColor: `rgb(${props.backgroundColor[0]}, ${props.backgroundColor[1]}, ${props.backgroundColor[2]})`,
