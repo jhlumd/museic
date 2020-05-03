@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Tone from "tone";
-import PlayBtnIcon from '../resources/play_btn_icon';
-import StopIcon from '../resources/stop_icon';
+import PlayBtnIcon from "../resources/play_btn_icon";
+import StopIcon from "../resources/stop_icon";
 
 export default class InteractionBarPlay extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ export default class InteractionBarPlay extends Component {
     synth.oscillator.type = "sine";
     synth.toMaster();
 
-    this.props.notes.forEach(note => {
+    this.props.notes.forEach((note) => {
       function triggerSynth(time) {
         synth.triggerAttackRelease(note.pitch, note.duration / 4, time);
       }

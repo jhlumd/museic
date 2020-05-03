@@ -1,16 +1,14 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-
-import NavbarUserDropdown from './navbar_user_dropdown';
-import SnippetDisplayPlayOnlyContainer from '../snippet_display/snippet_display_play_only_container';
-import KeyboardContainer from '../keyboard/keyboard_container';
-import SnippetFormContainer from '../snippet_form/snippet_form_container';
-
-import Logo from '../resources/logo';
-import DownChevronIcon from '../resources/down_chevron_icon';
-import UserIcon from '../resources/user_icon';
-import SearchIcon from '../resources/search_icon';
-import XIcon from '../resources/x_icon';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import NavbarUserDropdown from "./navbar_user_dropdown";
+import SnippetDisplayContainer from "../snippet_display/snippet_display_container";
+import KeyboardContainer from "../keyboard/keyboard_container";
+import SnippetFormContainer from "../snippet_form/snippet_form_container";
+import Logo from "../resources/logo";
+import DownChevronIcon from "../resources/down_chevron_icon";
+import UserIcon from "../resources/user_icon";
+import SearchIcon from "../resources/search_icon";
+import XIcon from "../resources/x_icon";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -18,7 +16,7 @@ class Navbar extends React.Component {
     this.state = {
       currentNotes: this.props.tempNotes,
       snipTime: 0,
-      input: '',
+      input: "",
     };
     this.logoutUser = this.logoutUser.bind(this);
     this.searchAutocomplete = this.searchAutocomplete.bind(this);
@@ -28,33 +26,35 @@ class Navbar extends React.Component {
 
   componentDidMount() {
     // This section will listen for when to move the menu up and down
-    const x = document.querySelector('.x-icon-container');
-    const tab = document.querySelector('.nav-base-tab-container');
-    const panel = document.getElementById('nav-container');
-    tab.addEventListener('click', () => {
-      panel.classList.toggle('down');
-      panel.classList.toggle('up');
-    }); 
-    x.addEventListener('click', () => {
-      panel.classList.toggle('down');
-      panel.classList.toggle('up');
-    }); 
+    const x = document.querySelector(".x-icon-container");
+    const tab = document.querySelector(".nav-base-tab-container");
+    const panel = document.getElementById("nav-container");
+    tab.addEventListener("click", () => {
+      panel.classList.toggle("down");
+      panel.classList.toggle("up");
+    });
+    x.addEventListener("click", () => {
+      panel.classList.toggle("down");
+      panel.classList.toggle("up");
+    });
 
     // This section will listen for when the user first clicks on a note
-    const piano = document.getElementById('piano');
-    piano.addEventListener('mousedown', () => this._setUpdate(), { once: true});
+    const piano = document.getElementById("piano");
+    piano.addEventListener("mousedown", () => this._setUpdate(), {
+      once: true,
+    });
 
-    const reset = document.querySelector('.keyboard-reset-button');
-    reset.addEventListener('click', () => {
+    const reset = document.querySelector(".keyboard-reset-button");
+    reset.addEventListener("click", () => {
       this.setState({ snipTime: 0 });
-      const piano = document.getElementById('piano');
+      const piano = document.getElementById("piano");
       piano.addEventListener("mousedown", () => this._setUpdate(), {
-        once: true
+        once: true,
       });
     });
-    
+
     // This adds listener for pressing enter in search field
-    const searchInput = document.getElementById('search');
+    const searchInput = document.getElementById("search");
     searchInput.addEventListener("keyup", function (event) {
       if (event.keyCode === 13) {
         // Trigger the button element with a click
@@ -65,7 +65,7 @@ class Navbar extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      currentNotes: nextProps.tempNotes
+      currentNotes: nextProps.tempNotes,
     });
     // reset snip time if user reset keyboard
     if (!this.state.currentNotes) {
@@ -75,11 +75,11 @@ class Navbar extends React.Component {
 
   componentDidUpdate() {
     // add class on searchbar if there are any matches
-    const results = document.querySelector('.search-results-container');
+    const results = document.querySelector(".search-results-container");
     if (results && results.childElementCount > 0) {
-      document.querySelector('.search-container').classList.add('found')
+      document.querySelector(".search-container").classList.add("found");
     } else {
-      document.querySelector('.search-container').classList.remove('found')
+      document.querySelector(".search-container").classList.remove("found");
     }
   }
 
@@ -130,169 +130,181 @@ class Navbar extends React.Component {
 
   keyboardOrForm() {
     let snipTime = this.state.snipTime;
-    
+
     if (snipTime >= 8) {
-      return <SnippetFormContainer /> 
+      return <SnippetFormContainer />;
     } else {
-      return <KeyboardContainer />
+      return <KeyboardContainer />;
     }
   }
 
   handleSearch() {
-    this.props.history.push(`/search/?st=${this.state.input}`)
-    this.setState({input: ''})
+    this.props.history.push(`/search/?st=${this.state.input}`);
+    this.setState({ input: "" });
   }
 
-  handleChange(type, e){
-    this.setState({ [type]: e.currentTarget.value })
+  handleChange(type, e) {
+    this.setState({ [type]: e.currentTarget.value });
   }
 
-  searchAutocomplete(){
-    if(this.props.users.length === 0 || this.state.input.length === 0) return null
-    const { users, snippets } = this.props
-    const userResults = []
-    const snippetResults = {}
-    const terms = this.state.input.split(' ')
-    const userIds = Object.keys(users)
-    terms.forEach( term => {
-      if(term.length === 0 ) return null
+  searchAutocomplete() {
+    if (this.props.users.length === 0 || this.state.input.length === 0)
+      return null;
+    const { users, snippets } = this.props;
+    const userResults = [];
+    const snippetResults = {};
+    const terms = this.state.input.split(" ");
+    const userIds = Object.keys(users);
+    terms.forEach((term) => {
+      if (term.length === 0) return null;
       Object.values(users).forEach((user, i) => {
-        if (user.length >= term.length && user.slice(0, term.length).toLowerCase() === term.toLowerCase()){
-          userResults.push(userIds[i])
+        if (
+          user.length >= term.length &&
+          user.slice(0, term.length).toLowerCase() === term.toLowerCase()
+        ) {
+          userResults.push(userIds[i]);
         }
-      })
+      });
 
-      if(term.length > 2){ //only do snippet title search if sub-term at least 3 chars
-        snippets.forEach(snippet => {
-          for( let i = 0; i+term.length < snippet.title.length+1; i++){
-            if (snippet.title.slice(i, i + term.length).toLowerCase() === term.toLowerCase()){
-              snippetResults[snippet._id] = snippet
+      if (term.length > 2) {
+        //only do snippet title search if sub-term at least 3 chars
+        snippets.forEach((snippet) => {
+          for (let i = 0; i + term.length < snippet.title.length + 1; i++) {
+            if (
+              snippet.title.slice(i, i + term.length).toLowerCase() ===
+              term.toLowerCase()
+            ) {
+              snippetResults[snippet._id] = snippet;
             }
           }
-        })
+        });
       }
-    })
-    
-    if (this.state.input.length > 2) { //only do snippet title search if input at least 3 chars
-      snippets.forEach(snippet => {
-        for (let i = 0; i + this.state.input.length < snippet.title.length; i++) {
-          if (snippet.title.slice(i, i + this.state.input.length).toLowerCase() === this.state.input.toLowerCase()) {
-            snippetResults[snippet._id] = snippet
+    });
+
+    if (this.state.input.length > 2) {
+      //only do snippet title search if input at least 3 chars
+      snippets.forEach((snippet) => {
+        for (
+          let i = 0;
+          i + this.state.input.length < snippet.title.length;
+          i++
+        ) {
+          if (
+            snippet.title
+              .slice(i, i + this.state.input.length)
+              .toLowerCase() === this.state.input.toLowerCase()
+          ) {
+            snippetResults[snippet._id] = snippet;
           }
         }
-      })
+      });
     }
 
     return (
-    <div className='search-results-container'>
-      {
-        userResults.map((userId,i) => {
-          return <li className='user' key={i} onClick={()=> {
-            this.props.history.push(`/profile/${userId}`)
-            this.setState({input: ''})
-          }}>{users[userId]}</li>
-        })
-      }
-      {
-        Object.values(snippetResults).map((snippet, i) => {
-          return <li className='snippet' key={i} onClick={()=> {
-            this.props.history.push(`/snippets/${snippet._id}`)
-            this.setState({input: ''})
-          }}>{snippet.title}</li>
-        })
-      }
-    </div>
-    )
+      <div className="search-results-container">
+        {userResults.map((userId, i) => {
+          return (
+            <li
+              className="user"
+              key={i}
+              onClick={() => {
+                this.props.history.push(`/profile/${userId}`);
+                this.setState({ input: "" });
+              }}
+            >
+              {users[userId]}
+            </li>
+          );
+        })}
+        {Object.values(snippetResults).map((snippet, i) => {
+          return (
+            <li
+              className="snippet"
+              key={i}
+              onClick={() => {
+                this.props.history.push(`/snippets/${snippet._id}`);
+                this.setState({ input: "" });
+              }}
+            >
+              {snippet.title}
+            </li>
+          );
+        })}
+      </div>
+    );
   }
 
   render() {
-    // changing the snippetform to the keyboard with the following code
-    // causes "form submission canceled because the form is not connected" error
-
-    // if (document.querySelector('.make-new-snippet-btn')) {
-    //   const submit = document.querySelector('.make-new-snippet-btn');
-    //   submit.addEventListener('click', () => {
-    //     this.setState({ snipTime: 0 });
-    //     const piano = document.getElementById('piano');
-    //     piano.addEventListener('click', () => this._setUpdate(), { once: true });
-    //   });
-    // }
-    
     return (
-      <div id='nav-container' className='up'>
-
-        <div className='nav-content'>
-          
-          <div className='nav-create-snippet-form-container'>
-
-            <div className='x-icon-container'>
+      <div id="nav-container" className="up">
+        <div className="nav-content">
+          <div className="nav-create-snippet-form-container">
+            <div className="x-icon-container">
               <XIcon />
             </div>
 
             <h2>
-              Create a new snippet. 
-              <span className='countdown'>
-                { 8 - this.state.snipTime }
-              </span>
+              Create a new snippet.
+              <span className="countdown">{8 - this.state.snipTime}</span>
             </h2>
-            
 
-            <div className='create-message'>
-              <p>{ this.writeMessage() }</p>
+            <div className="create-message">
+              <p>{this.writeMessage()}</p>
             </div>
 
-            <SnippetDisplayPlayOnlyContainer snippet={this.state.currentNotes} />
-            
-            { this.keyboardOrForm() }
-            
+            <SnippetDisplayContainer
+              displayType="create"
+              snippet={this.state.currentNotes}
+            />
+
+            {this.keyboardOrForm()}
           </div>
-          
-          <div className='nav-base-bar-container'>
 
-            <div className='nav-base-bar-content'>
-
-              <div className='nav-base-bar-left'>
+          <div className="nav-base-bar-container">
+            <div className="nav-base-bar-content">
+              <div className="nav-base-bar-left">
                 <Logo />
               </div>
 
-              <div className='nav-base-bar-right'>
-
-                <div className='search-container'> 
-
-                  <input 
-                    type="text" 
-                    placeholder="search" 
-                    id="search" 
+              <div className="nav-base-bar-right">
+                <div className="search-container">
+                  <input
+                    type="text"
+                    placeholder="search"
+                    id="search"
                     value={this.state.input}
-                    onChange={(e) => this.handleChange('input', e)}
+                    onChange={(e) => this.handleChange("input", e)}
                   />
-                  <button id='search-btn' onClick={() => this.handleSearch()}><SearchIcon /></button>
-                  
+                  <button id="search-btn" onClick={() => this.handleSearch()}>
+                    <SearchIcon />
+                  </button>
                 </div>
                 {this.searchAutocomplete()}
-                
-                <div className='icon-wrap'>
-                  <UserIcon onClick={() => this.props.history.push(`/profile/${this.props.currentUserId}`)}/>
-                  <NavbarUserDropdown 
+
+                <div className="icon-wrap">
+                  <UserIcon
+                    onClick={() =>
+                      this.props.history.push(
+                        `/profile/${this.props.currentUserId}`
+                      )
+                    }
+                  />
+                  <NavbarUserDropdown
                     history={this.props.history}
-                    loggedIn={this.props.loggedIn} 
+                    loggedIn={this.props.loggedIn}
                     logoutUser={this.logoutUser}
-                    openModal={this.props.openModal} 
+                    openModal={this.props.openModal}
                     currentUserId={this.props.currentUserId}
                   />
                 </div>
-
               </div>
-
             </div>
 
-            <div className='nav-base-tab-container'>
+            <div className="nav-base-tab-container">
               <DownChevronIcon />
             </div>
           </div>
-
         </div>
-
       </div>
     );
   }

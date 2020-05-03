@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DownChevronIcon from "../resources/down_chevron_icon";
-import SnippetDisplayPlayOnlyContainer from "../snippet_display/snippet_display_play_only_container";
+import SnippetDisplayContainer from "../snippet_display/snippet_display_container";
 
 import { demoSnippets } from "./demo_snips";
 
@@ -9,7 +9,7 @@ export default class SplashSnippetDemo extends Component {
     super(props);
     this.state = {
       activeSnippet: demoSnippets[0],
-      activeTab: 0
+      activeTab: 0,
     };
     this.changeTab = this.changeTab.bind(this);
   }
@@ -32,26 +32,13 @@ export default class SplashSnippetDemo extends Component {
     document.querySelector("li.tab:nth-child(1)").classList.add("active");
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   const prevTabNum = prevState.activeTab;
-  //   const nextTabNum = this.state.activeTab;
-
-  //   if (prevTabNum !== nextTabNum) {
-  //     const prevTab = document.querySelector(`.tabs-container li:nth-child(${prevTabNum + 1})`);
-  //     const nextTab = document.querySelector(`.tabs-container li:nth-child(${nextTabNum + 1})`);
-
-  //     prevTab.classList.remove('active');
-  //     nextTab.classList.add('active');
-  //   }
-  // }
   render() {
-    // const demoSnippetsArr = demoSnippets;
     const demoSnippetsArr = [
       { title: "Demo 1" },
       { title: "Demo 2" },
-      { title: "Demo 3" }
+      { title: "Demo 3" },
     ];
-    // debugger;
+
     return (
       <div id="splash-snippet-demo-container">
         <h2>Check these out.</h2>
@@ -65,7 +52,8 @@ export default class SplashSnippetDemo extends Component {
         </ul>
 
         <div className="snippet-display-container">
-          <SnippetDisplayPlayOnlyContainer
+          <SnippetDisplayContainer
+            displayType="play"
             snippet={this.state.activeSnippet.notes}
           />
         </div>
