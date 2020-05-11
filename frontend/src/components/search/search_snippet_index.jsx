@@ -44,7 +44,6 @@ class SearchIndex extends React.Component {
     const terms = this.state.searchTerms.split(' ')
     const userIds = Object.keys(users)
     terms.forEach(term => { //search by each term
-      // debugger
       Object.values(users).forEach((user, i) => {
         if (user.toLowerCase() === term.toLowerCase()) {
           userSearch.push(userIds[i])
@@ -128,7 +127,6 @@ class SearchIndex extends React.Component {
             Object.values(searchResults).map( snippet => {
               const snippetId = snippet._id
 
-              // debugger
               if (this.state.selectedId === snippetId) {
                 return <SnippetShowCard
                 key={snippetId}

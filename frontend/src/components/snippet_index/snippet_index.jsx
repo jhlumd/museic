@@ -50,7 +50,6 @@ class SnippetIndex extends React.Component {
             this.props.snippets.map( snippet => {
               const snippetId = snippet._id
 
-              // debugger
               if (this.state.selectedId === snippetId) {
                 return <SnippetShowCard
                 key={snippetId}

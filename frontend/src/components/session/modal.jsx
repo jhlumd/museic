@@ -38,7 +38,6 @@ class Modal extends React.Component {
         </div> 
       );
     } else if (this.props.modal.delete) {
-      // debugger;
       return (
         <div className="modal-background" onClick={this.props.closeModal}>
           <div className="modal-share" onClick={e => e.stopPropagation()}>
@@ -75,7 +74,6 @@ class Modal extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // debugger;
   return {
     modal: state.ui.modal
   };

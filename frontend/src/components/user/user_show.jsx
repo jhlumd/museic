@@ -111,7 +111,6 @@ class UserShow extends React.Component {
     const mySnippets = []; //snippets belonging to the profile's user
     snippets.forEach((snippet) => {
       if (snippet.user === userId) {
-        // debugger
         snippetCount += 1;
         mySnippets.push(snippet); //snippets created by the user, that this profile refers to
       }

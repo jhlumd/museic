@@ -20,10 +20,8 @@ const mapStateToProps = (
 ) => {
   let isFan = false;
   let fanId = "";
-  // debugger
   Object.values(fans).forEach(fan => {
     if (fan.idol === match.params.id && fan.fan === session.user.id) {
-      // debugger
       isFan = true;
       fanId = fan._id;
     }

@@ -12,7 +12,6 @@ const snippetsReducer = (oldState = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_SNIPPETS: //action.snippets is an array
-            // debugger
             const snippets = {};
             action.snippets.forEach( snippet => 
                 snippets[snippet._id] = snippet
@@ -30,7 +29,6 @@ const snippetsReducer = (oldState = {}, action) => {
             return Object.assign({}, oldState, newState);
         case REMOVE_SNIPPET:
             newState = Object.assign({}, oldState);
-            // debugger;
             delete newState[action.snippetId];
             return newState;
         default:

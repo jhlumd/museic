@@ -28,7 +28,6 @@ export default function (state = initialState, action) {
       return comments
     // case ALL_SNIPPET_COMMENTS:
     //   const snippets = {};
-    //   // debugger
     //   action.comments.forEach( comment => 
     //     snippets[comment._id] = comment);
     //   return snippets;
@@ -36,7 +35,6 @@ export default function (state = initialState, action) {
     //   newState[action.comment._id] = action.comment;
     //   return newState;
     // case REMOVE_COMMENT:
-    //   // debugger
     //   delete newState[action.commentId];
     //   return newState;
     default:
