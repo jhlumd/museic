@@ -83,7 +83,7 @@ export default function SplashTeamInfo() {
               <GithubIcon />
             </a>
             <a
-              href="https://www.linkedin.com/in/jaehyuk-lee-a5277425/"
+              href="https://www.linkedin.com/in/lee-jaehyuk"
               className="linkedin"
               target="_blank"
             >
