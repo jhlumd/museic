@@ -2,19 +2,17 @@
 **[Museic](https://museic-demo.herokuapp.com/ "Go to Museic")** is a social platform with a unique UI to record and share short melodies.
 
 ## Table of Contents
-- [<a href="https://museic-demo.herokuapp.com/"><img src="./frontend/public/assets/favicon.png" alt="Museic Logo" title="Go to Museic" height="80"></a> Museic - a social musical snippet app](#img-srcfrontendpublicassetsfaviconpng-altmuseic-logo-titlego-to-museic-height80-museic---a-social-musical-snippet-app)
-  - [Table of Contents](#table-of-contents)
-  - [General Info](#general-info)
-  - [Technologies](#technologies)
-  - [Developers](#developers)
-  - [Features](#features)
-    - [Interactive splash tutorial page](#interactive-splash-tutorial-page)
-    - [Musical Component](#musical-component)
-    - [Accessible recording form in nav bar](#accessible-recording-form-in-nav-bar)
-    - [Elegant snippet index and show pages](#elegant-snippet-index-and-show-pages)
-    - [Front-end relational database queries on top of noSQL](#front-end-relational-database-queries-on-top-of-nosql)
-    - [AWS S3 media storage](#aws-s3-media-storage)
-  - [Future Directions](#future-directions)
+- [General Info](#general-info)
+- [Technologies](#technologies)
+- [Developers](#developers)
+- [Features](#features)
+  - [Interactive splash tutorial page](#interactive-splash-tutorial-page)
+  - [Musical Component](#musical-component)
+  - [Accessible recording form in nav bar](#accessible-recording-form-in-nav-bar)
+  - [Elegant snippet index and show pages](#elegant-snippet-index-and-show-pages)
+  - [Front-end relational database queries on top of noSQL](#front-end-relational-database-queries-on-top-of-nosql)
+  - [AWS S3 media storage](#aws-s3-media-storage)
+- [Future Directions](#future-directions)
 
 ## General Info
 You can't predict when and where you'll be inspired with ideas for the next great tune. When the muse strikes, jot down your melody ideas right away on [Museic](https://museic-demo.herokuapp.com/ "Go to Museic")! Use the intuitive and responsive piano keys UI to record your melody snippet right on the browser. Share your melody with everyone on Museic or save it as private to return to later.
